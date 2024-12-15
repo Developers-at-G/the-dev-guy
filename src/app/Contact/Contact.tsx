@@ -30,9 +30,9 @@ const Contact = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-800">
-      <div className="w-full max-w-md p-6 bg-gray-800 border border-gray-200 rounded-lg text-white">
-        <h2 className="text-center text-2xl font-semibold mb-6">Contact</h2>
+    <section className="flex flex-col  py-10 items-center min-h-screen bg-gray-800" id='contact'>
+        <div className="text-center text-6xl font-semibold my-6">Contact</div>
+      <div className="w-9/12 p-6 bg-gray-800 border border-gray-200 rounded-lg text-white">
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="name" className="block mb-1 text-sm font-medium">Name</label>
@@ -74,7 +74,7 @@ const Contact = () => {
           </div>
         </form>
       </div>
-    </div>
+    </section>
   );
 };
 

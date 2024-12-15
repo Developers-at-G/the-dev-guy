@@ -26,9 +26,9 @@ const Skills = () => {
   
 
   return (
-    <div className="h-fit w-fit">
+    <section className="h-fit w-fit" id='skills'>
       <div className="py-10">
-        <p className="text-black text-center font-bold text-3xl">SKILLS</p>
+        <p className="text-black text-center font-bold text-6xl">SKILLS</p>
       </div>
       <div className='py-28'>
         <Splide
@@ -87,7 +87,7 @@ const Skills = () => {
           ))}
         </Splide>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 const Profile = () => {
   return (
-    <div className="flex flex-row items-center justify-center p-28 gap-48 bg-gray-800 w-full- h-full">
+    <section id="about" className="flex flex-row items-center justify-center p-28 gap-48 bg-gray-800 w-full- h-full">
       <div className="w-full h-full">
         <Image src="/Images/profile.png" alt="profile" width={400} height={400} />
       </div>
@@ -16,7 +16,7 @@ const Profile = () => {
             UI/UX design principles.
           </p>
       </div>
-    </div>
+    </section>
   );
 };
 

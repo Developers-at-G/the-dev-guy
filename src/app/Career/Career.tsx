@@ -2,16 +2,16 @@ import Image from "next/image";
 import React from "react";
 const Career = () => {
     return (
-        <div className="bg-zinc-900 w-full- h-full">
+        <div className="bg-gray-800 w-full- h-full">
           <div className="py-10">
-            <p className="text-white text-center font-bold text-3xl">Work Experience</p>
+            <p className="text-black text-center font-bold text-3xl text-white">Work Experience</p>
           </div>
           <div className='py-28 flex justify-center items-center'>
             <div className="grid grid-cols-3  gap-40">
                 <div className="grid grid-rows-3 gap-20">
-                    <div className="flex items-center justify-center">JAN 2023 - PRESENT</div>
-                    <div className="flex items-center justify-center">DEC 2023 - NOV 2022</div>
-                    <div className="flex items-center justify-center">JAN 2020 - JUN 2020</div>
+                    <div className="flex items-center justify-center text-white">JAN 2023 - PRESENT</div>
+                    <div className="flex items-center justify-center text-white">DEC 2023 - NOV 2022</div>
+                    <div className="flex items-center justify-center text-white">JAN 2020 - JUN 2020</div>
                 </div>
                 <div className="grid grid-rows-3 gap-20">
                     <Image src="/Images/smal.png" alt="smal" width={80} height={80} />

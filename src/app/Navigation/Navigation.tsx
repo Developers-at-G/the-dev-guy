@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 const Navigation = () => {
   const [activeLink, setActiveLink] = useState('');
 
-  const handleLinkClick = (id:any) => {
+  const handleLinkClick = (id:string) => {
     setActiveLink(id);
     const targetElement = document.getElementById(id);
     if (targetElement) {

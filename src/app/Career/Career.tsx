@@ -12,7 +12,7 @@ const Career = () => {
     const rows = containerRef.current?.querySelectorAll(".career-row");
 
     if (rows) {
-      rows.forEach((row, index) => {
+      rows.forEach((row) => {
         gsap.fromTo(
           row,
           {

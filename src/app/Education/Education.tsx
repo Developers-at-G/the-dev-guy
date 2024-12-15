@@ -9,7 +9,7 @@ const Education = () => {
   const cardsRef = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
-    cardsRef.current.forEach((card, index) => {
+    cardsRef.current.forEach((card) => {
       gsap.fromTo(
         card,
         {

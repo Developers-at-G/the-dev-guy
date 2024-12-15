@@ -4,11 +4,15 @@ import emailjs from '@emailjs/browser';
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
-  const handleChange = (e: any) => {
+  // Handle changes in the form fields
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
-  const handleSubmit = (e: any) => {
+  // Handle form submission
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     emailjs
@@ -21,6 +25,7 @@ const Contact = () => {
       .then(
         (result) => {
           alert('Email sent successfully!');
+          console.error(result);
         },
         (error) => {
           alert('Failed to send email.');
@@ -30,12 +35,14 @@ const Contact = () => {
   };
 
   return (
-    <section className="flex flex-col  py-10 items-center min-h-screen bg-gray-800" id='contact'>
-        <div className="text-center text-6xl font-semibold my-6">Contact</div>
+    <section className="flex flex-col py-10 items-center min-h-screen bg-gray-800" id="contact">
+      <div className="text-center text-6xl font-semibold my-6">Contact</div>
       <div className="w-9/12 p-6 bg-gray-800 border border-gray-200 rounded-lg text-white">
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="name" className="block mb-1 text-sm font-medium">Name</label>
+            <label htmlFor="name" className="block mb-1 text-sm font-medium">
+              Name
+            </label>
             <input
               type="text"
               id="name"
@@ -45,7 +52,9 @@ const Contact = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="email" className="block mb-1 text-sm font-medium">Email</label>
+            <label htmlFor="email" className="block mb-1 text-sm font-medium">
+              Email
+            </label>
             <input
               type="email"
               id="email"
@@ -55,7 +64,9 @@ const Contact = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="message" className="block mb-1 text-sm font-medium">Message</label>
+            <label htmlFor="message" className="block mb-1 text-sm font-medium">
+              Message
+            </label>
             <textarea
               id="message"
               rows={4}

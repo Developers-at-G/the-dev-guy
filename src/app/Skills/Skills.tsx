@@ -26,7 +26,7 @@ const Skills = () => {
   
 
   return (
-    <section className="h-fit w-fit" id='skills'>
+    <section className="h-fit w-full" id='skills'>
       <div className="py-10">
         <p className="text-black text-center font-bold text-6xl">SKILLS</p>
       </div>
@@ -39,6 +39,11 @@ const Skills = () => {
             arrows: false,
             pagination: false,
             perPage: 5,
+            breakpoints: {
+              640: { perPage: 2 },
+              768: { perPage: 3 },
+              1024: { perPage: 4 },
+            },
             autoScroll: {
               pauseOnHover: true,
               pauseOnFocus: false,
@@ -51,7 +56,7 @@ const Skills = () => {
           {images1.map((image, index) => (
             <SplideSlide key={index}>
               <img
-                className="h-fit w-fit"
+                className="w-full h-auto max-w-[200px] mx-auto object-contain"
                 src={image}
                 alt={`Slide ${index + 1}`}
               />
@@ -67,6 +72,11 @@ const Skills = () => {
             arrows: false,
             pagination: true,
             perPage: 5,
+            breakpoints: {
+              640: { perPage: 2 },
+              768: { perPage: 3 },
+              1024: { perPage: 4 },
+            },
             autoScroll: {
               pauseOnHover: true,
               pauseOnFocus: false,
@@ -80,7 +90,7 @@ const Skills = () => {
             <SplideSlide key={index}>
               <img
                 src={image}
-                className="h-fit w-fit"
+                className="w-full h-auto max-w-[200px] mx-auto object-contain"
                 alt={`Slide ${index + 1}`}
               />
             </SplideSlide>

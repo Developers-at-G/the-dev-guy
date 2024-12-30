@@ -5,6 +5,7 @@ import Education from "./Education/Education";
 import Navigation from "./Navigation/Navigation";
 import Profile from "./Profile/Profile";
 import Skills from "./Skills/Skills";
+import Achievement from "./Achievement/Achievement";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Skills/>
       <Career/>
       <Education/>
+      <Achievement/> 
       <Contact/>
     </div>
   );

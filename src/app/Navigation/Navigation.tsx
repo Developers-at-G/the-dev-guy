@@ -68,6 +68,7 @@ const Navigation = () => {
               { id: 'skills', label: 'Skills' },
               { id: 'career', label: 'Career' },
               { id: 'education', label: 'Education' },
+              { id: 'achievement', label: 'Achievement' },
               { id: 'contact', label: 'Contact' },
             ].map((link) => (
               <li

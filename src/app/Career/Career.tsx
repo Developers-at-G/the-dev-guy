@@ -105,8 +105,8 @@ const Career = () => {
           <div className="grid grid-rows-3 gap-20">
             {[
               { title: "Software Engineer", company: "Smal Gmbh" },
-              { title: "Frontend Developer", company: "Future Stories" },
-              { title: "Fullstack Developer", company: "Obertys" },
+              { title: "Frontend Developer", company: "Obertys" },
+              { title: "Fullstack Developer", company: "Future Stories" },
             ].map((job, index) => (
               <div key={index} className="w-full bg-white rounded-2xl py-4 px-6 flex flex-col items-center justify-center career-row">
                 <span className="text-black text-xl text-center">{job.title}</span>
@@ -127,12 +127,12 @@ const Career = () => {
             {
               date: "DEC 2023 - NOV 2022",
               image: { src: "/Images/Obertys.png", alt: "obertys", width: 80, height: 80 },
-              job: { title: "Frontend Developer", company: "Future Stories" }
+              job: { title: "Frontend Developer", company: "Obertys" }
             },
             {
               date: "JAN 2020 - JUN 2020",
               image: { src: "/Images/future-stories.png", alt: "future-stories", width: 80, height: 80 },
-              job: { title: "Fullstack Developer", company: "Obertys" }
+              job: { title: "Fullstack Developer", company: "Future Stories" }
             }
           ].map((experience, index) => (
             <div key={index} className="career-row bg-gray-700 rounded-lg p-4 flex flex-col items-center gap-4">

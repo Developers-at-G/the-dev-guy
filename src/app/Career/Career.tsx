@@ -10,32 +10,65 @@ const Career = () => {
 
   useEffect(() => {
     const rows = containerRef.current?.querySelectorAll(".career-row");
+    const mm = gsap.matchMedia();
 
-    if (rows) {
-      rows.forEach((row) => {
+    // Clear any existing ScrollTrigger instances
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+
+    // Desktop animation setup
+    mm.add("(min-width: 768px)", () => {
+      if (rows) {
+        rows.forEach((row) => {
+          gsap.fromTo(
+            row,
+            {
+              opacity: 0,
+              y: 50,
+            },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 1,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: row,
+                start: "top 80%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        });
+      }
+    });
+
+    // Mobile animation setup
+    mm.add("(max-width: 767px)", () => {
+      if (rows) {
         gsap.fromTo(
-          row,
+          rows,
           {
             opacity: 0,
-            y: 50, // Start position (below the view)
+            y: 50,
+            stagger: 0.2,
           },
           {
             opacity: 1,
-            y: 0, // End position (at its original location)
-            duration: 1, // Animation duration
-            ease: "power2.out", // Easing function for smooth effect
+            y: 0,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: "power2.out",
             scrollTrigger: {
-              trigger: row, // The element that triggers the animation
-              start: "top 80%", // Animation starts when top of the row hits 80% of the viewport height
-              toggleActions: "play none none reverse", // Play on entering, reverse on leaving
+              trigger: containerRef.current,
+              start: "top 80%",
+              toggleActions: "play none none reverse",
             },
           }
         );
-      });
-    }
+      }
+    });
 
     return () => {
-      // Cleanup ScrollTrigger instances on unmount
+      mm.revert();
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
@@ -43,48 +76,82 @@ const Career = () => {
   return (
     <section className="bg-gray-800 w-full h-full" id="career">
       <div className="py-10">
-        <p className="text-black text-center font-bold text-6xl text-white">Work Experience</p>
+        <p className="text-white text-center font-bold text-4xl md:text-6xl">Work Experience</p>
       </div>
-      <div className="py-28 flex justify-center items-center" ref={containerRef}>
-        <div className="grid grid-cols-3 gap-40">
-          {/* Row 1: Dates */}
+      <div className="py-10 md:py-28 px-4 md:px-0 flex justify-center items-center" ref={containerRef}>
+        {/* Desktop layout */}
+        <div className="hidden md:grid md:grid-cols-3 gap-40 w-full max-w-6xl">
+          {/* Original desktop layout columns */}
           <div className="grid grid-rows-3 gap-20">
             {["JAN 2023 - PRESENT", "DEC 2023 - NOV 2022", "JAN 2020 - JUN 2020"].map((date, index) => (
-              <div key={index} className="flex items-center justify-center text-white career-row">
+              <div key={index} className="flex items-center justify-center text-white text-base career-row">
                 {date}
               </div>
             ))}
           </div>
-
-          {/* Row 2: Images */}
+          
           <div className="grid grid-rows-3 gap-20">
             {[
-              { src: "/Images/smal.png", alt: "smal", width: 80, height: 80 },
-              { src: "/Images/Obertys.png", alt: "obertys", width: 100, height: 100 },
-              { src: "/Images/future-stories.png", alt: "future-stories", width: 100, height: 100 },
+              { src: "/Images/smal.png", alt: "smal", width: 60, height: 60 },
+              { src: "/Images/Obertys.png", alt: "obertys", width: 80, height: 80 },
+              { src: "/Images/future-stories.png", alt: "future-stories", width: 80, height: 80 },
             ].map((image, index) => (
-              <div key={index} className="career-row">
-                <Image src={image.src} alt={image.alt} width={image.width} height={image.height} />
+              <div key={index} className="career-row flex justify-center">
+                <Image src={image.src} alt={image.alt} width={image.width} height={image.height} className="w-auto h-auto" />
               </div>
             ))}
           </div>
 
-          {/* Row 3: Job Details */}
           <div className="grid grid-rows-3 gap-20">
             {[
               { title: "Software Engineer", company: "Smal Gmbh" },
               { title: "Frontend Developer", company: "Future Stories" },
               { title: "Fullstack Developer", company: "Obertys" },
             ].map((job, index) => (
-              <div
-                key={index}
-                className="w-full h-full bg-white rounded-2xl py-4 px-6 flex flex-col items-center justify-center career-row"
-              >
-                <span className="text-black text-xl">{job.title}</span>
-                <span className="text-black text-base">{job.company}</span>
+              <div key={index} className="w-full bg-white rounded-2xl py-4 px-6 flex flex-col items-center justify-center career-row">
+                <span className="text-black text-xl text-center">{job.title}</span>
+                <span className="text-black text-base text-center">{job.company}</span>
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Mobile layout */}
+        <div className="md:hidden grid grid-cols-1 gap-8 w-full max-w-6xl">
+          {[
+            { 
+              date: "JAN 2023 - PRESENT",
+              image: { src: "/Images/smal.png", alt: "smal", width: 60, height: 60 },
+              job: { title: "Software Engineer", company: "Smal Gmbh" }
+            },
+            {
+              date: "DEC 2023 - NOV 2022",
+              image: { src: "/Images/Obertys.png", alt: "obertys", width: 80, height: 80 },
+              job: { title: "Frontend Developer", company: "Future Stories" }
+            },
+            {
+              date: "JAN 2020 - JUN 2020",
+              image: { src: "/Images/future-stories.png", alt: "future-stories", width: 80, height: 80 },
+              job: { title: "Fullstack Developer", company: "Obertys" }
+            }
+          ].map((experience, index) => (
+            <div key={index} className="career-row bg-gray-700 rounded-lg p-4 flex flex-col items-center gap-4">
+              <div className="text-white text-sm text-center">{experience.date}</div>
+              <div className="flex justify-center">
+                <Image 
+                  src={experience.image.src} 
+                  alt={experience.image.alt} 
+                  width={experience.image.width} 
+                  height={experience.image.height}
+                  className="w-auto h-auto"
+                />
+              </div>
+              <div className="w-full bg-white rounded-2xl py-3 px-4 flex flex-col items-center justify-center">
+                <span className="text-black text-lg text-center">{experience.job.title}</span>
+                <span className="text-black text-sm text-center">{experience.job.company}</span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

@@ -36,7 +36,7 @@ const Contact = () => {
 
   return (
     <section className="flex flex-col py-10 items-center min-h-screen bg-gray-800" id="contact">
-      <div className="text-center text-6xl font-semibold my-6">Contact</div>
+      <div className="text-center text-white text-6xl font-semibold my-6">Contact</div>
       <div className="w-9/12 p-6 bg-gray-800 border border-gray-200 rounded-lg text-white">
         <form onSubmit={handleSubmit}>
           <div className="mb-4">

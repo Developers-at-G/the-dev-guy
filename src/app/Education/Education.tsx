@@ -38,10 +38,10 @@ const Education = () => {
 
   return (
     <section className="bg-white w-full h-full" id="education">
-      <div className="py-10">
-        <div className="text-black text-center font-bold text-6xl">Education</div>
+      <div className="py-5 sm:py-10">
+        <div className="text-black text-center font-bold text-3xl sm:text-6xl">Education</div>
       </div>
-      <div className="py-28 flex justify-center items-center gap-10">
+      <div className="py-10 sm:py-28 flex flex-col sm:flex-row justify-center items-center gap-10 px-4 sm:px-0">
         {[
           {
             imgSrc: "/Images/Master.png",
@@ -63,15 +63,21 @@ const Education = () => {
             ref={(el) => {
               if (el) cardsRef.current[index] = el;
             }}
-            className="relative w-max-content h-max-content bg-gray-800 p-8 flex flex-col rounded-xl justify-center items-center gap-5"
+            className="relative w-full sm:w-max-content h-max-content bg-gray-800 p-4 sm:p-8 flex flex-col rounded-xl justify-center items-center gap-5"
           >
             <div className="transition-transform duration-700 ease-out hover:scale-110">
-              <Image src={education.imgSrc} alt={education.imgAlt} width={400} height={300} />
+              <Image 
+                src={education.imgSrc} 
+                alt={education.imgAlt} 
+                width={400} 
+                height={300}
+                className="w-full h-auto" 
+              />
             </div>
             <div className="text-white flex flex-col gap-2 items-center justify-center font-bold">
               <div>{education.duration}</div>
-              <div>{education.degree}</div>
-              <div className="text-white text-bold text-xl uppercase">{education.institution}</div>
+              <div className="text-center">{education.degree}</div>
+              <div className="text-white text-bold text-lg sm:text-xl uppercase text-center">{education.institution}</div>
             </div>
           </div>
         ))}

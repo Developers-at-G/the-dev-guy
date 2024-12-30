@@ -141,7 +141,7 @@ const Contact = () => {
             </a>
             
             <a 
-              href="https://twitter.com/your-handle" 
+              href="https://x.com/AbdalahAmadouG1" 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center space-x-3 hover:text-gray-300 transition-colors"

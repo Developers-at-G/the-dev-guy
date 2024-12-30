@@ -10,32 +10,39 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Achievement = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const animationCompleteRef = useRef(false);
 
   useEffect(() => {
     const container = containerRef.current;
     
-    gsap.fromTo(
-      container,
-      {
-        opacity: 0,
-        y: 50,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: container,
-          start: "top 80%",
-          toggleActions: "play none none reverse",
+    if (!animationCompleteRef.current) {
+      const tl = gsap.fromTo(
+        container,
+        {
+          opacity: 0,
+          y: 50,
         },
-      }
-    );
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.out",
+          onComplete: () => {
+            animationCompleteRef.current = true;
+          },
+          scrollTrigger: {
+            trigger: container,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
 
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
+      return () => {
+        tl.kill();
+        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      };
+    }
   }, []);
 
   return (
@@ -51,7 +58,7 @@ const Achievement = () => {
             drag: "free",
             arrows: false,
             pagination: true,
-            perPage: 1.5,
+            perPage: 1,
             autoScroll: {
               pauseOnHover: true,
               pauseOnFocus: false,

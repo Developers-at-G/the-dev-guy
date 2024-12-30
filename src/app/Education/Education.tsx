@@ -63,7 +63,7 @@ const Education = () => {
             ref={(el) => {
               if (el) cardsRef.current[index] = el;
             }}
-            className="relative w-full sm:w-max-content h-max-content bg-gray-800 p-4 sm:p-8 flex flex-col rounded-xl justify-center items-center gap-5"
+            className="relative w-full sm:w-max-content h-max-content coder-background p-4 sm:p-8 flex flex-col rounded-xl justify-center items-center gap-5"
           >
             <div className="transition-transform duration-700 ease-out hover:scale-110">
               <Image 

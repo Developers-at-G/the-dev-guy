@@ -34,13 +34,16 @@ const Skills = () => {
         <Splide
           options={{
             type: "loop",
-            gap: "10px",
+            gap: "2rem",
             drag: "free",
             arrows: false,
             pagination: false,
             perPage: 5,
             breakpoints: {
-              640: { perPage: 2 },
+              640: { 
+                perPage: 2,
+                gap: "1.5rem"
+              },
               768: { perPage: 3 },
               1024: { perPage: 4 },
             },
@@ -56,7 +59,7 @@ const Skills = () => {
           {images1.map((image, index) => (
             <SplideSlide key={index}>
               <img
-                className="w-full h-auto max-w-[200px] mx-auto object-contain"
+                className="w-full h-auto max-w-[150px] sm:max-w-[200px] mx-auto object-contain"
                 src={image}
                 alt={`Slide ${index + 1}`}
               />
@@ -67,13 +70,16 @@ const Skills = () => {
         <Splide
           options={{
             type: "loop",
-            gap: "10px",
+            gap: "2rem",
             drag: "free",
             arrows: false,
             pagination: true,
             perPage: 5,
             breakpoints: {
-              640: { perPage: 2 },
+              640: { 
+                perPage: 2,
+                gap: "1.5rem"
+              },
               768: { perPage: 3 },
               1024: { perPage: 4 },
             },
@@ -89,8 +95,8 @@ const Skills = () => {
           {images2.map((image, index) => (
             <SplideSlide key={index}>
               <img
+                className="w-full h-auto max-w-[150px] sm:max-w-[200px] mx-auto object-contain"
                 src={image}
-                className="w-full h-auto max-w-[200px] mx-auto object-contain"
                 alt={`Slide ${index + 1}`}
               />
             </SplideSlide>

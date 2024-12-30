@@ -74,7 +74,7 @@ const Career = () => {
   }, []);
 
   return (
-    <section className="bg-gray-800 w-full h-full" id="career">
+    <section className="coder-background w-full h-full" id="career">
       <div className="py-10">
         <p className="text-white text-center font-bold text-4xl md:text-6xl">Work Experience</p>
       </div>
@@ -84,7 +84,7 @@ const Career = () => {
           {/* Original desktop layout columns */}
           <div className="grid grid-rows-3 gap-20">
             {["JAN 2023 - PRESENT", "DEC 2023 - NOV 2022", "JAN 2020 - JUN 2020"].map((date, index) => (
-              <div key={index} className="flex items-center justify-center text-white text-base career-row">
+              <div key={index} className="flex items-center justify-center text-white text-base md:text-xl career-row">
                 {date}
               </div>
             ))}
@@ -136,7 +136,7 @@ const Career = () => {
             }
           ].map((experience, index) => (
             <div key={index} className="career-row bg-gray-700 rounded-lg p-4 flex flex-col items-center gap-4">
-              <div className="text-white text-sm text-center">{experience.date}</div>
+              <div className="text-white text-base md:text-lg text-center">{experience.date}</div>
               <div className="flex justify-center">
                 <Image 
                   src={experience.image.src} 

@@ -39,7 +39,7 @@ const Achievement = () => {
   }, []);
 
   return (
-    <section className="bg-gray-800 w-full h-full" id="achievement">
+    <section className="coder-background w-full h-full" id="achievement">
       <div className="py-10">
         <p className="text-white text-center font-bold text-4xl md:text-6xl">Achievement</p>
       </div>
@@ -56,7 +56,7 @@ const Achievement = () => {
               pauseOnHover: true,
               pauseOnFocus: false,
               rewind: false,
-              speed: 0.3,
+              speed: 0.7,
             },
           }}
           extensions={{ AutoScroll }}

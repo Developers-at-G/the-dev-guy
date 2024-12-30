@@ -47,7 +47,7 @@ const Contact = () => {
   };
 
   return (
-    <section className="flex flex-col py-10 items-center min-h-screen bg-gray-800" id="contact">
+    <section className="flex flex-col py-10 items-center min-h-screen coder-background" id="contact">
       {showPopup && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className={`bg-white p-6 rounded-lg shadow-xl ${isSuccess ? 'border-green-500' : 'border-red-500'} border-2`}>
@@ -65,7 +65,7 @@ const Contact = () => {
               )}
               <button
                 onClick={() => setShowPopup(false)}
-                className="mt-4 px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                className="mt-4 px-4 py-2 coder-background text-white rounded hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
               >
                 Close
               </button>
@@ -77,7 +77,7 @@ const Contact = () => {
       <div className="text-center text-white text-6xl font-semibold my-6">Contact</div>
       
       <div className="w-9/12 grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="bg-gray-800 border border-gray-200 rounded-lg text-white p-6">
+        <div className="coder-background border border-gray-200 rounded-lg text-white p-6">
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label htmlFor="name" className="block mb-1 text-sm font-medium">

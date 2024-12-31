@@ -12,7 +12,7 @@ const Skills = () => {
     '/Logos/css-color.svg',
     '/Logos/figma-color.svg',
     '/Logos/git-color.svg',
-    '/logos/amazonwebservices-color.svg'
+    '/Logos/amazonwebservices-color.svg'
   ];
 
   const images2 = [
@@ -22,7 +22,7 @@ const Skills = () => {
     '/Logos/jquery-color.svg',
     '/Logos/materialdesign-color.svg',
     '/Logos/shopify-color.svg',
-    '/logos/typescript-color.svg'
+    '/Logos/typescript-color.svg'
   ];
 
   

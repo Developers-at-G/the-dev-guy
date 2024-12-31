@@ -7,6 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Career = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const titleLineRef = useRef<HTMLDivElement | null>(null);
 
   // Add tech stack data
   const jobData = [
@@ -48,6 +49,26 @@ const Career = () => {
 
     // Clear any existing ScrollTrigger instances
     ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+
+    // Add title line animation
+    gsap.fromTo(
+      titleLineRef.current,
+      {
+        width: "0%",
+        opacity: 0,
+      },
+      {
+        width: "80px",
+        opacity: 1,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: titleLineRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+      }
+    );
 
     // Desktop animation setup
     mm.add("(min-width: 768px)", () => {
@@ -111,7 +132,10 @@ const Career = () => {
     <section className="coder-background w-full h-full" id="career">
       <div className="py-16 md:py-20">
         <h2 className="text-white text-center font-bold text-4xl md:text-6xl mb-2">Work Experience</h2>
-        <div className="w-20 h-1 bg-blue-500 mx-auto rounded-full"></div>
+        <div 
+          ref={titleLineRef}
+          className="h-1 bg-blue-500 mx-auto rounded-full"
+        ></div>
       </div>
 
       <div className="py-10 md:py-28 px-4 md:px-0 flex justify-center items-center" ref={containerRef}>

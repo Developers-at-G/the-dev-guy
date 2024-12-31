@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const Profile = () => {
   return (
-    <section className="coder-background w-full">
+    <section className="coder-background w-full" id="about">
       <div className="flex flex-col md:flex-row items-center justify-center p-8 md:p-28 gap-8 md:gap-48">
         <motion.div 
           initial={{ opacity: 0, x: -50 }}

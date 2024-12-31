@@ -55,8 +55,7 @@ const Profile = () => {
             </p>
             <p className="text-base text-white/90 leading-relaxed mt-4">
               This website is hosted on <span className="highlight">Vercel</span> - a new experience for me.
-              I chose Vercel specifically to explore its capabilities, 
-              given that it's the company behind Next.js.
+              I chose Vercel specifically to explore its capabilities.
             </p>
           </div>
         </div>

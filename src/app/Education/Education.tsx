@@ -37,9 +37,9 @@ const Education = () => {
   }, []);
 
   return (
-    <section className="bg-white w-full h-full" id="education">
+    <section className="bg-white w-full h-full coder-background" id="education">
       <div className="py-5 sm:py-10">
-        <div className="text-black text-center font-bold text-3xl sm:text-6xl">Education</div>
+        <div className="text-white text-center font-bold text-3xl sm:text-6xl">Education</div>
       </div>
       <div className="py-10 sm:py-28 flex flex-col sm:flex-row justify-center items-center gap-10 px-4 sm:px-0">
         {[
@@ -63,7 +63,9 @@ const Education = () => {
             ref={(el) => {
               if (el) cardsRef.current[index] = el;
             }}
-            className="relative w-full sm:w-max-content h-max-content coder-background p-4 sm:p-8 flex flex-col rounded-xl justify-center items-center gap-5"
+            className="relative w-full sm:w-max-content h-max-content backdrop-blur-md bg-black/30 border border-gray-500/30 
+            shadow-[0_0_15px_rgba(0,0,0,0.2)] p-4 sm:p-8 flex flex-col rounded-xl justify-center items-center gap-5 
+            hover:bg-black/40 hover:border-gray-400/40 transition-all duration-300"
           >
             <div className="transition-transform duration-700 ease-out hover:scale-110">
               <Image 
@@ -71,13 +73,13 @@ const Education = () => {
                 alt={education.imgAlt} 
                 width={400} 
                 height={300}
-                className="w-full h-auto" 
+                className="w-full h-auto rounded-lg"
               />
             </div>
-            <div className="text-white flex flex-col gap-2 items-center justify-center font-bold">
-              <div>{education.duration}</div>
-              <div className="text-center">{education.degree}</div>
-              <div className="text-white text-bold text-lg sm:text-xl uppercase text-center">{education.institution}</div>
+            <div className="text-white flex flex-col gap-3 items-center justify-center">
+              <div className="text-gray-300 font-medium">{education.duration}</div>
+              <div className="text-center font-bold text-lg sm:text-xl">{education.degree}</div>
+              <div className="text-emerald-400 font-bold text-lg sm:text-xl uppercase text-center">{education.institution}</div>
             </div>
           </div>
         ))}

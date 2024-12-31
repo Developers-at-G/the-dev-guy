@@ -51,7 +51,7 @@ const Education = () => {
             institution: "SRH Heidelberg University",
           },
           {
-            imgSrc: "/Images/Bachelor.png",
+            imgSrc: "/Images/Bachelor.jpeg",
             imgAlt: "bachelor-degree",
             duration: "2016 - 2020",
             degree: "Bachelor in Computer Engineering",

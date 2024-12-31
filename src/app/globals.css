@@ -32,17 +32,17 @@ html {
   margin: 0 auto;
   letter-spacing: .15em;
   animation: 
-    typing 7.5s steps(40, end) infinite,
+    typing 3s steps(40, end) 1s forwards,
     blink-caret .75s step-end infinite;
   display: inline-block;
   max-width: 100%;
 }
 
 @keyframes typing {
-  0%, 100% {
+  from {
     clip-path: inset(0 100% 0 0);
   }
-  20%, 80% {
+  to {
     clip-path: inset(0 0 0 0);
   }
 }

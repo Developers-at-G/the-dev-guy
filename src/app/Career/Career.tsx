@@ -22,7 +22,7 @@ const Career = () => {
       }
     },
     {
-      date: "NOV 2023 - DEC 2022",
+      date: "NOV 2022 - DEC 2023",
       image: { src: "/Images/future-stories.png", alt: "future-stories", width: 100, height: 100 },
       job: { 
         title: "Fullstack Developer", 

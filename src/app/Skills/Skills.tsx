@@ -2,6 +2,7 @@ import React from 'react';
 import { AutoScroll } from '@splidejs/splide-extension-auto-scroll';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
+import Image from 'next/image';
 
 
 const Skills = () => {
@@ -60,10 +61,12 @@ const Skills = () => {
         >
           {images1.map((image, index) => (
             <SplideSlide key={index}>
-              <img
+              <Image
+                src={image}
+                width={120}
+                height={120}
                 className="w-full h-auto max-w-[100px] sm:max-w-[120px] mx-auto object-contain 
                           hover:scale-110 transition-transform duration-300"
-                src={image}
                 alt={`Technology ${index + 1}`}
               />
             </SplideSlide>
@@ -94,8 +97,10 @@ const Skills = () => {
         >
           {images2.map((image, index) => (
             <SplideSlide key={index}>
-              <img
+              <Image
                 src={image}
+                width={120}
+                height={120}
                 className="w-full h-auto max-w-[100px] sm:max-w-[120px] mx-auto object-contain 
                           hover:scale-110 transition-transform duration-300"
                 alt={`Slide ${index + 1}`}

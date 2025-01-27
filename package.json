@@ -23,7 +23,8 @@
     "nodemailer": "^6.9.16",
     "react": "19.0.0-rc-02c0e824-20241028",
     "react-dom": "19.0.0-rc-02c0e824-20241028",
-    "swiper": "^11.1.15"
+    "swiper": "^11.1.15",
+    "util-deprecate": "^1.0.2"
   },
   "devDependencies": {
     "@types/node": "^20",

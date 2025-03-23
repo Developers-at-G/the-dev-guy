@@ -1,17 +1,9 @@
-'use client';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import Lottie from 'lottie-react';
+import animationData from '../coding-animation.json';
 
 const Skills = () => {
-  const [animationData, setAnimationData] = useState<any>(null);
-
-  useEffect(() => {
-    import('../../../public/Animation/coding-animation.json').then((data) => {
-      setAnimationData(data.default as any);
-    });
-  }, []);
-
   const allSkills = [
     {
       category: "Frontend",
@@ -61,13 +53,11 @@ const Skills = () => {
         
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="order-2 lg:order-1">
-            {animationData && (
-              <Lottie 
-                animationData={animationData}
-                loop={true}
-                style={{ width: '100%', height: 'auto' }}
-              />
-            )}
+            <Lottie 
+              animationData={animationData}
+              loop={true}
+              style={{ width: '100%', height: 'auto' }}
+            />
           </div>
           
           <div className="order-1 lg:order-2 space-y-12">

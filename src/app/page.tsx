@@ -1,3 +1,4 @@
+'use client';
 import Career from "./Career/Career";
 import Contact from "./Contact/Contact";
 import Education from "./Education/Education";

@@ -1,3 +1,4 @@
+'use client';
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
@@ -37,7 +38,7 @@ const Education = () => {
   }, []);
 
   return (
-    <section className="relative coder-background w-full min-h-screen py-20" id="education">
+    <section className="relative w-full min-h-screen py-20" id="education">
       {/* Background pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:16px_16px] opacity-20"></div>
 

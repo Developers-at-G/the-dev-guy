@@ -1,3 +1,4 @@
+'use client';
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
@@ -150,7 +151,7 @@ const Career = () => {
   }, []);
 
   return (
-    <section className="coder-background w-full h-full" id="career">
+    <section className="w-full h-full" id="career">
       <div className="py-16 md:py-20">
         <h2 className="text-white text-center font-bold text-4xl md:text-6xl mb-2">Work Experience</h2>
         <div 

@@ -1,3 +1,4 @@
+'use client';
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
@@ -42,14 +43,14 @@ const Achievement = () => {
   }, []);
 
   return (
-    <section className="coder-background min-h-screen py-20" id="achievement">
+    <section className="min-h-screen py-20" id="achievement">
       <div className="container mx-auto px-4">
         <div className="mb-16 text-center">
           <h2 className="text-white font-bold text-4xl md:text-6xl mb-4">
             Achievement
           </h2>
           <p className="text-gray-400 text-lg md:text-xl">
-            Notable research papers and publications
+            Research papers and publications
           </p>
         </div>
 
@@ -71,17 +72,17 @@ const Achievement = () => {
                   />
                 </div>
                 <h3 className="text-white text-2xl font-bold mb-4">
-                  Research Paper Title
+                  D-BRAILLE
                 </h3>
                 <p className="text-gray-400 mb-6">
                   Brief description of the research paper and its significance in the field.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
                   <span className="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">
-                    AI
+                    Usability Engineering
                   </span>
                   <span className="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">
-                    Machine Learning
+                   Accessibility
                   </span>
                 </div>
                 <a
@@ -114,17 +115,17 @@ const Achievement = () => {
                   />
                 </div>
                 <h3 className="text-white text-2xl font-bold mb-4">
-                  Research Paper Title
+                  Application for Low Vision Users
                 </h3>
                 <p className="text-gray-400 mb-6">
                   Brief description of the research paper and its significance in the field.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
                   <span className="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">
-                    Deep Learning
+                    Usability Engineering
                   </span>
                   <span className="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">
-                    Neural Networks
+                    Accessibility
                   </span>
                 </div>
                 <a

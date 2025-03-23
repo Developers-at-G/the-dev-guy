@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import Image from 'next/image';
 import Lottie from 'lottie-react';
@@ -47,7 +48,7 @@ const Skills = () => {
   );
 
   return (
-    <section className="min-h-screen w-full coder-background py-20" id="skills">
+    <section className="min-h-screen w-full py-20" id="skills">
       <div className="container mx-auto px-4">
         <h2 className="text-6xl font-bold text-center text-white mb-16">SKILLS</h2>
         

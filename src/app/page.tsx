@@ -1,4 +1,3 @@
-'use client';
 import Career from "./Career/Career";
 import Contact from "./Contact/Contact";
 import Education from "./Education/Education";
@@ -9,7 +8,7 @@ import Achievement from "./Achievement/Achievement";
 
 export default function Home() {
   return (
-    <div className="bg-white">
+    <div className="coder-background">
       <Navigation/>
       <Profile/>
       <Skills/>

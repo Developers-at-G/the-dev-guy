@@ -3,7 +3,7 @@ import React from "react";
 
 const Profile = () => {
   return (
-    <section className="coder-background w-full" id="about">
+    <section className=" w-full" id="about">
       <div className="flex flex-col md:flex-row items-center justify-center p-8 md:p-28 gap-8 md:gap-48">
         <div className="w-full h-full flex justify-center rounded-2xl transform transition-all duration-600 hover:scale-105">
           <Image 

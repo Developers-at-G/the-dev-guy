@@ -1,3 +1,4 @@
+'use client';
 import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
 
@@ -47,7 +48,7 @@ const Contact = () => {
   };
 
   return (
-    <section className="flex flex-col py-10 min-h-screen coder-background relative" id="contact">
+    <section className="flex flex-col py-10 min-h-screen relative" id="contact">
       {showPopup && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className={`bg-white p-6 rounded-lg shadow-xl ${isSuccess ? 'border-green-500' : 'border-red-500'} border-2`}>

@@ -1,7 +1,12 @@
 import React from 'react';
 import Image from 'next/image';
-import Lottie from 'lottie-react';
+import dynamic from 'next/dynamic';
 import animationData from '../coding-animation.json';
+
+// Dynamically import Lottie with SSR disabled
+const Lottie = dynamic(() => import('lottie-react'), {
+  ssr: false,
+});
 
 const Skills = () => {
   const allSkills = [

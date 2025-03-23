@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import Lottie, { LottieOptions } from 'lottie-react';
+import Lottie from 'lottie-react';
 
 const Skills = () => {
   const [animationData, setAnimationData] = useState<any>(null);

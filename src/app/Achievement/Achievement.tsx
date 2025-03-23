@@ -2,9 +2,6 @@ import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { AutoScroll } from '@splidejs/splide-extension-auto-scroll';
-import { Splide, SplideSlide } from '@splidejs/react-splide';
-import '@splidejs/react-splide/css';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,103 +13,135 @@ const Achievement = () => {
     const container = containerRef.current;
     
     if (!animationCompleteRef.current) {
-      const tl = gsap.fromTo(
-        container,
-        {
-          opacity: 0,
-          y: 50,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: "power2.out",
-          onComplete: () => {
-            animationCompleteRef.current = true;
+      const cards = container?.querySelectorAll('.achievement-card');
+      
+      cards?.forEach((card, index) => {
+        gsap.fromTo(
+          card,
+          {
+            opacity: 0,
+            y: 50,
           },
-          scrollTrigger: {
-            trigger: container,
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
-        }
-      );
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            delay: index * 0.2,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 80%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      });
 
-      return () => {
-        tl.kill();
-        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-      };
+      animationCompleteRef.current = true;
     }
   }, []);
 
   return (
-    <section className="coder-background w-full h-full" id="achievement">
-      <div className="py-10 space-y-2">
-        <p className="text-white text-center font-bold text-4xl md:text-6xl">Achievement</p>
-        <p className="text-gray-400 text-center text-lg md:text-xl">Notable research papers and publications</p>
-      </div>
-      <div className="py-10 md:py-28 px-4 md:px-0" ref={containerRef}>
-        <Splide
-          options={{
-            type: "loop",
-            gap: "40px",
-            drag: "free",
-            arrows: false,
-            pagination: true,
-            perPage: 1,
-            autoScroll: {
-              pauseOnHover: true,
-              pauseOnFocus: false,
-              rewind: false,
-              speed: 0.7,
-            },
-          }}
-          extensions={{ AutoScroll }}
-          className="max-w-5xl mx-auto"
-        >
-          <SplideSlide>
-            <a href="https://lnkd.in/eD5fkAdq" 
-               className="relative block group touch-manipulation will-change-transform rounded-xl overflow-hidden border border-gray-800 shadow-lg hover:shadow-2xl transition-all duration-300" 
-               target="_blank"
-            >
-              <Image
-                src="/Images/project.jpeg"
-                alt="Project 1"
-                width={1920}
-                height={1080}
-                className="w-full h-auto transition-transform duration-500 group-hover:scale-110 scale-100 transform-gpu"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent">
-                <div className="absolute bottom-0 left-0 right-0 p-6 transform transition-transform duration-300 group-hover:translate-y-0 translate-y-2">
-                  <p className="text-white text-xl md:text-2xl font-bold mb-2">Research Paper Title</p>
-                  <p className="text-gray-200 text-sm md:text-base opacity-0 group-hover:opacity-100 transition-opacity duration-300">Click to read the full paper →</p>
+    <section className="coder-background min-h-screen py-20" id="achievement">
+      <div className="container mx-auto px-4">
+        <div className="mb-16 text-center">
+          <h2 className="text-white font-bold text-4xl md:text-6xl mb-4">
+            Achievement
+          </h2>
+          <p className="text-gray-400 text-lg md:text-xl">
+            Notable research papers and publications
+          </p>
+        </div>
+
+        <div className="max-w-7xl mx-auto" ref={containerRef}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Achievement Card 1 */}
+            <div className="achievement-card group">
+              <div className="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-700/50">
+                <div className="absolute top-0 right-0 -mt-4 -mr-4 bg-blue-500 text-white text-sm font-semibold px-4 py-1 rounded-full">
+                  2024
                 </div>
-              </div>
-            </a>
-          </SplideSlide>
-          <SplideSlide>
-            <a href="https://lnkd.in/gnV8B98u" 
-               className="relative block group touch-manipulation will-change-transform rounded-xl overflow-hidden border border-gray-800 shadow-lg hover:shadow-2xl transition-all duration-300" 
-               target="_blank"
-            >
-              <Image
-                src="/Images/project2.jpeg"
-                alt="Project 2"
-                width={1920}
-                height={1080}
-                className="w-full h-auto transition-transform duration-500 group-hover:scale-110 scale-100 transform-gpu"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <p className="text-white text-xl md:text-2xl font-bold mb-2">Research Paper Title</p>
-                  <p className="text-gray-200 text-sm md:text-base">Click to read the full paper →</p>
+                <div className="relative aspect-[16/9] mb-6">
+                  <Image
+                    src="/Images/project.jpeg"
+                    alt="Project 1"
+                    fill
+                    className="rounded-xl object-contain"
+                    priority
+                  />
                 </div>
+                <h3 className="text-white text-2xl font-bold mb-4">
+                  Research Paper Title
+                </h3>
+                <p className="text-gray-400 mb-6">
+                  Brief description of the research paper and its significance in the field.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  <span className="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">
+                    AI
+                  </span>
+                  <span className="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">
+                    Machine Learning
+                  </span>
+                </div>
+                <a
+                  href="https://lnkd.in/eD5fkAdq"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors"
+                >
+                  Read Paper 
+                  <svg className="w-5 h-5 ml-2 transform transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </a>
               </div>
-            </a>
-          </SplideSlide>
-        </Splide>
+            </div>
+
+            {/* Achievement Card 2 */}
+            <div className="achievement-card group">
+              <div className="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-700/50">
+                <div className="absolute top-0 right-0 -mt-4 -mr-4 bg-blue-500 text-white text-sm font-semibold px-4 py-1 rounded-full">
+                  2023
+                </div>
+                <div className="relative aspect-[16/9] mb-6">
+                  <Image
+                    src="/Images/project2.jpeg"
+                    alt="Project 2"
+                    fill
+                    className="rounded-xl object-contain"
+                    priority
+                  />
+                </div>
+                <h3 className="text-white text-2xl font-bold mb-4">
+                  Research Paper Title
+                </h3>
+                <p className="text-gray-400 mb-6">
+                  Brief description of the research paper and its significance in the field.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  <span className="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">
+                    Deep Learning
+                  </span>
+                  <span className="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">
+                    Neural Networks
+                  </span>
+                </div>
+                <a
+                  href="https://lnkd.in/gnV8B98u"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors"
+                >
+                  Read Paper
+                  <svg className="w-5 h-5 ml-2 transform transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

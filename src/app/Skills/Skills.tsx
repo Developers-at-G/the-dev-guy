@@ -1,113 +1,80 @@
 import React from 'react';
-import { AutoScroll } from '@splidejs/splide-extension-auto-scroll';
-import { Splide, SplideSlide } from '@splidejs/react-splide';
-import '@splidejs/react-splide/css';
 import Image from 'next/image';
-
+import Lottie from 'lottie-react';
+import animationData from '../coding-animation.json';
 
 const Skills = () => {
-  const images1 = [
-    '/Logos/nextdotjs-color.svg',
-    '/Logos/react-color.svg',
-    '/Logos/contentful-color.svg',
-    '/Logos/css-color.svg',
-    '/Logos/figma-color.svg',
-    '/Logos/git-color.svg',
-    '/Logos/amazonwebservices-color.svg'
+  const allSkills = [
+    {
+      category: "Frontend",
+      skills: [
+        { name: 'Next.js', icon: '/Logos/nextdotjs-color.svg' },
+        { name: 'React', icon: '/Logos/react-color.svg' },
+        { name: 'TypeScript', icon: '/Logos/typescript-color.svg' },
+        { name: 'JavaScript', icon: '/Logos/javascript-color.svg' },
+      ]
+    },
+    {
+      category: "Tools & Cloud",
+      skills: [
+        { name: 'AWS', icon: '/Logos/amazonwebservices-color.svg' },
+        { name: 'Git', icon: '/Logos/git-color.svg' },
+        { name: 'GraphQL', icon: '/Logos/graphql-color.svg' },
+      ]
+    },
+    {
+      category: "Design",
+      skills: [
+        { name: 'Figma', icon: '/Logos/figma-color.svg' },
+        { name: 'Material Design', icon: '/Logos/materialdesign-color.svg' },
+      ]
+    }
   ];
 
-  const images2 = [
-    '/Logos/graphql-color.svg',
-    '/Logos/html5-color.svg',
-    '/Logos/javascript-color.svg',
-    '/Logos/jquery-color.svg',
-    '/Logos/materialdesign-color.svg',
-    '/Logos/shopify-color.svg',
-    '/Logos/typescript-color.svg'
-  ];
-
-  
+  const SkillBar = ({ skill }: { skill: { name: string; icon: string } }) => (
+    <div className="mb-6 group">
+      <div className="flex items-center gap-3 p-3 bg-slate-800/50 rounded-lg hover:bg-slate-700/50 transition-all duration-300">
+        <Image
+          src={skill.icon}
+          width={24}
+          height={24}
+          alt={skill.name}
+          className="w-6 h-6"
+        />
+        <span className="text-gray-200">{skill.name}</span>
+      </div>
+    </div>
+  );
 
   return (
-    <section className="h-fit w-full coder-background" id='skills'>
-      <div className="py-10">
-        <p className="text-white text-center font-bold text-6xl">SKILLS</p>
-      </div>
-      <div className='py-28'>
-        <Splide
-          options={{
-            type: "loop",
-            gap: "2rem",
-            drag: "free",
-            arrows: false,
-            pagination: false,
-            perPage: 5,
-            breakpoints: {
-              640: { 
-                perPage: 2,
-                gap: "1.5rem"
-              },
-              768: { perPage: 3 },
-              1024: { perPage: 4 },
-            },
-            autoScroll: {
-              pauseOnHover: true,
-              pauseOnFocus: false,
-              rewind: false,
-              speed: 0.7,
-            },
-          }}
-          extensions={{ AutoScroll }}
-        >
-          {images1.map((image, index) => (
-            <SplideSlide key={index}>
-              <Image
-                src={image}
-                width={120}
-                height={120}
-                className="w-full h-auto max-w-[100px] sm:max-w-[120px] mx-auto object-contain 
-                          hover:scale-110 transition-transform duration-300"
-                alt={`Technology ${index + 1}`}
-              />
-            </SplideSlide>
-          ))}
-        </Splide>
-        <div style={{ height: "80px" }}></div>
-        <Splide
-          options={{
-            type: "loop",
-            gap: "2rem",
-            drag: "free",
-            arrows: false,
-            pagination: true,
-            perPage: 5,
-            breakpoints: {
-              640: { perPage: 2 },
-              768: { perPage: 3 },
-              1024: { perPage: 4 },
-            },
-            autoScroll: {
-              pauseOnHover: true,
-              pauseOnFocus: false,
-              rewind: false,
-              speed: -0.7,
-            },
-          }}
-          extensions={{ AutoScroll }}
-        >
-          {images2.map((image, index) => (
-            <SplideSlide key={index}>
-              <Image
-                src={image}
-                width={120}
-                height={120}
-                className="w-full h-auto max-w-[100px] sm:max-w-[120px] mx-auto object-contain 
-                          hover:scale-110 transition-transform duration-300"
-                alt={`Slide ${index + 1}`}
-              />
-            </SplideSlide>
-          ))}
-        </Splide>
+    <section className="min-h-screen w-full coder-background py-20" id="skills">
+      <div className="container mx-auto px-4">
+        <h2 className="text-6xl font-bold text-center text-white mb-16">SKILLS</h2>
+        
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="order-2 lg:order-1">
+            <Lottie 
+              animationData={animationData}
+              loop={true}
+              style={{ width: '100%', height: 'auto' }}
+            />
+          </div>
+          
+          <div className="order-1 lg:order-2 space-y-12">
+            {allSkills.map((category) => (
+              <div key={category.category}>
+                <h3 className="text-2xl font-semibold text-blue-400 mb-6">
+                  {category.category}
+                </h3>
+                <div>
+                  {category.skills.map((skill) => (
+                    <SkillBar key={skill.name} skill={skill} />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

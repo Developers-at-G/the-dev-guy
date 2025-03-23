@@ -2,7 +2,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Lottie from 'lottie-react';
-import animationData from '../coding-animation.json';
+// import animationData from '../../../public/Animation/coding-animation.json';
 
 const Skills = () => {
   const allSkills = [
@@ -54,11 +54,11 @@ const Skills = () => {
         
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="order-2 lg:order-1">
-            <Lottie 
+            {/* <Lottie 
               animationData={animationData}
               loop={true}
               style={{ width: '100%', height: 'auto' }}
-            />
+            /> */}
           </div>
           
           <div className="order-1 lg:order-2 space-y-12">

@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
-import Lottie from 'lottie-react';
+// import Lottie from 'lottie-react';
 // import animationData from '../../../public/Animation/coding-animation.json';
 
 const Skills = () => {

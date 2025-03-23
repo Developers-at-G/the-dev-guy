@@ -1,14 +1,14 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import Lottie from 'lottie-react';
+import Lottie, { LottieOptions } from 'lottie-react';
 
 const Skills = () => {
   const [animationData, setAnimationData] = useState<any>(null);
 
   useEffect(() => {
     import('../../../public/Animation/coding-animation.json').then((data) => {
-      setAnimationData(data.default);
+      setAnimationData(data.default as any);
     });
   }, []);
 

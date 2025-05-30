@@ -15,7 +15,7 @@ const Career = () => {
   const jobData = [
     {
       date: "JAN 2023 - PRESENT",
-      image: { src: "/Images/smal.png", alt: "smal", width: 80, height: 80 },
+        image: { src: "/Images/smal.png", alt: "smal", width: 80, height: 80 },
       job: { 
         title: "Software Engineer", 
         company: "Smal Gmbh", 

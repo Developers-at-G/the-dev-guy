@@ -77,7 +77,7 @@ const Navigation = () => {
               { id: 'about', label: 'About me' },
               { id: 'skills', label: 'Skills' },
               { id: 'career', label: 'Career' },
-              { id: 'education', label: 'Education' },
+              { id: 'projects', label: 'Projects' },
               { id: 'achievement', label: 'Achievement' },
               { id: 'contact', label: 'Contact' },
             ].map((link) => (

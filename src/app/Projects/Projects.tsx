@@ -20,7 +20,7 @@ const projects: Project[] = [
     description: "This is a restaurant website that I have built using Next.js, TypeScript, Tailwind CSS. I use supabase for the database, and have a dashboard for the admin to manage the restaurant. I also use AWS to host the website.",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase", "React", "AWS"],
     link: "https://keurguirestaurant.com",
-    imageUrl: "/images/keurguirestaurant.png"
+    imageUrl: "/Images/keurguirestaurant.png"
   },
   {
     id: 2,
@@ -28,7 +28,7 @@ const projects: Project[] = [
     description: "A front end website built with Next JS, using React, Tailwind CSS, and Framer Motion for my scroll animations.",
     technologies: ["React", "Tailwind CSS", "Framer Motion", "Next JS"],
     link: "https://atlanticimmo.com",
-    imageUrl: "/images/atlanticimmo.png"
+    imageUrl: "/Images/atlanticimmo.png"
   },
   {
     id: 3,
@@ -36,7 +36,7 @@ const projects: Project[] = [
     description: " This is a website doing trade and logistics. I use React to build this website and as a CMS I use Sanity.io",
     technologies: ["React", "Sanity.io", "Tailwind CSS", "Next JS"],
     link: "https://am-agrotradeservices.de",
-    imageUrl: "/images/am-agrotradeservices.png"
+    imageUrl: "/Images/am-agrotradeservices.png"
   }
   
 ];

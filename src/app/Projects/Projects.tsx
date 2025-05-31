@@ -27,7 +27,7 @@ const projects: Project[] = [
     title: "Real estate website",
     description: "A front end website built with Next JS, using React, Tailwind CSS, and Framer Motion for my scroll animations.",
     technologies: ["React", "Tailwind CSS", "Framer Motion", "Next JS"],
-    link: "https://atlanticimmo.com",
+    link: "https://seradi.vercel.app",
     imageUrl: "/Images/atlanticimmo.png"
   },
   {
@@ -36,7 +36,7 @@ const projects: Project[] = [
     description: " This is a website doing trade and logistics. I use React to build this website and as a CMS I use Sanity.io",
     technologies: ["React", "Sanity.io", "Tailwind CSS", "Next JS"],
     link: "https://am-agrotradeservices.de",
-    imageUrl: "/Images/am-agrotradeservices.png"
+      imageUrl: "/Images/am-agrotradeservices.png"
   }
   
 ];

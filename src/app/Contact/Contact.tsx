@@ -112,7 +112,7 @@ const Contact = () => {
             </div>
           </a>
 
-          <a 
+          {/* <a 
             href="https://twitter.com/AbdallahGueye96" 
             target="_blank" 
             rel="noopener noreferrer"
@@ -126,10 +126,10 @@ const Contact = () => {
               </div>
               <span className="opacity-0 group-hover:opacity-100 translate-x-[-20px] group-hover:translate-x-2 transition-all duration-300 whitespace-nowrap text-lg">Twitter</span>
             </div>
-          </a>
+          </a> */}
 
           <a 
-            href="https://www.instagram.com/abdallah.gueye/" 
+            href="https://www.instagram.com/aamadou_g/" 
             target="_blank" 
             rel="noopener noreferrer"
             className="social-link group"

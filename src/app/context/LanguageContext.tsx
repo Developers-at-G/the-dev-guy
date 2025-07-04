@@ -171,6 +171,16 @@ const translations = {
     'contact.error_title': 'Error',
     'contact.error_message': 'Something went wrong. Please try again.',
     'contact.close': 'Close',
+    'contact.lets_connect': 'Let\'s Connect',
+    'contact.open_message': 'I\'m always open to discussing new opportunities, interesting projects, or just having a chat about technology and development.',
+    'contact.email_me': 'Email Me',
+    'contact.follow_me': 'Follow Me',
+    'contact.linkedin_desc': 'Connect professionally',
+    'contact.github_desc': 'Check out my code',
+    'contact.ready_to_work': 'Ready to Work Together?',
+    'contact.work_together_message': 'Whether you have a project in mind, want to discuss opportunities, or just want to say hello, I\'d love to hear from you.',
+    'contact.send_email': 'Send Email',
+    'contact.response_time': 'I typically respond within 24 hours',
     
     // How I Build Page
     'howibuild.title': 'How I Build',
@@ -395,6 +405,16 @@ const translations = {
     'contact.error_title': 'Erreur',
     'contact.error_message': 'Quelque chose s\'est mal passé. Veuillez réessayer.',
     'contact.close': 'Fermer',
+    'contact.lets_connect': 'Connectons-nous',
+    'contact.open_message': 'Je suis toujours ouvert à discuter de nouvelles opportunités, de projets intéressants, ou simplement d\'avoir une conversation sur la technologie et le développement.',
+    'contact.email_me': 'M\'envoyer un email',
+    'contact.follow_me': 'Me suivre',
+    'contact.linkedin_desc': 'Se connecter professionnellement',
+    'contact.github_desc': 'Voir mon code',
+    'contact.ready_to_work': 'Prêt à travailler ensemble ?',
+    'contact.work_together_message': 'Que vous ayez un projet en tête, que vous souhaitiez discuter d\'opportunités, ou simplement dire bonjour, j\'aimerais avoir de vos nouvelles.',
+    'contact.send_email': 'Envoyer un email',
+    'contact.response_time': 'Je réponds généralement sous 24 heures',
     
     // How I Build Page
     'howibuild.title': 'Comment Je Construis',

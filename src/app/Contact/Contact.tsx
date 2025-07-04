@@ -27,15 +27,15 @@ function ClientContact() {
             <div className="space-y-8">
               <div>
                 <h4 className="text-2xl font-bold text-foreground mb-6">
-                  Let's Connect
+                  {t('contact.lets_connect')}
                 </h4>
                 <p className="text-lg text-muted-foreground mb-8">
-                  I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology and development.
+                  {t('contact.open_message')}
                 </p>
                 
                 {/* Email Contact */}
                 <div className="mb-8">
-                  <h5 className="text-lg font-semibold text-foreground mb-4">Email Me</h5>
+                  <h5 className="text-lg font-semibold text-foreground mb-4">{t('contact.email_me')}</h5>
                   <a
                     href="mailto:gueye.amadou1996@gmail.com"
                     className="inline-flex items-center gap-3 text-lg text-primary hover:text-primary/80 transition-colors font-medium"
@@ -49,7 +49,7 @@ function ClientContact() {
 
                 {/* Social Links */}
                 <div>
-                  <h5 className="text-lg font-semibold text-foreground mb-4">Follow Me</h5>
+                  <h5 className="text-lg font-semibold text-foreground mb-4">{t('contact.follow_me')}</h5>
                   <div className="space-y-4">
                     <a
                       href="https://linkedin.com/in/your-profile"
@@ -64,7 +64,7 @@ function ClientContact() {
                       </div>
                       <div>
                         <div className="font-medium">LinkedIn</div>
-                        <div className="text-sm text-muted-foreground">Connect professionally</div>
+                        <div className="text-sm text-muted-foreground">{t('contact.linkedin_desc')}</div>
                       </div>
                     </a>
                     
@@ -81,7 +81,7 @@ function ClientContact() {
                       </div>
                       <div>
                         <div className="font-medium">GitHub</div>
-                        <div className="text-sm text-muted-foreground">Check out my code</div>
+                        <div className="text-sm text-muted-foreground">{t('contact.github_desc')}</div>
                       </div>
                     </a>
                   </div>
@@ -99,11 +99,11 @@ function ClientContact() {
                 </div>
                 
                 <h3 className="text-2xl font-bold text-foreground mb-4">
-                  Ready to Work Together?
+                  {t('contact.ready_to_work')}
                 </h3>
                 
                 <p className="text-muted-foreground mb-6">
-                  Whether you have a project in mind, want to discuss opportunities, or just want to say hello, I'd love to hear from you.
+                  {t('contact.work_together_message')}
                 </p>
                 
                 <div className="space-y-4">
@@ -114,11 +114,11 @@ function ClientContact() {
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
-                    Send Email
+                    {t('contact.send_email')}
                   </a>
                   
                   <p className="text-sm text-muted-foreground">
-                    I typically respond within 24 hours
+                    {t('contact.response_time')}
                   </p>
                 </div>
               </div>

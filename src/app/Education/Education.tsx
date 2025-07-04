@@ -1,8 +1,8 @@
 'use client';
-import React, { useEffect, useRef } from "react";
-import Image from "next/image";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React, { useEffect, useRef } from 'react';
+import Image from 'next/image';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -10,110 +10,148 @@ const Education = () => {
   const cardsRef = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
+    // GSAP animations for cards
     cardsRef.current.forEach((card) => {
       gsap.fromTo(
         card,
         {
           opacity: 0,
-          y: 50, // Start below the viewport
+          y: 50,
         },
         {
           opacity: 1,
-          y: 0, // Move to the original position
-          duration: 1, // Animation duration
-          ease: "power2.out", // Smooth easing
+          y: 0,
+          duration: 1,
+          ease: "power2.out",
           scrollTrigger: {
-            trigger: card, // The element to observe
-            start: "top 80%", // Trigger when the top of the card reaches 80% of the viewport
-            // toggleActions: "play none none reverse", // Play on scroll, reverse on scroll back
+            trigger: card,
+            start: "top 80%",
           },
         }
       );
     });
 
     return () => {
-      // Clean up GSAP ScrollTriggers on unmount
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
 
   return (
-    <section className="relative w-full min-h-screen py-20" id="education">
-      {/* Background pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:16px_16px] opacity-20"></div>
-
+    <section className="relative py-32 overflow-hidden" id="education">
+      {/* Background with subtle gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/3 to-background" />
+      
       <div className="container mx-auto px-4 relative z-10">
+        {/* Section Header */}
         <div className="text-center mb-20">
-          <h2 className="text-4xl sm:text-6xl font-bold text-white mb-6">
-            Education Journey
+          <div className="inline-block mb-4">
+            <span className="text-sm font-semibold text-primary bg-primary/10 px-4 py-2 rounded-full border border-primary/20">
+              Academic Background
+            </span>
+          </div>
+          <h2 className="text-5xl md:text-6xl font-extrabold text-foreground mb-6 tracking-tight">
+            Education
           </h2>
-          <div className="w-24 h-1.5 bg-emerald-400 mx-auto"></div>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-medium">
+            My academic journey in computer science and engineering
+          </p>
         </div>
 
-        <div className="max-w-6xl mx-auto relative">
-          {/* Vertical line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-emerald-400/20"></div>
-
-          {[
-            {
-              imgSrc: "/Images/Master.png",
-              imgAlt: "master-degree",
-              duration: "2021 - 2023",
-              degree: "Master in Applied Computer Science",
-              institution: "SRH Heidelberg University",
-              align: "right"
-            },
-            {
-              imgSrc: "/Images/Bachelor.png",
-              imgAlt: "bachelor-degree",
-              duration: "2016 - 2020",
-              degree: "Bachelor in Computer Engineering",
-              institution: "Hasan Kalyoncu University",
-              align: "left"
-            },
-          ].map((education, index) => (
-            <div
-              key={index}
-              ref={(el) => {
-                if (el) cardsRef.current[index] = el;
-              }}
-              className={`flex items-center gap-8 mb-20 ${
-                education.align === "left" ? "flex-row" : "flex-row-reverse"
-              }`}
-            >
-              {/* Timeline dot */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-emerald-400 rounded-full border-4 border-black"></div>
-
-              {/* Content */}
-              <div className={`w-1/2 ${education.align === "left" ? "text-right" : "text-left"}`}>
-                <span className="inline-block px-4 py-1.5 rounded-full bg-emerald-400/10 text-emerald-400 
-                  text-sm font-medium border border-emerald-400/20 mb-4">
-                  {education.duration}
-                </span>
-                <h3 className="text-2xl font-bold text-white mb-2">
-                  {education.degree}
-                </h3>
-                <p className="text-lg text-emerald-400">
-                  {education.institution}
-                </p>
+        {/* Education Timeline */}
+        <div className="max-w-4xl mx-auto">
+          <div className="relative">
+            {/* Timeline line */}
+            <div className="absolute left-8 top-0 bottom-0 w-1 bg-primary/20 rounded-full"></div>
+            
+            {/* Education Cards */}
+            <div className="space-y-12">
+              {/* Bachelor's Degree */}
+              <div 
+                ref={(el) => {
+                  if (el) cardsRef.current[0] = el;
+                }}
+                className="achievement-card relative pl-20"
+              >
+                <div className="absolute left-6 top-6 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg"></div>
+                <div className="bg-gradient-to-br from-white/10 via-background/80 to-accent/10 backdrop-blur-xl rounded-2xl border-2 border-primary/20 shadow-2xl p-8 hover:shadow-primary/40 transition-all duration-300">
+                  <div className="flex flex-col md:flex-row gap-6 items-start">
+                    <div className="relative w-24 h-24 flex-shrink-0">
+                      <Image
+                        src="/Images/Bachelor.png"
+                        alt="Bachelor's Degree"
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-3">
+                        <span className="text-sm font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
+                          2018 - 2022
+                        </span>
+                        <span className="text-sm font-medium text-muted-foreground">
+                          Bachelor&apos;s Degree
+                        </span>
+                      </div>
+                      <h3 className="text-2xl font-bold text-foreground mb-2">
+                        Computer Science & Engineering
+                      </h3>
+                      <p className="text-lg font-semibold text-primary mb-3">
+                        University of Applied Sciences
+                      </p>
+                      <p className="text-muted-foreground leading-relaxed">
+                        Comprehensive study of computer science fundamentals, software engineering principles, 
+                        and practical application development. Focused on modern web technologies, 
+                        database systems, and software architecture.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              {/* Image */}
-              <div className={`w-1/2 group`}>
-                <div className="relative overflow-hidden rounded-2xl border border-neutral-800 
-                  hover:border-emerald-400/30 transition-all duration-300">
-                  <Image 
-                    src={education.imgSrc} 
-                    alt={education.imgAlt} 
-                    width={600} 
-                    height={400}
-                    className="w-full h-auto transform transition-transform duration-500 
-                      group-hover:scale-105"
-                  />
+              {/* Master's Degree */}
+              <div 
+                ref={(el) => {
+                  if (el) cardsRef.current[1] = el;
+                }}
+                className="achievement-card relative pl-20"
+              >
+                <div className="absolute left-6 top-6 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg"></div>
+                <div className="bg-gradient-to-br from-white/10 via-background/80 to-accent/10 backdrop-blur-xl rounded-2xl border-2 border-primary/20 shadow-2xl p-8 hover:shadow-primary/40 transition-all duration-300">
+                  <div className="flex flex-col md:flex-row gap-6 items-start">
+                    <div className="relative w-24 h-24 flex-shrink-0">
+                      <Image
+                        src="/Images/Master.png"
+                        alt="Master's Degree"
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-3">
+                        <span className="text-sm font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
+                          2022 - 2024
+                        </span>
+                        <span className="text-sm font-medium text-muted-foreground">
+                          Master&apos;s Degree
+                        </span>
+                      </div>
+                      <h3 className="text-2xl font-bold text-foreground mb-2">
+                        Computer Science
+                      </h3>
+                      <p className="text-lg font-semibold text-primary mb-3">
+                        University of Applied Sciences
+                      </p>
+                      <p className="text-muted-foreground leading-relaxed">
+                        Advanced studies in computer science with specialization in software engineering, 
+                        web technologies, and modern development practices. Research focus on 
+                        accessibility and usability engineering.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>

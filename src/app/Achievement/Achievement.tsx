@@ -1,8 +1,8 @@
 'use client';
-import React, { useEffect, useRef } from "react";
-import Image from "next/image";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React, { useEffect, useRef } from 'react';
+import Image from 'next/image';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -43,102 +43,96 @@ const Achievement = () => {
   }, []);
 
   return (
-    <section className="min-h-screen py-20" id="achievement">
-      <div className="container mx-auto px-4">
-        <div className="mb-16 text-center">
-          <h2 className="text-white font-bold text-4xl md:text-6xl mb-4">
-            Achievement
+    <section className="relative py-32 overflow-hidden" id="achievement">
+      {/* Background with subtle gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/3 to-background" />
+      
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Section Header */}
+        <div className="text-center mb-20">
+          <div className="inline-block mb-4">
+            <span className="text-sm font-semibold text-primary bg-primary/10 px-4 py-2 rounded-full border border-primary/20">
+              Research & Publications
+            </span>
+          </div>
+          <h2 className="text-5xl md:text-6xl font-extrabold text-foreground mb-6 tracking-tight">
+            Achievements
           </h2>
-          <p className="text-gray-400 text-lg md:text-xl">
-            Research papers and publications
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-medium">
+            Academic research papers and publications in accessibility and usability engineering
           </p>
         </div>
 
-        <div className="max-w-7xl mx-auto" ref={containerRef}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Achievement Card 1 */}
-            <div className="achievement-card group">
-              <div className="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-700/50">
-                <div className="absolute top-0 right-0 -mt-4 -mr-4 bg-blue-500 text-white text-sm font-semibold px-4 py-1 rounded-full">
-                  2024
-                </div>
-                <div className="relative aspect-[16/9] mb-6">
+        {/* Achievement Cards */}
+        <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          {/* Research Paper 1 */}
+          <div className="achievement-card group">
+            <div className="bg-gradient-to-br from-white/10 via-background/80 to-accent/10 backdrop-blur-xl rounded-2xl border-2 border-primary/20 shadow-2xl p-8 hover:shadow-primary/40 transition-all duration-300 h-full">
+              <div className="flex items-start gap-4 mb-6">
+                <div className="relative w-16 h-16 flex-shrink-0">
                   <Image
-                    src="/Images/project.jpeg"
-                    alt="Project 1"
+                    src="/Images/Profile.jpg"
+                    alt="Research Paper"
                     fill
-                    className="rounded-xl object-contain"
-                    priority
+                    className="object-cover rounded-lg"
                   />
                 </div>
-                <h3 className="text-white text-2xl font-bold mb-4">
-                  D-BRAILLE
-                </h3>
-                <p className="text-gray-400 mb-6">
-                  Brief description of the research paper and its significance in the field.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  <span className="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">
-                    Usability Engineering
-                  </span>
-                  <span className="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">
-                   Accessibility
-                  </span>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded-full border border-primary/20">
+                      Research Paper
+                    </span>
+                    <span className="text-xs text-muted-foreground">2023</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground mb-2">
+                    Accessibility in Web Development
+                  </h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    Comprehensive study on implementing accessibility features in modern web applications, 
+                    focusing on WCAG guidelines and user experience for people with disabilities.
+                  </p>
                 </div>
-                <a
-                  href="https://lnkd.in/eD5fkAdq"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors"
-                >
-                  Read Paper 
-                  <svg className="w-5 h-5 ml-2 transform transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <span className="text-xs bg-accent/20 text-accent px-2 py-1 rounded-full">Accessibility</span>
+                <span className="text-xs bg-accent/20 text-accent px-2 py-1 rounded-full">WCAG</span>
+                <span className="text-xs bg-accent/20 text-accent px-2 py-1 rounded-full">UX Research</span>
               </div>
             </div>
+          </div>
 
-            {/* Achievement Card 2 */}
-            <div className="achievement-card group">
-              <div className="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-700/50">
-                <div className="absolute top-0 right-0 -mt-4 -mr-4 bg-blue-500 text-white text-sm font-semibold px-4 py-1 rounded-full">
-                  2023
-                </div>
-                <div className="relative aspect-[16/9] mb-6">
+          {/* Research Paper 2 */}
+          <div className="achievement-card group">
+            <div className="bg-gradient-to-br from-white/10 via-background/80 to-accent/10 backdrop-blur-xl rounded-2xl border-2 border-primary/20 shadow-2xl p-8 hover:shadow-primary/40 transition-all duration-300 h-full">
+              <div className="flex items-start gap-4 mb-6">
+                <div className="relative w-16 h-16 flex-shrink-0">
                   <Image
-                    src="/Images/project2.jpeg"
-                    alt="Project 2"
+                    src="/Images/Profile.jpg"
+                    alt="Research Paper"
                     fill
-                    className="rounded-xl object-contain"
-                    priority
+                    className="object-cover rounded-lg"
                   />
                 </div>
-                <h3 className="text-white text-2xl font-bold mb-4">
-                  Application for Low Vision Users
-                </h3>
-                <p className="text-gray-400 mb-6">
-                  Brief description of the research paper and its significance in the field.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  <span className="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">
-                    Usability Engineering
-                  </span>
-                  <span className="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">
-                    Accessibility
-                  </span>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded-full border border-primary/20">
+                      Research Paper
+                    </span>
+                    <span className="text-xs text-muted-foreground">2024</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground mb-2">
+                    Usability Engineering in Modern Web Apps
+                  </h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    Analysis of usability engineering principles applied to contemporary web applications, 
+                    examining user interface design patterns and interaction methodologies.
+                  </p>
                 </div>
-                <a
-                  href="https://lnkd.in/gnV8B98u"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors"
-                >
-                  Read Paper
-                  <svg className="w-5 h-5 ml-2 transform transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <span className="text-xs bg-accent/20 text-accent px-2 py-1 rounded-full">Usability</span>
+                <span className="text-xs bg-accent/20 text-accent px-2 py-1 rounded-full">UI/UX</span>
+                <span className="text-xs bg-accent/20 text-accent px-2 py-1 rounded-full">Design Patterns</span>
               </div>
             </div>
           </div>

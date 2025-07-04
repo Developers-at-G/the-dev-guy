@@ -7,25 +7,29 @@ import { Fragment } from 'react';
 
 const Navigation = () => {
   const [activeLink, setActiveLink] = useState('');
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const handleLinkClick = (id: string) => {
     setActiveLink(id);
     const targetElement = document.getElementById(id);
     if (targetElement) {
       window.scrollTo({
-        top: targetElement.offsetTop,
+        top: targetElement.offsetTop - 80,
         behavior: 'smooth',
       });
     }
   };
 
   useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
     const sections = document.querySelectorAll('section[id]');
     const observerOptions = {
       root: null,
-      rootMargin: '0px',
-      threshold: 0.6,
+      rootMargin: '-20% 0px -80% 0px',
+      threshold: 0,
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -41,40 +45,104 @@ const Navigation = () => {
       observer.observe(section);
     });
 
+    window.addEventListener('scroll', handleScroll);
+
     return () => {
       sections.forEach((section) => {
         observer.unobserve(section);
       });
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   const navigationItems = [
-    { id: 'about', label: 'About me' },
+    { id: 'about', label: 'About' },
     { id: 'skills', label: 'Skills' },
-    { id: 'career', label: 'Career' },
+    { id: 'career', label: 'Experience' },
     { id: 'projects', label: 'Projects' },
-    { id: 'achievement', label: 'Achievement' },
     { id: 'contact', label: 'Contact' },
   ];
 
+  const handleBlogClick = () => {
+    window.location.href = '/blog';
+  };
+
   return (
-    <nav className="py-5 text-black text-3xl fixed top-0 z-50 w-full">
-      <div className="flex justify-center w-full items-center px-4 md:px-8">
-        <div className="relative w-full md:w-auto px-4 md:px-0">
-          {/* Mobile Menu Button */}
-          <div className="md:hidden absolute left-4 top-2 z-10">
-            <Menu as="div" className="relative inline-block text-left">
+    <nav className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+      isScrolled 
+        ? 'bg-background/80 backdrop-blur-md border-b border-border' 
+        : 'bg-transparent'
+    }`}>
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <div className="flex items-center space-x-3">
+            <div className="relative w-10 h-10 rounded-full overflow-hidden ring-2 ring-primary/20">
+              <Image 
+                src="/Images/Picture.jpeg" 
+                alt="Abdallah Gueye" 
+                fill
+                className="object-cover"
+              />
+            </div>
+            <span className="text-lg font-semibold text-foreground hidden sm:block">
+              Abdallah Gueye
+            </span>
+          </div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-1">
+            {navigationItems.map((item) => (
+              <Button
+                key={item.id}
+                as="a"
+                href={`#${item.id}`}
+                className={`
+                  px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200
+                  ${activeLink === item.id 
+                    ? 'bg-primary text-primary-foreground shadow-lg' 
+                    : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                  }
+                `}
+                onClick={() => handleLinkClick(item.id)}
+              >
+                {item.label}
+              </Button>
+            ))}
+            <Button
+              onClick={handleBlogClick}
+              className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 text-muted-foreground hover:text-foreground hover:bg-muted"
+            >
+              Blog
+            </Button>
+          </div>
+
+          {/* Mobile Menu */}
+          <div className="md:hidden">
+            <Menu as="div" className="relative">
               <Menu.Button as={Fragment}>
                 {({ open }) => (
                   <Button
                     className={`
-                      flex items-center justify-center w-10 h-10 
-                      bg-white rounded-full shadow-lg text-gray-800 
-                      hover:bg-gray-100 transition-all duration-200
-                      ${open ? 'ring-2 ring-emerald-400 ring-opacity-50' : ''}
+                      p-2 rounded-lg transition-all duration-200
+                      ${open 
+                        ? 'bg-primary text-primary-foreground' 
+                        : 'text-foreground hover:bg-muted'
+                      }
                     `}
                   >
-                    ☰
+                    <svg 
+                      className="w-5 h-5" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      {open ? (
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      ) : (
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                      )}
+                    </svg>
                   </Button>
                 )}
               </Menu.Button>
@@ -88,7 +156,7 @@ const Navigation = () => {
                 leaveFrom="transform opacity-100 scale-100"
                 leaveTo="transform opacity-0 scale-95"
               >
-                <Menu.Items className="absolute left-0 mt-2 w-56 origin-top-left coder-background backdrop-blur-sm rounded-2xl shadow-lg border border-emerald-400/20 focus:outline-none">
+                <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right rounded-xl bg-background border border-border shadow-lg focus:outline-none">
                   <div className="px-1 py-1">
                     {navigationItems.map((item) => (
                       <Menu.Item key={item.id}>
@@ -97,13 +165,13 @@ const Navigation = () => {
                             as="a"
                             href={`#${item.id}`}
                             className={`
-                              group flex w-full items-center px-4 py-3 text-lg rounded-xl
-                              transition-all duration-200 cursor-pointer
+                              group flex w-full items-center px-4 py-3 text-sm rounded-lg
+                              transition-all duration-200
                               ${activeLink === item.id 
-                                ? 'bg-white text-gray-800 shadow-lg' 
+                                ? 'bg-primary text-primary-foreground' 
                                 : active 
-                                  ? 'bg-white/10 text-white' 
-                                  : 'text-white hover:bg-white/5'
+                                  ? 'bg-muted text-foreground' 
+                                  : 'text-muted-foreground hover:bg-muted hover:text-foreground'
                               }
                             `}
                             onClick={() => handleLinkClick(item.id)}
@@ -113,42 +181,28 @@ const Navigation = () => {
                         )}
                       </Menu.Item>
                     ))}
+                    <Menu.Item>
+                      {({ active }) => (
+                        <Button
+                          className={`
+                            group flex w-full items-center px-4 py-3 text-sm rounded-lg
+                            transition-all duration-200
+                            ${active 
+                              ? 'bg-muted text-foreground' 
+                              : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+                            }
+                          `}
+                          onClick={handleBlogClick}
+                        >
+                          Blog
+                        </Button>
+                      )}
+                    </Menu.Item>
                   </div>
                 </Menu.Items>
               </Transition>
             </Menu>
           </div>
-
-          {/* Desktop Navigation */}
-          <ul className="hidden md:flex justify-center items-center gap-4 text-white coder-background backdrop-blur-sm p-5 rounded-2xl shadow-lg border border-emerald-400/20">
-            <li>
-              <Image 
-                src="/Images/Picture.jpeg" 
-                alt="profile" 
-                width={40} 
-                height={40} 
-                className="rounded-full object-cover ring-2 ring-emerald-400/30"
-              />
-            </li>
-            {navigationItems.map((link) => (
-              <li key={link.id}>
-                <Button
-                  as="a"
-                  href={`#${link.id}`}
-                  className={`
-                    text-xl p-3 rounded-2xl cursor-pointer transition-all duration-200
-                    ${activeLink === link.id 
-                      ? 'bg-white text-gray-800 shadow-lg ring-2 ring-emerald-400/50' 
-                      : 'text-white hover:bg-white/10 hover:text-white data-hover:bg-white/10 data-hover:text-white'
-                    }
-                  `}
-                  onClick={() => handleLinkClick(link.id)}
-                >
-                  {link.label}
-                </Button>
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
     </nav>

@@ -1,8 +1,8 @@
 'use client';
-import React, { useEffect, useRef } from "react";
-import Image from "next/image";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React, { useEffect, useRef } from 'react';
+import Image from 'next/image';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -159,72 +159,60 @@ const Career = () => {
           className="h-1 bg-blue-500 mx-auto rounded-full"
         ></div>
       </div>
-
-      <div className="py-10 md:py-28 px-4 md:px-0 flex justify-center items-center" ref={containerRef}>
-        {/* Desktop layout */}
-        <div className="hidden md:block w-full max-w-6xl relative">
-          {/* Main timeline line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-blue-500/20">
-            <div ref={timelineRef} className="w-full bg-blue-500 rounded-full"></div>
-          </div>
-
-          {jobData.map((item, index) => (
+      
+      <div className="container mx-auto px-4">
+        {/* Desktop Timeline */}
+        <div className="hidden md:block">
+          <div ref={containerRef} className="relative">
+            {/* Timeline line */}
             <div 
-              key={index} 
-              className={`career-row flex items-center gap-8 mb-32 last:mb-0 ${
-                index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
-              }`}
-            >
-              {/* Content side */}
-              <div className={`flex-1 ${index % 2 === 0 ? 'text-right' : 'text-left'}`}>
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4 justify-end">
-                    <Image 
-                      src={item.image.src} 
-                      alt={item.image.alt} 
-                      width={item.image.width} 
-                      height={item.image.height} 
-                      className="w-12 h-12 object-contain"
-                    />
-                    <h3 className="text-white text-2xl font-bold">{item.job.title}</h3>
-                  </div>
-                  <div className="text-gray-300 text-lg">{item.job.company}</div>
-                  <div className="inline-block bg-blue-500/20 text-blue-400 px-4 py-1.5 rounded-full text-sm">
-                    {item.job.position}
-                  </div>
-                  <div className="flex flex-wrap gap-2 justify-end">
-                    {item.job.techStack.map((tech, techIndex) => (
-                      <span 
-                        key={techIndex} 
-                        className="text-sm bg-white/10 text-white/80 px-3 py-1 rounded-full hover:bg-white/20 transition-colors"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+              ref={timelineRef}
+              className="absolute left-1/2 top-0 bottom-0 w-1 bg-blue-500/20 transform -translate-x-1/2"
+            ></div>
+            
+            {jobData.map((experience, index) => (
+              <div key={index} className={`career-row relative mb-20 flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
+                {/* Timeline dot */}
+                <div className="absolute left-1/2 top-1/2 w-6 h-6 bg-blue-500 rounded-full transform -translate-x-1/2 -translate-y-1/2 z-10 shadow-lg border-4 border-background"></div>
+                
+                {/* Content */}
+                <div className={`w-5/12 ${index % 2 === 0 ? 'pr-12' : 'pl-12'}`}>
+                  <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border-2 border-primary/30 shadow-xl hover:shadow-primary/40 transition-all duration-300">
+                    <div className="flex items-center gap-4 mb-4">
+                      <Image 
+                        src={experience.image.src} 
+                        alt={experience.image.alt} 
+                        width={experience.image.width} 
+                        height={experience.image.height}
+                        className="w-16 h-16 object-contain"
+                      />
+                      <div>
+                        <h3 className="text-white text-2xl font-bold">{experience.job.title}</h3>
+                        <p className="text-gray-300 text-lg">{experience.job.company}</p>
+                      </div>
+                    </div>
+                    <div className="text-white/80 text-sm font-medium mb-3">{experience.date}</div>
+                    <div className="inline-block bg-blue-500/20 text-blue-400 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                      {experience.job.position}
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {experience.job.techStack.map((tech, techIndex) => (
+                        <span 
+                          key={techIndex} 
+                          className="text-sm bg-white/10 text-white/80 px-3 py-1 rounded-full"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
-
-              {/* Timeline marker */}
-              <div className="relative flex-shrink-0">
-                <div className="w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center">
-                  <div className="w-4 h-4 rounded-full bg-blue-500"></div>
-                </div>
-              </div>
-
-              {/* Date side */}
-              <div className="flex-1">
-                <div className={`text-white/80 text-lg font-medium ${
-                  index % 2 === 0 ? 'text-left' : 'text-right'
-                }`}>
-                  {item.date}
-                </div>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
-        {/* Mobile layout */}
+        {/* Mobile Timeline */}
         <div className="md:hidden w-full max-w-lg space-y-12">
           {jobData.map((experience, index) => (
             <div key={index} className="career-row relative pl-8 border-l-2 border-blue-500/20">

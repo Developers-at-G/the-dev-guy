@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface Project {
   id: number;
@@ -11,9 +11,21 @@ interface Project {
   link: string;
   imageUrl: string;
   githubUrl?: string;
+  gallery?: string[]; // Added for DevTrackr
 }
 
 const projects: Project[] = [
+  {
+    id: 4,
+    title: "DevTrackr",
+    description: "A modern productivity app for tracking tasks and journaling. Features secure JWT auth, real-time data, PWA support, and a beautiful responsive UI. Built with React, Node.js, PostgreSQL, Prisma, and Headless UI.",
+    technologies: [
+      "React", "Node.js", "PostgreSQL", "Prisma", "JWT", "Headless UI", "Vercel", "PWA"
+    ],
+    link: "https://devtrackr-ag.vercel.app",
+    imageUrl: "/Images/devtrackr-dashboard.png",
+    githubUrl: "https://github.com/abdallah96/devtrackr"
+  },
   {
     id: 1,
     title: "Keur gui restaurant",
@@ -37,117 +49,106 @@ const projects: Project[] = [
     technologies: ["React", "Sanity.io", "Tailwind CSS", "Next JS"],
     link: "https://am-agrotradeservices.de",
       imageUrl: "/Images/am-agrotradeservices.png"
-  }
-  
+  },
 ];
 
 export default function Projects() {
-
   return (
-    <section className="relative py-32  overflow-hidden">
-      <div className="absolute inset-0 coder-background opacity-10" />
+    <section className="relative py-32 overflow-hidden">
+      {/* Background with subtle gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/3 to-background" />
+      
       <div className="container mx-auto px-4 relative z-10">
-        {/* <div className="text-center mb-20">
-          <h2 className="text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
-            Featured Projects
+        {/* Section Header */}
+        <div className="text-center mb-20">
+          <div className="inline-block mb-4">
+            <span className="text-sm font-semibold text-primary bg-primary/10 px-4 py-2 rounded-full border border-primary/20">
+              Featured Work
+            </span>
+          </div>
+          <h2 className="text-5xl md:text-6xl font-extrabold text-foreground mb-6 tracking-tight">
+            Projects
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Crafting digital experiences that make a difference
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-medium">
+            A showcase of my recent work and technical projects
           </p>
-        </div> */}
-        
-        <div className="space-y-32">
+        </div>
+
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <div
-              key={project.id}
-              className={`group relative ${
-                index % 2 === 0 ? 'md:ml-12' : 'md:mr-12'
+              key={project.title}
+              className={`group relative overflow-hidden rounded-3xl bg-gradient-to-br from-white/10 via-background/80 to-accent/10 backdrop-blur-xl border-2 border-primary/20 shadow-2xl hover:shadow-primary/40 transition-all duration-500 hover:-translate-y-2 ${
+                index % 2 === 0 ? 'lg:translate-y-8' : ''
               }`}
             >
-              <div className="grid md:grid-cols-2 gap-8 items-center">
-                <div className={`relative ${index % 2 === 0 ? 'order-1' : 'order-2'}`}>
-                  <div 
-                    className="relative aspect-video rounded-2xl overflow-hidden transform transition-transform duration-500 group-hover:scale-105"
-                  >
-                    <Image
-                      src={project.imageUrl}
-                      alt={project.title}
-                      fill
-                      className="object-cover cursor-pointer"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      onClick={() => window.open(project.link, '_blank')}
-                      role="link"
-                      aria-label={`Visit ${project.title} project`}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
-                  <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {/* Project Image */}
+              <div className="relative h-64 overflow-hidden">
+                <Image
+                  src={project.imageUrl}
+                  alt={project.title}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4">
+                  <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
+                  <p className="text-white/90 text-sm leading-relaxed">{project.description}</p>
+                </div>
+              </div>
+
+              {/* Project Content */}
+              <div className="p-6">
+                {/* Tech Stack */}
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.technologies.map((tech, techIndex) => (
+                    <span
+                      key={techIndex}
+                      className="px-3 py-1 text-xs font-medium bg-primary/20 text-primary rounded-full border border-primary/30"
+                    >
+                      {tech}
+                    </span>
+                  ))}
                 </div>
 
-                <div className={`${index % 2 === 0 ? 'order-2' : 'order-1'} relative`}>
-                  <div className="space-y-6">
-                    <div className="inline-block">
-                      <span className="text-sm font-semibold text-blue-600 bg-blue-50 px-4 py-1.5 rounded-full">
-                        Project {index + 1}
-                      </span>
-                    </div>
-                    
-                    <h3 className="text-3xl font-bold text-white group-hover:text-blue-600 transition-colors duration-300">
-                      {project.title}
-                    </h3>
-                    
-                    <p className="text-white text-lg leading-relaxed">
-                      {project.description}
-                    </p>
-                    
-                    <div className="flex flex-wrap gap-3">
-                      {project.technologies.map((tech, techIndex) => (
-                        <span
-                          key={techIndex}
-                          className="px-4 py-2 bg-white/80 backdrop-blur-sm text-gray-700 rounded-lg text-sm font-medium border border-gray-200 hover:border-blue-200 hover:bg-blue-50 transition-all duration-300"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                    
-                    <div className="flex gap-4 pt-4">
-                      <Link
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group/link inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-xl hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300"
+                {/* Project Links */}
+                <div className="flex flex-wrap gap-3">
+                  <Link
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group/live inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-xl font-semibold hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-primary/40"
+                  >
+                    Live Demo
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg" 
+                      className="h-4 w-4 transform group-hover/live:translate-x-1 transition-transform duration-300" 
+                      viewBox="0 0 20 20" 
+                      fill="currentColor"
+                    >
+                      <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+                      <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+                    </svg>
+                  </Link>
+                  {project.githubUrl && (
+                    <Link
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group/github inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-foreground px-6 py-3 rounded-xl border border-white/20 hover:border-primary/30 hover:bg-primary/10 transition-all duration-300 font-semibold"
+                    >
+                      GitHub
+                      <svg 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        className="h-4 w-4 transform group-hover/github:rotate-12 transition-transform duration-300" 
+                        viewBox="0 0 20 20" 
+                        fill="currentColor"
                       >
-                        View Project
-                        <svg 
-                          xmlns="http://www.w3.org/2000/svg" 
-                          className="h-5 w-5 transform group-hover/link:translate-x-1 transition-transform duration-300" 
-                          viewBox="0 0 20 20" 
-                          fill="currentColor"
-                        >
-                          <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                        </svg>
-                      </Link>
-                      {project.githubUrl && (
-                        <Link
-                          href={project.githubUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group/github inline-flex items-center gap-2 bg-white text-gray-800 px-8 py-3 rounded-xl border border-gray-200 hover:border-blue-200 hover:bg-blue-50 transition-all duration-300"
-                        >
-                          GitHub
-                          <svg 
-                            xmlns="http://www.w3.org/2000/svg" 
-                            className="h-5 w-5 transform group-hover/github:rotate-12 transition-transform duration-300" 
-                            viewBox="0 0 20 20" 
-                            fill="currentColor"
-                          >
-                            <path fillRule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                          </svg>
-                        </Link>
-                      )}
-                    </div>
-                  </div>
+                        <path fillRule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                      </svg>
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>

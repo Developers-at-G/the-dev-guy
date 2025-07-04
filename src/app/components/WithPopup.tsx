@@ -1,7 +1,10 @@
 'use client';
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { usePopup } from '../context/PopupContext';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
+
+// Track shown popups globally for this page load
+const shownPopups = new Set<string>();
 
 interface PopupData {
   title: string;
@@ -24,21 +27,22 @@ const WithPopup: React.FC<WithPopupProps> = ({
   className = '' 
 }) => {
   const { showPopup } = usePopup();
-  const hasEverShown = useRef(false);
+  // Use a unique key for each popup (e.g., by title + side)
+  const popupKey = `${popupData.title}-${side}`;
   const { ref, isIntersecting } = useIntersectionObserver({
     threshold: 0.3,
     rootMargin: '-50px 0px',
     triggerOnce: false
   });
 
-  useEffect(() => {
-    if (isIntersecting && !hasEverShown.current) {
-      hasEverShown.current = true;
+  React.useEffect(() => {
+    if (isIntersecting && !shownPopups.has(popupKey)) {
+      shownPopups.add(popupKey);
       setTimeout(() => {
         showPopup(popupData, side);
       }, 500);
     }
-  }, [isIntersecting, showPopup, popupData, side]);
+  }, [isIntersecting, showPopup, popupData, side, popupKey]);
 
   return (
     <section ref={ref} className={className}>

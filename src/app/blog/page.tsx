@@ -38,8 +38,8 @@ export default function Blog() {
                 <span className="text-sm text-muted-foreground">•</span>
                 <span className="text-sm text-muted-foreground">Development</span>
                 <span className="text-sm text-muted-foreground">•</span>
-                <span className="text-sm text-muted-foreground">June 4, 2024</span>
-              </div>
+                <span className="text-sm text-muted-foreground">July 04, 2025</span>
+              </div>  
               
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 md:mb-4 group-hover:text-primary transition-colors">
                 Why Building Real Projects Taught Me More Than Any Tutorial

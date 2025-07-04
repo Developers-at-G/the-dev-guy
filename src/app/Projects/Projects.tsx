@@ -11,6 +11,7 @@ interface Project {
   link: string;
   imageUrl: string;
   githubUrl?: string;
+  caseStudyUrl?: string; // Added for case studies
   gallery?: string[]; // Added for DevTrackr
 }
 
@@ -24,7 +25,8 @@ const projects: Project[] = [
     ],
     link: "https://devtrackr-ag.vercel.app",
     imageUrl: "/Images/devtrackr-dashboard.png",
-    githubUrl: "https://github.com/abdallah96/devtrackr"
+    githubUrl: "https://github.com/abdallah96/devtrackr",
+    caseStudyUrl: "/case-studies/devtrackr"
   },
   {
     id: 1,
@@ -131,6 +133,22 @@ export default function Projects() {
                       <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
                     </svg>
                   </Link>
+                  {project.caseStudyUrl && (
+                    <Link
+                      href={project.caseStudyUrl}
+                      className="group/case inline-flex items-center gap-2 bg-accent text-accent-foreground px-6 py-3 rounded-xl font-semibold hover:bg-accent/90 transition-all duration-300 shadow-lg hover:shadow-accent/40"
+                    >
+                      Case Study
+                      <svg 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        className="h-4 w-4 transform group-hover/case:translate-x-1 transition-transform duration-300" 
+                        viewBox="0 0 20 20" 
+                        fill="currentColor"
+                      >
+                        <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                      </svg>
+                    </Link>
+                  )}
                   {project.githubUrl && (
                     <Link
                       href={project.githubUrl}

@@ -24,6 +24,27 @@ const concepts = [
     why: "I know how to handle side effects and async logic."
   },
   {
+    title: "Context",
+    icon: "🌐",
+    description: "Context provides a way to pass data through the component tree without having to pass props down manually at every level.",
+    code: `const ThemeContext = createContext();\n<ThemeContext.Provider value={theme}>\n  <App />\n</ThemeContext.Provider>` ,
+    why: "I can build scalable state management solutions."
+  },
+  {
+    title: "Memo & Callback",
+    icon: "⚡️",
+    description: "useMemo and useCallback help optimize performance by memoizing values and functions to prevent unnecessary re-renders.",
+    code: `const memoizedValue = useMemo(() => \n  expensiveCalculation(a, b), [a, b]\n);\nconst memoizedCallback = useCallback(() => {\n  doSomething(a, b);\n}, [a, b]);`,
+    why: "I write performant React applications."
+  },
+  {
+    title: "Reducer",
+    icon: "🔄",
+    description: "useReducer is useful for managing complex state logic that involves multiple sub-values or when the next state depends on the previous one.",
+    code: `const [state, dispatch] = useReducer(reducer, initialState);\ndispatch({ type: 'INCREMENT' });`,
+    why: "I can handle complex state logic efficiently."
+  },
+  {
     title: "Props",
     icon: "📦",
     description: "Props are how you pass data from parent to child components. They make your components flexible and reusable.",

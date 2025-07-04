@@ -1,46 +1,8 @@
 'use client';
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import Image from 'next/image';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const Achievement = () => {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const animationCompleteRef = useRef(false);
-
-  useEffect(() => {
-    const container = containerRef.current;
-    
-    if (!animationCompleteRef.current) {
-      const cards = container?.querySelectorAll('.achievement-card');
-      
-      cards?.forEach((card, index) => {
-        gsap.fromTo(
-          card,
-          {
-            opacity: 0,
-            y: 50,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            delay: index * 0.2,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: card,
-              start: "top 80%",
-              toggleActions: "play none none none",
-            },
-          }
-        );
-      });
-
-      animationCompleteRef.current = true;
-    }
-  }, []);
 
   return (
     <section className="relative py-32 overflow-hidden" id="achievement">
@@ -64,7 +26,7 @@ const Achievement = () => {
         </div>
 
         {/* Achievement Cards */}
-        <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {/* Research Paper 1 */}
           <div className="achievement-card group">
             <div className="bg-gradient-to-br from-white/10 via-background/80 to-accent/10 backdrop-blur-xl rounded-2xl border-2 border-primary/20 shadow-2xl p-8 hover:shadow-primary/40 transition-all duration-300 h-full">

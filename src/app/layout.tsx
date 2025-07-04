@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react"
+import { PopupProvider } from "./context/PopupContext";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -31,7 +32,9 @@ export default function RootLayout({
       >
         {/* Analytics */}
         <Analytics />
-        {children}
+        <PopupProvider>
+          {children}
+        </PopupProvider>
       </body>
     </html>
   );

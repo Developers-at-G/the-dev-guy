@@ -31,6 +31,39 @@ const concepts = [
     why: "I know how to handle side effects and async logic."
   },
   {
+    title: "Context",
+    icon: "🌐",
+    description: "Context provides a way to pass data through the component tree without having to pass props down manually at every level.",
+    code: `const ThemeContext = createContext();
+<ThemeContext.Provider value={theme}>
+  <App />
+</ThemeContext.Provider>` ,
+    usage: "The popup system uses Context to manage state across components without prop drilling.",
+    why: "I can build scalable state management solutions."
+  },
+  {
+    title: "Memo & Callback",
+    icon: "⚡️",
+    description: "useMemo and useCallback help optimize performance by memoizing values and functions to prevent unnecessary re-renders.",
+    code: `const memoizedValue = useMemo(() => 
+  expensiveCalculation(a, b), [a, b]
+);
+const memoizedCallback = useCallback(() => {
+  doSomething(a, b);
+}, [a, b]);`,
+    usage: "Used in the popup system to optimize callback functions and prevent unnecessary re-renders.",
+    why: "I write performant React applications."
+  },
+  {
+    title: "Reducer",
+    icon: "🔄",
+    description: "useReducer is useful for managing complex state logic that involves multiple sub-values or when the next state depends on the previous one.",
+    code: `const [state, dispatch] = useReducer(reducer, initialState);
+dispatch({ type: 'INCREMENT' });`,
+    usage: "Could be used for complex form state management or multi-step processes.",
+    why: "I can handle complex state logic efficiently."
+  },
+  {
     title: "Props",
     icon: "📦",
     description: "Props are how you pass data from parent to child components. They make your components flexible and reusable.",
@@ -70,24 +103,24 @@ const ReactConcepts = () => (
           My approach to building modern, maintainable, and scalable web applications.
         </p>
       </div>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
         {concepts.map((c) => (
           <div
             key={c.title}
-            className="relative group card p-7 flex flex-col gap-4 bg-white/15 backdrop-blur-lg border-2 border-primary/20 shadow-xl rounded-2xl transition-all duration-300 hover:shadow-primary/30 hover:-translate-y-1 hover:scale-105 cursor-pointer overflow-hidden"
+            className="relative group card p-6 flex flex-col gap-3 bg-white/15 backdrop-blur-lg border-2 border-primary/20 shadow-xl rounded-2xl transition-all duration-300 hover:shadow-primary/30 hover:-translate-y-1 hover:scale-105 cursor-pointer overflow-hidden"
             tabIndex={0}
             aria-label={c.title}
           >
             <div className="flex items-center gap-3 mb-2">
-              <span className="text-3xl md:text-4xl drop-shadow-lg">{c.icon}</span>
-              <h3 className="text-xl font-semibold text-primary mb-0">{c.title}</h3>
+              <span className="text-2xl md:text-3xl drop-shadow-lg">{c.icon}</span>
+              <h3 className="text-lg font-semibold text-primary mb-0">{c.title}</h3>
             </div>
-            <p className="text-muted-foreground text-base leading-relaxed">{c.description}</p>
-            <pre className="bg-background/80 text-foreground rounded-lg p-4 text-sm overflow-x-auto border border-border transition-all duration-200 group-hover:bg-primary/10"><code>{c.code}</code></pre>
-            <div className="text-sm text-accent-foreground bg-accent/10 rounded px-3 py-2">
+            <p className="text-muted-foreground text-sm leading-relaxed">{c.description}</p>
+            <pre className="bg-background/80 text-foreground rounded-lg p-3 text-xs overflow-x-auto border border-border transition-all duration-200 group-hover:bg-primary/10"><code>{c.code}</code></pre>
+            <div className="text-xs text-accent-foreground bg-accent/10 rounded px-2 py-1.5">
               <span className="font-medium">In this portfolio:</span> {c.usage}
             </div>
-            <div className="text-xs text-primary-foreground bg-primary/80 rounded px-2 py-1 mt-2 w-fit shadow-md">
+            <div className="text-xs text-primary-foreground bg-primary/80 rounded px-2 py-1 mt-1 w-fit shadow-md">
               <span className="font-semibold">Why it matters for you:</span> {c.why}
             </div>
           </div>

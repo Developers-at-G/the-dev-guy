@@ -1,12 +1,14 @@
 'use client';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '../context/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Education = () => {
+function ClientEducation() {
+  const { t } = useLanguage();
   const cardsRef = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
@@ -46,14 +48,14 @@ const Education = () => {
         <div className="text-center mb-20">
           <div className="inline-block mb-4">
             <span className="text-sm font-semibold text-primary bg-primary/10 px-4 py-2 rounded-full border border-primary/20">
-              Academic Background
+              {t('education.subtitle')}
             </span>
           </div>
           <h2 className="text-5xl md:text-6xl font-extrabold text-foreground mb-6 tracking-tight">
-            Education
+            {t('education.title')}
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-medium">
-            My academic journey in computer science and engineering
+            {t('education.description')}
           </p>
         </div>
 
@@ -78,7 +80,7 @@ const Education = () => {
                     <div className="relative w-24 h-24 flex-shrink-0">
                       <Image
                         src="/Images/Bachelor.png"
-                        alt="Bachelor's Degree"
+                        alt={t('education.bachelor_degree')}
                         fill
                         className="object-contain"
                       />
@@ -89,19 +91,17 @@ const Education = () => {
                           2018 - 2022
                         </span>
                         <span className="text-sm font-medium text-muted-foreground">
-                          Bachelor&apos;s Degree
+                          {t('education.bachelor_degree')}
                         </span>
                       </div>
                       <h3 className="text-2xl font-bold text-foreground mb-2">
-                        Computer Science & Engineering
+                        {t('education.computer_science')}
                       </h3>
                       <p className="text-lg font-semibold text-primary mb-3">
-                        University of Applied Sciences
+                        {t('education.university')}
                       </p>
                       <p className="text-muted-foreground leading-relaxed">
-                        Comprehensive study of computer science fundamentals, software engineering principles, 
-                        and practical application development. Focused on modern web technologies, 
-                        database systems, and software architecture.
+                        {t('education.bachelor_desc')}
                       </p>
                     </div>
                   </div>
@@ -121,7 +121,7 @@ const Education = () => {
                     <div className="relative w-24 h-24 flex-shrink-0">
                       <Image
                         src="/Images/Master.png"
-                        alt="Master's Degree"
+                        alt={t('education.master_degree')}
                         fill
                         className="object-contain"
                       />
@@ -132,19 +132,17 @@ const Education = () => {
                           2022 - 2024
                         </span>
                         <span className="text-sm font-medium text-muted-foreground">
-                          Master&apos;s Degree
+                          {t('education.master_degree')}
                         </span>
                       </div>
                       <h3 className="text-2xl font-bold text-foreground mb-2">
-                        Computer Science
+                        {t('education.applied_computer_science')}
                       </h3>
                       <p className="text-lg font-semibold text-primary mb-3">
-                        University of Applied Sciences
+                        {t('education.university')}
                       </p>
                       <p className="text-muted-foreground leading-relaxed">
-                        Advanced studies in computer science with specialization in software engineering, 
-                        web technologies, and modern development practices. Research focus on 
-                        accessibility and usability engineering.
+                        {t('education.master_desc')}
                       </p>
                     </div>
                   </div>
@@ -156,6 +154,13 @@ const Education = () => {
       </div>
     </section>
   );
+}
+
+const Education = () => {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
+  if (!mounted) return null;
+  return <ClientEducation />;
 };
 
 export default Education;

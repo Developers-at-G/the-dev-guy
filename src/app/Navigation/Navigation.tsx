@@ -1,24 +1,25 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Button } from '@headlessui/react';
 import { Menu, Transition } from '@headlessui/react';
-import { Fragment } from 'react';
+import ThemeToggle from '../components/ThemeToggle';
+import LanguageToggle from '../components/LanguageToggle';
+import { useLanguage } from '../context/LanguageContext';
 
-const Navigation = () => {
+const fallback: Record<string, string> = {
+  'nav.about': 'About',
+  'nav.skills': 'Skills',
+  'nav.experience': 'Experience',
+  'nav.projects': 'Projects',
+  'nav.contact': 'Contact',
+  'nav.blog': 'Blog',
+};
+
+function ClientNavigation() {
   const [activeLink, setActiveLink] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
-
-  const handleLinkClick = (id: string) => {
-    setActiveLink(id);
-    const targetElement = document.getElementById(id);
-    if (targetElement) {
-      window.scrollTo({
-        top: targetElement.offsetTop - 80,
-        behavior: 'smooth',
-      });
-    }
-  };
+  const lang = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,13 +56,26 @@ const Navigation = () => {
     };
   }, []);
 
+  const t = (key: string) => lang.t(key) || fallback[key] || key;
+
   const navigationItems = [
-    { id: 'about', label: 'About' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'career', label: 'Experience' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'contact', label: 'Contact' },
+    { id: 'about', label: t('nav.about') },
+    { id: 'skills', label: t('nav.skills') },
+    { id: 'career', label: t('nav.experience') },
+    { id: 'projects', label: t('nav.projects') },
+    { id: 'contact', label: t('nav.contact') },
   ];
+
+  const handleLinkClick = (id: string) => {
+    setActiveLink(id);
+    const targetElement = document.getElementById(id);
+    if (targetElement) {
+      window.scrollTo({
+        top: targetElement.offsetTop - 80,
+        behavior: 'smooth',
+      });
+    }
+  };
 
   const handleBlogClick = () => {
     window.location.href = '/blog';
@@ -80,13 +94,13 @@ const Navigation = () => {
             <div className="relative w-10 h-10 rounded-full overflow-hidden ring-2 ring-primary/20">
               <Image 
                 src="/Images/Picture.jpeg" 
-                alt="Abdallah Gueye" 
+                alt="Abdallah Amamou Gueye" 
                 fill
                 className="object-cover"
               />
             </div>
             <span className="text-lg font-semibold text-foreground hidden sm:block">
-              Abdallah Gueye
+              Abdallah Amamou Gueye
             </span>
           </div>
 
@@ -113,12 +127,18 @@ const Navigation = () => {
               onClick={handleBlogClick}
               className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 text-muted-foreground hover:text-foreground hover:bg-muted"
             >
-              Blog
+              {t('nav.blog')}
             </Button>
+            <div className="ml-2 flex items-center space-x-2">
+              <LanguageToggle />
+              <ThemeToggle />
+            </div>
           </div>
 
           {/* Mobile Menu */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center space-x-2">
+            <LanguageToggle />
+            <ThemeToggle />
             <Menu as="div" className="relative">
               <Menu.Button as={Fragment}>
                 {({ open }) => (
@@ -194,7 +214,7 @@ const Navigation = () => {
                           `}
                           onClick={handleBlogClick}
                         >
-                          Blog
+                          {t('nav.blog')}
                         </Button>
                       )}
                     </Menu.Item>
@@ -207,6 +227,13 @@ const Navigation = () => {
       </div>
     </nav>
   );
+}
+
+const Navigation = () => {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
+  if (!mounted) return null;
+  return <ClientNavigation />;
 };
 
 export default Navigation;

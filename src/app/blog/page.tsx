@@ -5,7 +5,7 @@ import Link from 'next/link';
 export default function Blog() {
   return (
     <main className="min-h-screen bg-background">
-      <section className="relative py-24 px-4 overflow-hidden">
+      <section className="relative py-16 md:py-24 px-2 sm:px-4 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/3 to-background" />
         <div className="container mx-auto relative z-10">
           <Link
@@ -16,21 +16,21 @@ export default function Blog() {
             <span>Back to Portfolio</span>
           </Link>
           
-          <div className="text-center mb-16">
-            <h1 className="text-5xl md:text-7xl font-extrabold text-foreground mb-6 tracking-tight">
+          <div className="text-center mb-10 md:mb-16">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl md:text-7xl font-extrabold text-foreground mb-4 md:mb-6 tracking-tight">
               Blog
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-4 font-medium">
+            <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-2 md:mb-4 font-medium">
               Thoughts on development, design, and building better software
             </p>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
               Sharing insights from my journey as a software engineer, from technical deep-dives to career lessons learned.
             </p>
           </div>
 
           {/* Featured Article */}
-          <div className="max-w-4xl mx-auto mb-16">
-            <div className="bg-gradient-to-br from-white/10 via-background/80 to-accent/10 backdrop-blur-xl rounded-3xl border-2 border-primary/20 shadow-2xl p-8 md:p-12 hover:shadow-primary/40 transition-all duration-300 group">
+          <div className="max-w-2xl md:max-w-4xl mx-auto mb-10 md:mb-16">
+            <div className="bg-gradient-to-br from-white/10 via-background/80 to-accent/10 backdrop-blur-xl rounded-2xl md:rounded-3xl border border-primary/20 shadow-2xl p-5 sm:p-8 md:p-12 hover:shadow-primary/40 transition-all duration-300 group">
               <div className="flex items-center gap-3 mb-6">
                 <span className="text-sm font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
                   Featured Article
@@ -41,15 +41,15 @@ export default function Blog() {
                 <span className="text-sm text-muted-foreground">June 4, 2024</span>
               </div>
               
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 md:mb-4 group-hover:text-primary transition-colors">
                 Why Building Real Projects Taught Me More Than Any Tutorial
               </h2>
               
-              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-4 md:mb-6">
                 There&apos;s something exciting about starting a new coding tutorial. You follow along, everything works, the UI looks clean — and you feel like you&apos;re learning. But then you try building something from scratch...
               </p>
               
-              <p className="text-muted-foreground mb-8">
+              <p className="text-muted-foreground mb-4 md:mb-8 text-sm sm:text-base">
                 Suddenly, nothing is handed to you. You&apos;re the one deciding how things should work, where to fetch data, how to handle empty states, loading states, slow networks, form validation, weird bugs. You realize quickly: tutorials are helpful, but they don&apos;t prepare you for the real mess of real apps.
               </p>
 
@@ -84,18 +84,18 @@ export default function Blog() {
 
           {/* Coming Soon Section */}
           <div className="text-center">
-            <div className="inline-block p-8 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10">
-              <h3 className="text-2xl font-bold text-foreground mb-4">
+            <div className="inline-block p-6 sm:p-8 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-2 md:mb-4">
                 More Articles Coming Soon
               </h3>
-              <p className="text-muted-foreground mb-6">
+              <p className="text-muted-foreground mb-4 md:mb-6 text-sm sm:text-base">
                 I&apos;m working on more insightful articles about web development, design patterns, and career growth.
               </p>
-              <div className="flex flex-wrap justify-center gap-4 text-sm text-muted-foreground">
-                <span className="px-3 py-1 bg-white/10 rounded-full">React & Next.js</span>
-                <span className="px-3 py-1 bg-white/10 rounded-full">Web Development</span>
-                <span className="px-3 py-1 bg-white/10 rounded-full">Career Growth</span>
-                <span className="px-3 py-1 bg-white/10 rounded-full">Design Patterns</span>
+              <div className="flex flex-wrap justify-center gap-2 md:gap-4 text-xs sm:text-sm text-muted-foreground">
+                <span className="px-2 py-1 sm:px-3 sm:py-1 bg-white/10 rounded-full">React & Next.js</span>
+                <span className="px-2 py-1 sm:px-3 sm:py-1 bg-white/10 rounded-full">Web Development</span>
+                <span className="px-2 py-1 sm:px-3 sm:py-1 bg-white/10 rounded-full">Career Growth</span>
+                <span className="px-2 py-1 sm:px-3 sm:py-1 bg-white/10 rounded-full">Design Patterns</span>
               </div>
             </div>
           </div>

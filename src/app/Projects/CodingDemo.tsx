@@ -1,9 +1,11 @@
 import React, { useState, useRef } from 'react';
 import styles from './CodingDemo.module.css';
+import { useLanguage } from '../context/LanguageContext';
 
 const CodingDemo = () => {
   const [currentVideo, setCurrentVideo] = useState(1);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const { t } = useLanguage();
 
   const handleVideoEnd = () => {
     if (currentVideo === 1) {
@@ -33,10 +35,10 @@ const CodingDemo = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
-            Featured Projects
+            {t('projects.featured_title')}
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Before we dive into my work, here&apos;s a quick glimpse of how I bring ideas to life
+            {t('projects.featured_subtitle')}
           </p>
         </div>
 

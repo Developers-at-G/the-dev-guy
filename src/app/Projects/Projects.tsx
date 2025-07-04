@@ -2,169 +2,136 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useLanguage } from '../context/LanguageContext';
 
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  technologies: string[];
-  link: string;
-  imageUrl: string;
-  githubUrl?: string;
-  caseStudyUrl?: string; // Added for case studies
-  gallery?: string[]; // Added for DevTrackr
-}
-
-const projects: Project[] = [
+const projects = [
   {
-    id: 4,
-    title: "DevTrackr",
-    description: "A modern productivity app for tracking tasks and journaling. Features secure JWT auth, real-time data, PWA support, and a beautiful responsive UI. Built with React, Node.js, PostgreSQL, Prisma, and Headless UI.",
+    title: "devtrackr",
+    description: "devtrackr_desc",
+    image: "/Images/devtrackr-dashboard.png",
     technologies: [
       "React", "Node.js", "PostgreSQL", "Prisma", "JWT", "Headless UI", "Vercel", "PWA"
     ],
     link: "https://devtrackr-ag.vercel.app",
-    imageUrl: "/Images/devtrackr-dashboard.png",
+    caseStudy: "/case-studies/devtrackr",
     githubUrl: "https://github.com/abdallah96/devtrackr",
-    caseStudyUrl: "/case-studies/devtrackr"
   },
   {
-    id: 1,
-    title: "Keur gui restaurant",
-    description: "This is a restaurant website that I have built using Next.js, TypeScript, Tailwind CSS. I use supabase for the database, and have a dashboard for the admin to manage the restaurant. I also use AWS to host the website.",
+    title: "keurgui",
+    description: "keurgui_desc",
+    image: "/Images/keurguirestaurant.png",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase", "React", "AWS"],
     link: "https://keurguirestaurant.com",
-    imageUrl: "/Images/keurguirestaurant.png"
+    caseStudy: "/case-studies/keur-gui",
   },
   {
-    id: 2,
-    title: "Real estate website",
-    description: "A front end website built with Next JS, using React, Tailwind CSS, and Framer Motion for my scroll animations.",
+    title: "realestate",
+    description: "realestate_desc",
+    image: "/Images/atlanticimmo.png",
     technologies: ["React", "Tailwind CSS", "Framer Motion", "Next JS"],
     link: "https://seradi.vercel.app",
-    imageUrl: "/Images/atlanticimmo.png"
   },
   {
-    id: 3,
-    title: "Agro trade services",
-    description: " This is a website doing trade and logistics. I use React to build this website and as a CMS I use Sanity.io",
+    title: "agro",
+    description: "agro_desc",
+    image: "/Images/am-agrotradeservices.png",
     technologies: ["React", "Sanity.io", "Tailwind CSS", "Next JS"],
     link: "https://am-agrotradeservices.de",
-      imageUrl: "/Images/am-agrotradeservices.png"
   },
 ];
 
-export default function Projects() {
+function ClientProjects() {
+  const { t } = useLanguage();
+
   return (
     <section className="relative py-32 overflow-hidden">
-      {/* Background with subtle gradient */}
+      {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/3 to-background" />
       
-      <div className="container mx-auto px-4 relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-20">
-          <div className="inline-block mb-4">
-            <span className="text-sm font-semibold text-primary bg-primary/10 px-4 py-2 rounded-full border border-primary/20">
-              Featured Work
-            </span>
-          </div>
+      <div className="container mx-auto relative z-10">
+        {/* Header */}
+        <div className="text-center mb-16">
           <h2 className="text-5xl md:text-6xl font-extrabold text-foreground mb-6 tracking-tight">
-            Projects
+            {t('projects.title')}
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-medium">
-            A showcase of my recent work and technical projects
+            {t('projects.description')}
           </p>
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
-            <div
-              key={project.title}
-              className={`group relative overflow-hidden rounded-3xl bg-gradient-to-br from-white/10 via-background/80 to-accent/10 backdrop-blur-xl border-2 border-primary/20 shadow-2xl hover:shadow-primary/40 transition-all duration-500 hover:-translate-y-2 ${
-                index % 2 === 0 ? 'lg:translate-y-8' : ''
-              }`}
-            >
+        <div className="grid md:grid-cols-2 gap-8">
+          {projects.map((project) => (
+            <div key={project.title} className="group relative bg-background/50 backdrop-blur-lg rounded-2xl border border-border shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden">
               {/* Project Image */}
               <div className="relative h-64 overflow-hidden">
                 <Image
-                  src={project.imageUrl}
-                  alt={project.title}
+                  src={project.image}
+                  alt={t(`projects.${project.title}_title`)}
                   fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4">
-                  <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
-                  <p className="text-white/90 text-sm leading-relaxed">{project.description}</p>
+                  <p className="text-white/90 text-sm leading-relaxed">{t(`projects.${project.description}`)}</p>
                 </div>
               </div>
 
               {/* Project Content */}
               <div className="p-6">
-                {/* Tech Stack */}
+                <h3 className="text-2xl font-bold text-foreground mb-3">
+                  {t(`projects.${project.title}_title`)}
+                </h3>
+                
+                {/* Technologies */}
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.map((tech, techIndex) => (
+                  {project.technologies.map((tech) => (
                     <span
-                      key={techIndex}
-                      className="px-3 py-1 text-xs font-medium bg-primary/20 text-primary rounded-full border border-primary/30"
+                      key={tech}
+                      className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full border border-primary/20"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
 
-                {/* Project Links */}
+                {/* Action Buttons */}
                 <div className="flex flex-wrap gap-3">
                   <Link
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group/live inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-xl font-semibold hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-primary/40"
+                    className="group/live inline-flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-primary/90 transition-all duration-200"
                   >
-                    Live Demo
-                    <svg 
-                      xmlns="http://www.w3.org/2000/svg" 
-                      className="h-4 w-4 transform group-hover/live:translate-x-1 transition-transform duration-300" 
-                      viewBox="0 0 20 20" 
-                      fill="currentColor"
-                    >
-                      <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
-                      <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
+                    {t('common.view_live')}
                   </Link>
-                  {project.caseStudyUrl && (
+
+                  {project.caseStudy && (
                     <Link
-                      href={project.caseStudyUrl}
-                      className="group/case inline-flex items-center gap-2 bg-accent text-accent-foreground px-6 py-3 rounded-xl font-semibold hover:bg-accent/90 transition-all duration-300 shadow-lg hover:shadow-accent/40"
+                      href={project.caseStudy}
+                      className="group/case inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-foreground px-4 py-2 rounded-lg border border-white/20 hover:border-primary/30 hover:bg-primary/10 transition-all duration-200"
                     >
-                      Case Study
-                      <svg 
-                        xmlns="http://www.w3.org/2000/svg" 
-                        className="h-4 w-4 transform group-hover/case:translate-x-1 transition-transform duration-300" 
-                        viewBox="0 0 20 20" 
-                        fill="currentColor"
-                      >
-                        <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                       </svg>
+                      {t('projects.case_study')}
                     </Link>
                   )}
+
                   {project.githubUrl && (
                     <Link
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group/github inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-foreground px-6 py-3 rounded-xl border border-white/20 hover:border-primary/30 hover:bg-primary/10 transition-all duration-300 font-semibold"
+                      className="group/github inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-foreground px-4 py-2 rounded-lg border border-white/20 hover:border-primary/30 hover:bg-primary/10 transition-all duration-200"
                     >
-                      GitHub
-                      <svg 
-                        xmlns="http://www.w3.org/2000/svg" 
-                        className="h-4 w-4 transform group-hover/github:rotate-12 transition-transform duration-300" 
-                        viewBox="0 0 20 20" 
-                        fill="currentColor"
-                      >
-                        <path fillRule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.337 1.839 1.337.896 1.307 2.353 1.003 2.928.752.092-.564.351-.752.639-.752.351 0 .721.108 1.077.324.356.216.744.648 1.059 1.059.315.411.648.703 1.059 1.059.356.216.721.324 1.077.324.288 0 .547-.188.639-.752.575-.251 2.032-.555 2.928-.752.896-.197 1.755-.853 1.839-1.337.084-.484.083-.645.083-.645 0-.316.194-.688.793-.577 4.769 1.587 8.207 6.085 8.207 11.387 0 6.627-5.373 12-12 12z"/>
                       </svg>
+                      {t('common.view_code')}
                     </Link>
                   )}
                 </div>
@@ -175,4 +142,13 @@ export default function Projects() {
       </div>
     </section>
   );
-} 
+}
+
+const Projects = () => {
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => { setMounted(true); }, []);
+  if (!mounted) return null;
+  return <ClientProjects />;
+};
+
+export default Projects; 

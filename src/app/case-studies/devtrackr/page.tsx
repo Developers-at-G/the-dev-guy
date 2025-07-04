@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import React from 'react';
 import Link from 'next/link';
+import ThemeToggle from '../../components/ThemeToggle';
 
 export const metadata: Metadata = {
   title: "DevTrackr Case Study - AG&apos;s Portfolio",
@@ -15,14 +16,17 @@ const DevTrackrCaseStudy = () => {
       <section className="relative flex flex-col items-center justify-center min-h-[50vh] py-24 px-4 overflow-hidden">
         <div className="absolute inset-0 z-0 animate-gradient bg-gradient-to-br from-primary/30 via-accent/20 to-background opacity-90 blur-2xl" />
         <div className="relative z-10 flex flex-col items-center text-center">
-          <Link
-            href="/"
-            className="mb-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 border border-primary/30 text-primary font-semibold shadow hover:bg-primary/10 hover:text-primary-foreground transition-all duration-200 group"
-            aria-label="Back to Portfolio"
-          >
-            <span className="text-lg group-hover:-translate-x-1 transition-transform">←</span>
-            <span>Back to Portfolio</span>
-          </Link>
+          <div className="flex items-center gap-4 mb-8">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 border border-primary/30 text-primary font-semibold shadow hover:bg-primary/10 hover:text-primary-foreground transition-all duration-200 group"
+              aria-label="Back to Portfolio"
+            >
+              <span className="text-lg group-hover:-translate-x-1 transition-transform">←</span>
+              <span>Back to Portfolio</span>
+            </Link>
+            <ThemeToggle />
+          </div>
           
           <div className="mb-6">
             <span className="text-sm font-semibold text-primary bg-primary/10 px-4 py-2 rounded-full border border-primary/20">
@@ -243,13 +247,13 @@ model Task {
       </section>
 
       {/* Challenges & Solutions Section */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-12">
+      <section className="py-10 md:py-20 px-2 sm:px-4 bg-gradient-to-br from-primary/5 via-accent/3 to-background">
+        <div className="container mx-auto max-w-xl md:max-w-4xl">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground text-center mb-6 md:mb-12">
             Challenges & Solutions
           </h2>
           
-          <div className="space-y-8">
+          <div className="space-y-6 md:space-y-8">
             <div className="bg-background/50 backdrop-blur-xl rounded-2xl p-8 border border-primary/20">
               <h3 className="text-xl font-bold text-foreground mb-4">1. Managing Auth State</h3>
               <p className="text-muted-foreground leading-relaxed">
@@ -278,13 +282,13 @@ model Task {
       </section>
 
       {/* Lessons Learned Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-primary/5 via-accent/3 to-background">
-        <div className="container mx-auto max-w-4xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-12">
+      <section className="py-10 md:py-20 px-2 sm:px-4 bg-gradient-to-br from-primary/5 via-accent/3 to-background">
+        <div className="container mx-auto max-w-xl md:max-w-4xl">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground text-center mb-6 md:mb-12">
             Lessons Learned
           </h2>
           
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             <div className="bg-background/50 backdrop-blur-xl rounded-2xl p-8 border border-primary/20">
               <h3 className="text-xl font-bold text-foreground mb-4">Development Insights</h3>
               <ul className="space-y-3 text-muted-foreground">

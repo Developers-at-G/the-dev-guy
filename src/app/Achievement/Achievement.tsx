@@ -1,8 +1,10 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { useLanguage } from '../context/LanguageContext';
 
-const Achievement = () => {
+function ClientAchievement() {
+  const { t } = useLanguage();
 
   return (
     <section className="relative py-32 overflow-hidden" id="achievement">
@@ -14,14 +16,14 @@ const Achievement = () => {
         <div className="text-center mb-20">
           <div className="inline-block mb-4">
             <span className="text-sm font-semibold text-primary bg-primary/10 px-4 py-2 rounded-full border border-primary/20">
-              Research & Publications
+              {t('achievement.subtitle')}
             </span>
           </div>
           <h2 className="text-5xl md:text-6xl font-extrabold text-foreground mb-6 tracking-tight">
-            Achievements
+            {t('achievement.title')}
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-medium">
-            Academic research papers and publications in accessibility and usability engineering
+            {t('achievement.description')}
           </p>
         </div>
 
@@ -102,6 +104,13 @@ const Achievement = () => {
       </div>
     </section>
   );
+}
+
+const Achievement = () => {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
+  if (!mounted) return null;
+  return <ClientAchievement />;
 };
 
 export default Achievement;

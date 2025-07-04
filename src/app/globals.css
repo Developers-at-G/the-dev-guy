@@ -23,17 +23,17 @@
 
 .light {
   --background: #ffffff;
-  --foreground: #0f172a;
+  --foreground: #18181b; /* darker for better contrast */
   --primary: #6366f1;
   --primary-foreground: #ffffff;
-  --secondary: #f8fafc;
-  --secondary-foreground: #475569;
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
+  --secondary: #f1f5f9; /* slightly darker for contrast */
+  --secondary-foreground: #18181b;
+  --muted: #e5e7eb; /* more visible muted background */
+  --muted-foreground: #334155; /* much darker for contrast */
   --accent: #6366f1;
   --accent-foreground: #ffffff;
-  --border: #e2e8f0;
-  --input: #ffffff;
+  --border: #cbd5e1; /* more visible border */
+  --input: #f8fafc;
   --ring: #6366f1;
 }
 

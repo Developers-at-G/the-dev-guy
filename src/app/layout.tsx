@@ -3,6 +3,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react"
 import { PopupProvider } from "./context/PopupContext";
+import { ThemeProvider } from "./context/ThemeContext";
+import { LanguageProvider } from "./context/LanguageContext";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -16,8 +18,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "AG&apos;s Portfolio",
-  description: "AG&apos;s Portfolio",
+  title: "AG",
+  description: "AG",
 };
 
 export default function RootLayout({
@@ -26,15 +28,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {/* Analytics */}
         <Analytics />
-        <PopupProvider>
-          {children}
-        </PopupProvider>
+        <ThemeProvider>
+          <LanguageProvider>
+            <PopupProvider>
+              {children}
+            </PopupProvider>
+          </LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

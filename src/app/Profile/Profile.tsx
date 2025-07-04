@@ -1,12 +1,9 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { useLanguage } from '../context/LanguageContext';
 
-const typewriterPhrases = [
-  "Software Engineer",
-  "React Enthusiast",
-  "Next.js Developer"
-];
+// Removed unused typewriterPhrases - now using translations
 
 function useTypewriter(phrases: string[], typingSpeed = 80, pause = 1200) {
   const [index, setIndex] = useState(0);
@@ -36,11 +33,21 @@ function useTypewriter(phrases: string[], typingSpeed = 80, pause = 1200) {
   return displayed;
 }
 
-const Profile = () => {
-  const typewriter = useTypewriter(typewriterPhrases);
+function ClientProfile() {
+  const { t } = useLanguage();
+  
+  // Get translated phrases
+  const translatedPhrases = [
+    t('profile.software_engineer'),
+    t('profile.react_enthusiast'),
+    t('profile.nextjs_developer')
+  ];
+  
+  const typewriter = useTypewriter(translatedPhrases);
   // Find the longest phrase for fixed height
-  const maxLength = Math.max(...typewriterPhrases.map(p => p.length));
-  const maxPhrase = typewriterPhrases.find(p => p.length === maxLength) || typewriterPhrases[0];
+  const maxLength = Math.max(...translatedPhrases.map(p => p.length));
+  const maxPhrase = translatedPhrases.find(p => p.length === maxLength) || translatedPhrases[0];
+  
   return (
     <section className="section professional-bg" id="about">
       <div className="container mx-auto">
@@ -78,10 +85,10 @@ const Profile = () => {
                     ></span>
                   </span>
                 </span>
-                <span className="text-gradient block">Building Exceptional Experiences</span>
+                <span className="text-gradient block">{t('profile.building_experiences')}</span>
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed">
-                I craft digital products with modern technologies. Specialized in React, Next.js, and user-centered design principles.
+                {t('profile.description')}
               </p>
             </div>
             
@@ -106,16 +113,16 @@ const Profile = () => {
             {/* Fun Facts */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8 border-t border-border">
               <div className="text-center">
-                <div className="text-lg font-bold text-primary">Finds flow in silence and deep focus</div>
-                <div className="text-sm text-muted-foreground">Productivity powered by quiet concentration</div>
+                <div className="text-lg font-bold text-primary">{t('profile.fun_fact_1_title')}</div>
+                <div className="text-sm text-muted-foreground">{t('profile.fun_fact_1_desc')}</div>
               </div>
               <div className="text-center">
-                <div className="text-lg font-bold text-primary">Can debug with a cup of coffee</div>
-                <div className="text-sm text-muted-foreground">Fuel for late-night problem solving</div>
+                <div className="text-lg font-bold text-primary">{t('profile.fun_fact_2_title')}</div>
+                <div className="text-sm text-muted-foreground">{t('profile.fun_fact_2_desc')}</div>
               </div>
               <div className="text-center">
-                <div className="text-lg font-bold text-primary">Believes in pixel-perfect UIs</div>
-                <div className="text-sm text-muted-foreground">Details matter, always</div>
+                <div className="text-lg font-bold text-primary">{t('profile.fun_fact_3_title')}</div>
+                <div className="text-sm text-muted-foreground">{t('profile.fun_fact_3_desc')}</div>
               </div>
             </div>
           </div>
@@ -127,7 +134,7 @@ const Profile = () => {
               <div className="relative w-full h-full rounded-3xl overflow-hidden ring-4 ring-primary/20">
                 <Image 
                   src="/Images/Picture.jpeg" 
-                  alt="Abdallah Gueye" 
+                  alt="Abdallah Amamou Gueye" 
                   fill
                   className="object-cover"
                   priority
@@ -143,38 +150,36 @@ const Profile = () => {
             <div className="grid md:grid-cols-2 gap-8">
               <div className="space-y-4">
                 <h2 className="text-2xl font-bold text-foreground">
-                  About Me
+                  {t('profile.about_me')}
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
-                              I&apos;m <span className="text-primary font-medium">Abdallah Amadou Gueye</span>, a passionate software engineer from Senegal.
-            With a Master&apos;s degree in Applied Computer Science, I specialize in UI/UX Design and Usability Engineering.
+                  {t('profile.about_description')}
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  I&apos;ve been working with modern web technologies for over 3 years, focusing on creating intuitive, 
-                  accessible, and performant user experiences. My expertise lies in React, Next.js, and TypeScript.
+                  {t('profile.experience_description')}
                 </p>
               </div>
               
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold text-foreground">
-                  What I Do
+                  {t('profile.what_i_do')}
                 </h3>
                 <div className="space-y-3">
                   <div className="flex items-center space-x-3">
                     <div className="w-2 h-2 bg-primary rounded-full"></div>
-                    <span className="text-muted-foreground">Full-stack web development</span>
+                    <span className="text-muted-foreground">{t('profile.fullstack_dev')}</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-2 h-2 bg-primary rounded-full"></div>
-                    <span className="text-muted-foreground">UI/UX design & prototyping</span>
+                    <span className="text-muted-foreground">{t('profile.uiux_design')}</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-2 h-2 bg-primary rounded-full"></div>
-                    <span className="text-muted-foreground">Performance optimization</span>
+                    <span className="text-muted-foreground">{t('profile.performance')}</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-2 h-2 bg-primary rounded-full"></div>
-                    <span className="text-muted-foreground">Accessibility implementation</span>
+                    <span className="text-muted-foreground">{t('profile.accessibility')}</span>
                   </div>
                 </div>
               </div>
@@ -186,27 +191,32 @@ const Profile = () => {
         <div className="mt-12 max-w-4xl mx-auto">
           <div className="bg-gradient-to-r from-primary/5 to-accent/5 rounded-2xl p-6 border border-primary/10">
             <h3 className="text-lg font-semibold text-foreground mb-3">
-              Currently Focused On
+              {t('profile.current_focus')}
             </h3>
             <p className="text-muted-foreground">
-              Building scalable web applications with Next.js 15, exploring advanced React patterns, 
-              and contributing to open-source projects. Always learning and staying up-to-date with 
-              the latest web technologies and design trends.
+              {t('profile.focus_description')}
             </p>
           </div>
         </div>
       </div>
       <style jsx>{`
         @keyframes blink {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0; }
+          0%, 50% { opacity: 1; }
+          51%, 100% { opacity: 0; }
         }
         .animate-blink {
-          animation: blink 1s step-end infinite;
+          animation: blink 1s infinite;
         }
       `}</style>
     </section>
   );
+}
+
+const Profile = () => {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
+  if (!mounted) return null;
+  return <ClientProfile />;
 };
 
 export default Profile;

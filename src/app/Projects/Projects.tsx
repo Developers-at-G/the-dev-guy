@@ -6,6 +6,17 @@ import { useLanguage } from '../context/LanguageContext';
 
 const projects = [
   {
+    title: "kader_qui_gere",
+    description: "kader_qui_gere_desc",
+    image: "/Images/k-gere.png",
+    technologies: [
+      "Next.js 14", "TypeScript", "Prisma", "PostgreSQL", "NextAuth.js", "PWA", "TailwindCSS"
+    ],
+    link: "https://kader-qui-gere.vercel.app/auth/signin",
+    caseStudy: "/case-studies/kader-qui-gere",
+    githubUrl: "https://github.com/abdallah96/kader-qui-gere",
+  },
+  {
     title: "devtrackr",
     description: "devtrackr_desc",
     image: "/Images/devtrackr-dashboard.png",

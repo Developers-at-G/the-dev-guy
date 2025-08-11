@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react"
-import { PopupProvider } from "./context/PopupContext";
 import { ThemeProvider } from "./context/ThemeContext";
 import { LanguageProvider } from "./context/LanguageContext";
 
@@ -36,9 +35,7 @@ export default function RootLayout({
         <Analytics />
         <ThemeProvider>
           <LanguageProvider>
-            <PopupProvider>
-              {children}
-            </PopupProvider>
+            {children}
           </LanguageProvider>
         </ThemeProvider>
       </body>

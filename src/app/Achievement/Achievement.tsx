@@ -27,77 +27,55 @@ function ClientAchievement() {
           </p>
         </div>
 
-        {/* Achievement Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          {/* Research Paper 1 */}
+        {/* Consolidated Education + Achievements block */}
+        <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Education single block */}
           <div className="achievement-card group">
             <div className="bg-gradient-to-br from-white/10 via-background/80 to-accent/10 backdrop-blur-xl rounded-2xl border-2 border-primary/20 shadow-2xl p-8 hover:shadow-primary/40 transition-all duration-300 h-full">
-              <div className="flex items-start gap-4 mb-6">
-                <div className="relative w-16 h-16 flex-shrink-0">
-                  <Image
-                    src="/Images/Profile.jpg"
-                    alt="Research Paper"
-                    fill
-                    className="object-cover rounded-lg"
-                  />
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded-full border border-primary/20">
-                      Research Paper
-                    </span>
-                    <span className="text-xs text-muted-foreground">2023</span>
+              <h3 className="text-2xl font-bold text-foreground mb-4">
+                {t('education.title')}
+              </h3>
+              <div className="space-y-6">
+                {/* Bachelor */}
+                <div className="flex items-start gap-4">
+                  <div className="relative w-16 h-16 flex-shrink-0">
+                    <Image src="/Images/Bachelor.png" alt={t('education.bachelor_degree')} fill className="object-contain" />
                   </div>
-                  <h3 className="text-xl font-bold text-foreground mb-2">
-                    Accessibility in Web Development
-                  </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    Comprehensive study on implementing accessibility features in modern web applications, 
-                    focusing on WCAG guidelines and user experience for people with disabilities.
-                  </p>
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded-full border border-primary/20">2018 - 2022</span>
+                      <span className="text-xs text-muted-foreground">{t('education.bachelor_degree')}</span>
+                    </div>
+                    <div className="text-foreground font-semibold">{t('education.computer_science')}</div>
+                    <div className="text-muted-foreground text-sm">{t('education.university')}</div>
+                  </div>
                 </div>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                <span className="text-xs bg-accent/20 text-accent px-2 py-1 rounded-full">Accessibility</span>
-                <span className="text-xs bg-accent/20 text-accent px-2 py-1 rounded-full">WCAG</span>
-                <span className="text-xs bg-accent/20 text-accent px-2 py-1 rounded-full">UX Research</span>
+                {/* Master */}
+                <div className="flex items-start gap-4">
+                  <div className="relative w-16 h-16 flex-shrink-0">
+                    <Image src="/Images/Master.png" alt={t('education.master_degree')} fill className="object-contain" />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded-full border border-primary/20">2022 - 2024</span>
+                      <span className="text-xs text-muted-foreground">{t('education.master_degree')}</span>
+                    </div>
+                    <div className="text-foreground font-semibold">{t('education.applied_computer_science')}</div>
+                    <div className="text-muted-foreground text-sm">{t('education.university')}</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Research Paper 2 */}
+          {/* Achievements simplified */}
           <div className="achievement-card group">
             <div className="bg-gradient-to-br from-white/10 via-background/80 to-accent/10 backdrop-blur-xl rounded-2xl border-2 border-primary/20 shadow-2xl p-8 hover:shadow-primary/40 transition-all duration-300 h-full">
-              <div className="flex items-start gap-4 mb-6">
-                <div className="relative w-16 h-16 flex-shrink-0">
-                  <Image
-                    src="/Images/Profile.jpg"
-                    alt="Research Paper"
-                    fill
-                    className="object-cover rounded-lg"
-                  />
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded-full border border-primary/20">
-                      Research Paper
-                    </span>
-                    <span className="text-xs text-muted-foreground">2024</span>
-                  </div>
-                  <h3 className="text-xl font-bold text-foreground mb-2">
-                    Usability Engineering in Modern Web Apps
-                  </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    Analysis of usability engineering principles applied to contemporary web applications, 
-                    examining user interface design patterns and interaction methodologies.
-                  </p>
-                </div>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                <span className="text-xs bg-accent/20 text-accent px-2 py-1 rounded-full">Usability</span>
-                <span className="text-xs bg-accent/20 text-accent px-2 py-1 rounded-full">UI/UX</span>
-                <span className="text-xs bg-accent/20 text-accent px-2 py-1 rounded-full">Design Patterns</span>
-              </div>
+              <h3 className="text-2xl font-bold text-foreground mb-4">{t('achievement.title')}</h3>
+              <ul className="space-y-4 text-sm text-muted-foreground leading-relaxed">
+                <li>Accessibility in Web Development — 2023</li>
+                <li>Usability Engineering in Modern Web Apps — 2024</li>
+              </ul>
             </div>
           </div>
         </div>

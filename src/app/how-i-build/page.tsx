@@ -1,7 +1,6 @@
 'use client';
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import ThemeToggle from "../components/ThemeToggle";
 import { useLanguage } from "../context/LanguageContext";
 
 const concepts = [
@@ -45,64 +44,80 @@ const concepts = [
 
 function ClientHowIBuild() {
   const { t } = useLanguage();
+  const [open, setOpen] = useState<Set<string>>(new Set());
+
+  const toggle = (key: string) => {
+    setOpen((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key); else next.add(key);
+      return next;
+    });
+  };
 
   return (
-    <main className="min-h-screen bg-background flex flex-col">
-      {/* Hero Section with animated gradient */}
-      <section className="relative flex flex-col items-center justify-center min-h-[40vh] py-24 px-4 overflow-hidden">
-        <div className="absolute inset-0 z-0 animate-gradient bg-gradient-to-br from-primary/30 via-accent/20 to-background opacity-90 blur-2xl" />
-        <div className="relative z-10 flex flex-col items-center">
-          <div className="flex items-center gap-4 mb-8">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 border border-primary/30 text-primary font-semibold shadow hover:bg-primary/10 hover:text-primary-foreground transition-all duration-200 group"
-              aria-label="Back to Portfolio"
-            >
-              <span className="text-lg group-hover:-translate-x-1 transition-transform">←</span>
-              <span>{t('howibuild.back')}</span>
+    <main className="min-h-screen bg-background">
+      {/* Header */}
+      <section className="py-14">
+        <div className="container mx-auto text-center">
+          <div className="mb-4 inline-flex items-center gap-2">
+            <Link href="/" className="text-sm px-3 py-1.5 rounded-md border hover:bg-primary/10">
+              ← {t('howibuild.back')}
             </Link>
-            <ThemeToggle />
           </div>
-          <h1 className="text-5xl md:text-7xl font-extrabold text-white text-center mb-4 tracking-tight drop-shadow-2xl">
-            {t('howibuild.title')}
-          </h1>
-          <p className="text-xl md:text-2xl text-white/90 text-center max-w-2xl drop-shadow-lg font-medium">
-            {t('howibuild.subtitle')}
+          <h1 className="text-3xl md:text-5xl font-extrabold text-foreground">{t('howibuild.title')}</h1>
+          <div className="mx-auto mt-3 h-1 w-16 rounded-full bg-primary" />
+          <p className="mt-3 text-sm md:text-base text-muted-foreground max-w-2xl mx-auto">{t('howibuild.subtitle')}</p>
+          <p className="mt-4 text-xs md:text-sm text-primary-foreground bg-primary/20 border border-primary/30 inline-block px-3 py-2 rounded-md">
+            <strong>Note:</strong> {t('howibuild.note')}
           </p>
-          {/* Knowledge breadth callout */}
-          <div className="mt-8 bg-primary/20 border border-primary/40 text-primary-foreground rounded-xl px-6 py-4 shadow-lg max-w-xl text-center text-base font-medium backdrop-blur-md">
-            <span className="font-bold">Note:</span> {t('howibuild.note')}
-          </div>
         </div>
       </section>
 
-      {/* Timeline Section */}
-      <section className="container mx-auto py-24 px-4">
-        <ol className="relative border-l-4 border-primary/60 ml-4">
-          {concepts.map((c, i) => (
-            <li key={c.key} className="mb-20 ml-8 group flex flex-col md:flex-row items-start md:items-center relative animate-fade-in-up" style={{ animationDelay: `${i * 80}ms` }}>
-              {/* Timeline dot */}
-              <span className="absolute -left-7 top-2 w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-3xl shadow-2xl border-4 border-background z-10 ring-4 ring-primary/30 group-hover:ring-accent/40 transition-all duration-300">
-                {c.icon}
-              </span>
-              {/* Content */}
-              <div className="flex-1 bg-white/30 backdrop-blur-2xl rounded-2xl shadow-2xl border-2 border-primary/30 p-10 mb-4 md:mb-0 md:mr-8 transition-all duration-300 hover:shadow-primary/40 hover:-translate-y-1">
-                <h2 className="text-3xl md:text-4xl font-extrabold text-primary mb-2 tracking-tight underline-animate group-hover:underline-animate-active drop-shadow-lg">
-                  {t(`howibuild.${c.key}_title`)}
-                </h2>
-                <p className="text-muted-foreground text-lg mb-4 leading-relaxed font-medium">
-                  {t(`howibuild.${c.key}_desc`)}
-                </p>
-                <pre className="bg-background/90 text-foreground rounded-xl p-5 text-base overflow-x-auto border-2 border-primary/20 transition-all duration-200 mb-4 group-hover:bg-primary/10 shadow-lg">
-                  <code>{getCodeExample(c.key)}</code>
-                </pre>
-                <div className="text-base text-primary-foreground bg-primary/90 rounded px-4 py-2 w-fit shadow-md mb-2 font-semibold">
-                  <span className="font-bold">{t('howibuild.why_matters')}</span> {t(`howibuild.${c.key}_why`)}
-                </div>
-              </div>
-            </li>
-          ))}
-        </ol>
+      {/* Concepts Grid */}
+      <section className="py-4">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {concepts.map((c) => {
+              const isOpen = open.has(c.key);
+              return (
+                <article key={c.key} className="rounded-2xl border bg-background/60 p-4">
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-2xl">
+                      {c.icon}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h2 className="text-lg font-semibold text-foreground truncate">
+                        {t(`howibuild.${c.key}_title`)}
+                      </h2>
+                      <p className="mt-1 text-sm text-muted-foreground line-clamp-3">
+                        {t(`howibuild.${c.key}_desc`)}
+                      </p>
+                      <div className="mt-2 text-[12px] text-primary-foreground bg-primary/20 inline-block px-2 py-1 rounded">
+                        {t('howibuild.why_matters')} {t(`howibuild.${c.key}_why`)}
+                      </div>
+                      <div className="mt-3">
+                        <button
+                          type="button"
+                          onClick={() => toggle(c.key)}
+                          className={`text-sm px-3 py-1.5 rounded-md border ${isOpen ? 'bg-primary text-primary-foreground border-primary' : 'hover:bg-primary/10'}`}
+                          aria-expanded={isOpen}
+                          aria-controls={`code-${c.key}`}
+                        >
+                          {isOpen ? 'Hide example' : 'View example'}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  {isOpen && (
+                    <pre id={`code-${c.key}`} className="mt-3 bg-background text-foreground rounded-xl p-3 text-xs overflow-x-auto border">
+                      <code>{getCodeExample(c.key)}</code>
+                    </pre>
+                  )}
+                </article>
+              );
+            })}
+          </div>
+        </div>
       </section>
     </main>
   );

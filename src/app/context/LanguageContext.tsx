@@ -257,6 +257,7 @@ const translations = {
     'common.view_code': 'View Code',
     'common.more': 'More',
     'common.learn_more': 'Learn More',
+    'common.close': 'Close',
   },
   fr: {
     // Navigation
@@ -493,6 +494,7 @@ const translations = {
     'common.view_code': 'Voir le Code',
     'common.more': 'Plus',
     'common.learn_more': 'En Savoir Plus',
+    'common.close': 'Fermer',
   }
 };
 

@@ -187,17 +187,7 @@ function ClientProfile() {
           </div>
         </div>
 
-        {/* Current Focus */}
-        <div className="mt-12 max-w-4xl mx-auto">
-          <div className="bg-gradient-to-r from-primary/5 to-accent/5 rounded-2xl p-6 border border-primary/10">
-            <h3 className="text-lg font-semibold text-foreground mb-3">
-              {t('profile.current_focus')}
-            </h3>
-            <p className="text-muted-foreground">
-              {t('profile.focus_description')}
-            </p>
-          </div>
-        </div>
+        {/* Current Focus removed per request */}
       </div>
       <style jsx>{`
         @keyframes blink {

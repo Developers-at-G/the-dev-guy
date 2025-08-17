@@ -1,99 +1,191 @@
 'use client';
-import React from 'react';
-import Image from 'next/image';
+import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { Section, SectionHeader } from '../../components/ui/Section';
+import { Container } from '../../components/ui/Container';
+import { Button } from '../../components/ui/Button';
+import { Badge } from '../../components/ui/Badge';
+import SkillProficiency from '../../components/SkillProficiency';
+import { skillsData } from '../../data/skills';
 
-const skillsData = [
-  {
-    category: "frontend",
-    skills: [
-      { name: 'Next.js', icon: '/Logos/nextdotjs-color.svg', description: 'nextjs_desc' },
-      { name: 'React', icon: '/Logos/react-color.svg', description: 'react_desc' },
-      { name: 'TypeScript', icon: '/Logos/typescript-color.svg', description: 'typescript_desc' },
-      { name: 'JavaScript', icon: '/Logos/javascript-color.svg', description: 'javascript_desc' },
-    ]
-  },
-  {
-    category: "tools",
-    skills: [
-      { name: 'AWS', icon: '/Logos/amazonwebservices-color.svg', description: 'aws_desc' },
-      { name: 'Git', icon: '/Logos/git-color.svg', description: 'git_desc' },
-      { name: 'GraphQL', icon: '/Logos/graphql-color.svg', description: 'graphql_desc' },
-    ]
-  },
-  {
-    category: "design",
-    skills: [
-      { name: 'Figma', icon: '/Logos/figma-color.svg', description: 'figma_desc' },
-      { name: 'Material Design', icon: '/Logos/materialdesign-color.svg', description: 'material_desc' },
-    ]
-  },
-  {
-    category: "backend",
-    skills: [
-      { name: 'Node.js', icon: '/Images/nodeJS.png', description: 'nodejs_desc' },
-      { name: 'Express', icon: '/Images/Expressjs.png', description: 'express_desc' },
-      { name: 'Supabase', icon: '/Images/supabase.png', description: 'supabase_desc' },
-      { name: 'MySQL', icon: '/Images/mysql.png', description: 'mysql_desc' },
-    ]
-  }
-];
+type ViewMode = 'proficiency' | 'category';
 
-// Simplified compact skills grid without interactive cards
-
-function ClientSkills() {
+function SkillsSection() {
   const { t } = useLanguage();
-  const [activeCategory, setActiveCategory] = React.useState('frontend');
+  const [viewMode, setViewMode] = useState<ViewMode>('proficiency');
+  const [activeCategory, setActiveCategory] = useState(skillsData[0]?.id || 'frontend');
+
+  // Get all skills for proficiency view
+  const allSkills = skillsData.flatMap(category => category.skills);
+  
+  // Sort skills by proficiency level for the main view
+  const skillsByProficiency = [...allSkills].sort((a, b) => b.level - a.level);
+  
+  // Get skills for category view
+  const activeSkillCategory = skillsData.find(cat => cat.id === activeCategory) || skillsData[0];
+
+  // Get top skills (80%+)
+  const expertSkills = skillsByProficiency.filter(skill => skill.level >= 80);
+  const proficientSkills = skillsByProficiency.filter(skill => skill.level >= 65 && skill.level < 80);
+  const developingSkills = skillsByProficiency.filter(skill => skill.level < 65);
 
   return (
-    <section id="skills" className="py-14">
-      <div className="container mx-auto">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-5xl font-extrabold text-foreground">{t('skills.title')}</h2>
-          <div className="mx-auto mt-3 h-1 w-16 rounded-full bg-primary" />
-          <p className="mt-2 text-sm text-muted-foreground">{t('skills.description')}</p>
-        </div>
+    <Section id="skills" variant="muted">
+      <Container>
+        <SectionHeader
+          title="Technical Skills"
+          subtitle="Proficiency levels based on real-world project experience and continuous learning"
+        />
 
-        <div className="flex gap-2 mb-6 overflow-x-auto pb-1 justify-center" role="tablist">
-          {skillsData.map((category) => (
-            <button
-              key={category.category}
-              onClick={() => setActiveCategory(category.category)}
-              className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-colors ${
-                activeCategory === category.category
-                  ? 'bg-primary text-primary-foreground border-primary'
-                  : 'bg-background/60 text-muted-foreground border-border hover:bg-primary/10 hover:text-primary'
-              }`}
-              role="tab"
-              aria-selected={activeCategory === category.category}
+        {/* View Mode Toggle */}
+        <div className="flex justify-center mb-8">
+          <div className="inline-flex rounded-lg border border-border bg-background p-1">
+            <Button
+              variant={viewMode === 'proficiency' ? 'primary' : 'ghost'}
+              size="sm"
+              onClick={() => setViewMode('proficiency')}
+              className="rounded-md"
             >
-              {t(`skills.${category.category}`)}
-            </button>
-          ))}
+              Proficiency View
+            </Button>
+            <Button
+              variant={viewMode === 'category' ? 'primary' : 'ghost'}
+              size="sm"
+              onClick={() => setViewMode('category')}
+              className="rounded-md"
+            >
+              Category View
+            </Button>
+          </div>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-          {(skillsData.find((cat) => cat.category === activeCategory)?.skills || [])
-            .slice(0, 8)
-            .map((skill) => (
-              <div key={skill.name} className="flex items-center gap-3 rounded-xl border bg-background/60 p-3">
-                <div className="relative w-8 h-8 flex-shrink-0 overflow-hidden rounded">
-                  <Image src={skill.icon} alt={skill.name} fill className="object-contain" />
+        {viewMode === 'proficiency' ? (
+          /* Proficiency-based view */
+          <div className="space-y-12">
+            {/* Expert Level Skills */}
+            {expertSkills.length > 0 && (
+              <div>
+                <div className="flex items-center justify-center mb-6">
+                  <Badge variant="default" className="text-sm px-4 py-2 bg-primary text-primary-foreground">
+                    Expert Level (80%+)
+                  </Badge>
                 </div>
-                <span className="text-sm font-medium text-foreground">{skill.name}</span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 md:gap-6">
+                  {expertSkills.map((skill, index) => (
+                    <SkillProficiency
+                      key={skill.name}
+                      skill={skill.name}
+                      level={skill.level}
+                      category={skill.category}
+                      delay={index * 100}
+                    />
+                  ))}
+                </div>
               </div>
-            ))}
+            )}
+
+            {/* Proficient Level Skills */}
+            {proficientSkills.length > 0 && (
+              <div>
+                <div className="flex items-center justify-center mb-6">
+                  <Badge variant="secondary" className="text-sm px-4 py-2">
+                    Proficient (65-79%)
+                  </Badge>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 md:gap-6">
+                  {proficientSkills.map((skill, index) => (
+                    <SkillProficiency
+                      key={skill.name}
+                      skill={skill.name}
+                      level={skill.level}
+                      category={skill.category}
+                      delay={index * 100}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Developing Skills */}
+            {developingSkills.length > 0 && (
+              <div>
+                <div className="flex items-center justify-center mb-6">
+                  <Badge variant="outline" className="text-sm px-4 py-2">
+                    Developing (&lt;65%)
+                  </Badge>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 md:gap-6">
+                  {developingSkills.map((skill, index) => (
+                    <SkillProficiency
+                      key={skill.name}
+                      skill={skill.name}
+                      level={skill.level}
+                      category={skill.category}
+                      delay={index * 100}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        ) : (
+          /* Category-based view */
+          <div>
+            {/* Category Filter */}
+            <div className="flex flex-wrap justify-center gap-2 mb-8">
+              {skillsData.map((category) => (
+                <Button
+                  key={category.id}
+                  variant={activeCategory === category.id ? 'primary' : 'outline'}
+                  size="sm"
+                  onClick={() => setActiveCategory(category.id)}
+                >
+                  {category.title}
+                </Button>
+              ))}
+            </div>
+
+            {/* Active Category */}
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-bold text-foreground mb-2">
+                {activeSkillCategory.title}
+              </h3>
+              <p className="text-muted-foreground">
+                {activeSkillCategory.description}
+              </p>
+            </div>
+
+            {/* Skills Grid */}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+              {activeSkillCategory.skills.map((skill, index) => (
+                <SkillProficiency
+                  key={skill.name}
+                  skill={skill.name}
+                  level={skill.level}
+                  category={skill.category}
+                  delay={index * 100}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Legend */}
+        <div className="mt-12 text-center">
+          <p className="text-sm text-muted-foreground mb-4">
+            Proficiency levels reflect practical experience, project complexity, and continuous learning
+          </p>
+          <div className="flex flex-wrap justify-center gap-4 text-xs text-muted-foreground">
+            <span>80%+ = Expert (Can mentor others, lead complex projects)</span>
+            <span>65-79% = Proficient (Comfortable with most features and patterns)</span>
+            <span>&lt;65% = Developing (Active learning, growing experience)</span>
+          </div>
         </div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 }
 
-const Skills = () => {
-  const [mounted, setMounted] = React.useState(false);
-  React.useEffect(() => { setMounted(true); }, []);
-  if (!mounted) return null;
-  return <ClientSkills />;
-};
-
-export default Skills;
+export default function Skills() {
+  return <SkillsSection />;
+}

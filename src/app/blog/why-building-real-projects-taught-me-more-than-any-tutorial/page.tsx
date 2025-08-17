@@ -1,43 +1,22 @@
 'use client';
 import React from 'react';
-import Link from 'next/link';
+import BlogLayout from '../../../components/blog/BlogLayout';
+import BlogHeader from '../../../components/blog/BlogHeader';
+import { Container } from '../../../components/ui/Container';
 
 export default function BlogPost() {
   return (
-    <main className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <section className="relative py-24 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/5 to-background" />
-        <div className="container mx-auto relative z-10">
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 border border-primary/30 text-primary font-semibold shadow hover:bg-primary/10 hover:text-primary-foreground transition-all duration-200 group mb-8"
-          >
-            <span className="text-lg group-hover:-translate-x-1 transition-transform">←</span>
-            <span>Back to Blog</span>
-          </Link>
-          
-          <div className="max-w-4xl mx-auto">
-            {/* Article Header */}
-            <header className="mb-12">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="text-sm font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
-                  Featured Article
-                </span>
-                <span className="text-sm text-muted-foreground">•</span>
-                <span className="text-sm text-muted-foreground">Development</span>
-                <span className="text-sm text-muted-foreground">•</span>
-                <span className="text-sm text-muted-foreground">June 4, 2024</span>
-              </div>
-              
-              <h1 className="text-4xl md:text-6xl font-extrabold text-foreground mb-6 tracking-tight leading-tight">
-                Why Building Real Projects Taught Me More Than Any Tutorial
-              </h1>
-              
-              <p className="text-xl text-muted-foreground leading-relaxed">
-                There&apos;s something exciting about starting a new coding tutorial. You follow along, everything works, the UI looks clean — and you feel like you&apos;re learning. But then you try building something from scratch...
-              </p>
-            </header>
+    <BlogLayout backHref="/blog" backLabel="Back to Blog">
+      <Container>
+        <div className="max-w-4xl mx-auto">
+          <BlogHeader
+            title="Why Building Real Projects Taught Me More Than Any Tutorial"
+            excerpt="There's something exciting about starting a new coding tutorial. You follow along, everything works, the UI looks clean — and you feel like you're learning. But then you try building something from scratch..."
+            category="Development"
+            date="December 2024"
+            readTime="5 min"
+            featured={true}
+          />
 
             {/* Article Content */}
             <article className="prose prose-lg prose-invert max-w-none">
@@ -148,9 +127,8 @@ export default function BlogPost() {
                 </div>
               </div>
             </article>
-          </div>
         </div>
-      </section>
-    </main>
+      </Container>
+    </BlogLayout>
   );
 } 

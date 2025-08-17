@@ -1,239 +1,168 @@
 'use client';
-import { Fragment, useEffect, useState } from 'react';
-import Image from 'next/image';
-import { Button } from '@headlessui/react';
-import { Menu, Transition } from '@headlessui/react';
+import React from 'react';
+import Link from 'next/link';
+import { useLanguage } from '../context/LanguageContext';
+import { useNavigation } from '../../hooks/useNavigation';
+import { Button } from '../../components/ui/Button';
+import { CVDownload } from '../../components/CVDownload';
 import ThemeToggle from '../components/ThemeToggle';
 import LanguageToggle from '../components/LanguageToggle';
-import { useLanguage } from '../context/LanguageContext';
+import { navigationItems } from '../../data/navigation';
 
-const fallback: Record<string, string> = {
-  'nav.about': 'About',
-  'nav.skills': 'Skills',
-  'nav.experience': 'Experience',
-  'nav.projects': 'Projects',
-  'nav.contact': 'Contact',
-  'nav.blog': 'Blog',
-};
-
-function ClientNavigation() {
-  const [activeLink, setActiveLink] = useState('');
-  const [isScrolled, setIsScrolled] = useState(false);
-  const lang = useLanguage();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-
-    const sections = document.querySelectorAll('section[id]');
-    const observerOptions = {
-      root: null,
-      rootMargin: '-20% 0px -80% 0px',
-      threshold: 0,
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.getAttribute('id');
-          if (id) setActiveLink(id);
-        }
-      });
-    }, observerOptions);
-
-    sections.forEach((section) => {
-      observer.observe(section);
-    });
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      sections.forEach((section) => {
-        observer.unobserve(section);
-      });
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  const t = (key: string) => lang.t(key) || fallback[key] || key;
-
-  const navigationItems = [
-    { id: 'about', label: t('nav.about') },
-    { id: 'skills', label: t('nav.skills') },
-    { id: 'career', label: t('nav.experience') },
-    { id: 'projects', label: t('nav.projects') },
-    { id: 'contact', label: t('nav.contact') },
-  ];
-
-  const handleLinkClick = (id: string) => {
-    setActiveLink(id);
-    const targetElement = document.getElementById(id);
-    if (targetElement) {
-      window.scrollTo({
-        top: targetElement.offsetTop - 80,
-        behavior: 'smooth',
-      });
-    }
-  };
-
-  const handleBlogClick = () => {
-    window.location.href = '/blog';
-  };
+function NavigationSection() {
+  const { t } = useLanguage();
+  const {
+    activeSection,
+    isMenuOpen,
+    scrolled,
+    scrollToSection,
+    toggleMenu,
+    closeMenu
+  } = useNavigation({ items: navigationItems });
 
   return (
-    <nav className={`fixed top-0 z-50 w-full transition-all duration-300 ${
-      isScrolled 
-        ? 'bg-background/80 backdrop-blur-md border-b border-border' 
-        : 'bg-transparent'
-    }`}>
+    <nav 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled 
+          ? 'bg-background/90 backdrop-blur-md border-b border-border shadow-lg' 
+          : 'bg-transparent'
+      }`}
+    >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center space-x-3">
-            <div className="relative w-10 h-10 rounded-full overflow-hidden ring-2 ring-primary/20">
-              <Image 
-                src="/Images/Picture.jpeg" 
-                alt="Abdallah Amamou Gueye" 
-                fill
-                className="object-cover"
-              />
-            </div>
-            <span className="text-lg font-semibold text-foreground hidden sm:block">
-              Abdallah Amamou Gueye
-            </span>
-          </div>
+          <Link 
+            href="/" 
+            className="text-xl font-bold text-foreground hover:text-primary transition-colors"
+            onClick={closeMenu}
+          >
+            AG
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
-            {navigationItems.map((item) => (
-              <Button
-                key={item.id}
-                as="a"
-                href={`#${item.id}`}
-                className={`
-                  px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200
-                  ${activeLink === item.id 
-                    ? 'bg-primary text-primary-foreground shadow-lg' 
-                    : 'text-muted-foreground hover:text-foreground hover:bg-muted'
-                  }
-                `}
-                onClick={() => handleLinkClick(item.id)}
-              >
-                {item.label}
-              </Button>
-            ))}
-            <Button
-              onClick={handleBlogClick}
-              className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 text-muted-foreground hover:text-foreground hover:bg-muted"
-            >
-              {t('nav.blog')}
-            </Button>
-            <div className="ml-2 flex items-center space-x-2">
-              <LanguageToggle />
-              <ThemeToggle />
-            </div>
+            {navigationItems.map((item) => {
+              const isExternalLink = item.href.startsWith('/');
+              
+              if (isExternalLink) {
+                return (
+                  <Link
+                    key={item.id}
+                    href={item.href}
+                    className="px-3 py-2 rounded-lg text-sm font-medium transition-colors text-muted-foreground hover:text-foreground hover:bg-muted"
+                    onClick={closeMenu}
+                  >
+                    {t(`nav.${item.label.toLowerCase()}`)}
+                  </Link>
+                );
+              }
+              
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    activeSection === item.id
+                      ? 'bg-primary text-primary-foreground'
+                      : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                  }`}
+                >
+                  {t(`nav.${item.label.toLowerCase()}`)}
+                </button>
+              );
+            })}
           </div>
 
-          {/* Mobile Menu */}
-          <div className="md:hidden flex items-center space-x-2">
-            <LanguageToggle />
+          {/* Desktop Actions */}
+          <div className="hidden md:flex items-center space-x-3">
+            <CVDownload variant="outline" size="sm" />
             <ThemeToggle />
-            <Menu as="div" className="relative">
-              <Menu.Button as={Fragment}>
-                {({ open }) => (
-                  <Button
-                    className={`
-                      p-2 rounded-lg transition-all duration-200
-                      ${open 
-                        ? 'bg-primary text-primary-foreground' 
-                        : 'text-foreground hover:bg-muted'
-                      }
-                    `}
-                  >
-                    <svg 
-                      className="w-5 h-5" 
-                      fill="none" 
-                      stroke="currentColor" 
-                      viewBox="0 0 24 24"
-                    >
-                      {open ? (
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                      ) : (
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                      )}
-                    </svg>
-                  </Button>
-                )}
-              </Menu.Button>
-              
-              <Transition
-                as={Fragment}
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
+            <LanguageToggle />
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="md:hidden flex items-center space-x-2">
+            <ThemeToggle />
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={toggleMenu}
+              className="p-2"
+            >
+              <svg 
+                className="w-5 h-5" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
               >
-                <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right rounded-xl bg-background border border-border shadow-lg focus:outline-none">
-                  <div className="px-1 py-1">
-                    {navigationItems.map((item) => (
-                      <Menu.Item key={item.id}>
-                        {({ active }) => (
-                          <Button
-                            as="a"
-                            href={`#${item.id}`}
-                            className={`
-                              group flex w-full items-center px-4 py-3 text-sm rounded-lg
-                              transition-all duration-200
-                              ${activeLink === item.id 
-                                ? 'bg-primary text-primary-foreground' 
-                                : active 
-                                  ? 'bg-muted text-foreground' 
-                                  : 'text-muted-foreground hover:bg-muted hover:text-foreground'
-                              }
-                            `}
-                            onClick={() => handleLinkClick(item.id)}
-                          >
-                            {item.label}
-                          </Button>
-                        )}
-                      </Menu.Item>
-                    ))}
-                    <Menu.Item>
-                      {({ active }) => (
-                        <Button
-                          className={`
-                            group flex w-full items-center px-4 py-3 text-sm rounded-lg
-                            transition-all duration-200
-                            ${active 
-                              ? 'bg-muted text-foreground' 
-                              : 'text-muted-foreground hover:bg-muted hover:text-foreground'
-                            }
-                          `}
-                          onClick={handleBlogClick}
-                        >
-                          {t('nav.blog')}
-                        </Button>
-                      )}
-                    </Menu.Item>
-                  </div>
-                </Menu.Items>
-              </Transition>
-            </Menu>
+                {isMenuOpen ? (
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={2} 
+                    d="M6 18L18 6M6 6l12 12" 
+                  />
+                ) : (
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={2} 
+                    d="M4 6h16M4 12h16M4 18h16" 
+                  />
+                )}
+              </svg>
+            </Button>
           </div>
         </div>
+
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="md:hidden py-4 border-t border-border">
+            <div className="flex flex-col space-y-2">
+              {navigationItems.map((item) => {
+                const isExternalLink = item.href.startsWith('/');
+                
+                if (isExternalLink) {
+                  return (
+                    <Link
+                      key={item.id}
+                      href={item.href}
+                      className="px-3 py-2 rounded-lg text-left text-sm font-medium transition-colors text-muted-foreground hover:text-foreground hover:bg-muted"
+                      onClick={closeMenu}
+                    >
+                      {t(`nav.${item.label.toLowerCase()}`)}
+                    </Link>
+                  );
+                }
+                
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => scrollToSection(item.id)}
+                    className={`px-3 py-2 rounded-lg text-left text-sm font-medium transition-colors ${
+                      activeSection === item.id
+                        ? 'bg-primary text-primary-foreground'
+                        : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                    }`}
+                  >
+                    {t(`nav.${item.label.toLowerCase()}`)}
+                  </button>
+                );
+              })}
+              <div className="pt-3 border-t border-border mt-3">
+                <div className="flex items-center justify-between">
+                  <CVDownload variant="outline" size="sm" />
+                  <LanguageToggle />
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );
 }
 
-const Navigation = () => {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => { setMounted(true); }, []);
-  if (!mounted) return null;
-  return <ClientNavigation />;
-};
-
-export default Navigation;
+export default function Navigation() {
+  return <NavigationSection />;
+}

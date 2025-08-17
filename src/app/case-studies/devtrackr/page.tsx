@@ -4,8 +4,8 @@ import Link from 'next/link';
 import ThemeToggle from '../../components/ThemeToggle';
 
 export const metadata: Metadata = {
-  title: "DevTrackr Case Study - AG&apos;s Portfolio",
-  description: "A detailed case study of DevTrackr, a modern task and journaling app built with React, Node.js, and PostgreSQL. Learn about the technical implementation, challenges, and solutions.",
+  title: "DevTrackr Case Study",
+  description: "DevTrackr - a task and journaling app built with React and Node.js",
 };
 
 const DevTrackrCaseStudy = () => {
@@ -203,44 +203,26 @@ const DevTrackrCaseStudy = () => {
             Technical Implementation
           </h2>
           
-          <div className="grid lg:grid-cols-2 gap-8">
-            {/* Authentication Logic */}
-            <div className="bg-background/50 backdrop-blur-xl rounded-2xl p-8 border border-primary/20">
-              <h3 className="text-xl font-bold text-foreground mb-4">Authentication Logic</h3>
-              <pre className="bg-background/90 text-foreground rounded-xl p-4 text-sm overflow-x-auto border border-primary/20">
-                <code>{`// Password hashing
-const hashedPassword = await bcrypt.hash(password, 12);
-
-// JWT token creation
-const token = jwt.sign(
-  { userId: user.id, email: user.email }, 
-  process.env.JWT_SECRET, 
-  { expiresIn: '7d' }
-);`}</code>
-              </pre>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-background/50 rounded-xl p-6 border">
+              <h3 className="text-lg font-semibold mb-3">Tech Stack</h3>
+              <ul className="text-sm text-muted-foreground space-y-2">
+                <li>• React for the frontend</li>
+                <li>• Node.js & Express for the API</li>
+                <li>• PostgreSQL database</li>
+                <li>• JWT authentication</li>
+                <li>• Prisma ORM</li>
+              </ul>
             </div>
-
-            {/* Database Schema */}
-            <div className="bg-background/50 backdrop-blur-xl rounded-2xl p-8 border border-primary/20">
-              <h3 className="text-xl font-bold text-foreground mb-4">Database Schema</h3>
-              <pre className="bg-background/90 text-foreground rounded-xl p-4 text-sm overflow-x-auto border border-primary/20">
-                <code>{`model User {
-  id Int @id @default(autoincrement())
-  email String @unique
-  password String
-  tasks Task[]
-  journals JournalEntry[]
-}
-
-model Task {
-  id Int @id @default(autoincrement())
-  text String
-  completed Boolean @default(false)
-  date DateTime
-  userId Int
-  user User @relation(fields: [userId], references: [id])
-}`}</code>
-              </pre>
+            <div className="bg-background/50 rounded-xl p-6 border">
+              <h3 className="text-lg font-semibold mb-3">Key Features</h3>
+              <ul className="text-sm text-muted-foreground space-y-2">
+                <li>• Task management with completion tracking</li>
+                <li>• Daily journaling with mood tracking</li>
+                <li>• Weekly progress reports</li>
+                <li>• Responsive design</li>
+                <li>• Secure user authentication</li>
+              </ul>
             </div>
           </div>
         </div>

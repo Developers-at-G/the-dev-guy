@@ -1,14 +1,13 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
-import { useLanguage } from '../context/LanguageContext';
-import { Card, CardContent } from '../../components/ui/Card';
+
+import { Card } from '../../components/ui/Card';
 import { Button } from '../../components/ui/Button';
-import { CVDownload } from '../../components/CVDownload';
+import { ResumeDownload } from '../../components/ResumeDownload';
 import { profileData } from '../../data/profile';
 
 function ClientProfile() {
-  const { t } = useLanguage();
   
   return (
     <section className="section professional-bg" id="about">
@@ -27,7 +26,7 @@ function ClientProfile() {
             </div>
 
             <div className="flex flex-wrap gap-4">
-              <CVDownload variant="primary" />
+              <ResumeDownload variant="primary" />
               <Button 
                 variant="outline"
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}

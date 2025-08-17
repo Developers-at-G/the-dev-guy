@@ -34,7 +34,7 @@ export const useDownload = () => {
         onSuccess?.();
       }, 100);
       
-    } catch (error) {
+    } catch {
       // Fallback: Try fetch approach
       try {
         const response = await fetch(url);

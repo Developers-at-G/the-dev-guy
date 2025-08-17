@@ -13,7 +13,7 @@ export default function BlogPost() {
             title="Why Building Real Projects Taught Me More Than Any Tutorial"
             excerpt="There's something exciting about starting a new coding tutorial. You follow along, everything works, the UI looks clean — and you feel like you're learning. But then you try building something from scratch..."
             category="Development"
-            date="December 2024"
+            date="January 2025"
             readTime="5 min"
             featured={true}
           />

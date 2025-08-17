@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
-import styles from './CodingDemo.module.css';
+import styles from './CodeAnimation.module.css';
 import { useLanguage } from '../context/LanguageContext';
 
-const CodingDemo = () => {
+const CodeAnimation = () => {
   const [currentVideo, setCurrentVideo] = useState(1);
   const videoRef = useRef<HTMLVideoElement>(null);
   const { t } = useLanguage();
@@ -91,4 +91,4 @@ const CodingDemo = () => {
   );
 };
 
-export default CodingDemo; 
+export default CodeAnimation; 

@@ -8,7 +8,7 @@ interface ProjectCardProps {
   project: Project;
   isSelected: boolean;
   isExpanded: boolean;
-  onSelect: () => void;
+
   onToggleExpanded: () => void;
   getProjectTitle: (key: string) => string;
   getProjectDescription: (key: string) => string;
@@ -18,7 +18,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   project,
   isSelected,
   isExpanded,
-  onSelect,
+
   onToggleExpanded,
   getProjectTitle,
   getProjectDescription

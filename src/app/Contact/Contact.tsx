@@ -1,15 +1,14 @@
 'use client';
 import React from 'react';
-import { useLanguage } from '../context/LanguageContext';
+
 import { Section, SectionHeader } from '../../components/ui/Section';
 import { Container } from '../../components/ui/Container';
 import { Card, CardContent } from '../../components/ui/Card';
 import { Button } from '../../components/ui/Button';
-import { Badge } from '../../components/ui/Badge';
-import { CVDownload } from '../../components/CVDownload';
+
+import { ResumeDownload } from '../../components/ResumeDownload';
 
 function ContactSection() {
-  const { t } = useLanguage();
 
   const contactMethods = [
     {
@@ -54,7 +53,7 @@ function ContactSection() {
   const quickActions = [
     {
       label: 'Download Resume',
-      component: <CVDownload variant="primary" size="lg" />,
+      component: <ResumeDownload variant="primary" size="lg" />,
       description: 'Get my complete professional background'
     },
     {

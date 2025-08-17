@@ -1,364 +1,405 @@
-import type { Metadata } from "next";
-import React from 'react';
+'use client';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import ThemeToggle from '../../components/ThemeToggle';
-
-export const metadata: Metadata = {
-  title: "DevTrackr Case Study",
-  description: "DevTrackr - a task and journaling app built with React and Node.js",
-};
+import { Badge } from '../../../components/ui/Badge';
+import { Button } from '../../../components/ui/Button';
 
 const DevTrackrCaseStudy = () => {
+  const [activeTab, setActiveTab] = useState('overview');
+  const [terminalText, setTerminalText] = useState('');
+  const [currentLine, setCurrentLine] = useState(0);
+  const [isTyping, setIsTyping] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  const project = {
+    name: 'DevTrackr',
+    description: 'A modern task and journaling app built with full-stack technologies',
+    status: 'Production Ready',
+    tech: ['React', 'Node.js', 'Express', 'PostgreSQL', 'JWT', 'Tailwind CSS'],
+    timeline: '3 months',
+    liveUrl: 'https://devtrackr.live',
+    githubUrl: 'https://github.com/abdallah96/devtrackr'
+  };
+
+  useEffect(() => {
+    const terminalCommands = [
+      `$ git clone https://github.com/abdallah96/devtrackr.git`,
+      `Cloning into 'devtrackr'...`,
+      `remote: Enumerating objects: 247, done.`,
+      `remote: Total 247 (delta 0), reused 0 (delta 0)`,
+      `Receiving objects: 100% (247/247), 2.1 MiB | 1.2 MiB/s, done.`,
+      `$ cd devtrackr`,
+      `$ npm install`,
+      `Installing dependencies... ✓`,
+      `$ npm run dev`,
+      `⚡ DevTrackr is running on http://localhost:3000`,
+      `✓ Status: ${project.status}`,
+      `✓ Timeline: ${project.timeline}`
+    ];
+
+    if (currentLine < terminalCommands.length) {
+      setIsTyping(true);
+      const timer = setTimeout(() => {
+        setTerminalText(prev => prev + terminalCommands[currentLine] + '\n');
+        setCurrentLine(prev => prev + 1);
+        setIsTyping(false);
+      }, 400 + currentLine * 100);
+      return () => clearTimeout(timer);
+    }
+  }, [currentLine, project.status, project.timeline]);
+
+  const tabs = [
+    { id: 'overview', label: 'README.md', icon: '📄', color: 'text-blue-400' },
+    { id: 'features', label: 'FEATURES.md', icon: '⚡', color: 'text-green-400' },
+    { id: 'tech', label: 'package.json', icon: '📦', color: 'text-yellow-400' },
+    { id: 'challenges', label: 'ISSUES.md', icon: '🐛', color: 'text-red-400' },
+    { id: 'demo', label: 'DEMO.md', icon: '🚀', color: 'text-purple-400' }
+  ];
+
+  const fileContents = {
+    overview: `# DevTrackr 🚀
+
+A powerful task management and developer journaling application that helps developers track their progress, manage tasks, and reflect on their coding journey.
+
+## Project Overview
+- **Status**: ${project.status}
+- **Timeline**: ${project.timeline}
+- **Team**: Solo Developer (Abdallah Gueye)
+
+## What Problem Does It Solve?
+Developers often struggle to:
+- Keep track of multiple tasks and deadlines
+- Maintain consistent journaling habits
+- Reflect on their learning progress
+- Organize their development workflow
+
+DevTrackr provides a unified solution for task management and developer reflection.`,
+
+    features: `# Core Features ⚡
+
+## Task Management
+- [x] Create, edit, and delete tasks
+- [x] Priority levels (High, Medium, Low)
+- [x] Due date tracking
+- [x] Status updates (Todo, In Progress, Done)
+- [x] Task filtering and search
+
+## Developer Journaling
+- [x] Daily coding journal entries
+- [x] Reflection prompts
+- [x] Progress tracking
+- [x] Mood and productivity indicators
+- [x] Code snippet integration
+
+## User Experience
+- [x] Responsive design for all devices
+- [x] Dark/Light theme toggle
+- [x] Intuitive dashboard
+- [x] Real-time updates
+- [x] Smooth animations and transitions
+
+## Technical Features
+- [x] JWT Authentication
+- [x] RESTful API design
+- [x] Database optimization
+- [x] Error handling and validation
+- [x] Secure password hashing`,
+
+    tech: `{
+  "name": "devtrackr",
+  "version": "1.0.0",
+  "description": "Task management and journaling for developers",
+  
+  "frontend": {
+    "react": "^18.2.0",
+    "tailwindcss": "^3.3.0",
+    "react-router-dom": "^6.8.0",
+    "axios": "^1.3.0",
+    "react-hot-toast": "^2.4.0"
+  },
+  
+  "backend": {
+    "node.js": "^18.0.0",
+    "express": "^4.18.0",
+    "jsonwebtoken": "^9.0.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5"
+  },
+  
+  "database": {
+    "postgresql": "^14.0.0",
+    "pg": "^8.10.0"
+  },
+  
+  "deployment": {
+    "vercel": "frontend",
+    "railway": "backend",
+    "neon": "database"
+  }
+}`,
+
+    challenges: `# Challenges & Solutions 🐛
+
+## Challenge 1: Real-time Task Updates
+**Problem**: Multiple users updating tasks simultaneously caused conflicts.
+
+**Solution**: 
+- Implemented optimistic updates
+- Added conflict resolution strategies
+- Used websockets for real-time sync
+
+## Challenge 2: Performance with Large Datasets
+**Problem**: App became slow with 1000+ tasks and journal entries.
+
+**Solution**:
+- Implemented pagination
+- Added database indexing
+- Created efficient query optimization
+- Used virtual scrolling for large lists
+
+## Challenge 3: User Authentication Security
+**Problem**: Securing user data and preventing unauthorized access.
+
+**Solution**:
+- JWT token implementation
+- Password hashing with bcrypt
+- Rate limiting for API endpoints
+- Input validation and sanitization
+
+## Challenge 4: Mobile Responsiveness
+**Problem**: Complex dashboard layout breaking on mobile devices.
+
+**Solution**:
+- Mobile-first design approach
+- Flexible grid system
+- Touch-friendly interactions
+- Progressive web app features`,
+
+    demo: `# Live Demo & Usage 🚀
+
+## Try It Live
+🌐 **Production**: https://devtrackr.live
+📱 **Mobile**: Fully responsive, try on any device!
+
+## Quick Start Guide
+
+### 1. Sign Up
+- Create your developer account
+- Choose your preferred theme
+- Set up your profile
+
+### 2. Create Your First Task
+- Click "New Task" button
+- Add title, description, priority
+- Set due date and category
+- Save and start tracking!
+
+### 3. Start Journaling
+- Navigate to Journal section
+- Write about your coding day
+- Add code snippets
+- Track your mood and productivity
+
+### 4. Monitor Progress
+- View your dashboard
+- Check completion statistics
+- Review journal insights
+- Celebrate your achievements!
+
+## Test Credentials
+**Email**: demo@devtrackr.com
+**Password**: demo123
+
+> Feel free to explore all features with the demo account!`
+  };
 
   return (
-    <main className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <section className="relative flex flex-col items-center justify-center min-h-[50vh] py-24 px-4 overflow-hidden">
-        <div className="absolute inset-0 z-0 animate-gradient bg-gradient-to-br from-primary/30 via-accent/20 to-background opacity-90 blur-2xl" />
-        <div className="relative z-10 flex flex-col items-center text-center">
-          <div className="flex items-center gap-4 mb-8">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 border border-primary/30 text-primary font-semibold shadow hover:bg-primary/10 hover:text-primary-foreground transition-all duration-200 group"
-              aria-label="Back to Portfolio"
-            >
-              <span className="text-lg group-hover:-translate-x-1 transition-transform">←</span>
-              <span>Back to Portfolio</span>
-            </Link>
-            <ThemeToggle />
-          </div>
-          
-          <div className="mb-6">
-            <span className="text-sm font-semibold text-primary bg-primary/10 px-4 py-2 rounded-full border border-primary/20">
-              Case Study
-            </span>
-          </div>
-          
-          <h1 className="text-5xl md:text-7xl font-extrabold text-white text-center mb-6 tracking-tight drop-shadow-2xl">
-            DevTrackr
-          </h1>
-          <p className="text-xl md:text-2xl text-white/90 text-center max-w-3xl drop-shadow-lg font-medium mb-8">
-            A modern task and journaling app built with full-stack technologies
-          </p>
-          
-          {/* Project Status */}
-          <div className="flex items-center gap-4 text-white/80">
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="text-sm font-medium">Completed MVP</span>
-            </div>
-            <span className="text-white/40">•</span>
-            <span className="text-sm">Full-Stack Development</span>
-          </div>
-        </div>
-      </section>
-
-      {/* Summary Section */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                Project Summary
-              </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                DevTrackr is a modern task and journaling app built with full-stack technologies like React, Node.js, and PostgreSQL. 
-                It focuses on providing a clean, fast, and useful productivity experience without the bloat of traditional tools.
-              </p>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                The project was born from a personal need for a productivity tool that was neither too complex nor too simple, 
-                and served as a hands-on learning experience for full-stack development.
-              </p>
-            </div>
-            <div className="bg-gradient-to-br from-primary/10 via-accent/5 to-background rounded-2xl p-8 border border-primary/20">
-              <h3 className="text-xl font-bold text-foreground mb-4">Key Features</h3>
-              <ul className="space-y-3">
-                <li className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <span className="text-muted-foreground">JWT Authentication with bcrypt</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <span className="text-muted-foreground">Task management (CRUD operations)</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <span className="text-muted-foreground">Journal entry system</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <span className="text-muted-foreground">Theme switching</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <span className="text-muted-foreground">Responsive, mobile-first UI</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Problem & Goals Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-primary/5 via-accent/3 to-background">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid md:grid-cols-2 gap-12">
-            {/* Problem */}
-            <div className="bg-background/50 backdrop-blur-xl rounded-2xl p-8 border border-primary/20">
-              <h3 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="text-2xl">🎯</span>
-                The Problem
-              </h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Most productivity tools are either too bloated with unnecessary features or overly simple. 
-                I wanted something fast, clean, and useful — and I wanted to build it myself to learn full-stack development hands-on.
-              </p>
-            </div>
-
-            {/* Goals */}
-            <div className="bg-background/50 backdrop-blur-xl rounded-2xl p-8 border border-primary/20">
-              <h3 className="text-2xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="text-2xl">🎯</span>
-                Goals
-              </h3>
-              <ul className="space-y-2 text-muted-foreground">
-                <li className="flex items-center gap-2">
-                  <span className="text-primary">•</span>
-                  Learn full-stack app architecture hands-on
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-primary">•</span>
-                  Implement secure authentication (JWT + bcrypt)
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-primary">•</span>
-                  Create a smooth and responsive user experience
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-primary">•</span>
-                  Build something I could use and improve over time
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Tech Stack Section */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-12">
-            Tech Stack
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Frontend */}
-            <div className="bg-gradient-to-br from-blue-500/10 to-blue-600/5 rounded-2xl p-8 border border-blue-500/20">
-              <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="text-2xl">⚛️</span>
-                Frontend
-              </h3>
-              <ul className="space-y-2 text-muted-foreground">
-                <li>React</li>
-                <li>Headless UI</li>
-                <li>Tailwind CSS</li>
-                <li>Context API</li>
-              </ul>
-            </div>
-
-            {/* Backend */}
-            <div className="bg-gradient-to-br from-green-500/10 to-green-600/5 rounded-2xl p-8 border border-green-500/20">
-              <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="text-2xl">🖥️</span>
-                Backend
-              </h3>
-              <ul className="space-y-2 text-muted-foreground">
-                <li>Node.js</li>
-                <li>Express</li>
-                <li>JWT</li>
-                <li>bcrypt</li>
-              </ul>
-            </div>
-
-            {/* Database & Deployment */}
-            <div className="bg-gradient-to-br from-purple-500/10 to-purple-600/5 rounded-2xl p-8 border border-purple-500/20">
-              <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-3">
-                <span className="text-2xl">🗄️</span>
-                Database & Deployment
-              </h3>
-              <ul className="space-y-2 text-muted-foreground">
-                <li>PostgreSQL</li>
-                <li>Prisma ORM</li>
-                <li>Vercel</li>
-                <li>GitHub</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Code Examples Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-primary/5 via-accent/3 to-background">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-12">
-            Technical Implementation
-          </h2>
-          
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-background/50 rounded-xl p-6 border">
-              <h3 className="text-lg font-semibold mb-3">Tech Stack</h3>
-              <ul className="text-sm text-muted-foreground space-y-2">
-                <li>• React for the frontend</li>
-                <li>• Node.js & Express for the API</li>
-                <li>• PostgreSQL database</li>
-                <li>• JWT authentication</li>
-                <li>• Prisma ORM</li>
-              </ul>
-            </div>
-            <div className="bg-background/50 rounded-xl p-6 border">
-              <h3 className="text-lg font-semibold mb-3">Key Features</h3>
-              <ul className="text-sm text-muted-foreground space-y-2">
-                <li>• Task management with completion tracking</li>
-                <li>• Daily journaling with mood tracking</li>
-                <li>• Weekly progress reports</li>
-                <li>• Responsive design</li>
-                <li>• Secure user authentication</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Challenges & Solutions Section */}
-      <section className="py-10 md:py-20 px-2 sm:px-4 bg-gradient-to-br from-primary/5 via-accent/3 to-background">
-        <div className="container mx-auto max-w-xl md:max-w-4xl">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground text-center mb-6 md:mb-12">
-            Challenges & Solutions
-          </h2>
-          
-          <div className="space-y-6 md:space-y-8">
-            <div className="bg-background/50 backdrop-blur-xl rounded-2xl p-8 border border-primary/20">
-              <h3 className="text-xl font-bold text-foreground mb-4">1. Managing Auth State</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                <strong>Challenge:</strong> Persisting authentication state across components and page refreshes.<br/>
-                <strong>Solution:</strong> Used React Context to manage auth state globally, with localStorage for persistence.
-              </p>
-            </div>
-
-            <div className="bg-background/50 backdrop-blur-xl rounded-2xl p-8 border border-primary/20">
-              <h3 className="text-xl font-bold text-foreground mb-4">2. User Data Isolation</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                <strong>Challenge:</strong> Ensuring users can only access their own data securely.<br/>
-                <strong>Solution:</strong> Implemented secure checks at the API level with JWT token validation and user ID verification.
-              </p>
-            </div>
-
-            <div className="bg-background/50 backdrop-blur-xl rounded-2xl p-8 border border-primary/20">
-              <h3 className="text-xl font-bold text-foreground mb-4">3. Responsive UI</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                <strong>Challenge:</strong> Creating a seamless experience across mobile and desktop devices.<br/>
-                <strong>Solution:</strong> Planned layout early using Tailwind&apos;s utility classes and media queries for mobile-first design.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Lessons Learned Section */}
-      <section className="py-10 md:py-20 px-2 sm:px-4 bg-gradient-to-br from-primary/5 via-accent/3 to-background">
-        <div className="container mx-auto max-w-xl md:max-w-4xl">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground text-center mb-6 md:mb-12">
-            Lessons Learned
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            <div className="bg-background/50 backdrop-blur-xl rounded-2xl p-8 border border-primary/20">
-              <h3 className="text-xl font-bold text-foreground mb-4">Development Insights</h3>
-              <ul className="space-y-3 text-muted-foreground">
-                <li>• Full-stack development = solving real problems, not just code</li>
-                <li>• Clean architecture and naming saves debugging time</li>
-                <li>• Authentication flows are tricky, but rewarding to learn</li>
-              </ul>
-            </div>
-
-            <div className="bg-background/50 backdrop-blur-xl rounded-2xl p-8 border border-primary/20">
-              <h3 className="text-xl font-bold text-foreground mb-4">UX Insights</h3>
-              <ul className="space-y-3 text-muted-foreground">
-                <li>• Small UI details (themes, transitions, responsiveness) elevate UX</li>
-                <li>• Mobile-first design pays off in user satisfaction</li>
-                <li>• Performance optimization is crucial for user retention</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Future Improvements Section */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-12">
-            Future Improvements
-          </h2>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-gradient-to-br from-green-500/10 to-green-600/5 rounded-2xl p-6 border border-green-500/20 text-center">
-              <div className="text-3xl mb-3">👥</div>
-              <h3 className="font-bold text-foreground mb-2">Team Collaboration</h3>
-              <p className="text-sm text-muted-foreground">Shared workspaces and team management features</p>
-            </div>
-
-            <div className="bg-gradient-to-br from-blue-500/10 to-blue-600/5 rounded-2xl p-6 border border-blue-500/20 text-center">
-              <div className="text-3xl mb-3">🤖</div>
-              <h3 className="font-bold text-foreground mb-2">AI Insights</h3>
-              <p className="text-sm text-muted-foreground">AI-generated productivity insights and recommendations</p>
-            </div>
-
-            <div className="bg-gradient-to-br from-purple-500/10 to-purple-600/5 rounded-2xl p-6 border border-purple-500/20 text-center">
-              <div className="text-3xl mb-3">📅</div>
-              <h3 className="font-bold text-foreground mb-2">Calendar Integration</h3>
-              <p className="text-sm text-muted-foreground">Sync with Google Calendar and other calendar services</p>
-            </div>
-
-            <div className="bg-gradient-to-br from-orange-500/10 to-orange-600/5 rounded-2xl p-6 border border-orange-500/20 text-center">
-              <div className="text-3xl mb-3">📱</div>
-              <h3 className="font-bold text-foreground mb-2">Mobile App</h3>
-              <p className="text-sm text-muted-foreground">Native mobile version using React Native or Expo</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Links Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-primary/5 via-accent/3 to-background">
-        <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8">
-            Project Links
-          </h2>
-          
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <a
-              href="https://your-vercel-link.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground rounded-xl font-semibold hover:bg-primary/90 transition-all duration-200 shadow-lg hover:shadow-primary/20"
-            >
-              <span>🌐</span>
-              Live Demo
-            </a>
+    <main className="min-h-screen bg-gray-950 text-white relative overflow-hidden">
+      {/* Animated Background */}
+      <div className="fixed inset-0 z-0">
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
+        
+        {/* Mouse Following Orbs */}
+        <div 
+          className="absolute w-[400px] h-[400px] bg-blue-500/20 rounded-full blur-3xl transition-all duration-1000 ease-out"
+          style={{
+            left: mousePosition.x - 200,
+            top: mousePosition.y - 200,
+          }}
+        />
+        <div 
+          className="absolute w-[300px] h-[300px] bg-cyan-500/15 rounded-full blur-3xl transition-all duration-[1500ms] ease-out"
+          style={{
+            left: mousePosition.x - 150 + Math.sin(Date.now() * 0.001) * 100,
+            top: mousePosition.y - 150 + Math.cos(Date.now() * 0.001) * 100,
+          }}
+        />
+        
+        {/* Floating Particles */}
+        {[...Array(20)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-blue-400/30 rounded-full animate-pulse"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 3}s`,
+              animationDuration: `${3 + Math.random() * 2}s`
+            }}
+          />
+        ))}
+      </div>
+      {/* VS Code-like Header */}
+      <div className="relative z-10 bg-gray-900/95 backdrop-blur-sm border-b border-gray-700/50 p-3 shadow-2xl">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <Button variant="outline" asChild className="border-gray-600 text-gray-300 hover:bg-gray-800 text-xs">
+              <Link href="/#projects" className="flex items-center gap-2">
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+                Close Project
+              </Link>
+            </Button>
             
-            <a
-              href="https://github.com/yourname/devtrackr"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-background border-2 border-primary text-primary rounded-xl font-semibold hover:bg-primary/10 transition-all duration-200"
-            >
-              <span>📁</span>
-              Source Code
-            </a>
+            <div className="text-gray-400 text-xs font-mono flex items-center gap-2">
+              <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+              ~/projects/devtrackr
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <Button size="sm" asChild className="bg-green-600 hover:bg-green-700 text-xs">
+              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                🚀 Live Demo
+              </a>
+            </Button>
+            <Button variant="outline" size="sm" asChild className="border-gray-600 text-xs">
+              <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                💻 Source Code
+              </a>
+            </Button>
           </div>
         </div>
-      </section>
+      </div>
+
+      <div className="relative z-10 flex h-screen">
+        {/* Sidebar - File Explorer */}
+        <div className="w-80 bg-gray-900/95 backdrop-blur-sm border-r border-gray-700/50 flex flex-col shadow-2xl">
+          {/* Project Info */}
+          <div className="p-4 border-b border-gray-700">
+            <h2 className="text-lg font-bold text-green-400 mb-1">{project.name}</h2>
+            <p className="text-gray-400 text-sm mb-3">{project.description}</p>
+            
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+              <span className="text-xs text-green-400">{project.status}</span>
+            </div>
+            
+            <Badge variant="outline" className="text-xs">{project.timeline}</Badge>
+          </div>
+
+          {/* File Explorer */}
+          <div className="p-4 flex-1">
+            <div className="text-xs font-mono text-gray-300 mb-3 flex items-center gap-2">
+              📁 Explorer
+            </div>
+            <div className="space-y-1">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`w-full text-left px-3 py-2 rounded text-xs font-mono flex items-center gap-2 transition-all ${
+                    activeTab === tab.id 
+                      ? 'bg-blue-600/30 text-blue-300 border border-blue-500/30 shadow-lg' 
+                      : 'text-gray-400 hover:bg-gray-800 hover:text-gray-200'
+                  }`}
+                >
+                  <span className={activeTab === tab.id ? tab.color : ''}>{tab.icon}</span>
+                  <span className={activeTab === tab.id ? tab.color : ''}>{tab.label}</span>
+                  {activeTab === tab.id && <span className="ml-auto text-blue-400">●</span>}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Terminal */}
+          <div className="m-4 bg-black rounded border border-gray-700 flex-shrink-0">
+            <div className="flex items-center gap-2 px-3 py-2 bg-gray-800 border-b border-gray-700">
+              <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+              <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+              <span className="ml-2 text-xs text-gray-400 font-mono">Terminal</span>
+            </div>
+            <div className="p-3 h-48 overflow-auto">
+              <pre className="text-green-400 text-xs font-mono whitespace-pre-wrap">
+                {terminalText}
+                {isTyping && <span className="animate-pulse">|</span>}
+              </pre>
+            </div>
+          </div>
+        </div>
+
+        {/* Main Content Area */}
+        <div className="flex-1 flex flex-col">
+          {/* Tab Bar */}
+          <div className="bg-gray-900/95 backdrop-blur-sm border-b border-gray-700/50 px-4">
+            <div className="flex">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`px-4 py-2 text-xs font-mono border-b-2 transition-all flex items-center gap-2 ${
+                    activeTab === tab.id
+                      ? 'border-blue-500 bg-gray-800 text-blue-300'
+                      : 'border-transparent text-gray-400 hover:text-gray-200 hover:bg-gray-850'
+                  }`}
+                >
+                  <span className={activeTab === tab.id ? tab.color : ''}>{tab.icon}</span>
+                  <span className={activeTab === tab.id ? tab.color : ''}>{tab.label}</span>
+                  {activeTab === tab.id && (
+                    <button className="ml-2 text-gray-500 hover:text-gray-300">×</button>
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Content Editor */}
+          <div className="flex-1 p-6 overflow-auto bg-gray-950/95 backdrop-blur-sm font-mono text-sm">
+            <div className="max-w-4xl">
+              <pre className="whitespace-pre-wrap text-gray-300 leading-relaxed">
+                {fileContents[activeTab as keyof typeof fileContents]}
+              </pre>
+            </div>
+          </div>
+
+          {/* Status Bar */}
+          <div className="bg-blue-600 text-white px-4 py-1 text-xs flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <span>DevTrackr Case Study</span>
+              <span>Line 1, Column 1</span>
+              <span>Markdown</span>
+            </div>
+            <div className="flex items-center gap-4">
+              <span>UTF-8</span>
+              <span>LF</span>
+              <span>{activeTab === 'overview' ? '📄' : activeTab === 'tech' ? '📦' : activeTab === 'challenges' ? '🐛' : activeTab === 'demo' ? '🚀' : '⚡'}</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
   );
 };
 
-export default DevTrackrCaseStudy; 
+export default DevTrackrCaseStudy;

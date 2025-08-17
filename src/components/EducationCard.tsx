@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/Card';
-import { Badge } from './ui/Badge';
+
 import { Education } from '../data/education';
 
 interface EducationCardProps {

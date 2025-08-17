@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useLanguage } from '../context/LanguageContext';
 import { useNavigation } from '../../hooks/useNavigation';
 import { Button } from '../../components/ui/Button';
-import { CVDownload } from '../../components/CVDownload';
+import { ResumeDownload } from '../../components/ResumeDownload';
 import ThemeToggle from '../components/ThemeToggle';
 import LanguageToggle from '../components/LanguageToggle';
 import { navigationItems } from '../../data/navigation';
@@ -75,7 +75,7 @@ function NavigationSection() {
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center space-x-3">
-            <CVDownload variant="outline" size="sm" />
+            <ResumeDownload variant="outline" size="sm" />
             <ThemeToggle />
             <LanguageToggle />
           </div>
@@ -151,7 +151,7 @@ function NavigationSection() {
               })}
               <div className="pt-3 border-t border-border mt-3">
                 <div className="flex items-center justify-between">
-                  <CVDownload variant="outline" size="sm" />
+                  <ResumeDownload variant="outline" size="sm" />
                   <LanguageToggle />
                 </div>
               </div>

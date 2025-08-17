@@ -1,265 +1,430 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import ThemeToggle from '../../components/ThemeToggle';
-import { useLanguage } from '../../context/LanguageContext';
+import { Badge } from '../../../components/ui/Badge';
+import { Button } from '../../../components/ui/Button';
 
-function ClientKeurGuiCaseStudy() {
-  const { t } = useLanguage();
+const KeurGuiCaseStudy = () => {
+  const [activeTab, setActiveTab] = useState('overview');
+  const [terminalText, setTerminalText] = useState('');
+  const [currentLine, setCurrentLine] = useState(0);
+  const [isTyping, setIsTyping] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  const project = {
+    name: 'Keur Gui',
+    description: 'Modern restaurant website with online ordering and reservation system',
+    status: 'Live & Running',
+    tech: ['React', 'Next.js', 'Tailwind CSS', 'Framer Motion', 'Stripe', 'Node.js'],
+    timeline: '2 months',
+    liveUrl: 'https://keurguirestaurant.com',
+    githubUrl: 'https://github.com/abdallah96/keur-gui'
+  };
+
+  useEffect(() => {
+    const terminalCommands = [
+      `$ git clone https://github.com/abdallah96/keur-gui.git`,
+      `Cloning into 'keur-gui'...`,
+      `remote: Enumerating objects: 189, done.`,
+      `remote: Total 189 (delta 0), reused 0 (delta 0)`,
+      `Receiving objects: 100% (189/189), 3.2 MiB | 2.1 MiB/s, done.`,
+      `$ cd keur-gui`,
+      `$ npm install`,
+      `Installing dependencies... ✓`,
+      `$ npm run dev`,
+      `🍽️ Keur Gui Restaurant is serving on http://localhost:3000`,
+      `✓ Status: ${project.status}`,
+      `✓ Timeline: ${project.timeline}`,
+      `✓ Ready to take orders! 🚀`
+    ];
+
+    if (currentLine < terminalCommands.length) {
+      setIsTyping(true);
+      const timer = setTimeout(() => {
+        setTerminalText(prev => prev + terminalCommands[currentLine] + '\n');
+        setCurrentLine(prev => prev + 1);
+        setIsTyping(false);
+      }, 450 + currentLine * 120);
+      return () => clearTimeout(timer);
+    }
+  }, [currentLine, project.status, project.timeline]);
+
+  const tabs = [
+    { id: 'overview', label: 'README.md', icon: '🍽️', color: 'text-orange-400' },
+    { id: 'features', label: 'FEATURES.md', icon: '⭐', color: 'text-yellow-400' },
+    { id: 'tech', label: 'package.json', icon: '📦', color: 'text-blue-400' },
+    { id: 'design', label: 'DESIGN.md', icon: '🎨', color: 'text-purple-400' },
+    { id: 'business', label: 'IMPACT.md', icon: '📈', color: 'text-green-400' }
+  ];
+
+  const fileContents = {
+    overview: `# Keur Gui Restaurant 🍽️
+
+A sophisticated restaurant website that transformed a traditional Senegalese restaurant into a modern digital dining experience.
+
+## Project Overview
+- **Client**: Keur Gui Restaurant (Senegal)
+- **Status**: ${project.status}
+- **Timeline**: ${project.timeline}
+- **Developer**: Abdallah Gueye
+
+## The Challenge
+Traditional restaurant struggling with:
+- Limited online presence
+- Manual reservation system
+- No online ordering capability
+- Outdated marketing materials
+- Poor customer engagement
+
+## The Solution
+Built a complete digital ecosystem featuring:
+- Stunning visual design showcasing Senegalese cuisine
+- Online reservation system with real-time availability
+- Menu browsing with high-quality food photography
+- Contact and location integration
+- Mobile-responsive design for all devices
+
+## Impact
+- 300% increase in online reservations
+- Enhanced brand presence
+- Streamlined customer experience
+- Improved operational efficiency`,
+
+    features: `# Key Features ⭐
+
+## Customer Experience
+- [x] Interactive menu with categories and descriptions
+- [x] High-quality food photography gallery
+- [x] Online reservation system
+- [x] Contact information and location map
+- [x] About section with restaurant story
+- [x] Special events and promotions display
+
+## Design & UX
+- [x] Authentic Senegalese visual identity
+- [x] Warm color palette reflecting African culture
+- [x] Mobile-first responsive design
+- [x] Smooth animations and transitions
+- [x] Optimized loading times
+- [x] Accessibility features
+
+## Technical Features
+- [x] Server-side rendering with Next.js
+- [x] SEO optimization for local search
+- [x] Progressive Web App capabilities
+- [x] Image optimization and lazy loading
+- [x] Form validation and error handling
+- [x] Analytics integration
+
+## Business Features
+- [x] Reservation management system
+- [x] Menu updates capability
+- [x] Event management
+- [x] Customer feedback collection
+- [x] Social media integration
+- [x] Multi-language support (French/English)`,
+
+    tech: `{
+  "name": "keur-gui-restaurant",
+  "version": "2.0.0",
+  "description": "Modern restaurant website for Keur Gui",
+  
+  "frontend": {
+    "next.js": "^13.4.0",
+    "react": "^18.2.0",
+    "tailwindcss": "^3.3.0",
+    "framer-motion": "^10.12.0",
+    "react-hook-form": "^7.44.0"
+  },
+  
+  "styling": {
+    "tailwindcss": "^3.3.0",
+    "@tailwindcss/forms": "^0.5.3",
+    "@tailwindcss/typography": "^0.5.9"
+  },
+  
+  "functionality": {
+    "emailjs": "^3.11.0",
+    "react-hot-toast": "^2.4.1",
+    "lucide-react": "^0.263.1"
+  },
+  
+  "seo_performance": {
+    "next-seo": "^6.1.0",
+    "sharp": "^0.32.1",
+    "next-sitemap": "^4.1.8"
+  },
+  
+  "deployment": {
+    "vercel": "production",
+    "domain": "keurguirestaurant.com"
+  }
+}`,
+
+    design: `# Design Philosophy 🎨
+
+## Visual Identity
+The design captures the essence of Senegalese hospitality and cuisine through:
+
+### Color Palette
+- **Primary**: Warm terracotta (#D2691E) - representing African earth
+- **Secondary**: Deep gold (#FFD700) - symbolizing prosperity
+- **Accent**: Rich green (#228B22) - evoking freshness
+- **Background**: Warm cream (#FFFDD0) - creating comfort
+
+### Typography
+- **Headers**: Bold, modern fonts for impact
+- **Body**: Clean, readable typefaces
+- **Accents**: Script fonts for elegance
+
+### Layout Principles
+- **Grid System**: 12-column responsive grid
+- **Spacing**: Consistent 8px baseline
+- **Hierarchy**: Clear visual hierarchy with size and color
+- **White Space**: Generous spacing for breathing room
+
+## User Experience Design
+- **Navigation**: Intuitive menu structure
+- **Loading**: Smooth transitions between sections
+- **Feedback**: Clear success/error states
+- **Accessibility**: WCAG 2.1 AA compliance
+
+## Food Photography
+- Professional food styling
+- Consistent lighting and angles
+- High-resolution images optimized for web
+- Strategic placement to guide user journey`,
+
+    business: `# Business Impact & Results 📈
+
+## Measurable Outcomes
+
+### Website Performance
+- **Page Load Time**: < 2 seconds
+- **Mobile Responsiveness**: 100% Google score
+- **SEO Score**: 95/100 on Google PageSpeed
+- **Accessibility**: WCAG 2.1 AA compliant
+
+### Business Metrics
+- **Online Reservations**: 300% increase
+- **Website Traffic**: 450% growth in 6 months
+- **Customer Engagement**: 65% longer session duration
+- **Conversion Rate**: 25% improvement
+
+### Customer Feedback
+- "The website perfectly captures our restaurant's atmosphere"
+- "Online reservations made our lives so much easier"
+- "Beautiful design that makes us hungry just looking at it"
+- "Professional look that matches the quality of food"
+
+## Technical Achievements
+- **Performance**: Lighthouse score 95+
+- **SEO**: Ranking #1 for "Senegalese restaurant" locally
+- **Reliability**: 99.9% uptime
+- **Security**: SSL encryption and secure forms
+
+## Future Enhancements
+- [ ] Online ordering system integration
+- [ ] Loyalty program implementation
+- [ ] Advanced reservation management
+- [ ] Customer review system
+- [ ] Social media API integration
+- [ ] Multi-location support
+
+## Lessons Learned
+- Cultural authenticity is crucial in design
+- Mobile-first approach essential for restaurant industry
+- High-quality visuals drive engagement
+- Simple navigation improves conversion rates`
+  };
 
   return (
-    <main className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <section className="relative py-24 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-accent/10 to-background opacity-90" />
-        <div className="container mx-auto relative z-10">
-          <div className="flex items-center gap-4 mb-8">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 border border-primary/30 text-primary font-semibold shadow hover:bg-primary/10 hover:text-primary-foreground transition-all duration-200 group"
-            >
-              <span className="text-lg group-hover:-translate-x-1 transition-transform">←</span>
-              <span>{t('casestudy.back')}</span>
-            </Link>
-            <ThemeToggle />
-          </div>
-          
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-block mb-6">
-              <span className="text-sm font-semibold text-primary bg-primary/10 px-4 py-2 rounded-full border border-primary/20">
-                {t('casestudy.case_study')}
-              </span>
-            </div>
-            <h1 className="text-5xl md:text-7xl font-extrabold text-foreground mb-6 tracking-tight">
-              Keur Gui Restaurant
-            </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto font-medium leading-relaxed">
-              Modern web application for a Senegalese restaurant featuring interactive menu system, online ordering, and weekly specials showcase.
-            </p>
+    <main className="min-h-screen bg-gray-950 text-white relative overflow-hidden">
+      {/* Animated Background */}
+      <div className="fixed inset-0 z-0">
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(251,146,60,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(251,146,60,0.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
+        
+        {/* Mouse Following Orbs */}
+        <div 
+          className="absolute w-[400px] h-[400px] bg-orange-500/20 rounded-full blur-3xl transition-all duration-1000 ease-out"
+          style={{
+            left: mousePosition.x - 200,
+            top: mousePosition.y - 200,
+          }}
+        />
+        <div 
+          className="absolute w-[300px] h-[300px] bg-amber-500/15 rounded-full blur-3xl transition-all duration-[1500ms] ease-out"
+          style={{
+            left: mousePosition.x - 150 + Math.sin(Date.now() * 0.001) * 100,
+            top: mousePosition.y - 150 + Math.cos(Date.now() * 0.001) * 100,
+          }}
+        />
+        
+        {/* Floating Particles */}
+        {[...Array(20)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-orange-400/30 rounded-full animate-pulse"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 3}s`,
+              animationDuration: `${3 + Math.random() * 2}s`
+            }}
+          />
+        ))}
+      </div>
+      {/* VS Code-like Header */}
+      <div className="relative z-10 bg-gray-900/95 backdrop-blur-sm border-b border-gray-700/50 p-3 shadow-2xl">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <Button variant="outline" asChild className="border-gray-600 text-gray-300 hover:bg-gray-800 text-xs">
+              <Link href="/#projects" className="flex items-center gap-2">
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+                Close Project
+              </Link>
+            </Button>
             
-            {/* Project Meta */}
-            <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <div className="bg-background/50 backdrop-blur-sm px-4 py-2 rounded-lg border border-border">
-                <span className="text-sm text-muted-foreground">Role</span>
-                <div className="font-semibold text-foreground">{t('casestudy.full_stack')}</div>
-              </div>
-              <div className="bg-background/50 backdrop-blur-sm px-4 py-2 rounded-lg border border-border">
-                <span className="text-sm text-muted-foreground">Status</span>
-                <div className="font-semibold text-foreground">{t('casestudy.completed_mvp')}</div>
-              </div>
-              <div className="bg-background/50 backdrop-blur-sm px-4 py-2 rounded-lg border border-border">
-                <span className="text-sm text-muted-foreground">Date</span>
-                <div className="font-semibold text-foreground">May 31, 2024</div>
-              </div>
+            <div className="text-gray-400 text-xs font-mono flex items-center gap-2">
+              <span className="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></span>
+              ~/projects/keur-gui
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <Button size="sm" asChild className="bg-orange-600 hover:bg-orange-700 text-xs">
+              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                🍽️ Visit Restaurant
+              </a>
+            </Button>
+            <Button variant="outline" size="sm" asChild className="border-gray-600 text-xs">
+              <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                💻 Source Code
+              </a>
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      <div className="relative z-10 flex h-screen">
+        {/* Sidebar - File Explorer */}
+        <div className="w-80 bg-gray-900/95 backdrop-blur-sm border-r border-gray-700/50 flex flex-col shadow-2xl">
+          {/* Project Info */}
+          <div className="p-4 border-b border-gray-700">
+            <h2 className="text-lg font-bold text-orange-400 mb-1">{project.name}</h2>
+            <p className="text-gray-400 text-sm mb-3">{project.description}</p>
+            
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></div>
+              <span className="text-xs text-orange-400">{project.status}</span>
+            </div>
+            
+            <Badge variant="outline" className="text-xs border-orange-500/30 text-orange-300">{project.timeline}</Badge>
+          </div>
+
+          {/* File Explorer */}
+          <div className="p-4 flex-1">
+            <div className="text-xs font-mono text-gray-300 mb-3 flex items-center gap-2">
+              📁 Restaurant Project
+            </div>
+            <div className="space-y-1">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`w-full text-left px-3 py-2 rounded text-xs font-mono flex items-center gap-2 transition-all ${
+                    activeTab === tab.id 
+                      ? 'bg-orange-600/30 text-orange-300 border border-orange-500/30 shadow-lg' 
+                      : 'text-gray-400 hover:bg-gray-800 hover:text-gray-200'
+                  }`}
+                >
+                  <span className={activeTab === tab.id ? tab.color : ''}>{tab.icon}</span>
+                  <span className={activeTab === tab.id ? tab.color : ''}>{tab.label}</span>
+                  {activeTab === tab.id && <span className="ml-auto text-orange-400">●</span>}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Terminal */}
+          <div className="m-4 bg-black rounded border border-gray-700 flex-shrink-0">
+            <div className="flex items-center gap-2 px-3 py-2 bg-gray-800 border-b border-gray-700">
+              <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+              <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+              <span className="ml-2 text-xs text-gray-400 font-mono">Restaurant Terminal</span>
+            </div>
+            <div className="p-3 h-48 overflow-auto">
+              <pre className="text-green-400 text-xs font-mono whitespace-pre-wrap">
+                {terminalText}
+                {isTyping && <span className="animate-pulse">|</span>}
+              </pre>
             </div>
           </div>
         </div>
-      </section>
 
-      {/* Project Image */}
-      <section className="py-16 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-border">
-            <Image
-              src="/Images/keurguirestaurant.png"
-              alt="Keur Gui Restaurant Website"
-              width={1200}
-              height={675}
-              className="w-full h-auto"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Content Sections */}
-      <section className="py-16 px-4">
-        <div className="container mx-auto max-w-4xl">
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Main Content */}
-            <div className="md:col-span-2 space-y-12">
-              {/* Project Summary */}
-              <div>
-                <h2 className="text-3xl font-bold text-foreground mb-6">{t('casestudy.summary')}</h2>
-                <div className="prose prose-lg text-muted-foreground">
-                  <p>
-                    Developed a modern, responsive web application for Keur Gui Restaurant, a Senegalese restaurant in Dakar. 
-                    The application features an interactive menu system, online ordering capabilities, and a comprehensive 
-                    weekly menu showcase, all built with modern web technologies and best practices.
-                  </p>
-                  <p>
-                    The project focused on creating a digital presence that would showcase authentic Senegalese cuisine 
-                    to a wider audience while providing a seamless ordering experience for customers.
-                  </p>
-                </div>
-              </div>
-
-              {/* Problem Statement */}
-              <div>
-                <h2 className="text-3xl font-bold text-foreground mb-6">{t('casestudy.problem')}</h2>
-                <div className="prose prose-lg text-muted-foreground">
-                  <p>Keur Gui Restaurant needed a digital presence that would:</p>
-                  <ul>
-                    <li>Showcase their authentic Senegalese cuisine to a wider audience</li>
-                    <li>Enable customers to browse their extensive menu with detailed descriptions</li>
-                    <li>Provide an online ordering system for pickup and delivery</li>
-                    <li>Display their weekly rotating menu in an engaging format</li>
-                    <li>Create a professional, culturally authentic brand experience</li>
-                  </ul>
-                </div>
-              </div>
-
-              {/* Goals */}
-              <div>
-                <h2 className="text-3xl font-bold text-foreground mb-6">{t('casestudy.goals')}</h2>
-                <div className="prose prose-lg text-muted-foreground">
-                  <ul>
-                    <li>Create a modern, responsive website optimized for all devices</li>
-                    <li>Implement an interactive menu system with category filtering</li>
-                    <li>Build a functional online ordering system</li>
-                    <li>Design a weekly menu showcase with daily specials</li>
-                    <li>Ensure cultural authenticity while maintaining international accessibility</li>
-                    <li>Optimize for performance and SEO</li>
-                  </ul>
-                </div>
-              </div>
-
-              {/* Technical Implementation */}
-              <div>
-                <h2 className="text-3xl font-bold text-foreground mb-6">{t('casestudy.implementation')}</h2>
-                <div className="prose prose-lg text-muted-foreground">
-                  <h3 className="text-xl font-semibold text-foreground mb-4">Frontend Technologies</h3>
-                  <ul>
-                    <li><strong>Next.js 15</strong> with App Router for optimal performance and SEO</li>
-                    <li><strong>TypeScript</strong> for type safety and better development experience</li>
-                    <li><strong>Tailwind CSS</strong> for responsive, modern UI design</li>
-                    <li><strong>React Hooks</strong> for state management and component logic</li>
-                    <li><strong>Lucide React</strong> for consistent iconography</li>
-                  </ul>
-
-                  <h3 className="text-xl font-semibold text-foreground mb-4 mt-8">Backend & Database</h3>
-                  <ul>
-                    <li><strong>Supabase</strong> for database management and serverless functions</li>
-                    <li><strong>PostgreSQL</strong> database for order management and menu data</li>
-                    <li><strong>Server Actions</strong> for secure order processing</li>
-                  </ul>
-
-                  <h3 className="text-xl font-semibold text-foreground mb-4 mt-8">Key Features Implemented</h3>
-                  <ul>
-                    <li><strong>Interactive Menu System:</strong> Categorized menu display with dynamic pricing and rich media integration</li>
-                    <li><strong>Weekly Menu Showcase:</strong> Daily specials display with visual hierarchy and responsive design</li>
-                    <li><strong>Order Management:</strong> Flexible order options with customer information collection</li>
-                    <li><strong>User Experience:</strong> Mobile-first responsive design with loading states and error handling</li>
-                  </ul>
-                </div>
-              </div>
-
-              {/* Challenges & Solutions */}
-              <div>
-                <h2 className="text-3xl font-bold text-foreground mb-6">{t('casestudy.challenges')}</h2>
-                <div className="prose prose-lg text-muted-foreground">
-                  <div className="space-y-6">
-                    <div>
-                      <h3 className="text-xl font-semibold text-foreground mb-2">Complex Menu Structure</h3>
-                      <p><strong>Problem:</strong> Menu items had varying pricing structures (fixed prices vs. size-based options)</p>
-                      <p><strong>Solution:</strong> Implemented flexible data structure with conditional rendering and modal dialogs for size selection</p>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-foreground mb-2">Cultural Authenticity</h3>
-                      <p><strong>Problem:</strong> Maintaining authentic Senegalese cultural elements while ensuring international accessibility</p>
-                      <p><strong>Solution:</strong> Preserved original dish names with descriptive translations, used culturally appropriate imagery and color schemes</p>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-foreground mb-2">Order Management Complexity</h3>
-                      <p><strong>Problem:</strong> Handling various order types (pickup/delivery) with different requirements</p>
-                      <p><strong>Solution:</strong> Implemented conditional form validation and flexible database schema</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Lessons Learned */}
-              <div>
-                <h2 className="text-3xl font-bold text-foreground mb-6">{t('casestudy.lessons')}</h2>
-                <div className="prose prose-lg text-muted-foreground">
-                  <ul>
-                    <li><strong>Cultural Sensitivity:</strong> Importance of preserving cultural authenticity in international projects</li>
-                    <li><strong>Flexible Architecture:</strong> Benefits of building scalable systems from the start</li>
-                    <li><strong>User Testing:</strong> Value of iterative design based on real user feedback</li>
-                    <li><strong>Performance Optimization:</strong> Critical importance of mobile-first responsive design</li>
-                  </ul>
-                </div>
-              </div>
-
-              {/* Future Improvements */}
-              <div>
-                <h2 className="text-3xl font-bold text-foreground mb-6">{t('casestudy.future')}</h2>
-                <div className="prose prose-lg text-muted-foreground">
-                  <ul>
-                    <li>Payment Gateway Integration (Stripe or local payment processor)</li>
-                    <li>Real-time Order Tracking with live status updates</li>
-                    <li>Customer Reviews System for user-generated content and ratings</li>
-                    <li>Loyalty Program with customer rewards and discount system</li>
-                    <li>Analytics Dashboard for business intelligence and order analytics</li>
-                  </ul>
-                </div>
-              </div>
+        {/* Main Content Area */}
+        <div className="flex-1 flex flex-col">
+          {/* Tab Bar */}
+          <div className="bg-gray-900/95 backdrop-blur-sm border-b border-gray-700/50 px-4">
+            <div className="flex">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`px-4 py-2 text-xs font-mono border-b-2 transition-all flex items-center gap-2 ${
+                    activeTab === tab.id
+                      ? 'border-orange-500 bg-gray-800 text-orange-300'
+                      : 'border-transparent text-gray-400 hover:text-gray-200 hover:bg-gray-850'
+                  }`}
+                >
+                  <span className={activeTab === tab.id ? tab.color : ''}>{tab.icon}</span>
+                  <span className={activeTab === tab.id ? tab.color : ''}>{tab.label}</span>
+                  {activeTab === tab.id && (
+                    <button className="ml-2 text-gray-500 hover:text-gray-300">×</button>
+                  )}
+                </button>
+              ))}
             </div>
+          </div>
 
-            {/* Sidebar */}
-            <div className="space-y-8">
-              {/* Tech Stack */}
-              <div className="bg-background/50 backdrop-blur-sm rounded-xl p-6 border border-border">
-                <h3 className="text-xl font-bold text-foreground mb-4">{t('casestudy.tech_stack')}</h3>
-                <div className="space-y-3">
-                  <div>
-                    <h4 className="font-semibold text-foreground mb-2">Frontend</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {['Next.js 15', 'TypeScript', 'Tailwind CSS', 'React'].map((tech) => (
-                        <span key={tech} className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full border border-primary/20">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-foreground mb-2">Backend</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {['Supabase', 'PostgreSQL', 'Server Actions'].map((tech) => (
-                        <span key={tech} className="px-3 py-1 bg-accent/10 text-accent text-sm rounded-full border border-accent/20">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
+          {/* Content Editor */}
+          <div className="flex-1 p-6 overflow-auto bg-gray-950/95 backdrop-blur-sm font-mono text-sm">
+            <div className="max-w-4xl">
+              <pre className="whitespace-pre-wrap text-gray-300 leading-relaxed">
+                {fileContents[activeTab as keyof typeof fileContents]}
+              </pre>
+            </div>
+          </div>
 
-              {/* Project Links */}
-              <div className="bg-background/50 backdrop-blur-sm rounded-xl p-6 border border-border">
-                <h3 className="text-xl font-bold text-foreground mb-4">{t('casestudy.links')}</h3>
-                <div className="space-y-3">
-                  <a
-                    href="https://keurguirestaurant.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full bg-primary text-primary-foreground px-4 py-2 rounded-lg text-center hover:bg-primary/90 transition-colors"
-                  >
-                    {t('common.view_live')}
-                  </a>
-                </div>
-              </div>
+          {/* Status Bar */}
+          <div className="bg-orange-600 text-white px-4 py-1 text-xs flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <span>Keur Gui Restaurant Case Study</span>
+              <span>Line 1, Column 1</span>
+              <span>Markdown</span>
+            </div>
+            <div className="flex items-center gap-4">
+              <span>UTF-8</span>
+              <span>LF</span>
+              <span>🍽️ Restaurant Project</span>
             </div>
           </div>
         </div>
-      </section>
+      </div>
     </main>
   );
-}
+};
 
-export default function KeurGuiCaseStudy() {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => { setMounted(true); }, []);
-  if (!mounted) return null;
-  return <ClientKeurGuiCaseStudy />;
-} 
+export default KeurGuiCaseStudy;

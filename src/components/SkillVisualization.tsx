@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface SkillProficiencyProps {
+interface SkillVisualizationProps {
   skill: string;
   level: number; 
   category: 'frontend' | 'backend' | 'database' | 'tools' | 'design';
@@ -16,7 +16,7 @@ const categoryColors = {
   design: { primary: '#ec4899', secondary: '#f43f5e', bg: 'bg-gradient-to-r from-pink-500 to-rose-500' }
 };
 
-export const SkillProficiency: React.FC<SkillProficiencyProps> = ({
+export const SkillVisualization: React.FC<SkillVisualizationProps> = ({
   skill,
   level,
   category,
@@ -85,4 +85,4 @@ export const SkillProficiency: React.FC<SkillProficiencyProps> = ({
   );
 };
 
-export default SkillProficiency;
+export default SkillVisualization;

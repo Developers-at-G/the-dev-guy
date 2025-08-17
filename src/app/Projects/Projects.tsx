@@ -35,7 +35,7 @@ function ProjectsSection() {
               project={project}
               isSelected={false}
               isExpanded={isProjectExpanded(project.title)}
-              onSelect={() => {}}
+
               onToggleExpanded={() => toggleProjectExpansion(project.title)}
               getProjectTitle={(key) => t(`projects.${key}_title`)}
               getProjectDescription={(key) => t(`projects.${key}_desc`)}

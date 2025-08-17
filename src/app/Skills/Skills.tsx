@@ -1,17 +1,16 @@
 'use client';
 import React, { useState } from 'react';
-import { useLanguage } from '../context/LanguageContext';
+
 import { Section, SectionHeader } from '../../components/ui/Section';
 import { Container } from '../../components/ui/Container';
 import { Button } from '../../components/ui/Button';
 import { Badge } from '../../components/ui/Badge';
-import SkillProficiency from '../../components/SkillProficiency';
+import SkillVisualization from '../../components/SkillVisualization';
 import { skillsData } from '../../data/skills';
 
 type ViewMode = 'proficiency' | 'category';
 
 function SkillsSection() {
-  const { t } = useLanguage();
   const [viewMode, setViewMode] = useState<ViewMode>('proficiency');
   const [activeCategory, setActiveCategory] = useState(skillsData[0]?.id || 'frontend');
 
@@ -72,7 +71,7 @@ function SkillsSection() {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 md:gap-6">
                   {expertSkills.map((skill, index) => (
-                    <SkillProficiency
+                    <SkillVisualization
                       key={skill.name}
                       skill={skill.name}
                       level={skill.level}
@@ -94,7 +93,7 @@ function SkillsSection() {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 md:gap-6">
                   {proficientSkills.map((skill, index) => (
-                    <SkillProficiency
+                    <SkillVisualization
                       key={skill.name}
                       skill={skill.name}
                       level={skill.level}
@@ -116,7 +115,7 @@ function SkillsSection() {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 md:gap-6">
                   {developingSkills.map((skill, index) => (
-                    <SkillProficiency
+                    <SkillVisualization
                       key={skill.name}
                       skill={skill.name}
                       level={skill.level}
@@ -158,7 +157,7 @@ function SkillsSection() {
             {/* Skills Grid */}
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
               {activeSkillCategory.skills.map((skill, index) => (
-                <SkillProficiency
+                <SkillVisualization
                   key={skill.name}
                   skill={skill.name}
                   level={skill.level}

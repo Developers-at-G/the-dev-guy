@@ -26,7 +26,7 @@ function ClientProfile() {
             </div>
 
             <div className="flex flex-wrap gap-4">
-              <ResumeDownload variant="primary" />
+              <ResumeDownload variant="primary" source="Profile Section" />
               <Button 
                 variant="outline"
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}

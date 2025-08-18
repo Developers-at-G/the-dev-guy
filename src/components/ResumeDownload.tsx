@@ -1,18 +1,29 @@
 import React from 'react';
 import { Button } from './ui/Button';
+import { trackCVDownload } from '../utils/analytics';
 
 interface ResumeDownloadProps {
   className?: string;
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
+  source?: string; // To track where the download button was clicked from
 }
 
 export const ResumeDownload: React.FC<ResumeDownloadProps> = ({ 
   className, 
   variant = 'outline',
-  size = 'md'
+  size = 'md',
+  source = 'Unknown'
 }) => {
-  // Simple link approach
+  const handleDownloadClick = () => {
+    // Track the CV download event with enhanced analytics
+    trackCVDownload(source, {
+      component: 'ResumeDownload',
+      variant: variant,
+      size: size,
+    });
+  };
+
   return (
     <Button
       asChild
@@ -25,6 +36,7 @@ export const ResumeDownload: React.FC<ResumeDownloadProps> = ({
         download="Abdallah_Amadou_Gueye_Resume.pdf"
         target="_blank"
         rel="noopener noreferrer"
+        onClick={handleDownloadClick}
       >
         <svg 
           className="mr-2 h-4 w-4" 

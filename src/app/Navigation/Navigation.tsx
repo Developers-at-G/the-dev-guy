@@ -75,7 +75,7 @@ function NavigationSection() {
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center space-x-3">
-            <ResumeDownload variant="outline" size="sm" />
+            <ResumeDownload variant="outline" size="sm" source="Navigation Header" />
             <ThemeToggle />
             <LanguageToggle />
           </div>
@@ -151,7 +151,7 @@ function NavigationSection() {
               })}
               <div className="pt-3 border-t border-border mt-3">
                 <div className="flex items-center justify-between">
-                  <ResumeDownload variant="outline" size="sm" />
+                  <ResumeDownload variant="outline" size="sm" source="Mobile Navigation" />
                   <LanguageToggle />
                 </div>
               </div>

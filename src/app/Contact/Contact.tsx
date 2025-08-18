@@ -53,7 +53,7 @@ function ContactSection() {
   const quickActions = [
     {
       label: 'Download Resume',
-      component: <ResumeDownload variant="primary" size="lg" />,
+      component: <ResumeDownload variant="primary" size="lg" source="Contact Section" />,
       description: 'Get my complete professional background'
     },
     {

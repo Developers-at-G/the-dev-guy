@@ -11,6 +11,7 @@ interface ProjectCardProps {
 
   onToggleExpanded: () => void;
   getProjectTitle: (key: string) => string;
+  getProjectDescription: (key: string) => string;
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -20,6 +21,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
   onToggleExpanded,
   getProjectTitle,
+  getProjectDescription,
 }) => {
   return (
     <Card className={`p-4 cursor-pointer transition-all ${isSelected ? 'ring-2 ring-primary' : ''}`}>
@@ -114,7 +116,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             <div className="mt-4 p-4 rounded-lg border bg-muted/10 space-y-3">
               <div>
                 <h4 className="font-semibold text-sm">Problem</h4>
-                <p className="text-sm text-muted-foreground">{project.problem}</p>
+                <p className="text-sm text-muted-foreground">{getProjectDescription(project.title)}</p>
               </div>
               <div>
                 <h4 className="font-semibold text-sm">Actions</h4>

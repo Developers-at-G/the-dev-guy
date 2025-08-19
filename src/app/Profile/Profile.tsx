@@ -1,13 +1,12 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
-
+import { useLanguage } from '../context/LanguageContext';
 import { Card } from '../../components/ui/Card';
-import { Button } from '../../components/ui/Button';
-import { ResumeDownload } from '../../components/ResumeDownload';
 import { profileData } from '../../data/profile';
 
 function ClientProfile() {
+  const { t } = useLanguage();
   
   return (
     <section className="section professional-bg" id="about">
@@ -46,17 +45,17 @@ function ClientProfile() {
           <Card variant="elevated" className="p-8">
             <div className="grid md:grid-cols-2 gap-8">
               <div className="space-y-4">
-                <h2 className="text-2xl font-bold text-foreground">About Me</h2>
+                <h2 className="text-2xl font-bold text-foreground">{t('profile.about_me')}</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  {profileData.about.bio}
+                  {t('profile.about_description')}
                 </p>
                 <p className="text-muted-foreground leading-relaxed">
-                  {profileData.about.experience}
+                  {t('profile.experience_description')}
                 </p>
               </div>
               
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-foreground">What I Do</h3>
+                <h3 className="text-lg font-semibold text-foreground">{t('profile.what_i_do')}</h3>
                 <div className="space-y-3">
                   {profileData.skills.map((skill, index) => (
                     <div key={index} className="flex items-center space-x-3">

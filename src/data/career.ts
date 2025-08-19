@@ -12,35 +12,65 @@ export interface CareerExperience {
 
 export const careerData: CareerExperience[] = [
   {
-    id: 'current-role',
-    company: 'Current Focus',
-    position: 'Full-Stack Developer',
-    period: '2024 - Present',
-    location: 'Remote',
+    id: 'smal-gmbh',
+    company: 'Smal GmbH',
+    position: 'Software Developer',
+    period: 'January 2023 - Present',
+    location: 'Munich, Germany',
     type: 'work',
-    description: 'Developing modern web applications with focus on user experience and performance optimization.',
+    description: 'Developing and maintaining reusable UI components and contributing to shared design systems across projects.',
     achievements: [
-      'Built multiple full-stack applications using React and Next.js',
-      'Implemented PWA features for offline-first experiences',
-      'Optimized application performance achieving 90+ Lighthouse scores',
-      'Designed and developed responsive UI components'
+      'Developed and maintained reusable UI components with React, Next.js, and TypeScript',
+      'Developed reusable components contributing to a shared design system across projects',
+      'Worked closely with backend engineers to integrate APIs and improve data flow between frontend and backend',
+      'Collaborated on customer-facing features for high-traffic applications with focus on Accessibility and Lighthouse performance',
+      'Implemented engaging scroll animations using GSAP to enhance user experience'
     ],
-    technologies: ['React', 'Next.js', 'TypeScript', 'Node.js', 'PostgreSQL', 'TailwindCSS']
+    technologies: ['React', 'Next.js', 'TypeScript', 'API Integration', 'Design Systems', 'Accessibility', 'GSAP']
   },
   {
-    id: 'freelance-work',
-    company: 'Freelance Projects',
-    position: 'Frontend Developer',
-    period: '2022 - 2024',
-    location: 'Remote',
-    type: 'freelance',
-    description: 'Worked on various client projects focusing on modern web development and user interface design.',
+    id: 'future-stories',
+    company: 'Future Stories',
+    position: 'Software Developer (Working Student)',
+    period: 'December 2021 - November 2022',
+    location: 'Hamburg, Germany',
+    type: 'work',
+    description: 'Maintained and enhanced Shopify-based e-commerce solutions while building custom applications for improved functionality.',
     achievements: [
-      'Delivered 10+ projects for different clients',
-      'Specialized in React and Next.js development',
-      'Created responsive designs with modern UI frameworks',
-      'Implemented SEO optimizations and performance improvements'
+      'Maintained and updated the company\'s Shopify-based website using Liquid and jQuery',
+      'Built custom Shopify apps using React.js to enhance e-commerce functionality',
+      'Contributed to UI improvements and optimized code for performance'
     ],
-    technologies: ['React', 'Next.js', 'JavaScript', 'Tailwind CSS', 'Figma', 'Git']
+    technologies: ['Shopify', 'Liquid', 'jQuery', 'React.js', 'E-commerce', 'Performance Optimization']
+  },
+  {
+    id: 'obertys',
+    company: 'Obertys',
+    position: 'Software Developer (Intern)',
+    period: 'January 2020 - June 2020',
+    location: 'Dakar, Senegal',
+    type: 'internship',
+    description: 'Developed banking web applications and contributed to agile development processes with focus on API integration.',
+    achievements: [
+      'Developed banking web applications using React',
+      'Integrated RESTful APIs to enable seamless communication between frontend and backend systems',
+      'Participated in agile development sprints and supported testing and documentation efforts'
+    ],
+    technologies: ['React', 'RESTful APIs', 'Banking Applications', 'Agile Development', 'Testing']
+  },
+  {
+    id: 'abis-teknoloji',
+    company: 'ABİS Teknoloji',
+    position: 'Full-stack Developer (Intern)',
+    period: 'June 2019 - September 2019',
+    location: 'Kayseri, Türkiye',
+    type: 'internship',
+    description: 'Developed and maintained web applications using ASP.NET Core technology stack.',
+    achievements: [
+      'Developed and maintained web applications with ASP.NET Core',
+      'Worked with SQL databases for data management',
+      'Collaborated with team using Git for version control'
+    ],
+    technologies: ['ASP.NET Core', 'C#', 'SQL', 'Git']
   }
 ];

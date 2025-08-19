@@ -4,9 +4,6 @@ import React from 'react';
 import { Section, SectionHeader } from '../../components/ui/Section';
 import { Container } from '../../components/ui/Container';
 import { Card, CardContent } from '../../components/ui/Card';
-import { Button } from '../../components/ui/Button';
-
-import { ResumeDownload } from '../../components/ResumeDownload';
 
 function ContactSection() {
 
@@ -33,7 +30,7 @@ function ContactSection() {
       title: 'LinkedIn',
       subtitle: 'Professional network',
       value: '/in/abdallah-amadou-gueye',
-      href: 'https://linkedin.com/in/abdallah-amadou-gueye',
+      href: 'https://www.linkedin.com/in/abdalah-amadou-gueye/',
       description: 'Connect for professional opportunities'
     },
     {
@@ -50,45 +47,19 @@ function ContactSection() {
     }
   ];
 
-  const quickActions = [
-    {
-      label: 'Download Resume',
-      component: <ResumeDownload variant="primary" size="lg" source="Contact Section" />,
-      description: 'Get my complete professional background'
-    },
-    {
-      label: 'View LinkedIn',
-      component: (
-        <Button size="lg" variant="outline" asChild>
-          <a href="https://linkedin.com/in/abdallah-amadou-gueye" target="_blank" rel="noopener noreferrer">
-            <svg className="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" clipRule="evenodd" />
-            </svg>
-            Connect on LinkedIn
-          </a>
-        </Button>
-      ),
-      description: 'Professional networking'
-    }
-  ];
 
   return (
     <Section id="contact" variant="featured">
       <Container>
         <SectionHeader
-          title="Let's Work Together"
-          subtitle="Ready to bring your next project to life? I'm always excited to discuss new opportunities and collaborate on innovative solutions."
+          title="Contact Me"
         />
 
         <div className="max-w-4xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-8">
-            {/* Contact Methods */}
+          <div className="grid lg:grid-cols-1 gap-8">
             <div className="space-y-6">
               <Card>
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold mb-6 text-foreground">
-                    Get In Touch
-                  </h3>
                   <div className="space-y-4">
                     {contactMethods.map((method, index) => (
                       <a
@@ -116,38 +87,6 @@ function ContactSection() {
                           </div>
                         </div>
                       </a>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-
-              <div className="text-center lg:text-left">
-                <h4 className="font-semibold mb-3 text-foreground">
-                  Response Time
-                </h4>
-                <p className="text-sm text-muted-foreground">
-                  I typically respond within 24 hours
-                </p>
-              </div>
-            </div>
-
-            {/* Quick Actions */}
-            <div className="space-y-6">
-              <Card>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold mb-6 text-foreground">
-                    Quick Actions
-                  </h3>
-                  <div className="space-y-4">
-                    {quickActions.map((action, index) => (
-                      <div key={index} className="text-center p-4 rounded-lg border border-border">
-                        <div className="mb-3">
-                          {action.component}
-                        </div>
-                        <p className="text-sm text-muted-foreground">
-                          {action.description}
-                        </p>
-                      </div>
                     ))}
                   </div>
                 </CardContent>

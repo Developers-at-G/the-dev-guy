@@ -5,7 +5,6 @@ export type SortDirection = 'asc' | 'desc';
 
 export interface Project {
   title: string;
-  description: string;
   image: string;
   technologies: string[];
   link?: string;

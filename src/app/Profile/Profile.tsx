@@ -24,29 +24,8 @@ function ClientProfile() {
                 {profileData.description}
               </p>
             </div>
-
-            <div className="flex flex-wrap gap-4">
-              <ResumeDownload variant="primary" source="Profile Section" />
-              <Button 
-                variant="outline"
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                Get In Touch
-              </Button>
-            </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-6 pt-8 border-t border-border">
-              {profileData.stats.map((stat, index) => (
-                <div key={index} className="text-center">
-                  <div className="text-lg font-bold text-primary">{stat.label}</div>
-                  <div className="text-sm text-muted-foreground">{stat.description}</div>
-                </div>
-              ))}
-            </div>
           </div>
 
-          {/* Profile Image */}
           <div className="relative">
             <div className="relative w-80 h-80 mx-auto">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl blur-2xl" />
@@ -63,7 +42,6 @@ function ClientProfile() {
           </div>
         </div>
 
-        {/* About Section */}
         <div className="max-w-4xl mx-auto">
           <Card variant="elevated" className="p-8">
             <div className="grid md:grid-cols-2 gap-8">

@@ -49,10 +49,18 @@ export const skillsData: SkillCategory[] = [
         category: 'frontend'
       },
       { 
-        name: 'CSS', 
+        name: 'SCSS', 
         icon: '/Logos/css-color.svg', 
         experience: '3+ years',
-        level: 78,
+        level: 85,
+        category: 'frontend'
+      },
+      { 
+        name: 'GSAP', 
+        icon: '/Images/code.png', 
+        experience: '2+ year',
+        level: 80,
+        description: 'Professional animation library for the modern web',
         category: 'frontend'
       }
     ]
@@ -161,7 +169,7 @@ export const skillsData: SkillCategory[] = [
         category: 'design'
       },
       { 
-        name: 'Tailwind CSS', 
+        name: 'Tailwind', 
         icon: '/Images/tailwind.png', 
         experience: '2+ years',
         level: 94,

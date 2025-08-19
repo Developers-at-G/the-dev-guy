@@ -27,16 +27,13 @@ function ClientAchievement() {
           </p>
         </div>
 
-        {/* Consolidated Education + Achievements block */}
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Education single block */}
           <div className="achievement-card group">
             <div className="bg-gradient-to-br from-white/10 via-background/80 to-accent/10 backdrop-blur-xl rounded-2xl border-2 border-primary/20 shadow-2xl p-8 hover:shadow-primary/40 transition-all duration-300 h-full">
               <h3 className="text-2xl font-bold text-foreground mb-4">
                 {t('education.title')}
               </h3>
               <div className="space-y-6">
-                {/* Bachelor */}
                 <div className="flex items-start gap-4">
                   <div className="relative w-16 h-16 flex-shrink-0">
                     <Image src="/Images/Bachelor.png" alt={t('education.bachelor_degree')} fill className="object-contain" />
@@ -50,7 +47,6 @@ function ClientAchievement() {
                     <div className="text-muted-foreground text-sm">{t('education.university')}</div>
                   </div>
                 </div>
-                {/* Master */}
                 <div className="flex items-start gap-4">
                   <div className="relative w-16 h-16 flex-shrink-0">
                     <Image src="/Images/Master.png" alt={t('education.master_degree')} fill className="object-contain" />
@@ -68,13 +64,29 @@ function ClientAchievement() {
             </div>
           </div>
 
-          {/* Achievements simplified */}
           <div className="achievement-card group">
             <div className="bg-gradient-to-br from-white/10 via-background/80 to-accent/10 backdrop-blur-xl rounded-2xl border-2 border-primary/20 shadow-2xl p-8 hover:shadow-primary/40 transition-all duration-300 h-full">
               <h3 className="text-2xl font-bold text-foreground mb-4">{t('achievement.title')}</h3>
               <ul className="space-y-4 text-sm text-muted-foreground leading-relaxed">
-                <li>Accessibility in Web Development — 2023</li>
-                <li>Usability Engineering in Modern Web Apps — 2024</li>
+                <li className="flex flex-col gap-2">
+                  <span className="font-medium text-base text-foreground">Published Research Papers:</span>
+                  <a 
+                    href="https://dl.acm.org/doi/10.1007/978-3-031-05039-8_33" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-primary hover:text-primary/80 transition-colors underline"
+                  >
+                    Research Paper on Computer Science Education — 2022
+                  </a>
+                  <a 
+                    href="https://dl.acm.org/doi/10.1007/978-3-031-35897-5_20" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-primary hover:text-primary/80 transition-colors underline"
+                  >
+                    Research Paper on Software Engineering — 2023
+                  </a>
+                </li>
               </ul>
             </div>
           </div>

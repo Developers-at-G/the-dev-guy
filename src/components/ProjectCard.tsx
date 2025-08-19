@@ -11,7 +11,6 @@ interface ProjectCardProps {
 
   onToggleExpanded: () => void;
   getProjectTitle: (key: string) => string;
-  getProjectDescription: (key: string) => string;
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -21,12 +20,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
   onToggleExpanded,
   getProjectTitle,
-  getProjectDescription
 }) => {
   return (
     <Card className={`p-4 cursor-pointer transition-all ${isSelected ? 'ring-2 ring-primary' : ''}`}>
       <div className="grid md:grid-cols-2 gap-6">
-        {/* Project Info */}
         <div className="space-y-4">
           <div className="relative h-48 rounded-lg overflow-hidden">
             <Image 
@@ -41,9 +38,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             <h3 className="text-xl font-semibold text-foreground mb-2">
               {getProjectTitle(project.title)}
             </h3>
-            <p className="text-muted-foreground text-sm mb-4">
-              {getProjectDescription(project.description)}
-            </p>
             
             <div className="flex flex-wrap gap-1 mb-4">
               {project.technologies.slice(0, 4).map((tech) => (
@@ -63,7 +57,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           </div>
         </div>
 
-        {/* Project Details */}
         <div className="space-y-4">
           <div className="grid grid-cols-2 gap-4 text-sm">
             <div>

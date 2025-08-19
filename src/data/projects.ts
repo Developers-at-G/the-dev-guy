@@ -3,7 +3,6 @@ import { Project } from '../hooks/useProjects';
 export const projectsData: Project[] = [
   {
     title: 'kader_qui_gere',
-    description: 'kader_qui_gere_desc',
     image: '/Images/k-gere.png',
     technologies: ['Next.js 14', 'TypeScript', 'Prisma', 'PostgreSQL', 'NextAuth.js', 'PWA', 'TailwindCSS'],
     link: 'https://kader-qui-gere.vercel.app/auth/signin',
@@ -18,7 +17,6 @@ export const projectsData: Project[] = [
   },
   {
     title: 'devtrackr',
-    description: 'devtrackr_desc',
     image: '/Images/devtrackr-dashboard.png',
     technologies: ['React', 'Node.js', 'PostgreSQL', 'Prisma', 'JWT', 'Headless UI', 'Vercel', 'PWA'],
     link: 'https://devtrackr-ag.vercel.app',
@@ -33,7 +31,6 @@ export const projectsData: Project[] = [
   },
   {
     title: 'keurgui',
-    description: 'keurgui_desc',
     image: '/Images/keurguirestaurant.png',
     technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Supabase', 'React', 'AWS'],
     link: 'https://keurguirestaurant.com',
@@ -47,7 +44,6 @@ export const projectsData: Project[] = [
   },
   {
     title: 'realestate',
-    description: 'realestate_desc',
     image: '/Images/atlanticimmo.png',
     technologies: ['React', 'Tailwind CSS', 'Framer Motion', 'Next JS'],
     link: 'https://seradi.vercel.app',
@@ -60,7 +56,6 @@ export const projectsData: Project[] = [
   },
   {
     title: 'agro',
-    description: 'agro_desc',
     image: '/Images/am-agrotradeservices.png',
     technologies: ['React', 'Sanity.io', 'Tailwind CSS', 'Next JS'],
     link: 'https://am-agrotradeservices.de',

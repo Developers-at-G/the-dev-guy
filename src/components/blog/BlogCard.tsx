@@ -23,7 +23,6 @@ export const BlogCard: React.FC<BlogCardProps> = ({ post, className = '' }) => {
   return (
     <Card className={`group hover:shadow-lg transition-all duration-300 ${className}`}>
       <CardContent className="p-6">
-        {/* Header */}
         <div className="flex items-center gap-3 mb-4">
           {post.featured && (
             <Badge variant="default" className="bg-primary text-primary-foreground">
@@ -41,7 +40,6 @@ export const BlogCard: React.FC<BlogCardProps> = ({ post, className = '' }) => {
           )}
         </div>
 
-        {/* Content */}
         <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
           {post.title}
         </h3>
@@ -50,7 +48,6 @@ export const BlogCard: React.FC<BlogCardProps> = ({ post, className = '' }) => {
           {post.excerpt}
         </p>
 
-        {/* Footer */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center">

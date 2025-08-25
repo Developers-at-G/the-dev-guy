@@ -15,13 +15,11 @@ export const useNavigation = ({ items }: UseNavigationOptions) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Handle scroll events
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       setScrolled(scrollPosition > 50);
 
-      // Update active section based on scroll position
       const sections = items.map(item => document.getElementById(item.id)).filter(Boolean);
       
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -37,7 +35,7 @@ export const useNavigation = ({ items }: UseNavigationOptions) => {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Call once to set initial state
+    handleScroll();
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, [items]);
@@ -45,13 +43,11 @@ export const useNavigation = ({ items }: UseNavigationOptions) => {
   const scrollToSection = useCallback((sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const offset = 80; // Account for fixed navbar
-      const elementPosition = element.offsetTop - offset;
-      
-      window.scrollTo({
-        top: elementPosition,
-        behavior: 'smooth'
-      });
+      const offset = 80;
+      const elementTop = element.getBoundingClientRect().top + window.pageYOffset;
+      const targetPosition = Math.max(elementTop - offset, 0);
+
+      window.scrollTo({ top: targetPosition, behavior: 'smooth' });
     }
     setIsMenuOpen(false);
   }, []);

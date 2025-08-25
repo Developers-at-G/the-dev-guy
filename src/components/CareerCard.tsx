@@ -51,7 +51,6 @@ export const CareerCard: React.FC<CareerCardProps> = ({
           {experience.description}
         </p>
 
-        {/* Technologies */}
         <div className="mb-4">
           <h4 className="text-sm font-semibold mb-2">Technologies:</h4>
           <div className="flex flex-wrap gap-1">
@@ -63,7 +62,6 @@ export const CareerCard: React.FC<CareerCardProps> = ({
           </div>
         </div>
 
-        {/* Toggle Achievements */}
         <button
           onClick={onToggle}
           className="text-primary hover:text-primary/80 text-sm font-medium transition-colors"
@@ -71,7 +69,6 @@ export const CareerCard: React.FC<CareerCardProps> = ({
           {isExpanded ? 'Hide' : 'Show'} Key Achievements
         </button>
 
-        {/* Achievements */}
         {isExpanded && (
           <div className="mt-4 space-y-2">
             {experience.achievements.map((achievement, index) => (

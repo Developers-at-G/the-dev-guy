@@ -87,13 +87,13 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 </a>
               </Button>
             )}
-            {project.githubUrl && (
+            {/* {project.githubUrl && (
               <Button size="sm" variant="outline" asChild>
                 <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
                   Code
                 </a>
               </Button>
-            )}
+            )} */}
             {project.caseStudy && (
               <Button size="sm" variant="ghost" asChild>
                 <a href={project.caseStudy}>

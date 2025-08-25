@@ -248,12 +248,9 @@ The design captures the essence of Senegalese hospitality and cuisine through:
 
   return (
     <main className="min-h-screen bg-gray-950 text-white relative overflow-hidden">
-      {/* Animated Background */}
       <div className="fixed inset-0 z-0">
-        {/* Grid Pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(251,146,60,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(251,146,60,0.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
         
-        {/* Mouse Following Orbs */}
         <div 
           className="absolute w-[400px] h-[400px] bg-orange-500/20 rounded-full blur-3xl transition-all duration-1000 ease-out"
           style={{
@@ -269,7 +266,6 @@ The design captures the essence of Senegalese hospitality and cuisine through:
           }}
         />
         
-        {/* Floating Particles */}
         {[...Array(20)].map((_, i) => (
           <div
             key={i}
@@ -283,7 +279,6 @@ The design captures the essence of Senegalese hospitality and cuisine through:
           />
         ))}
       </div>
-      {/* VS Code-like Header */}
       <div className="relative z-10 bg-gray-900/95 backdrop-blur-sm border-b border-gray-700/50 p-3 shadow-2xl">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
@@ -318,9 +313,7 @@ The design captures the essence of Senegalese hospitality and cuisine through:
       </div>
 
       <div className="relative z-10 flex h-screen">
-        {/* Sidebar - File Explorer */}
         <div className="w-80 bg-gray-900/95 backdrop-blur-sm border-r border-gray-700/50 flex flex-col shadow-2xl">
-          {/* Project Info */}
           <div className="p-4 border-b border-gray-700">
             <h2 className="text-lg font-bold text-orange-400 mb-1">{project.name}</h2>
             <p className="text-gray-400 text-sm mb-3">{project.description}</p>
@@ -333,7 +326,6 @@ The design captures the essence of Senegalese hospitality and cuisine through:
             <Badge variant="outline" className="text-xs border-orange-500/30 text-orange-300">{project.timeline}</Badge>
           </div>
 
-          {/* File Explorer */}
           <div className="p-4 flex-1">
             <div className="text-xs font-mono text-gray-300 mb-3 flex items-center gap-2">
               📁 Restaurant Project
@@ -357,7 +349,6 @@ The design captures the essence of Senegalese hospitality and cuisine through:
             </div>
           </div>
 
-          {/* Terminal */}
           <div className="m-4 bg-black rounded border border-gray-700 flex-shrink-0">
             <div className="flex items-center gap-2 px-3 py-2 bg-gray-800 border-b border-gray-700">
               <div className="w-3 h-3 bg-red-500 rounded-full"></div>
@@ -374,9 +365,7 @@ The design captures the essence of Senegalese hospitality and cuisine through:
           </div>
         </div>
 
-        {/* Main Content Area */}
         <div className="flex-1 flex flex-col">
-          {/* Tab Bar */}
           <div className="bg-gray-900/95 backdrop-blur-sm border-b border-gray-700/50 px-4">
             <div className="flex">
               {tabs.map((tab) => (
@@ -399,7 +388,6 @@ The design captures the essence of Senegalese hospitality and cuisine through:
             </div>
           </div>
 
-          {/* Content Editor */}
           <div className="flex-1 p-6 overflow-auto bg-gray-950/95 backdrop-blur-sm font-mono text-sm">
             <div className="max-w-4xl">
               <pre className="whitespace-pre-wrap text-gray-300 leading-relaxed">
@@ -408,7 +396,6 @@ The design captures the essence of Senegalese hospitality and cuisine through:
             </div>
           </div>
 
-          {/* Status Bar */}
           <div className="bg-orange-600 text-white px-4 py-1 text-xs flex items-center justify-between">
             <div className="flex items-center gap-4">
               <span>Keur Gui Restaurant Case Study</span>

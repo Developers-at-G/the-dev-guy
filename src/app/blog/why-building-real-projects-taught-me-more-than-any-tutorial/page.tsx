@@ -18,7 +18,6 @@ export default function BlogPost() {
             featured={true}
           />
 
-            {/* Article Content */}
             <article className="prose prose-lg prose-invert max-w-none">
               <div className="bg-gradient-to-br from-white/5 via-background/80 to-accent/5 backdrop-blur-xl rounded-3xl border border-primary/20 shadow-2xl p-8 md:p-12">
                 
@@ -113,7 +112,6 @@ export default function BlogPost() {
                   That&apos;s where the growth is. That&apos;s where the learning sticks.
                 </p>
 
-                {/* Author Info */}
                 <div className="mt-16 pt-8 border-t border-primary/20">
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center">

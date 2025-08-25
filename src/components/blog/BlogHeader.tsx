@@ -29,7 +29,6 @@ export const BlogHeader: React.FC<BlogHeaderProps> = ({
 }) => {
   return (
     <header className="mb-12">
-      {/* Meta */}
       <div className="flex items-center gap-3 mb-6">
         {featured && (
           <Badge variant="default" className="bg-primary text-primary-foreground">
@@ -47,19 +46,16 @@ export const BlogHeader: React.FC<BlogHeaderProps> = ({
         )}
       </div>
       
-      {/* Title */}
       <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 tracking-tight leading-tight">
         {title}
       </h1>
       
-      {/* Excerpt */}
       {excerpt && (
         <p className="text-xl text-muted-foreground leading-relaxed mb-8">
           {excerpt}
         </p>
       )}
 
-      {/* Author */}
       <div className="flex items-center gap-4 pt-6 border-t border-border">
         <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center">
           <span className="text-white font-bold text-lg">AG</span>

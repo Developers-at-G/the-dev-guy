@@ -33,7 +33,6 @@ const BlogPage = () => {
 
   return (
     <main className="min-h-screen bg-black text-white overflow-hidden relative">
-      {/* Animated Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-pink-900/20" />
         <div 
@@ -54,7 +53,7 @@ const BlogPage = () => {
         />
       </div>
 
-      {/* Floating Code Elements */}
+
       <div className="absolute inset-0 pointer-events-none">
         {[...Array(8)].map((_, i) => (
           <div
@@ -73,7 +72,6 @@ const BlogPage = () => {
       </div>
 
       <div className="relative z-10">
-        {/* Navigation */}
         <nav className="flex items-center justify-between p-6">
           <Button variant="outline" asChild className="border-white/20 text-white hover:bg-white/10">
             <Link href="/" className="flex items-center gap-2">
@@ -90,48 +88,6 @@ const BlogPage = () => {
           </div>
         </nav>
 
-        {/* Hero Terminal */}
-        <section className="px-6 py-16">
-          <div className="max-w-6xl mx-auto">
-            {/* Terminal Window */}
-            <div className="bg-gray-900/90 backdrop-blur-sm rounded-lg border border-gray-700/50 shadow-2xl overflow-hidden">
-              {/* Terminal Header */}
-              <div className="flex items-center gap-2 px-4 py-3 bg-gray-800/50 border-b border-gray-700/50">
-                <div className="flex gap-2">
-                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                </div>
-                <span className="ml-4 text-gray-400 text-sm font-mono">abdallah@portfolio:~/blog</span>
-              </div>
-
-              {/* Terminal Content */}
-              <div className="p-6 font-mono">
-                <div className="space-y-4">
-                  <div className="flex items-center gap-2">
-                    <span className="text-green-400">$</span>
-                    <span className="text-white">cat developer_insights.md</span>
-                  </div>
-                  
-                  <div className="pl-4 space-y-2">
-                    <div className="text-blue-400"># Developer Blog</div>
-                    <div className="text-gray-300">Real experiences, no fluff.</div>
-                    <div className="text-yellow-400">
-                      {codeSnippets[currentSnippet]}
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-2 mt-8">
-                    <span className="text-green-400">$</span>
-                    <span className="text-white animate-pulse">|</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Featured Article as Code File */}
         <section className="px-6 py-16">
           <div className="max-w-6xl mx-auto">
             <div className="mb-8">
@@ -144,18 +100,15 @@ const BlogPage = () => {
                 className="bg-gray-900/90 backdrop-blur-sm rounded-lg border border-gray-700/50 overflow-hidden group cursor-pointer hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300 hover:scale-[1.02] relative"
 
               >
-                {/* Click indicator */}
                 <div className="absolute top-2 right-2 bg-blue-500/20 border border-blue-500/30 rounded px-2 py-1 text-xs text-blue-300 opacity-0 group-hover:opacity-100 transition-opacity">
                   Click to read →
                 </div>
-              {/* File Tab */}
               <div className="flex items-center gap-1 px-1 py-2 bg-gray-800/50 border-b border-gray-700/50">
                 <div className="bg-gray-700/50 px-3 py-1 rounded-t text-xs text-gray-300 font-mono border-t border-l border-r border-gray-600/50">
                   real-projects-vs-tutorials.js
                 </div>
               </div>
 
-              {/* Code Content */}
               <div className="p-6 font-mono text-sm">
                 <div className="space-y-4">
                   <div className="flex gap-4">
@@ -254,7 +207,6 @@ const BlogPage = () => {
           </div>
         </section>
 
-        {/* Coming Soon as Git Commits */}
         <section className="px-6 py-16">
           <div className="max-w-6xl mx-auto">
             <div className="mb-8">
@@ -264,10 +216,8 @@ const BlogPage = () => {
 
             <div className="space-y-4">
               {[
-                { hash: 'a1b2c3d', message: 'feat: React Performance Deep Dive', author: 'abdallah', date: 'Coming Soon' },
-                { hash: 'e4f5g6h', message: 'docs: TypeScript Best Practices Guide', author: 'abdallah', date: 'Coming Soon' },
-                { hash: 'i7j8k9l', message: 'story: My Journey from Tutorials to Real Apps', author: 'abdallah', date: 'Coming Soon' },
-                { hash: 'm1n2o3p', message: 'guide: Building Scalable Next.js Architecture', author: 'abdallah', date: 'Coming Soon' }
+                { hash: 'a1b2c3d', message: 'feat: Will AI replace developers?', author: 'abdallah', date: 'Coming Soon' },
+                { hash: 'e4f5g6h', message: 'docs: Best Practices Coding', author: 'abdallah', date: 'Coming Soon' },
               ].map((commit, index) => (
                 <div key={index} className="bg-gray-900/50 rounded border border-gray-700/30 p-4 font-mono text-sm hover:bg-gray-800/50 transition-colors">
                   <div className="flex items-center gap-4">
@@ -282,7 +232,6 @@ const BlogPage = () => {
           </div>
         </section>
 
-        {/* Footer */}
         <footer className="px-6 py-12 border-t border-gray-800/50">
           <div className="max-w-6xl mx-auto text-center">
             <div className="font-mono text-gray-400 mb-4">

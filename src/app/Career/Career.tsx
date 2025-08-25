@@ -30,7 +30,6 @@ function CareerSection() {
           description="My professional journey and key experiences in software development"
         />
 
-        {/* Career Timeline */}
         <div className="space-y-6">
           {careerData.map((experience) => (
             <CareerCard

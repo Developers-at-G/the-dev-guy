@@ -17,7 +17,6 @@ export const BlogLayout: React.FC<BlogLayoutProps> = ({
     <main className="min-h-screen bg-background">
       <div className="relative py-8 px-4">
         <div className="container mx-auto">
-          {/* Navigation */}
           <div className="flex items-center justify-between mb-8">
             <Button variant="outline" asChild>
               <Link href={backHref} className="flex items-center gap-2">
@@ -29,7 +28,6 @@ export const BlogLayout: React.FC<BlogLayoutProps> = ({
             </Button>
           </div>
 
-          {/* Content */}
           {children}
         </div>
       </div>

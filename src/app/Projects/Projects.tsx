@@ -16,7 +16,6 @@ function ProjectsSection() {
   return (
     <section id="projects" className="py-16">
       <div className="container mx-auto">
-        {/* Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-5xl font-extrabold text-foreground tracking-tight">
             {t('projects.title')}
@@ -27,7 +26,6 @@ function ProjectsSection() {
           </p>
         </div>
 
-        {/* Projects Grid */}
         <div className="space-y-8">
           {sortedProjects.map((project) => (
             <ProjectCard
@@ -35,7 +33,6 @@ function ProjectsSection() {
               project={project}
               isSelected={false}
               isExpanded={isProjectExpanded(project.title)}
-
               onToggleExpanded={() => toggleProjectExpansion(project.title)}
               getProjectTitle={(key) => t(`projects.${key}_title`)}
               getProjectDescription={(key) => t(`projects.${key}_desc`)}

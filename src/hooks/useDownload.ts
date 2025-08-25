@@ -18,7 +18,6 @@ export const useDownload = () => {
     try {
       setIsDownloading(true);
       
-      // Try direct link approach first for better compatibility
       const link = document.createElement('a');
       link.href = url;
       link.download = filename || 'download';
@@ -29,13 +28,11 @@ export const useDownload = () => {
       link.click();
       document.body.removeChild(link);
       
-      // Small delay to ensure download started
       setTimeout(() => {
         onSuccess?.();
       }, 100);
       
     } catch {
-      // Fallback: Try fetch approach
       try {
         const response = await fetch(url);
         if (!response.ok) {

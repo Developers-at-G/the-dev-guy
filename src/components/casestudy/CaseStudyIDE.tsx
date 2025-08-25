@@ -53,7 +53,6 @@ const CaseStudyIDE: React.FC<CaseStudyProps> = ({ project }) => {
 
   return (
     <main className="min-h-screen bg-gray-950 text-white">
-      {/* IDE-like Header */}
       <div className="bg-gray-900 border-b border-gray-700 p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
@@ -97,14 +96,11 @@ const CaseStudyIDE: React.FC<CaseStudyProps> = ({ project }) => {
       </div>
 
       <div className="flex h-screen">
-        {/* Side Panel - File Explorer */}
         <div className="w-80 bg-gray-900 border-r border-gray-700 p-4">
           <div className="mb-4">
             <h2 className="text-lg font-bold text-green-400 mb-2">{project.name}</h2>
             <p className="text-gray-400 text-sm">{project.description}</p>
           </div>
-
-          {/* File Tree */}
           <div className="mb-6">
             <div className="text-sm font-mono text-gray-300 mb-2">Explorer</div>
             <div className="space-y-1">
@@ -124,8 +120,6 @@ const CaseStudyIDE: React.FC<CaseStudyProps> = ({ project }) => {
               ))}
             </div>
           </div>
-
-          {/* Terminal */}
           <div className="bg-black rounded border border-gray-700">
             <div className="flex items-center gap-2 px-3 py-2 bg-gray-800 border-b border-gray-700">
               <div className="w-3 h-3 bg-red-500 rounded-full"></div>
@@ -142,9 +136,7 @@ const CaseStudyIDE: React.FC<CaseStudyProps> = ({ project }) => {
           </div>
         </div>
 
-        {/* Main Content Area */}
         <div className="flex-1 flex flex-col">
-          {/* Tab Bar */}
           <div className="bg-gray-900 border-b border-gray-700 px-4">
             <div className="flex">
               {tabs.map((tab) => (
@@ -163,8 +155,6 @@ const CaseStudyIDE: React.FC<CaseStudyProps> = ({ project }) => {
               ))}
             </div>
           </div>
-
-          {/* Content */}
           <div className="flex-1 p-6 overflow-auto bg-gray-950">
             {activeTab === 'overview' && (
               <div className="font-mono">

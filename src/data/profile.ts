@@ -1,8 +1,8 @@
 export const profileData = {
   name: 'Abdallah Amadou Gueye',
   title: 'Software Engineer',
-  subtitle: 'Building Exceptional Experiences',
-  description: 'I craft digital products with modern technologies. Specialized in React, Next.js, and user-centered design principles.',
+  subtitle: 'Building with Love and Passion',
+  description: 'I craft digital products with modern technologies. Specialized in React, Next.js, Tailwind CSS, and UI/UX design principles.',
   image: '/Images/Picture.jpeg',
   
   about: {

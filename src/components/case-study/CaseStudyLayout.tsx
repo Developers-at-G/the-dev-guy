@@ -29,10 +29,8 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({
 }) => {
   return (
     <main className="min-h-screen bg-background">
-      {/* Header */}
       <section className="relative py-16 border-b border-border">
         <Container>
-          {/* Navigation */}
           <div className="flex items-center justify-between mb-8">
             <Button variant="outline" asChild>
               <Link href="/#projects" className="flex items-center gap-2">
@@ -67,7 +65,6 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({
             </div>
           </div>
 
-          {/* Hero */}
           <div className="max-w-4xl mx-auto text-center">
             <Badge variant="outline" className="mb-4">{category}</Badge>
             
@@ -79,7 +76,6 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({
               {subtitle}
             </p>
 
-            {/* Meta Info */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               <div className="text-center">
                 <h3 className="font-semibold text-foreground mb-2">Status</h3>
@@ -114,7 +110,6 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({
         </Container>
       </section>
 
-      {/* Content */}
       <section className="py-16">
         <Container>
           <div className="max-w-4xl mx-auto">

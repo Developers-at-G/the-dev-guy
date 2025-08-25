@@ -53,17 +53,5 @@ export const projectsData: Project[] = [
     impacts: ['Faster browsing', 'Clean property filters'],
     problem: 'Users struggled to navigate listings with slow filtering.',
     actions: ['Built performant filter UI', 'Added skeleton loading states', 'Optimized list virtualization']
-  },
-  {
-    title: 'agro',
-    image: '/Images/am-agrotradeservices.png',
-    technologies: ['React', 'Sanity.io', 'Tailwind CSS', 'Next JS'],
-    link: 'https://am-agrotradeservices.de',
-    role: 'Frontend',
-    team: 'Solo',
-    period: '2024',
-    impacts: ['Clear product catalog', 'Editable CMS'],
-    problem: 'Company needed a maintainable site to present services/products.',
-    actions: ['Integrated Sanity CMS', 'Created product schemas', 'Built simple, fast pages']
   }
 ];

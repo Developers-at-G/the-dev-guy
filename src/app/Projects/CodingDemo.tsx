@@ -43,12 +43,9 @@ const CodingDemo = () => {
         </div>
 
         <div className="relative group">
-          {/* Video Container with Glowing Border Effect */}
           <div className="relative rounded-xl overflow-hidden bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 shadow-2xl transform transition-all duration-500 hover:scale-[1.02]">
-            {/* Glowing Border Animation */}
             <div className={`absolute inset-0 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-blue-600/20 ${styles['animate-gradient-x']} rounded-xl`}></div>
             
-            {/* Video Player */}
             <div className="relative aspect-video">
               <video
                 ref={videoRef}
@@ -68,7 +65,6 @@ const CodingDemo = () => {
             </div>
           </div>
 
-          {/* Call to Action */}
           <div className="mt-8 text-center">
             <button
               onClick={scrollToProjects}

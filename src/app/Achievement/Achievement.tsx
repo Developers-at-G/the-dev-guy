@@ -8,11 +8,9 @@ function ClientAchievement() {
 
   return (
     <section className="relative py-32 overflow-hidden" id="achievement">
-      {/* Background with subtle gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/3 to-background" />
       
       <div className="container mx-auto px-4 relative z-10">
-        {/* Section Header */}
         <div className="text-center mb-20">
           <div className="inline-block mb-4">
             <span className="text-sm font-semibold text-primary bg-primary/10 px-4 py-2 rounded-full border border-primary/20">

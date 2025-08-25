@@ -30,7 +30,6 @@ function EducationSection() {
           description="Academic background and continuous learning journey"
         />
 
-        {/* Education Timeline */}
         <div className="space-y-6">
           {educationData.map((education) => (
             <EducationCard

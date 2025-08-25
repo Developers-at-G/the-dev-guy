@@ -11,7 +11,8 @@ import { useLanguage } from "./context/LanguageContext";
 import { useEffect, useState } from "react";
 
 function ClientHome() {
-  const { t } = useLanguage();
+  // Removed unused translation variable to satisfy linting
+  useLanguage();
 
   return (
     <div className="min-h-screen bg-background">

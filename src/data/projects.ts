@@ -19,7 +19,7 @@ export const projectsData: Project[] = [
     title: 'devtrackr',
     image: '/Images/devtrackr-dashboard.png',
     technologies: ['React', 'Node.js', 'PostgreSQL', 'Prisma', 'JWT', 'Headless UI', 'Vercel', 'PWA'],
-    link: 'https://devtrackr-ag.vercel.app',
+    link: 'https://devtrackr-one.vercel.app/',
     caseStudy: '/case-studies/devtrackr',
     githubUrl: 'https://github.com/abdallah96/devtrackr',
     role: 'Full‑stack',

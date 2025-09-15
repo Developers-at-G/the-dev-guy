@@ -25,7 +25,6 @@ function ClientHome() {
         <Education />
         <Achievement />
         <Contact />
-        
       </main>
     </div>
   );

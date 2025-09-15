@@ -16,7 +16,7 @@ export const educationData: Education[] = [
     institution: 'University of Applied Sciences',
     degree: 'Master of Science',
     field: 'Applied Computer Science - UI/UX Design and Usability Engineering',
-    period: '2022 - 2024',
+    period: '2021 - 2023',
     location: 'Germany',
     image: '/Images/Master.png',
     description: 'Specialized in user interface design, user experience research, and usability engineering.',
@@ -29,11 +29,11 @@ export const educationData: Education[] = [
   },
   {
     id: 'bachelor',
-    institution: 'Université Cheikh Anta Diop',
+    institution: 'Hasan Kalyoncu University',
     degree: 'Bachelor of Science',
     field: 'Computer Science',
     period: '2018 - 2021',
-    location: 'Senegal',
+    location: 'Turkey',
     image: '/Images/Bachelor.png',
     description: 'Foundation in computer science with focus on software development and programming.',
     achievements: [

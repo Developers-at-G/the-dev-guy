@@ -2,6 +2,19 @@ import { Project } from '../hooks/useProjects';
 
 export const projectsData: Project[] = [
   {
+    title: 'devguy-ui-components',
+    image: '/Videos/devguy:ui.mov',
+    technologies: ['React', 'TypeScript', 'Storybook', 'CSS Modules', 'Vitest', 'ESLint', 'Prettier', 'tsup'],
+    link: 'https://storybook-static-nine-roan.vercel.app',
+    githubUrl: 'https://github.com/abdallah96/react-storybook-components',
+    role: 'Full‑stack',
+    team: 'Solo',
+    period: '2025',
+    impacts: ['Reusable component library', 'TypeScript-first approach', 'Storybook documentation', 'Comprehensive testing'],
+    problem: 'Developers needed a reliable, well-tested component library to accelerate development workflows.',
+    actions: ['Built 7+ reusable React components with TypeScript', 'Implemented Storybook for interactive documentation', 'Set up comprehensive testing with Vitest and React Testing Library', 'Created responsive, accessible components following design system principles']
+  },
+  {
     title: 'kader_qui_gere',
     image: '/Images/k-gere.png',
     technologies: ['Next.js 14', 'TypeScript', 'Prisma', 'PostgreSQL', 'NextAuth.js', 'PWA', 'TailwindCSS'],

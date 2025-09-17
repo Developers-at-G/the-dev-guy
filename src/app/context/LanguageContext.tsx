@@ -100,6 +100,8 @@ const translations = {
     'projects.devtrackr_desc': 'A comprehensive developer productivity platform with task management, time tracking, and project analytics.',
     'projects.keurgui_title': 'Keur gui restaurant',
     'projects.keurgui_desc': 'Modern restaurant website with interactive menu, online ordering, and weekly specials showcase.',
+    'projects.devguy-ui-components_title': 'DevGuy UI Components',
+    'projects.devguy-ui-components_desc': 'Developers needed a reliable, well-tested component library to accelerate development workflows.',
     'projects.realestate_title': 'Real estate website',
     'projects.realestate_desc': 'Professional real estate platform with property listings and advanced search functionality.',
     'projects.agro_title': 'Agro trade services',

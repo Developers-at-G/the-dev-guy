@@ -1,58 +1,67 @@
+'use client';
 import React from 'react';
 import { Button } from './ui/Button';
-import { trackCVDownload } from '../utils/analytics';
+import { useLanguage } from '../app/context/LanguageContext';
 
 interface ResumeDownloadProps {
-  className?: string;
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
-  source?: string; // To track where the download button was clicked from
+  source?: string;
 }
 
-export const ResumeDownload: React.FC<ResumeDownloadProps> = ({ 
-  className, 
-  variant = 'outline',
+export function ResumeDownload({
+  variant = 'primary',
   size = 'md',
   source = 'Unknown'
-}) => {
-  const handleDownloadClick = () => {
-    // Track the CV download event with enhanced analytics
-    trackCVDownload(source, {
-      component: 'ResumeDownload',
-      variant: variant,
-      size: size,
-    });
+}: ResumeDownloadProps) {
+  const { t } = useLanguage();
+
+  const handleDownload = async () => {
+    try {
+      // Create the download link for the resume PDF
+      const resumeUrl = '/cv/resume.pdf';
+
+      // Create a temporary anchor element
+      const link = document.createElement('a');
+      link.href = resumeUrl;
+      link.download = 'Abdallah_Gueye_Resume.pdf';
+      link.target = '_blank';
+
+      // Trigger the download
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      // Track the download event (optional analytics)
+      console.log(`Resume downloaded from: ${source}`);
+    } catch (error) {
+      console.error('Error downloading resume:', error);
+      // Fallback: open in new tab
+      window.open('/cv/resume.pdf', '_blank');
+    }
   };
 
   return (
     <Button
-      asChild
       variant={variant}
       size={size}
-      className={className}
+      onClick={handleDownload}
+      className="flex items-center gap-2"
     >
-      <a 
-        href="/cv/Resume.pdf" 
-        download="Abdallah_Amadou_Gueye_Resume.pdf"
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={handleDownloadClick}
+      <svg
+        className="w-4 h-4"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
       >
-        <svg 
-          className="mr-2 h-4 w-4" 
-          fill="none" 
-          stroke="currentColor" 
-          viewBox="0 0 24 24"
-        >
-          <path 
-            strokeLinecap="round" 
-            strokeLinejoin="round" 
-            strokeWidth={2} 
-            d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" 
-          />
-        </svg>
-        Download Resume
-      </a>
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+        />
+      </svg>
+      {t ? t('nav.resume') || 'Resume' : 'Resume'}
     </Button>
   );
-};
+}

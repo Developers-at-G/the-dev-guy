@@ -18,25 +18,19 @@ export function ResumeDownload({
 
   const handleDownload = async () => {
     try {
-      // Create the download link for the resume PDF
       const resumeUrl = '/cv/resume.pdf';
-
-      // Create a temporary anchor element
       const link = document.createElement('a');
       link.href = resumeUrl;
-      link.download = 'Abdallah_Gueye_Resume.pdf';
+      link.download = 'Resume.pdf';
       link.target = '_blank';
 
-      // Trigger the download
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
 
-      // Track the download event (optional analytics)
       console.log(`Resume downloaded from: ${source}`);
     } catch (error) {
       console.error('Error downloading resume:', error);
-      // Fallback: open in new tab
       window.open('/cv/resume.pdf', '_blank');
     }
   };
@@ -61,7 +55,7 @@ export function ResumeDownload({
           d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
         />
       </svg>
-      {t ? t('nav.resume') || 'Resume' : 'Resume'}
+      { t('Resume') }
     </Button>
   );
 }

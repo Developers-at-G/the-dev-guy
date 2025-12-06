@@ -15,12 +15,16 @@ export const LanguageContext = createContext<LanguageContextType | undefined>(un
 export const useLanguage = () => {
   const context = useContext(LanguageContext);
   if (!context) {
-    throw new Error('useLanguage must be used within a LanguageProvider');
+    return {
+      language: 'en' as Language,
+      toggleLanguage: () => {},
+      setLanguage: () => {},
+      t: (key: string) => key,
+    };
   }
   return context;
 };
 
-// Translation dictionary
 const translations = {
   en: {
     // Navigation
@@ -429,7 +433,6 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const [language, setLanguageState] = useState<Language>('en');
   const [mounted, setMounted] = useState(false);
 
-  // Initialize language on mount
   useEffect(() => {
     setMounted(true);
     const savedLanguage = localStorage.getItem('language') as Language;
@@ -437,26 +440,35 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     setLanguageState(initialLanguage);
   }, []);
 
-  // Update language and persist to localStorage
   const setLanguage = (newLanguage: Language) => {
     setLanguageState(newLanguage);
     localStorage.setItem('language', newLanguage);
   };
 
-  // Toggle between languages
   const toggleLanguage = () => {
     const newLanguage = language === 'en' ? 'fr' : 'en';
     setLanguage(newLanguage);
   };
 
-  // Translation function
   const t = (key: string): string => {
-    return translations[language][key as keyof typeof translations[typeof language]] || key;
+    const langTranslations = translations[language];
+    if (langTranslations && key in langTranslations) {
+      return langTranslations[key as keyof typeof langTranslations] || key;
+    }
+    return key;
   };
 
-  // Prevent hydration mismatch
   if (!mounted) {
-    return <>{children}</>;
+    return (
+      <LanguageContext.Provider value={{ 
+        language: 'en', 
+        toggleLanguage: () => {}, 
+        setLanguage: () => {}, 
+        t: (key: string) => key 
+      }}>
+        {children}
+      </LanguageContext.Provider>
+    );
   }
 
   return (

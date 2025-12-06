@@ -14,7 +14,11 @@ interface ThemeContextType {
 export const useTheme = () => {
   const context = useContext(ThemeContext);
   if (!context) {
-    throw new Error('useTheme must be used within a ThemeProvider');
+    return {
+      theme: 'dark' as Theme,
+      toggleTheme: () => {},
+      setTheme: () => {},
+    };
   }
   return context;
 };
@@ -23,32 +27,43 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [theme, setThemeState] = useState<Theme>('dark');
   const [mounted, setMounted] = useState(false);
 
-  // Initialize theme on mount
   useEffect(() => {
     setMounted(true);
-    // Get theme from localStorage, otherwise default to dark
     const savedTheme = localStorage.getItem('theme') as Theme;
     const initialTheme = savedTheme || 'dark';
     setThemeState(initialTheme);
-    document.documentElement.classList.toggle('light', initialTheme === 'light');
+    if (initialTheme === 'light') {
+      document.documentElement.classList.add('light');
+    } else {
+      document.documentElement.classList.remove('light');
+    }
   }, []);
 
-  // Update theme and persist to localStorage
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme);
     localStorage.setItem('theme', newTheme);
-    document.documentElement.classList.toggle('light', newTheme === 'light');
+    if (newTheme === 'light') {
+      document.documentElement.classList.add('light');
+    } else {
+      document.documentElement.classList.remove('light');
+    }
   };
 
-  // Toggle between themes
   const toggleTheme = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark';
     setTheme(newTheme);
   };
 
-  // Prevent hydration mismatch
   if (!mounted) {
-    return <>{children}</>;
+    return (
+      <ThemeContext.Provider value={{ 
+        theme: 'dark', 
+        toggleTheme: () => {}, 
+        setTheme: () => {} 
+      }}>
+        {children}
+      </ThemeContext.Provider>
+    );
   }
 
   return (

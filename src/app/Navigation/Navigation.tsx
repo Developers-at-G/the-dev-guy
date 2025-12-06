@@ -5,8 +5,8 @@ import { useLanguage } from '../context/LanguageContext';
 import { useNavigation } from '../../hooks/useNavigation';
 import { Button } from '../../components/ui/Button';
 import { ResumeDownload } from '../../components/ResumeDownload';
-import ThemeToggle from '../components/ThemeToggle';
-import LanguageToggle from '../components/LanguageToggle';
+import ThemeToggle from '../../components/ThemeToggle';
+import LanguageToggle from '../../components/LanguageToggle';
 import { navigationItems } from '../../data/navigation';
 
 function NavigationSection() {

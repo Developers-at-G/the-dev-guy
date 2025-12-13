@@ -121,29 +121,11 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
               </Card>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              <Card variant="elevated" className="p-6 md:p-8">
-                <h2 className="text-2xl font-bold text-foreground mb-4">Technical Implementation</h2>
-                <ul className="space-y-3">
-                  {project.actions.map((action, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <span className="text-primary font-mono text-sm mt-1">#{index + 1}</span>
-                      <span className="text-muted-foreground leading-relaxed">{action}</span>
-                    </li>
-                  ))}
-                </ul>
-              </Card>
-            </motion.div>
-
             {project.impacts && project.impacts.length > 0 && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
               >
                 <Card variant="elevated" className="p-6 md:p-8">
                   <h2 className="text-2xl font-bold text-foreground mb-4">Results & Impact</h2>
@@ -233,16 +215,6 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
                         </svg>
                         View Source Code
                       </a>
-                    </Button>
-                  )}
-                  {project.caseStudy && (
-                    <Button variant="ghost" className="w-full" size="lg" asChild>
-                      <Link 
-                        href={project.caseStudy}
-                        onClick={() => trackProjectLinkClick(project.title, 'case-study', project.caseStudy!)}
-                      >
-                        Read Case Study
-                      </Link>
                     </Button>
                   )}
                 </div>

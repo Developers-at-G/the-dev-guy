@@ -8,7 +8,6 @@ export interface Project {
   image: string;
   technologies: string[];
   link?: string;
-  caseStudy?: string;
   githubUrl?: string;
   role: string;
   team: string;

@@ -43,7 +43,6 @@ ${projectsData.map(project => `
   Role: ${project.role}
   Team: ${project.team}
   Problem: ${project.problem}
-  Actions: ${project.actions.join('; ')}
   ${project.impacts ? `Impacts: ${project.impacts.join(', ')}` : ''}
   ${project.link ? `Live: ${project.link}` : ''}
   ${project.githubUrl ? `GitHub: ${project.githubUrl}` : ''}
@@ -60,7 +59,7 @@ INSTRUCTIONS:
 - When asked about projects, provide relevant details like technologies used, problems solved, and impacts
 - Keep responses concise but informative
 - If asked about something not in the context, politely say you don't have that information
-- Use a warm, approachable tone that reflects Abdallah's passion for development
+- Use a warm, approachable tone that reflects Abdallah's passion for development 
 `;
 
     const systemMessage = {

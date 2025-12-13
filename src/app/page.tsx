@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Navigation from './Navigation/Navigation';
 import { Hero } from '../components/sections/Hero';
 import { ProjectsSection } from '../components/sections/ProjectsSection';
+import { CareerSection } from '../components/sections/CareerSection';
 import { SkillsSection } from '../components/sections/SkillsSection';
 import { EducationSection } from '../components/sections/EducationSection';
 import { ContactSection } from '../components/sections/ContactSection';
@@ -29,6 +30,7 @@ export default function Home() {
       <main id="main-content">
         <Hero />
         <ProjectsSection />
+        <CareerSection />
         <SkillsSection />
         <EducationSection />
         <ContactSection />

@@ -74,3 +74,4 @@ export const careerData: CareerExperience[] = [
     technologies: ['ASP.NET Core', 'C#', 'SQL', 'Git']
   }
 ];
+

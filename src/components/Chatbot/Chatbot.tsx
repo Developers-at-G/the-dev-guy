@@ -25,7 +25,6 @@ export const Chatbot: React.FC = () => {
 
   return (
     <>
-      {/* Floating Chat Button */}
       <motion.button
         onClick={() => {
           if (!isOpen) {

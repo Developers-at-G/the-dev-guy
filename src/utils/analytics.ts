@@ -8,7 +8,6 @@ export const analyticsEvents = {
   PROJECT_VIEWED: 'Project Viewed',
   PROJECT_CARD_CLICKED: 'Project Card Clicked',
   PROJECT_LINK_CLICKED: 'Project Link Clicked',
-  CASE_STUDY_VIEWED: 'Case Study Viewed',
   CONTACT_FORM_SUBMITTED: 'Contact Form Submitted',
   BLOG_POST_VIEWED: 'Blog Post Viewed',
   EXTERNAL_LINK_CLICKED: 'External Link Clicked',
@@ -40,13 +39,6 @@ export function trackProjectView(projectName: string, source: string) {
   });
 }
 
-export function trackCaseStudyView(caseStudyName: string) {
-  track(analyticsEvents.CASE_STUDY_VIEWED, {
-    caseStudy: caseStudyName,
-    timestamp: new Date().toISOString(),
-  });
-}
-
 export function trackExternalLink(url: string, linkText: string, source: string) {
   track(analyticsEvents.EXTERNAL_LINK_CLICKED, {
     url,
@@ -72,7 +64,7 @@ export function trackProjectCardClick(projectName: string, source: string) {
   });
 }
 
-export function trackProjectLinkClick(projectName: string, linkType: 'live' | 'github' | 'case-study', url: string) {
+export function trackProjectLinkClick(projectName: string, linkType: 'live' | 'github', url: string) {
   track(analyticsEvents.PROJECT_LINK_CLICKED, {
     project: projectName,
     linkType,

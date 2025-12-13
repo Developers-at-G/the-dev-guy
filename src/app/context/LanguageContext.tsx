@@ -91,6 +91,11 @@ const translations = {
     'experience.working_student': 'Working Student',
     'experience.internship': 'Internship',
     
+    // Career Section
+    'career.title': 'Professional Experience',
+    'career.subtitle': 'Career Timeline',
+    'career.description': 'Timeline of professional experience with company details and role descriptions.',
+    
     // Projects Section
     'projects.title': 'Projects',
     'projects.subtitle': 'Featured Work',
@@ -277,6 +282,11 @@ const translations = {
     'experience.full_time': 'Temps Plein',
     'experience.working_student': 'Étudiant Salarié',
     'experience.internship': 'Stage',
+    
+    // Career Section
+    'career.title': 'Expérience Professionnelle',
+    'career.subtitle': 'Chronologie de Carrière',
+    'career.description': 'Chronologie d\'expérience professionnelle avec détails de l\'entreprise et descriptions de rôles.',
     
     // Projects Section
     'projects.title': 'Projets',

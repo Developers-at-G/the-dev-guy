@@ -62,6 +62,14 @@ export const skillsData: SkillCategory[] = [
         level: 80,
         description: 'Professional animation library for the modern web',
         category: 'frontend'
+      },
+      { 
+        name: 'Zustand', 
+        icon: '/Images/code.png', 
+        experience: '1+ year',
+        level: 65,
+        description: 'Lightweight state management library',
+        category: 'frontend'
       }
     ]
   },
@@ -145,6 +153,14 @@ export const skillsData: SkillCategory[] = [
         icon: '/Logos/contentful-color.svg', 
         experience: '1+ year',
         level: 70,
+        category: 'tools'
+      },
+      { 
+        name: 'Storybook', 
+        icon: '/Images/code.png', 
+        experience: '1+ year',
+        level: 65,
+        description: 'Component development and documentation tool',
         category: 'tools'
       }
     ]

@@ -23,7 +23,7 @@ export const SkillVisualization: React.FC<SkillVisualizationProps> = ({
   className = '',
   delay = 0
 }) => {
-  const circumference = 2 * Math.PI * 45; // radius = 45
+  const circumference = 2 * Math.PI * 45; 
   const strokeDasharray = circumference;
   const strokeDashoffset = circumference - (level / 100) * circumference;
   const colors = categoryColors[category];

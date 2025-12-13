@@ -17,7 +17,7 @@ export const CustomCursor = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
   const outerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
-  const animationFrameRef = useRef<number>();
+  const animationFrameRef = useRef<number | undefined>(undefined);
   const rippleIdRef = useRef(0);
 
   useEffect(() => {

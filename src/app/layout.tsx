@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/react"
 import { ThemeProvider } from "./context/ThemeContext";
 import { LanguageProvider } from "./context/LanguageContext";
 import { CustomCursor } from "../components/CustomCursor";
+import { Chatbot } from "../components/Chatbot/Chatbot";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -85,6 +86,7 @@ export default function RootLayout({
         <ThemeProvider>
           <LanguageProvider>
             {children}
+            <Chatbot />
           </LanguageProvider>
         </ThemeProvider>
       </body>

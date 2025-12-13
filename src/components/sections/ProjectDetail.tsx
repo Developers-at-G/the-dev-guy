@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -9,6 +9,7 @@ import { Card } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
 import { Container } from '../ui/Container';
+import { trackProjectView, trackProjectLinkClick } from '../../utils/analytics';
 
 interface ProjectDetailProps {
   project: Project;
@@ -16,6 +17,10 @@ interface ProjectDetailProps {
 
 export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
   const isVideo = project.image.endsWith('.mov') || project.image.endsWith('.mp4') || project.image.endsWith('.webm');
+
+  useEffect(() => {
+    trackProjectView(project.title, 'project-detail-page');
+  }, [project.title]);
 
   return (
     <div className="min-h-screen bg-background pt-20 pb-20">
@@ -191,6 +196,7 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`View live ${project.title} project`}
+                        onClick={() => trackProjectLinkClick(project.title, 'live', project.link!)}
                       >
                         <svg
                           className="mr-2 w-5 h-5"
@@ -216,6 +222,7 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`View ${project.title} source code on GitHub`}
+                        onClick={() => trackProjectLinkClick(project.title, 'github', project.githubUrl!)}
                       >
                         <svg
                           className="mr-2 w-5 h-5"
@@ -230,7 +237,10 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
                   )}
                   {project.caseStudy && (
                     <Button variant="ghost" className="w-full" size="lg" asChild>
-                      <Link href={project.caseStudy}>
+                      <Link 
+                        href={project.caseStudy}
+                        onClick={() => trackProjectLinkClick(project.title, 'case-study', project.caseStudy!)}
+                      >
                         Read Case Study
                       </Link>
                     </Button>

@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { trackChatbotOpened } from '../../utils/analytics';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -26,7 +27,12 @@ export const Chatbot: React.FC = () => {
     <>
       {/* Floating Chat Button */}
       <motion.button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => {
+          if (!isOpen) {
+            trackChatbotOpened();
+          }
+          setIsOpen(!isOpen);
+        }}
         className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-primary text-primary-foreground shadow-2xl flex items-center justify-center hover:scale-110 transition-transform duration-200 group"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}

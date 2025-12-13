@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import { Project } from '../../hooks/useProjects';
 import { Card } from '../ui/Card';
 import { Badge } from '../ui/Badge';
+import { trackProjectCardClick } from '../../utils/analytics';
 
 interface ProjectCardProps {
   project: Project;
@@ -17,6 +18,11 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index = 0 }) 
   const isVideo = project.image.endsWith('.mov') || project.image.endsWith('.mp4') || project.image.endsWith('.webm');
   
   const slug = project.title.toLowerCase().replace(/_/g, '-').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+
+  const handleCardClick = () => {
+    const source = typeof window !== 'undefined' ? window.location.pathname : 'unknown';
+    trackProjectCardClick(project.title, source);
+  };
 
   return (
     <motion.div
@@ -29,7 +35,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index = 0 }) 
         variant="elevated"
         className="group overflow-hidden h-full transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
       >
-        <Link href={`/Projects/${slug}`} className="block cursor-pointer">
+        <Link href={`/Projects/${slug}`} className="block cursor-pointer" onClick={handleCardClick}>
           <div className="relative h-48 md:h-64 overflow-hidden bg-muted">
             {isVideo ? (
               <video

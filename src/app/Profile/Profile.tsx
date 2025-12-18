@@ -23,7 +23,7 @@ function ClientProfile() {
 
   const highlightKeywords = (text: string) => {
     const keywords = [
-      'Software Engineer', 'UI/UX', 'Usability Engineering', 'React', 'Next.js', 'TypeScript', "Master's", 'Applied Computer Science',
+      'Frontend / Product Engineer', 'UI/UX', 'Usability Engineering', 'React', 'Next.js', 'TypeScript', "Master's", 'Applied Computer Science',
       'Ingénieur logiciel', 'Conception UI/UX', "Ingénierie de l'Utilisabilité", 'React', 'Next.js', 'TypeScript', 'Master', 'Informatique Appliquée'
     ];
     const escaped = keywords.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));

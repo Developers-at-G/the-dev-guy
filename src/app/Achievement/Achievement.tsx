@@ -92,7 +92,7 @@ function ClientAchievement() {
                     rel="noopener noreferrer"
                     className="text-primary hover:text-primary/80 transition-colors underline"
                   >
-                    Research Paper on Software Engineering — 2023
+                    Research Paper on Frontend / Product Engineering — 2023
                   </a>
                 </li>
               </ul>

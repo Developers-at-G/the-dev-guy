@@ -119,7 +119,7 @@ export default function BlogPost() {
                     </div>
                     <div>
                       <p className="font-semibold text-foreground">Abdallah Gueye</p>
-                      <p className="text-sm text-muted-foreground">Software Engineer & Web Developer</p>
+                      <p className="text-sm text-muted-foreground">Frontend / Product Engineer & Web Developer</p>
                     </div>
                   </div>
                 </div>

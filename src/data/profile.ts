@@ -1,20 +1,20 @@
 export const profileData = {
   name: 'Abdallah Amadou Gueye',
-  title: 'Software Engineer',
+  title: 'Frontend / Product Engineer',
   subtitle: 'Building with Love and Passion',
-  description: 'I craft digital products with modern technologies. Specialized in React, Next.js, Tailwind CSS, and UI/UX design principles.',
+  description: 'Frontend / Product Engineer with 4+ years of experience building high-performance, user-centric web applications. Specialized in React and Next.js, with a strong focus on developer experience, UI architecture, and product-quality execution.',
   image: '/Images/Picture.jpeg',
   
   about: {
-    bio: "I'm Abdallah Amadou Gueye, a passionate software engineer from Senegal. With a Master's degree in Applied Computer Science, I specialize in UI/UX Design and Usability Engineering.",
-    experience: "Currently working as a Software Engineer, I've contributed to multiple projects, web applications and mobile solutions. My approach combines technical excellence with user-centered design thinking."
+    bio: "I'm Abdallah Amadou Gueye, a passionate Frontend / Product Engineer from Senegal. With a Master's degree in Applied Computer Science, I specialize in building high-performance web applications with React and Next.js.",
+    experience: "Experienced in shipping production systems, migrating large Next.js codebases, building reusable component systems and helping teams and developers unblock and ship faster."
   },
 
   skills: [
-    'Software Engineering',
-    'UI/UX Design',
-    'Performance Optimization',
-    'Accessibility & Usability'
+    'React & Next.js',
+    'TypeScript & JavaScript',
+    'UI Architecture',
+    'Developer Experience'
   ]
 
 } as const;

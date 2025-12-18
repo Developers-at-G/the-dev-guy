@@ -123,7 +123,7 @@ export const Hero: React.FC = () => {
               className="grid grid-cols-3 gap-6 pt-8 border-t border-border"
             >
               <div>
-                <div className="text-2xl md:text-3xl font-bold text-foreground">3+</div>
+                <div className="text-2xl md:text-3xl font-bold text-foreground">4+</div>
                 <div className="text-sm text-muted-foreground">Years Experience</div>
               </div>
               <div>

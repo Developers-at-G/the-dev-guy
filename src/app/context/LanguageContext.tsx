@@ -38,13 +38,13 @@ const translations = {
     
     
     
-    'profile.software_engineer': 'Software Engineer',
+    'profile.software_engineer': 'Frontend / Product Engineer',
     'profile.react_enthusiast': 'React Enthusiast',
     'profile.nextjs_developer': 'Next.js Developer',
     'profile.building_experiences': 'Building With Love & Passion',
     'profile.description': 'I craft digital products with modern technologies. Specialized in React, Next.js, and UI/UX design principles.',
     'profile.about_me': 'About Me',
-    'profile.about_description': 'I\'m Abdallah Amadou Gueye, a passionate software engineer from Senegal. With a Master\'s degree in Applied Computer Science.',
+    'profile.about_description': 'I\'m Abdallah Amadou Gueye, a passionate Frontend / Product Engineer from Senegal. With a Master\'s degree in Applied Computer Science.',
     'profile.experience_description': 'I\'ve been working with modern web technologies for over 3 years, focusing on creating intuitive, and performant user experiences.',
     'profile.what_i_do': 'What I Do',
     'profile.fullstack_dev': 'Full-stack web development',
@@ -58,7 +58,7 @@ const translations = {
     'projects.featured_title': 'Featured Projects',
     'projects.featured_subtitle': "Before we dive into my work, here's a quick glimpse of how I bring ideas to life",
     // Education Card Descriptions
-    'education.bachelor_desc': 'Comprehensive study of computer science fundamentals, software engineering principles, and practical application development. Focused on modern web technologies, database systems, and software architecture.',
+    'education.bachelor_desc': 'Comprehensive study of computer science fundamentals, Frontend / Product Engineering principles, and practical application development. Focused on modern web technologies, database systems, and software architecture.',
     'education.master_desc': 'Advanced studies in computer science with specialization in UI/UX Design & Usability Engineering. Research focus on accessibility and usability engineering.',
     // Skills Section
     'skills.title': 'Skills',
@@ -84,7 +84,7 @@ const translations = {
     
     // Experience Section
     'experience.title': 'Work Experience',
-    'experience.software_engineer': 'Software Engineer',
+    'experience.software_engineer': 'Frontend / Product Engineer',
     'experience.fullstack_developer': 'Fullstack Developer',
     'experience.frontend_developer': 'Frontend Developer',
     'experience.full_time': 'Full Time',

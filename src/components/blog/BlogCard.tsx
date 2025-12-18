@@ -55,7 +55,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({ post, className = '' }) => {
             </div>
             <div>
               <p className="text-sm font-medium text-foreground">Abdallah Gueye</p>
-              <p className="text-xs text-muted-foreground">Software Engineer</p>
+              <p className="text-xs text-muted-foreground">Frontend / Product Engineer</p>
             </div>
           </div>
           

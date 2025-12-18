@@ -24,7 +24,7 @@ export const BlogHeader: React.FC<BlogHeaderProps> = ({
   featured = false,
   author = {
     name: 'Abdallah Gueye',
-    title: 'Software Engineer'
+    title: 'Frontend / Product Engineer'
   }
 }) => {
   return (

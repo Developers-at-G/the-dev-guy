@@ -21,54 +21,52 @@ export const skillsData: SkillCategory[] = [
     description: 'Modern UI frameworks and libraries',
     skills: [
       { 
-        name: 'Next.js', 
-        icon: '/Logos/nextdotjs-color.svg', 
-        experience: '2+ years',
-        level: 82,
+        name: 'React', 
+        icon: '/Logos/react-color.svg', 
+        experience: '4+ years',
+        level: 92,
         category: 'frontend'
       },
       { 
-        name: 'React', 
-        icon: '/Logos/react-color.svg', 
-        experience: '2+ years',
-        level: 83,
+        name: 'Next.js', 
+        icon: '/Logos/nextdotjs-color.svg', 
+        experience: '3+ years',
+        level: 90,
         category: 'frontend'
       },
       { 
         name: 'TypeScript', 
         icon: '/Logos/typescript-color.svg', 
-        experience: '1+ year',
-        level: 85,
+        experience: '3+ years',
+        level: 88,
         category: 'frontend'
       },
       { 
         name: 'JavaScript', 
         icon: '/Logos/javascript-color.svg', 
+        experience: '4+ years',
+        level: 90,
+        category: 'frontend'
+      },
+      { 
+        name: 'Tailwind CSS', 
+        icon: '/Images/tailwind.png', 
         experience: '3+ years',
-        level: 85,
+        level: 94,
+        category: 'frontend'
+      },
+      { 
+        name: 'HTML', 
+        icon: '/Logos/html5-color.svg', 
+        experience: '4+ years',
+        level: 95,
         category: 'frontend'
       },
       { 
         name: 'SCSS', 
         icon: '/Logos/css-color.svg', 
-        experience: '3+ years',
-        level: 85,
-        category: 'frontend'
-      },
-      { 
-        name: 'GSAP', 
-        icon: '/Images/code.png', 
-        experience: '2+ year',
-        level: 80,
-        description: 'Professional animation library for the modern web',
-        category: 'frontend'
-      },
-      { 
-        name: 'Zustand', 
-        icon: '/Images/code.png', 
-        experience: '1+ year',
-        level: 65,
-        description: 'Lightweight state management library',
+        experience: '4+ years',
+        level: 88,
         category: 'frontend'
       }
     ]
@@ -81,114 +79,113 @@ export const skillsData: SkillCategory[] = [
       { 
         name: 'Node.js', 
         icon: '/Images/nodeJS.png', 
+        experience: '3+ years',
+        level: 78,
+        category: 'backend'
+      },
+      { 
+        name: 'Prisma', 
+        icon: '/Images/code.png', 
         experience: '2+ years',
         level: 75,
+        description: 'Next-generation ORM for Node.js and TypeScript',
         category: 'backend'
       },
-      { 
-        name: 'Express.js', 
-        icon: '/Images/Expressjs.png', 
-        experience: '2+ years',
-        level: 60,
-        category: 'backend'
-      },
-      { 
-        name: 'GraphQL', 
-        icon: '/Logos/graphql-color.svg', 
-        experience: '1+ year',
-        level: 65,
-        category: 'backend'
-      }
-    ]
-  },
-  {
-    id: 'database',
-    title: 'Database & Storage',
-    description: 'Data management and storage solutions',
-    skills: [
       { 
         name: 'PostgreSQL', 
         icon: '/Images/postgresql.png', 
-        experience: '1+ year',
-        level: 58,
-        category: 'database'
-      },
-      { 
-        name: 'MySQL', 
-        icon: '/Images/mysql.png', 
         experience: '2+ years',
-        level: 52,
-        category: 'database'
+        level: 72,
+        category: 'backend'
       },
       { 
         name: 'Supabase', 
         icon: '/Images/supabase.png', 
-        experience: '1+ year',
-        level: 65,
-        category: 'database'
+        experience: '2+ years',
+        level: 70,
+        category: 'backend'
+      },
+      { 
+        name: 'Contentful', 
+        icon: '/Logos/contentful-color.svg', 
+        experience: '2+ years',
+        level: 75,
+        category: 'backend'
       }
     ]
   },
   {
     id: 'tools',
-    title: 'Tools & DevOps',
-    description: 'Development tools and cloud services',
+    title: 'DevOps & Platforms',
+    description: 'Development tools and deployment platforms',
     skills: [
-      { 
-        name: 'AWS', 
-        icon: '/Logos/amazonwebservices-color.svg', 
-        experience: '1+ year',
-        level: 53,
-        category: 'tools'
-      },
       { 
         name: 'Git', 
         icon: '/Logos/git-color.svg', 
-        experience: '3+ years',
-        level: 88,
+        experience: '4+ years',
+        level: 90,
         category: 'tools'
       },
       { 
-        name: 'Contentful', 
-        icon: '/Logos/contentful-color.svg', 
-        experience: '1+ year',
-        level: 70,
+        name: 'Docker', 
+        icon: '/Images/code.png', 
+        experience: '2+ years',
+        level: 65,
+        description: 'Container platform for application deployment',
+        category: 'tools'
+      },
+      { 
+        name: 'Vercel', 
+        icon: '/Images/code.png', 
+        experience: '3+ years',
+        level: 85,
+        description: 'Cloud platform for frontend deployment',
         category: 'tools'
       },
       { 
         name: 'Storybook', 
         icon: '/Images/code.png', 
-        experience: '1+ year',
-        level: 65,
+        experience: '2+ years',
+        level: 75,
         description: 'Component development and documentation tool',
+        category: 'tools'
+      },
+      { 
+        name: 'Vitest', 
+        icon: '/Images/code.png', 
+        experience: '1+ year',
+        level: 70,
+        description: 'Blazing fast unit test framework',
         category: 'tools'
       }
     ]
   },
   {
     id: 'design',
-    title: 'Design & UX',
-    description: 'User interface and experience design',
+    title: 'Mobile & Design',
+    description: 'Mobile development and design tools',
     skills: [
+      { 
+        name: 'React Native', 
+        icon: '/Logos/react-color.svg', 
+        experience: '2+ years',
+        level: 72,
+        description: 'Cross-platform mobile development',
+        category: 'design'
+      },
+      { 
+        name: 'Expo', 
+        icon: '/Images/code.png', 
+        experience: '2+ years',
+        level: 70,
+        description: 'React Native development platform',
+        category: 'design'
+      },
       { 
         name: 'Figma', 
         icon: '/Logos/figma-color.svg', 
-        experience: '2+ years',
-        level: 75,
-        category: 'design'
-      },
-      { 
-        name: 'Material UI', 
-        icon: '/Logos/materialdesign-color.svg', 
-        experience: '1+ year',
-        level: 70,
-        category: 'design'
-      },
-      { 
-        name: 'Tailwind', 
-        icon: '/Images/tailwind.png', 
-        experience: '2+ years',
-        level: 94,
+        experience: '3+ years',
+        level: 78,
         category: 'design'
       }
     ]

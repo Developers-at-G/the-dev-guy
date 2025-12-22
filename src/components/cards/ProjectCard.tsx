@@ -33,14 +33,14 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index = 0 }) 
     >
       <Card
         variant="elevated"
-        className="group overflow-hidden h-full transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
+        className="group overflow-hidden h-full flex flex-col transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 border-border/50"
       >
-        <Link href={`/Projects/${slug}`} className="block cursor-pointer" onClick={handleCardClick}>
-          <div className="relative h-48 md:h-64 overflow-hidden bg-muted">
+        <Link href={`/Projects/${slug}`} className="block cursor-pointer flex flex-col h-full" onClick={handleCardClick}>
+          <div className="relative h-48 md:h-64 overflow-hidden bg-muted/50 rounded-t-xl flex-shrink-0">
             {isVideo ? (
               <video
                 src={project.image}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 autoPlay
                 muted
                 loop
@@ -53,60 +53,69 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index = 0 }) 
                 src={project.image}
                 alt={`${project.title} project screenshot`}
                 fill
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             )}
-            <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            {project.link && (
+              <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="bg-background/90 backdrop-blur-sm rounded-lg p-1.5 shadow-lg border border-border/50">
+                  <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </div>
+              </div>
+            )}
           </div>
 
-          <div className="p-6 space-y-4">
-            <div className="space-y-2">
-              <div className="flex items-start justify-between gap-4">
-                <h3 className="text-xl md:text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
+          <div className="p-6 space-y-4 flex flex-col h-full">
+            <div className="space-y-3 flex-grow">
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="text-xl md:text-2xl font-bold text-foreground group-hover:text-primary transition-colors leading-tight flex-1">
                   {project.title}
                 </h3>
                 {project.period && (
-                  <Badge variant="outline" className="shrink-0">
+                  <Badge variant="outline" className="shrink-0 text-xs whitespace-nowrap">
                     {project.period}
                   </Badge>
                 )}
               </div>
-              <p className="text-sm text-muted-foreground line-clamp-2">
+              <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
                 {project.problem}
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 min-h-[2rem]">
               {project.technologies.slice(0, 4).map((tech) => (
                 <Badge
                   key={tech}
                   variant="secondary"
-                  className="text-xs"
+                  className="text-xs font-medium"
                 >
                   {tech}
                 </Badge>
               ))}
               {project.technologies.length > 4 && (
-                <Badge variant="outline" className="text-xs">
+                <Badge variant="outline" className="text-xs font-medium">
                   +{project.technologies.length - 4}
                 </Badge>
               )}
             </div>
 
-            <div className="flex items-center justify-between pt-2 border-t border-border">
-              <div className="flex items-center gap-4 text-sm text-muted-foreground">
+            <div className="flex items-center justify-between pt-3 border-t border-border/50">
+              <div className="flex items-center gap-3 text-xs md:text-sm text-muted-foreground">
                 {project.role && (
-                  <span className="capitalize">{project.role}</span>
+                  <span className="capitalize font-medium">{project.role}</span>
                 )}
                 {project.team && (
-                  <span>• {project.team}</span>
+                  <span className="text-muted-foreground/60">• {project.team}</span>
                 )}
               </div>
-              <div className="flex items-center gap-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                <span className="text-sm font-medium">View Details</span>
+              <div className="flex items-center gap-1.5 text-primary opacity-70 group-hover:opacity-100 transition-all">
+                <span className="text-xs md:text-sm font-medium">View</span>
                 <svg
-                  className="w-4 h-4 transition-transform group-hover:translate-x-1"
+                  className="w-3.5 h-3.5 md:w-4 md:h-4 transition-transform group-hover:translate-x-0.5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"

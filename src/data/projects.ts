@@ -2,17 +2,17 @@ import { Project } from '../hooks/useProjects';
 
 export const projectsData: Project[] = [
   {
-    title: 'Restaurant Management (PWA)',
-    image: '/Images/k-gere.png',
-    technologies: ['Next.js 14', 'TypeScript', 'Prisma', 'PostgreSQL', 'NextAuth.js', 'PWA', 'TailwindCSS'],
-    link: 'https://kader-qui-gere.vercel.app/auth/signin',
-    githubUrl: 'https://github.com/abdallah96/kader-qui-gere',
+    title: 'Naboujastore - E-Commerce Platform',
+    image: '/Images/Nabouja.jpeg',
+    technologies: ['Next.js 15', 'TypeScript', 'React 19', 'Tailwind CSS', 'Framer Motion', 'Radix UI', 'Vercel Analytics', 'WhatsApp API'],
+    link: 'https://www.nabouja-store.com',
+    githubUrl: 'https://github.com/abdallah96/naboujastore-website',
     role: 'Full‑stack',
     team: 'Solo',
     period: '2025',
-    impacts: ['+55% order speed', 'Offline-first PWA', 'Multi-restaurant ready'],
-    problem: 'Manual ordering and fragmented workflows slowed restaurant service.',
-    actions: ['Designed PWA architecture with offline sync', 'Implemented real-time order flows', 'Added multi-tenant data model with CFA support']
+    impacts: ['Production-ready e-commerce', 'Vercel Analytics integration', 'Next.js 15 App Router', 'Performance-optimized'],
+    problem: 'Traditional Senegalese clothing retailers needed a modern e-commerce platform with WhatsApp integration to serve local market preferences.',
+    actions: ['Built production-ready e-commerce with Next.js 15 App Router and React 19', 'Implemented Vercel Analytics for real-time user behavior tracking and conversion funnel analysis', 'Deployed on Vercel with automatic CI/CD and optimized performance metrics', 'Created advanced shopping cart with React Context API and persistent state management', 'Integrated WhatsApp API for order processing with comprehensive event tracking', 'Developed African-inspired design system with Framer Motion animations and Radix UI components']
   },
   {
     title: 'Design System & Components Library',
@@ -28,6 +28,19 @@ export const projectsData: Project[] = [
     actions: ['Built 7+ reusable React components with TypeScript', 'Implemented Storybook for interactive documentation', 'Set up comprehensive testing with Vitest and React Testing Library', 'Created responsive, accessible components following design system principles']
   },
   {
+    title: 'Restaurant Management (PWA)',
+    image: '/Images/k-gere.png',
+    technologies: ['Next.js 14', 'TypeScript', 'Prisma', 'PostgreSQL', 'NextAuth.js', 'PWA', 'TailwindCSS'],
+    link: 'https://kader-qui-gere.vercel.app/auth/signin',
+    githubUrl: 'https://github.com/abdallah96/kader-qui-gere',
+    role: 'Full‑stack',
+    team: 'Solo',
+    period: '2025',
+    impacts: ['+55% order speed', 'Offline-first PWA', 'Multi-restaurant ready'],
+    problem: 'Manual ordering and fragmented workflows slowed restaurant service.',
+    actions: ['Designed PWA architecture with offline sync', 'Implemented real-time order flows', 'Added multi-tenant data model with CFA support']
+  },
+  {
     title: 'Restaurant Website',
     image: '/Videos/Restaurant.mov',
     technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Supabase', 'React' , 'Twilio', 'Zustand'],
@@ -39,7 +52,6 @@ export const projectsData: Project[] = [
     problem: 'Site needed to showcase menu and weekly specials with speed.',
     actions: ['Implemented SSG for core pages', 'Built specials schedule UX', 'Added image optimization and caching']
   },
-  
   {
     title: 'IlmQuest - Real-Time Multiplayer Quiz Game',
     image: '/Images/IlmQuest.png',

@@ -23,7 +23,7 @@ export const ProjectsSection: React.FC = () => {
           description={t('projects.description')}
         />
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12 auto-rows-fr">
           {featuredProjects.map((project, index) => (
             <ProjectCard key={project.title} project={project} index={index} />
           ))}

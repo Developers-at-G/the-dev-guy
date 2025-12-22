@@ -22,7 +22,7 @@ export const ProjectsList: React.FC = () => {
             description={description}
           />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 auto-rows-fr">
             {projectsData.map((project, index) => (
               <ProjectCard key={project.title} project={project} index={index} />
             ))}

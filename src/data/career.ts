@@ -21,7 +21,7 @@ export const careerData: CareerExperience[] = [
     description: 'Building and maintaining reusable UI components and complex page layouts, leading major framework migrations, and implementing high-performance user experiences.',
     achievements: [
       'Built and maintained reusable UI components and complex page layouts using React, Next.js, Tailwind CSS, and Contentful, used across multiple production features',
-      'Led a major migration from Next.js 12 to Next.js 14, including upgrades to React 19, Node.js 18 LTS, and Tailwind CSS 3, resulting in improved performance and reduced technical debt',
+      'Contribuded to a major migration from Next.js 12 to Next.js 14, including upgrades to React 19, Node.js 18 LTS, and Tailwind CSS 3, resulting in improved performance and reduced technical debt',
       'Designed and implemented a Product Configurator allowing users to customize, visualize, and price full setups with real-time cart integration',
       'Implemented high-performance animations and scroll-based interactions using GSAP, balancing visual polish with runtime performance',
       'Replaced custom internationalization logic with native Next.js middleware, improving maintainability and consistency across locales',

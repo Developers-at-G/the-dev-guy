@@ -15,17 +15,17 @@ export const projectsData: Project[] = [
     actions: ['Built production-ready e-commerce with Next.js 15 App Router and React 19', 'Implemented Vercel Analytics for real-time user behavior tracking and conversion funnel analysis', 'Deployed on Vercel with automatic CI/CD and optimized performance metrics', 'Created advanced shopping cart with React Context API and persistent state management', 'Integrated WhatsApp API for order processing with comprehensive event tracking', 'Developed African-inspired design system with Framer Motion animations and Radix UI components']
   },
   {
-    title: 'Design System & Components Library',
-    image: '/Videos/devguy:ui.mov',
-    technologies: ['React', 'TypeScript', 'Storybook', 'CSS Modules', 'Vitest', 'ESLint', 'Prettier', 'tsup'],
-    link: 'https://storybook-static-nine-roan.vercel.app',
-    githubUrl: 'https://github.com/abdallah96/react-storybook-components',
+    title: 'Developer Playground',
+    image: '/Images/developer-playground.png',
+    technologies: ['Next.js 14', 'TypeScript', 'React', 'Tailwind CSS', 'Storybook', 'Vercel Analytics', 'Serverless', 'Edge Middleware'],
+    link: 'https://developer-playground-one.vercel.app',
+    githubUrl: 'https://github.com/abdallah96/Developer-playground',
     role: 'Full‑stack',
     team: 'Solo',
     period: '2025',
-    impacts: ['Reusable component library', 'TypeScript-first approach', 'Storybook documentation', 'Comprehensive testing'],
-    problem: 'Developers needed a reliable, well-tested component library to accelerate development workflows.',
-    actions: ['Built 7+ reusable React components with TypeScript', 'Implemented Storybook for interactive documentation', 'Set up comprehensive testing with Vitest and React Testing Library', 'Created responsive, accessible components following design system principles']
+    impacts: ['Next.js 14 showcase', 'SSR/SSG/ISR strategies', 'Component library system', 'Performance-optimized'],
+    problem: 'Developers needed a comprehensive learning resource demonstrating Next.js 14 best practices, rendering strategies, and component architecture.',
+    actions: ['Built production-ready Next.js 14 app showcasing SSR, SSG, and ISR rendering strategies', 'Created reusable component library with 7+ customizable UI components and Storybook integration', 'Implemented API routes with middleware, authentication patterns, and protected routes', 'Optimized performance with lazy loading, code splitting, dynamic imports, and React memoization', 'Deployed on Vercel with Analytics integration and automatic CI/CD']
   },
   {
     title: 'Restaurant Management (PWA)',
@@ -39,6 +39,19 @@ export const projectsData: Project[] = [
     impacts: ['+55% order speed', 'Offline-first PWA', 'Multi-restaurant ready'],
     problem: 'Manual ordering and fragmented workflows slowed restaurant service.',
     actions: ['Designed PWA architecture with offline sync', 'Implemented real-time order flows', 'Added multi-tenant data model with CFA support']
+  },
+  {
+    title: 'Design System & Components Library',
+    image: '/Videos/devguy:ui.mov',
+    technologies: ['React', 'TypeScript', 'Storybook', 'CSS Modules', 'Vitest', 'ESLint', 'Prettier', 'tsup'],
+    link: 'https://storybook-static-nine-roan.vercel.app',
+    githubUrl: 'https://github.com/abdallah96/react-storybook-components',
+    role: 'Full‑stack',
+    team: 'Solo',
+    period: '2025',
+    impacts: ['Reusable component library', 'TypeScript-first approach', 'Storybook documentation', 'Comprehensive testing'],
+    problem: 'Developers needed a reliable, well-tested component library to accelerate development workflows.',
+    actions: ['Built 7+ reusable React components with TypeScript', 'Implemented Storybook for interactive documentation', 'Set up comprehensive testing with Vitest and React Testing Library', 'Created responsive, accessible components following design system principles']
   },
   {
     title: 'Restaurant Website',

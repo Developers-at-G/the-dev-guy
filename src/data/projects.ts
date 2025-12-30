@@ -91,20 +91,6 @@ export const projectsData: Project[] = [
     problem: 'Developers lacked a simple way to track tasks and time together.',
     actions: ['Shipped unified tasks+time model', 'Built analytics and weekly reports', 'Optimized mobile-first interactions']
   },
-
-  {
-    title: 'Sportbook – Football Field Booking Platform',
-    image: '/Images/sportbook.png',
-    technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Supabase', 'Zustand', 'React Hook Form', 'Zod', 'PostgreSQL'],
-    link: 'https://soccer-booking-website.vercel.app',
-    role: 'Full‑stack',
-    team: 'Solo',
-    period: '2025 - In Progress',
-    impacts: ['Cinematic matchday UI', 'Time-based match scanner', 'Neighborhood field discovery', 'Admin booking management'],
-    problem: 'Team captains needed a better way to discover and book football fields for night games in Dakar, with clear availability and facility details.',
-    actions: ['Designed "matchday control room" UI inspired by floodlit pitches', 'Built time-based match scanner for live availability', 'Implemented neighborhood-based field discovery', 'Creating admin system for field, slot, and booking management', 'Setting up Supabase with Row Level Security and seeding realistic Dakar data']
-  },
-  
   
   {
     title: 'Real Estate Website',

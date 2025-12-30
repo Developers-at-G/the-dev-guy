@@ -34,6 +34,7 @@ const translations = {
     'nav.projects': 'Projects',
     'nav.education': 'Education',
     'nav.blog': 'Blog',
+    'nav.architecture': 'Architecture',
     'nav.contact': 'Contact',
     
     
@@ -201,6 +202,7 @@ const translations = {
     'nav.projects': 'Projets',
     'nav.education': 'Éducation',
     'nav.blog': 'Blog',
+    'nav.architecture': 'Architecture',
     'nav.contact': 'Contact',
     
     // Hero Section

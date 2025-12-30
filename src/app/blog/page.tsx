@@ -92,11 +92,12 @@ const BlogPage = () => {
         <section className="px-6 py-16">
           <div className="max-w-6xl mx-auto">
             <div className="mb-8">
-              <h2 className="text-2xl font-mono text-green-400 mb-2">{"// Featured Article"}</h2>
+              <h2 className="text-2xl font-mono text-green-400 mb-2">{"// Featured Articles"}</h2>
               <div className="h-px bg-gradient-to-r from-green-400 to-transparent"></div>
             </div>
 
-            <Link href="/blog/why-building-real-projects-taught-me-more-than-any-tutorial">
+            <div className="grid md:grid-cols-2 gap-6 mb-8">
+              <Link href="/blog/why-building-real-projects-taught-me-more-than-any-tutorial">
               <div 
                 className="bg-gray-900/90 backdrop-blur-sm rounded-lg border border-gray-700/50 overflow-hidden group cursor-pointer hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300 hover:scale-[1.02] relative"
 
@@ -204,7 +205,82 @@ const BlogPage = () => {
                 </div>
               </div>
               </div>
-            </Link>
+              </Link>
+
+              <Link href="/frontend-architecture">
+                <div 
+                  className="bg-gray-900/90 backdrop-blur-sm rounded-lg border border-gray-700/50 overflow-hidden group cursor-pointer hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 hover:scale-[1.02] relative h-full"
+                >
+                  <div className="absolute top-2 right-2 bg-purple-500/20 border border-purple-500/30 rounded px-2 py-1 text-xs text-purple-300 opacity-0 group-hover:opacity-100 transition-opacity">
+                    View Architecture →
+                  </div>
+                  <div className="flex items-center gap-1 px-1 py-2 bg-gray-800/50 border-b border-gray-700/50">
+                    <div className="bg-gray-700/50 px-3 py-1 rounded-t text-xs text-gray-300 font-mono border-t border-l border-r border-gray-600/50">
+                      frontend-architecture.tsx
+                    </div>
+                  </div>
+
+                  <div className="p-6 font-mono text-sm">
+                    <div className="space-y-4">
+                      <div className="flex gap-4">
+                        <div className="text-gray-500 select-none">1</div>
+                        <div>
+                          <span className="text-purple-400">export</span>{' '}
+                          <span className="text-blue-400">default</span>{' '}
+                          <span className="text-yellow-400">function</span>{' '}
+                          <span className="text-green-400">Architecture</span>
+                          <span className="text-white">()</span>
+                        </div>
+                      </div>
+                      
+                      <div className="flex gap-4">
+                        <div className="text-gray-500 select-none">2</div>
+                        <div>
+                          <span className="text-yellow-400">{`{`}</span>
+                        </div>
+                      </div>
+
+                      <div className="flex gap-4">
+                        <div className="text-gray-500 select-none">3</div>
+                        <div className="pl-4">
+                          <span className="text-green-400">return</span>{' '}
+                          <span className="text-blue-400">&lt;</span>
+                          <span className="text-yellow-300">NextJS</span>
+                          <span className="text-blue-400"> /&gt;</span>
+                          <span className="text-white">;</span>
+                        </div>
+                      </div>
+
+                      <div className="flex gap-4">
+                        <div className="text-gray-500 select-none">4</div>
+                        <div>
+                          <span className="text-yellow-400">{`};`}</span>
+                        </div>
+                      </div>
+
+                      <div className="flex gap-4 mt-6">
+                        <div className="text-gray-500 select-none">5</div>
+                        <div></div>
+                      </div>
+
+                      <div className="flex gap-4">
+                        <div className="text-gray-500 select-none">6</div>
+                        <div>
+                          <span className="text-gray-500">{"// Server Components, State Management,"}</span>
+                        </div>
+                      </div>
+
+                      <div className="flex gap-4">
+                        <div className="text-gray-500 select-none">7</div>
+                        <div>
+                          <span className="text-gray-500">{"// Performance & DX strategies"}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </div>
           </div>
         </section>
 

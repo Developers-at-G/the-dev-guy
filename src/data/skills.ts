@@ -37,7 +37,7 @@ export const skillsData: SkillCategory[] = [
       { 
         name: 'TypeScript', 
         icon: '/Logos/typescript-color.svg', 
-        experience: '3+ years',
+        experience: '4+ years',
         level: 88,
         category: 'frontend'
       },
@@ -51,21 +51,21 @@ export const skillsData: SkillCategory[] = [
       { 
         name: 'Tailwind CSS', 
         icon: '/Images/tailwind.png', 
-        experience: '3+ years',
+        experience: '4+ years',
         level: 94,
         category: 'frontend'
       },
       { 
         name: 'HTML', 
         icon: '/Logos/html5-color.svg', 
-        experience: '4+ years',
+        experience: '7+ years',
         level: 95,
         category: 'frontend'
       },
       { 
         name: 'SCSS', 
         icon: '/Logos/css-color.svg', 
-        experience: '4+ years',
+        experience: '6+ years',
         level: 88,
         category: 'frontend'
       }
@@ -86,7 +86,7 @@ export const skillsData: SkillCategory[] = [
       { 
         name: 'Prisma', 
         icon: '/Images/code.png', 
-        experience: '2+ years',
+        experience: '1+ years',
         level: 60,
         description: 'Next-generation ORM for Node.js and TypeScript',
         category: 'backend'
@@ -108,7 +108,7 @@ export const skillsData: SkillCategory[] = [
       { 
         name: 'Contentful', 
         icon: '/Logos/contentful-color.svg', 
-        experience: '2+ years',
+        experience: '4+ years',
         level: 80,
         category: 'backend'
       }
@@ -122,14 +122,14 @@ export const skillsData: SkillCategory[] = [
       { 
         name: 'Git', 
         icon: '/Logos/git-color.svg', 
-        experience: '4+ years',
+        experience: '7+ years',
         level: 90,
         category: 'tools'
       },
       { 
         name: 'Vercel', 
         icon: '/Images/code.png', 
-        experience: '3+ years',
+        experience: '2+ years',
         level: 70,
         description: 'Cloud platform for frontend deployment',
         category: 'tools'
@@ -137,7 +137,7 @@ export const skillsData: SkillCategory[] = [
       { 
         name: 'Storybook', 
         icon: '/Images/code.png', 
-        experience: '2+ years',
+        experience: '1+ years',
         level: 70,
         description: 'Component development and documentation tool',
         category: 'tools'
@@ -160,7 +160,7 @@ export const skillsData: SkillCategory[] = [
       { 
         name: 'React Native', 
         icon: '/Logos/react-color.svg', 
-        experience: '2+ years',
+        experience: '1+ years',
         level: 52,
         description: 'Cross-platform mobile development',
         category: 'design'
@@ -168,7 +168,7 @@ export const skillsData: SkillCategory[] = [
       { 
         name: 'Expo', 
         icon: '/Images/code.png', 
-        experience: '2+ years',
+        experience: '1+ years',
         level: 50,
         description: 'React Native development platform',
         category: 'design'
@@ -176,7 +176,7 @@ export const skillsData: SkillCategory[] = [
       { 
         name: 'Figma', 
         icon: '/Logos/figma-color.svg', 
-        experience: '3+ years',
+        experience: '4+ years',
         level: 75,
         category: 'design'
       }

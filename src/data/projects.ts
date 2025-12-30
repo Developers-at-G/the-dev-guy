@@ -60,7 +60,7 @@ export const projectsData: Project[] = [
     link: 'https://keurguirestaurant.com',
     role: 'Full‑stack',
     team: 'Solo',
-    period: '2025',
+    period: '2024',
     impacts: ['+40% menu views', 'SEO‑friendly', 'Fast LCP'],
     problem: 'Site needed to showcase menu and weekly specials with speed.',
     actions: ['Implemented SSG for core pages', 'Built specials schedule UX', 'Added image optimization and caching']

@@ -2,7 +2,7 @@ export const profileData = {
   name: 'Abdallah Amadou Gueye',
   title: 'Frontend / Product Engineer',
   subtitle: 'Building with Love and Passion',
-  description: 'Frontend / Product Engineer with 4+ years of experience building high-performance, user-centric web applications. Specialized in React and Next.js, with a strong focus on developer experience, UI architecture, and product-quality execution.',
+  description: 'Hi, I\'m Abdallah — a Frontend & Product Engineer passionate about crafting fast, intuitive, and developer-friendly web experiences. I specialize in React, Next.js, and building systems that help teams ship better products faster.',
   image: '/Images/Picture.jpeg',
   
   about: {

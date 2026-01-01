@@ -9,7 +9,7 @@ export const projectsData: Project[] = [
     githubUrl: 'https://github.com/abdallah96/naboujastore-website',
     role: 'Full‑stack',
     team: 'Solo',
-    period: '2025',
+    period: 'In Progress',
     impacts: ['Production-ready e-commerce', 'Vercel Analytics integration', 'Next.js 15 App Router', 'Performance-optimized'],
     problem: 'Traditional Senegalese clothing retailers needed a modern e-commerce platform with WhatsApp integration to serve local market preferences.',
     actions: ['Built production-ready e-commerce with Next.js 15 App Router and React 19', 'Implemented Vercel Analytics for real-time user behavior tracking and conversion funnel analysis', 'Deployed on Vercel with automatic CI/CD and optimized performance metrics', 'Created advanced shopping cart with React Context API and persistent state management', 'Integrated WhatsApp API for order processing with comprehensive event tracking', 'Developed African-inspired design system with Framer Motion animations and Radix UI components']

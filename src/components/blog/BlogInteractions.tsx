@@ -1,8 +1,7 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Button } from '../ui/Button';
-import { Card, CardContent } from '../ui/Card';
 import { trackBlogPostLiked, trackBlogPostDisliked, trackBlogCommentAdded } from '../../utils/analytics';
 
 interface BlogInteractionsProps {
@@ -49,7 +48,7 @@ export const BlogInteractions: React.FC<BlogInteractionsProps> = ({ postSlug }) 
   };
 
   // Fetch reactions
-  const fetchReactions = async () => {
+  const fetchReactions = useCallback(async () => {
     try {
       const response = await fetch(`/api/blog/${postSlug}/likes`);
       const data = await response.json();
@@ -57,10 +56,10 @@ export const BlogInteractions: React.FC<BlogInteractionsProps> = ({ postSlug }) 
     } catch (error) {
       console.error('Error fetching reactions:', error);
     }
-  };
+  }, [postSlug]);
 
   // Fetch comments
-  const fetchComments = async () => {
+  const fetchComments = useCallback(async () => {
     try {
       const response = await fetch(`/api/blog/${postSlug}/comments`);
       const data = await response.json();
@@ -70,12 +69,12 @@ export const BlogInteractions: React.FC<BlogInteractionsProps> = ({ postSlug }) 
     } finally {
       setLoading(false);
     }
-  };
+  }, [postSlug]);
 
   useEffect(() => {
     fetchReactions();
     fetchComments();
-  }, [postSlug]);
+  }, [postSlug, fetchReactions, fetchComments]);
 
   // Handle reaction
   const handleReaction = async (reaction: 'like' | 'dislike') => {

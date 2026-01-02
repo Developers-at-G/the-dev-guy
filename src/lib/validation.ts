@@ -3,7 +3,7 @@
 export interface ValidationResult {
   valid: boolean;
   error?: string;
-  sanitized?: string;
+  sanitized?: string | null;
 }
 
 // Length limits

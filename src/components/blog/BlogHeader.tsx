@@ -22,10 +22,6 @@ export const BlogHeader: React.FC<BlogHeaderProps> = ({
   date,
   readTime,
   featured = false,
-  author = {
-    name: 'Abdallah Gueye',
-    title: 'Frontend / Product Engineer'
-  }
 }) => {
   return (
     <header className="mb-12">

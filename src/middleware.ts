@@ -12,7 +12,7 @@ export function middleware(request: NextRequest) {
       process.env.NEXT_PUBLIC_SITE_URL,
       'http://localhost:3000',
       'https://abdallah-the-dev-guy.vercel.app',
-    ].filter(Boolean);
+    ].filter((url): url is string => Boolean(url));
 
     // Set CORS headers
     if (origin && allowedOrigins.some(allowed => origin.includes(allowed) || allowed.includes(origin))) {

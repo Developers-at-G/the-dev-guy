@@ -17,7 +17,7 @@ export default function BlogPost() {
                 It Will Change How We Build
               </>
             }
-            excerpt="There's a lot of noise lately about AI replacing developers. I don't buy it. What AI is doing is speeding up development — sometimes a lot. But speed alone doesn't build good software."
+            excerpt="There's a lot of noise lately about AI replacing developers. I don't buy it. What AI is doing is speeding up development, sometimes a lot. But speed alone doesn't build good software."
             category="Development"
             date="January 2026"
             readTime="4 min"
@@ -27,18 +27,6 @@ export default function BlogPost() {
             <article className="prose prose-lg prose-invert max-w-none">
               <div className="bg-gradient-to-br from-white/5 via-background/80 to-accent/5 backdrop-blur-xl rounded-3xl border border-primary/20 shadow-2xl p-8 md:p-12">
                 
-                <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                  There&apos;s a lot of noise lately about AI replacing developers.
-                </p>
-
-                <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                  I don&apos;t buy it.
-                </p>
-
-                <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                  What AI is doing is speeding up development sometimes a lot. But speed alone doesn&apos;t build good software.
-                </p>
-
                 <h2 className="text-2xl md:text-3xl font-bold text-foreground mt-12 mb-6">
                   🤖 What AI Actually Does
                 </h2>
@@ -76,7 +64,7 @@ export default function BlogPost() {
                 </p>
 
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                  We still need to understand the code we ship — and take responsibility for it.
+                  We still need to understand the code we ship and take responsibility for it.
                 </p>
 
                 <div className="mt-16 pt-8 border-t border-primary/20">

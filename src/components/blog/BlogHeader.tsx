@@ -2,15 +2,15 @@ import React from 'react';
 import { Badge } from '../ui/Badge';
 
 interface BlogHeaderProps {
-  title: string;
+  title: string | React.ReactNode;
   excerpt?: string;
   category: string;
   date: string;
   readTime?: string;
   featured?: boolean;
   author?: {
-    name: string;
-    title: string;
+    name?: string;
+    title?: string;
     avatar?: string;
   };
 }
@@ -55,16 +55,6 @@ export const BlogHeader: React.FC<BlogHeaderProps> = ({
           {excerpt}
         </p>
       )}
-
-      <div className="flex items-center gap-4 pt-6 border-t border-border">
-        <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center">
-          <span className="text-white font-bold text-lg">AG</span>
-        </div>
-        <div>
-          <p className="font-semibold text-foreground">{author.name}</p>
-          <p className="text-sm text-muted-foreground">{author.title}</p>
-        </div>
-      </div>
     </header>
   );
 };

@@ -12,6 +12,10 @@ export const analyticsEvents = {
   BLOG_POST_VIEWED: 'Blog Post Viewed',
   EXTERNAL_LINK_CLICKED: 'External Link Clicked',
   
+  BLOG_POST_LIKED: 'Blog Post Liked',
+  BLOG_POST_DISLIKED: 'Blog Post Disliked',
+  BLOG_COMMENT_ADDED: 'Blog Comment Added',
+  
   CHATBOT_OPENED: 'Chatbot Opened',
   CHATBOT_MESSAGE_SENT: 'Chatbot Message Sent',
 } as const;
@@ -84,6 +88,31 @@ export function trackChatbotOpened() {
 export function trackChatbotMessageSent(messageLength: number) {
   track(analyticsEvents.CHATBOT_MESSAGE_SENT, {
     messageLength,
+    timestamp: new Date().toISOString(),
+    page: typeof window !== 'undefined' ? window.location.pathname : 'server',
+  });
+}
+
+export function trackBlogPostLiked(postSlug: string) {
+  track(analyticsEvents.BLOG_POST_LIKED, {
+    postSlug,
+    timestamp: new Date().toISOString(),
+    page: typeof window !== 'undefined' ? window.location.pathname : 'server',
+  });
+}
+
+export function trackBlogPostDisliked(postSlug: string) {
+  track(analyticsEvents.BLOG_POST_DISLIKED, {
+    postSlug,
+    timestamp: new Date().toISOString(),
+    page: typeof window !== 'undefined' ? window.location.pathname : 'server',
+  });
+}
+
+export function trackBlogCommentAdded(postSlug: string, commentLength: number) {
+  track(analyticsEvents.BLOG_COMMENT_ADDED, {
+    postSlug,
+    commentLength,
     timestamp: new Date().toISOString(),
     page: typeof window !== 'undefined' ? window.location.pathname : 'server',
   });

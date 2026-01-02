@@ -1,8 +1,8 @@
-'use client';
 import React from 'react';
 import BlogLayout from '../../../components/blog/BlogLayout';
 import BlogHeader from '../../../components/blog/BlogHeader';
 import { Container } from '../../../components/ui/Container';
+import { BlogInteractions } from '../../../components/blog/BlogInteractions';
 
 export default function BlogPost() {
   return (
@@ -10,12 +10,18 @@ export default function BlogPost() {
       <Container>
         <div className="max-w-4xl mx-auto">
           <BlogHeader
-            title="AI Won't Replace Developers — It Will Change How We Build"
+            title={
+              <>
+                AI Won't Replace Developers
+                <br />
+                It Will Change How We Build
+              </>
+            }
             excerpt="There's a lot of noise lately about AI replacing developers. I don't buy it. What AI is doing is speeding up development — sometimes a lot. But speed alone doesn't build good software."
             category="Development"
-            date="January 2025"
+            date="January 2026"
             readTime="4 min"
-            featured={true}
+            featured
           />
 
             <article className="prose prose-lg prose-invert max-w-none">
@@ -86,6 +92,9 @@ export default function BlogPost() {
                 </div>
               </div>
             </article>
+
+            {/* Blog Interactions */}
+            <BlogInteractions postSlug="ai-wont-replace-developers-it-will-change-how-we-build" />
         </div>
       </Container>
     </BlogLayout>

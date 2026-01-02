@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model BlogReaction {
+  id              Int      @id @default(autoincrement())
+  postSlug        String   @map("post_slug")
+  userIdentifier  String   @map("user_identifier")
+  reaction        String   // 'like' or 'dislike'
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  @@unique([postSlug, userIdentifier])
+  @@map("blog_reactions")
+}
+
+model BlogComment {
+  id          Int       @id @default(autoincrement())
+  postSlug    String    @map("post_slug")
+  authorName  String    @map("author_name")
+  authorEmail String?   @map("author_email")
+  content     String
+  parentId    Int?      @map("parent_id")
+  approved    Boolean   @default(false)
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  parent      BlogComment? @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade)
+  replies     BlogComment[] @relation("CommentReplies")
+
+  @@index([postSlug])
+  @@index([approved])
+  @@map("blog_comments")
+}
+

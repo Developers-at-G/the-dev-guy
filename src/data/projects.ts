@@ -41,19 +41,6 @@ export const projectsData: Project[] = [
     actions: ['Designed PWA architecture with offline sync', 'Implemented real-time order flows', 'Added multi-tenant data model with CFA support']
   },
   {
-    title: 'Design System & Components Library',
-    image: '/Videos/devguy:ui.mov',
-    technologies: ['React', 'TypeScript', 'Storybook', 'CSS Modules', 'Vitest', 'ESLint', 'Prettier', 'tsup'],
-    link: 'https://storybook-static-nine-roan.vercel.app',
-    githubUrl: 'https://github.com/abdallah96/react-storybook-components',
-    role: 'Full‑stack',
-    team: 'Solo',
-    period: '2025',
-    impacts: ['Reusable component library', 'TypeScript-first approach', 'Storybook documentation', 'Comprehensive testing'],
-    problem: 'Developers needed a reliable, well-tested component library to accelerate development workflows.',
-    actions: ['Built 7+ reusable React components with TypeScript', 'Implemented Storybook for interactive documentation', 'Set up comprehensive testing with Vitest and React Testing Library', 'Created responsive, accessible components following design system principles']
-  },
-  {
     title: 'Restaurant Website',
     image: '/Videos/Restaurant.mov',
     technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Supabase', 'React' , 'Twilio', 'Zustand'],

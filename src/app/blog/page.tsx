@@ -207,6 +207,115 @@ const BlogPage = () => {
               </div>
               </Link>
 
+              <Link href="/blog/ai-wont-replace-developers-it-will-change-how-we-build">
+              <div 
+                className="bg-gray-900/90 backdrop-blur-sm rounded-lg border border-gray-700/50 overflow-hidden group cursor-pointer hover:border-green-500/50 hover:shadow-2xl hover:shadow-green-500/20 transition-all duration-300 hover:scale-[1.02] relative h-full"
+              >
+                <div className="absolute top-2 right-2 bg-green-500/20 border border-green-500/30 rounded px-2 py-1 text-xs text-green-300 opacity-0 group-hover:opacity-100 transition-opacity">
+                  Click to read →
+                </div>
+              <div className="flex items-center gap-1 px-1 py-2 bg-gray-800/50 border-b border-gray-700/50">
+                <div className="bg-gray-700/50 px-3 py-1 rounded-t text-xs text-gray-300 font-mono border-t border-l border-r border-gray-600/50">
+                  ai-and-developers.ts
+                </div>
+              </div>
+
+              <div className="p-6 font-mono text-sm">
+                <div className="space-y-4">
+                  <div className="flex gap-4">
+                    <div className="text-gray-500 select-none">1</div>
+                    <div>
+                      <span className="text-purple-400">const</span>{' '}
+                      <span className="text-blue-400">article</span>{' '}
+                      <span className="text-white">=</span>{' '}
+                      <span className="text-yellow-400">{`{`}</span>
+                    </div>
+                  </div>
+                  
+                  <div className="flex gap-4">
+                    <div className="text-gray-500 select-none">2</div>
+                    <div className="pl-4">
+                      <span className="text-green-400">title</span>
+                      <span className="text-white">:</span>{' '}
+                      <span className="text-yellow-300">"AI Won't Replace Developers"</span>
+                      <span className="text-white">,</span>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4">
+                    <div className="text-gray-500 select-none">3</div>
+                    <div className="pl-4">
+                      <span className="text-green-400">insights</span>
+                      <span className="text-white">:</span>{' '}
+                      <span className="text-yellow-300">"Speed vs. understanding"</span>
+                      <span className="text-white">,</span>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4">
+                    <div className="text-gray-500 select-none">4</div>
+                    <div className="pl-4">
+                      <span className="text-green-400">published</span>
+                      <span className="text-white">:</span>{' '}
+                      <span className="text-yellow-300">"January 2025"</span>
+                      <span className="text-white">,</span>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4">
+                    <div className="text-gray-500 select-none">5</div>
+                    <div className="pl-4">
+                      <span className="text-green-400">readTime</span>
+                      <span className="text-white">:</span>{' '}
+                      <span className="text-blue-300">4</span>
+                      <span className="text-white">,</span>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4">
+                    <div className="text-gray-500 select-none">6</div>
+                    <div className="pl-4">
+                      <span className="text-green-400">impact</span>
+                      <span className="text-white">:</span>{' '}
+                      <span className="text-yellow-300">"Control AI, don't compete"</span>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4">
+                    <div className="text-gray-500 select-none">7</div>
+                    <div>
+                      <span className="text-yellow-400">{`};`}</span>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4 mt-6">
+                    <div className="text-gray-500 select-none">8</div>
+                    <div></div>
+                  </div>
+
+                  <div className="flex gap-4">
+                    <div className="text-gray-500 select-none">9</div>
+                    <div>
+                      <span className="text-gray-500">{"// 👇 Click to execute reading function"}</span>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4">
+                    <div className="text-gray-500 select-none">10</div>
+                    <div>
+                      <span className="text-green-400 hover:text-green-300 transition-colors bg-green-500/10 hover:bg-green-500/20 px-2 py-1 rounded border border-green-500/30 hover:border-green-400/50 inline-flex items-center gap-2 group/link">
+                        <span className="group-hover/link:animate-pulse">▶</span>
+                        article.read()
+                        <span className="text-xs opacity-70">{"// Click me!"}</span>
+                      </span>
+                      <span className="text-white">;</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+              </Link>
+
               <Link href="/frontend-architecture">
                 <div 
                   className="bg-gray-900/90 backdrop-blur-sm rounded-lg border border-gray-700/50 overflow-hidden group cursor-pointer hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 hover:scale-[1.02] relative h-full"

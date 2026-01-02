@@ -48,7 +48,6 @@ const translations = {
     'profile.about_description': 'I\'m Abdallah Amadou Gueye, a passionate Frontend / Product Engineer from Senegal. With a Master\'s degree in Applied Computer Science.',
     'profile.experience_description': 'I\'ve been working with modern web technologies for over 3 years, focusing on creating intuitive, and performant user experiences.',
     'profile.what_i_do': 'What I Do',
-    'profile.fullstack_dev': 'Full-stack web development',
     'profile.uiux_design': 'UI/UX design & prototyping',
     'profile.performance': 'Performance optimization',
     'profile.accessibility': 'Accessibility implementation',
@@ -85,7 +84,6 @@ const translations = {
     // Experience Section
     'experience.title': 'Work Experience',
     'experience.software_engineer': 'Frontend / Product Engineer',
-    'experience.fullstack_developer': 'Fullstack Developer',
     'experience.frontend_developer': 'Frontend Developer',
     'experience.full_time': 'Full Time',
     'experience.working_student': 'Working Student',
@@ -208,7 +206,7 @@ const translations = {
     // Hero Section
     'hero.greeting': 'Bonjour, je suis',
     'hero.title': 'Abdallah Amamou Gueye',
-    'hero.subtitle': 'Développeur Full-Stack',
+    'hero.subtitle': 'Ingénieur Logiciel',
     'hero.description': 'Je construis des applications web modernes et évolutives avec un accent sur l\'expérience utilisateur et le code propre.',
     'hero.cta': 'Voir Mon Travail',
     'hero.scroll': 'Défiler pour explorer',
@@ -217,7 +215,7 @@ const translations = {
     
     // About Section
     'about.title': 'À Propos de Moi',
-    'about.subtitle': 'Développeur Full-Stack Passionné',
+    'about.subtitle': 'Ingénieur Logiciel Passionné',
     'about.description': 'Je suis un développeur full-stack dévoué avec une passion pour créer des solutions web innovantes. Je me spécialise dans React, Next.js et les technologies web modernes.',
     'about.experience': 'Années d\'Expérience',
     'about.projects': 'Projets Terminés',
@@ -233,7 +231,6 @@ const translations = {
     'profile.about_description': 'Je suis Abdallah Amadou Gueye, un ingénieur logiciel passionné du Sénégal. Avec un Master en Informatique Appliquée, je me spécialise dans la Conception UI/UX et l\'Ingénierie de l\'Utilisabilité.',
     'profile.experience_description': 'Je travaille avec les technologies web modernes depuis plus de 3 ans, en me concentrant sur la création d\'expériences utilisateur intuitives, accessibles et performantes. Mon expertise réside dans React, Next.js et TypeScript.',
     'profile.what_i_do': 'Ce Que Je Fais',
-    'profile.fullstack_dev': 'Développement web full-stack',
     'profile.uiux_design': 'Conception UI/UX et prototypage',
     'profile.performance': 'Optimisation des performances',
     'profile.accessibility': 'Implémentation de l\'accessibilité',
@@ -277,7 +274,6 @@ const translations = {
     // Experience Section
     'experience.title': 'Expérience Professionnelle',
     'experience.software_engineer': 'Ingénieur Logiciel',
-    'experience.fullstack_developer': 'Développeur Full-Stack',
     'experience.frontend_developer': 'Développeur Frontend',
     'experience.full_time': 'Temps Plein',
     'experience.working_student': 'Étudiant Salarié',

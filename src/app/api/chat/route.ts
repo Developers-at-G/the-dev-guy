@@ -3,10 +3,68 @@ import { profileData } from '@/data/profile';
 import { projectsData } from '@/data/projects';
 import { educationData } from '@/data/education';
 import { skillsData } from '@/data/skills';
+import { rateLimit, getClientIdentifier } from '@/lib/rateLimit';
 
 export async function POST(request: NextRequest) {
   try {
+    // Rate limiting: 20 requests per 5 minutes per IP (chat is expensive)
+    const clientId = getClientIdentifier(request);
+    const rateLimitResult = rateLimit(`chat:${clientId}`, {
+      windowMs: 5 * 60 * 1000, // 5 minutes
+      maxRequests: 20,
+    });
+
+    if (!rateLimitResult.allowed) {
+      return NextResponse.json(
+        { 
+          error: 'Too many requests. Please try again later.',
+          retryAfter: Math.ceil((rateLimitResult.resetTime - Date.now()) / 1000),
+        },
+        { 
+          status: 429,
+          headers: {
+            'X-RateLimit-Limit': '20',
+            'X-RateLimit-Remaining': '0',
+            'X-RateLimit-Reset': rateLimitResult.resetTime.toString(),
+            'Retry-After': Math.ceil((rateLimitResult.resetTime - Date.now()) / 1000).toString(),
+          },
+        }
+      );
+    }
+
     const { messages } = await request.json();
+
+    // Validate messages
+    if (!Array.isArray(messages) || messages.length === 0) {
+      return NextResponse.json(
+        { error: 'Messages array is required' },
+        { status: 400 }
+      );
+    }
+
+    // Limit message length and count
+    if (messages.length > 10) {
+      return NextResponse.json(
+        { error: 'Too many messages in conversation' },
+        { status: 400 }
+      );
+    }
+
+    // Validate each message
+    for (const msg of messages) {
+      if (!msg.role || !msg.content) {
+        return NextResponse.json(
+          { error: 'Invalid message format' },
+          { status: 400 }
+        );
+      }
+      if (typeof msg.content !== 'string' || msg.content.length > 1000) {
+        return NextResponse.json(
+          { error: 'Message content too long (max 1000 characters)' },
+          { status: 400 }
+        );
+      }
+    }
 
     const apiKey = process.env.OPENAI_API_KEY;
     if (!apiKey) {
@@ -91,7 +149,13 @@ INSTRUCTIONS:
     }
 
     const data = await response.json();
-    return NextResponse.json({ message: data.choices[0].message.content });
+    return NextResponse.json({ message: data.choices[0].message.content }, {
+      headers: {
+        'X-RateLimit-Limit': '20',
+        'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
+        'X-RateLimit-Reset': rateLimitResult.resetTime.toString(),
+      },
+    });
   } catch (error) {
     console.error('Chat API error:', error);
     return NextResponse.json(

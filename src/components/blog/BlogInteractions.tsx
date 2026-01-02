@@ -101,6 +101,10 @@ export const BlogInteractions: React.FC<BlogInteractionsProps> = ({ postSlug }) 
         } else {
           trackBlogPostDisliked(postSlug);
         }
+      } else if (response.status === 429) {
+        alert(`Rate limit exceeded: ${data.error}. Please try again in ${data.retryAfter || 60} seconds.`);
+      } else if (data.error) {
+        alert(data.error);
       }
     } catch (error) {
       console.error('Error submitting reaction:', error);
@@ -132,6 +136,10 @@ export const BlogInteractions: React.FC<BlogInteractionsProps> = ({ postSlug }) 
         setShowCommentForm(false);
         // Track analytics
         trackBlogCommentAdded(postSlug, commentContent.length);
+      } else if (response.status === 429) {
+        alert(`Rate limit exceeded: ${data.error}. Please try again in ${data.retryAfter || 60} seconds.`);
+      } else if (data.error) {
+        alert(data.error);
       }
     } catch (error) {
       console.error('Error submitting comment:', error);
@@ -250,26 +258,38 @@ export const BlogInteractions: React.FC<BlogInteractionsProps> = ({ postSlug }) 
                   <label className="block text-sm font-semibold text-foreground mb-2">
                     Name <span className="text-primary">*</span>
                   </label>
-                  <input
-                    type="text"
-                    className="flex h-11 w-full rounded-lg border border-input bg-background/80 backdrop-blur-sm px-4 py-2.5 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:border-primary/50 transition-all"
-                    placeholder="Your name"
-                    value={authorName}
-                    onChange={(e) => setAuthorName(e.target.value)}
-                    required
-                  />
+                <input
+                  type="text"
+                  className="flex h-11 w-full rounded-lg border border-input bg-background/80 backdrop-blur-sm px-4 py-2.5 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:border-primary/50 transition-all"
+                  placeholder="Your name"
+                  value={authorName}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    if (value.length <= 100) {
+                      setAuthorName(value);
+                    }
+                  }}
+                  maxLength={100}
+                  required
+                />
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-foreground mb-2">
                     Email <span className="text-muted-foreground text-xs">(optional)</span>
                   </label>
-                  <input
-                    type="email"
-                    className="flex h-11 w-full rounded-lg border border-input bg-background/80 backdrop-blur-sm px-4 py-2.5 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:border-primary/50 transition-all"
-                    placeholder="your@email.com"
-                    value={authorEmail}
-                    onChange={(e) => setAuthorEmail(e.target.value)}
-                  />
+                <input
+                  type="email"
+                  className="flex h-11 w-full rounded-lg border border-input bg-background/80 backdrop-blur-sm px-4 py-2.5 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:border-primary/50 transition-all"
+                  placeholder="your@email.com"
+                  value={authorEmail}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    if (value.length <= 255) {
+                      setAuthorEmail(value);
+                    }
+                  }}
+                  maxLength={255}
+                />
                 </div>
               </div>
               <div>
@@ -280,9 +300,18 @@ export const BlogInteractions: React.FC<BlogInteractionsProps> = ({ postSlug }) 
                   className="flex min-h-[120px] w-full rounded-lg border border-input bg-background/80 backdrop-blur-sm px-4 py-3 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:border-primary/50 transition-all resize-none"
                   placeholder="Share your thoughts..."
                   value={commentContent}
-                  onChange={(e) => setCommentContent(e.target.value)}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    if (value.length <= 2000) {
+                      setCommentContent(value);
+                    }
+                  }}
+                  maxLength={2000}
                   required
                 />
+                <div className="text-xs text-muted-foreground text-right mt-1">
+                  {commentContent.length} / 2000 characters
+                </div>
               </div>
               <div className="flex justify-end">
                 <Button 

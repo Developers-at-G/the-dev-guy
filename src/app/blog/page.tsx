@@ -402,8 +402,7 @@ const BlogPage = () => {
 
             <div className="space-y-4">
               {[
-                { hash: 'a1b2c3d', message: 'feat: Will AI replace developers?', author: 'abdallah', date: 'Coming Soon' },
-                { hash: 'e4f5g6h', message: 'docs: Best Practices Coding', author: 'abdallah', date: 'Coming Soon' },
+                { hash: 'e4f5g6h', message: 'docs: Why I Switched from JavaScript to TypeScript (And You Should Too)', author: 'abdallah', date: 'Coming Soon' },
               ].map((commit, index) => (
                 <div key={index} className="bg-gray-900/50 rounded border border-gray-700/30 p-4 font-mono text-sm hover:bg-gray-800/50 transition-colors">
                   <div className="flex items-center gap-4">

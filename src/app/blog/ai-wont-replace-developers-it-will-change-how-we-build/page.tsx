@@ -1,8 +1,20 @@
 import React from 'react';
+import { Metadata } from 'next';
 import BlogLayout from '../../../components/blog/BlogLayout';
 import BlogHeader from '../../../components/blog/BlogHeader';
 import { Container } from '../../../components/ui/Container';
 import { BlogInteractions } from '../../../components/blog/BlogInteractions';
+
+export const metadata: Metadata = {
+  title: "AI Won't Replace Developers - It Will Change How We Build",
+  description: "There's a lot of noise lately about AI replacing developers. I don't buy it. What AI is doing is speeding up development, sometimes a lot. But speed alone doesn't build good software.",
+  openGraph: {
+    title: "AI Won't Replace Developers - It Will Change How We Build",
+    description: "What AI is doing is speeding up development, sometimes a lot. But speed alone doesn't build good software.",
+    type: 'article',
+    publishedTime: '2026-01-01',
+  },
+};
 
 export default function BlogPost() {
   return (

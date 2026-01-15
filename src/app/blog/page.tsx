@@ -12,7 +12,6 @@ const codeSnippets = [
 ];
 
 const BlogPage = () => {
-  // Removed unused currentSnippet state to satisfy linting
   const [, setCurrentSnippet] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 

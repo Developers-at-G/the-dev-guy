@@ -1,8 +1,20 @@
-'use client';
 import React from 'react';
+import { Metadata } from 'next';
 import BlogLayout from '../../../components/blog/BlogLayout';
 import BlogHeader from '../../../components/blog/BlogHeader';
 import { Container } from '../../../components/ui/Container';
+import { BlogInteractions } from '../../../components/blog/BlogInteractions';
+
+export const metadata: Metadata = {
+  title: 'Why Building Real Projects Taught Me More Than Any Tutorial',
+  description: "There's something exciting about starting a new coding tutorial. You follow along, everything works, the UI looks clean — and you feel like you're learning. But then you try building something from scratch...",
+  openGraph: {
+    title: 'Why Building Real Projects Taught Me More Than Any Tutorial',
+    description: "Tutorials are helpful, but they don't prepare you for the real mess of real apps. Real projects teach you how to think like a developer.",
+    type: 'article',
+    publishedTime: '2025-01-01',
+  },
+};
 
 export default function BlogPost() {
   return (
@@ -125,6 +137,9 @@ export default function BlogPost() {
                 </div>
               </div>
             </article>
+
+            {/* Blog Interactions */}
+            <BlogInteractions postSlug="why-building-real-projects-taught-me-more-than-any-tutorial" />
         </div>
       </Container>
     </BlogLayout>

@@ -1,11 +1,14 @@
 import { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import Navigation from './Navigation/Navigation';
 import { Hero } from '../components/sections/Hero';
-import { ProjectsSection } from '../components/sections/ProjectsSection';
-import { CareerSection } from '../components/sections/CareerSection';
-import { SkillsSection } from '../components/sections/SkillsSection';
-import { EducationSection } from '../components/sections/EducationSection';
-import { ContactSection } from '../components/sections/ContactSection';
+
+// Lazy load below-the-fold sections to reduce initial bundle size
+const ProjectsSection = dynamic(() => import('../components/sections/ProjectsSection').then(m => ({ default: m.ProjectsSection })));
+const CareerSection = dynamic(() => import('../components/sections/CareerSection').then(m => ({ default: m.CareerSection })));
+const SkillsSection = dynamic(() => import('../components/sections/SkillsSection').then(m => ({ default: m.SkillsSection })));
+const EducationSection = dynamic(() => import('../components/sections/EducationSection').then(m => ({ default: m.EducationSection })));
+const ContactSection = dynamic(() => import('../components/sections/ContactSection').then(m => ({ default: m.ContactSection })));
 
 export const metadata: Metadata = {
   title: 'Abdallah Amadou Gueye | Frontend / Product Engineer & Full-Stack Developer',

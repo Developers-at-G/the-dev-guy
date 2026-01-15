@@ -4,18 +4,19 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/react"
 import { ThemeProvider } from "./context/ThemeContext";
 import { LanguageProvider } from "./context/LanguageContext";
-import { CustomCursor } from "../components/CustomCursor";
-import { Chatbot } from "../components/Chatbot/Chatbot";
+import { CustomCursor, Chatbot } from "../components/ClientComponents";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
+  display: 'swap',
 });
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
+  display: 'swap',
 });
 
 export const metadata: Metadata = {

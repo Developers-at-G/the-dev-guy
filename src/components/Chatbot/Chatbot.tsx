@@ -373,7 +373,7 @@ export const Chatbot: React.FC = () => {
       {/* Floating Chat Button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-gradient-to-br from-primary via-primary/90 to-accent shadow-xl shadow-primary/30 flex items-center justify-center group overflow-visible"
+        className="fixed bottom-24 right-6 z-50 w-16 h-16 rounded-full bg-gradient-to-br from-primary via-primary/90 to-accent shadow-xl shadow-primary/30 flex items-center justify-center group overflow-visible"
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.95 }}
         initial={{ scale: 0, rotate: -180 }}
@@ -398,13 +398,15 @@ export const Chatbot: React.FC = () => {
             </motion.svg>
           ) : (
             <motion.div
-              key="avatar"
-              className="w-14 h-14"
+              key="chat-icon"
+              className="w-7 h-7 text-white"
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0, opacity: 0 }}
             >
-              <AbdallahAvatar mood={mascotMood} size="lg" />
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
             </motion.div>
           )}
         </AnimatePresence>
@@ -456,7 +458,7 @@ export const Chatbot: React.FC = () => {
             className={`fixed z-40 flex flex-col bg-background border border-border rounded-2xl shadow-2xl shadow-black/20 overflow-hidden backdrop-blur-xl transition-all duration-300 ${
               isExpanded 
                 ? 'bottom-6 right-6 left-6 top-6 sm:left-auto sm:top-auto sm:bottom-6 sm:right-6 sm:w-[600px] sm:h-[85vh]' 
-                : 'bottom-24 right-6 w-[92vw] sm:w-[380px] h-[520px] max-h-[75vh]'
+                : 'bottom-32 right-6 w-[92vw] sm:w-[380px] h-[520px] max-h-[75vh]'
             }`}
             initial={{ opacity: 0, y: 30, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}

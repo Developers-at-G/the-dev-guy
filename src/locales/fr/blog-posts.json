@@ -42,5 +42,37 @@
       "section_3_paragraph_2": "L'IA devrait nous accélérer, pas remplacer notre pensée.",
       "section_3_paragraph_3": "Nous devons toujours comprendre le code que nous livrons et en assumer la responsabilité."
     }
+  },
+  "building_a_streaming_chatbot": {
+    "title": "Construire un Chatbot en Streaming avec Vercel AI SDK : Ce que J'ai Appris",
+    "excerpt": "Je voulais que mon site web soit plus qu'une page statique. Au lieu de simplement lister des projets et des liens, je voulais que les visiteurs puissent poser des questions et obtenir des réponses immédiates, quelque chose qui se rapproche d'une vraie conversation.",
+    "content": {
+      "intro_1": "Je voulais que mon site web soit plus qu'une page statique. Au lieu de simplement lister des projets et des liens, je voulais que les visiteurs puissent poser des questions et obtenir des réponses immédiates, quelque chose qui se rapproche d'une vraie conversation.",
+      "intro_2": "Au début, j'ai envisagé de construire un chatbot à partir de zéro. Mais une fois qu'on s'y met, les choses se compliquent rapidement : streaming HTTP, gestion des réponses partielles, état des messages, indicateurs de chargement et gestion des erreurs. C'est beaucoup d'infrastructure pour un projet de portfolio.",
+      "intro_3": "J'ai donc utilisé Vercel AI SDK.",
+      "section_1_title": "Pourquoi le Streaming Compte Vraiment",
+      "section_1_paragraph_1": "Sans streaming, les chatbots semblent lents et maladroits. Vous envoyez un message, attendez quelques secondes, puis toute la réponse apparaît d'un coup. Même si la réponse est rapide, l'expérience semble cassée.",
+      "section_1_paragraph_2": "Avec le streaming, les utilisateurs voient la réponse apparaître au fur et à mesure de sa génération. Les premiers mots apparaissent presque immédiatement, ce qui rend l'interaction réactive et naturelle. Même si la réponse complète prend une seconde ou deux, les utilisateurs se sentent engagés au lieu d'attendre.",
+      "section_2_title": "Ce que le SDK M'a Donné (et Ce qu'Il Ne M'a Pas Donné)",
+      "section_2_paragraph_1": "Le plus grand avantage de Vercel AI SDK est la quantité de complexité qu'il supprime :",
+      "section_2_item_1": "Réponses en streaming sans gérer manuellement les flux HTTP",
+      "section_2_item_2": "État des messages et de chargement géré via useChat",
+      "section_2_item_3": "Intégration propre avec OpenAI",
+      "section_2_item_4": "Une API simple et type-safe",
+      "section_2_paragraph_2": "Cela dit, ce n'est pas de la \"magie\". Vous devez toujours penser à :",
+      "section_2_item_5": "Les coûts (les appels LLM ne sont pas gratuits)",
+      "section_2_item_6": "La limitation de débit (je l'ai limitée à 10 chats par IP par jour)",
+      "section_2_item_7": "La taille du contexte (les longues conversations deviennent chères et lentes)",
+      "section_2_paragraph_3": "Le SDK rend les parties difficiles gérables, mais les décisions architecturales vous appartiennent toujours.",
+      "section_3_title": "Quand Je Ne L'Utiliserais Pas",
+      "section_3_paragraph_1": "Je n'utiliserais pas un chatbot en streaming pour tout :",
+      "section_3_item_1": "Si le contenu est statique, une FAQ est plus simple et moins chère",
+      "section_3_item_2": "Pour les sites à fort trafic, les coûts API s'accumulent rapidement",
+      "section_3_item_3": "Pour les données sensibles, envoyer des prompts à des LLM tiers n'est pas acceptable",
+      "section_3_paragraph_2": "Mais pour un portfolio avec un trafic modéré ? C'est un excellent choix.",
+      "section_4_title": "Réflexions Finales",
+      "section_4_paragraph_1": "Utiliser Vercel AI SDK m'a permis de me concentrer sur l'expérience au lieu de construire une infrastructure de streaming à partir de zéro. Cela a transformé ce qui aurait pu être des semaines de travail en quelque chose d'accessible, tout en me forçant à réfléchir aux compromis réels.",
+      "section_4_paragraph_2": "Pour moi, il ne s'agissait pas d'ajouter de l'\"IA\" à un portfolio, mais d'améliorer la façon dont les gens interagissent avec lui. Et dans ce contexte, le streaming a fait toute la différence."
+    }
   }
 }

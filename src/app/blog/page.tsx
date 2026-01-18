@@ -107,6 +107,115 @@ const BlogPage = () => {
             </div>
 
             <div className="grid md:grid-cols-2 gap-6 mb-8">
+              <Link href="/blog/building-a-streaming-chatbot-with-vercel-ai-sdk">
+              <div 
+                className="bg-gray-900/90 backdrop-blur-sm rounded-lg border border-gray-700/50 overflow-hidden group cursor-pointer hover:border-cyan-500/50 hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300 hover:scale-[1.02] relative"
+              >
+                <div className="absolute top-2 right-2 bg-cyan-500/20 border border-cyan-500/30 rounded px-2 py-1 text-xs text-cyan-300 opacity-0 group-hover:opacity-100 transition-opacity">
+                  {t('blog.click_to_read', 'common')}
+                </div>
+              <div className="flex items-center gap-1 px-1 py-2 bg-gray-800/50 border-b border-gray-700/50">
+                <div className="bg-gray-700/50 px-3 py-1 rounded-t text-xs text-gray-300 font-mono border-t border-l border-r border-gray-600/50">
+                  streaming-chatbot.ts
+                </div>
+              </div>
+
+              <div className="p-6 font-mono text-sm">
+                <div className="space-y-4">
+                  <div className="flex gap-4">
+                    <div className="text-gray-500 select-none">1</div>
+                    <div>
+                      <span className="text-purple-400">const</span>{' '}
+                      <span className="text-blue-400">chatbot</span>{' '}
+                      <span className="text-white">=</span>{' '}
+                      <span className="text-yellow-400">{`{`}</span>
+                    </div>
+                  </div>
+                  
+                  <div className="flex gap-4">
+                    <div className="text-gray-500 select-none">2</div>
+                    <div className="pl-4">
+                      <span className="text-green-400">title</span>
+                      <span className="text-white">:</span>{' '}
+                      <span className="text-yellow-300">"Streaming Chatbot with AI SDK"</span>
+                      <span className="text-white">,</span>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4">
+                    <div className="text-gray-500 select-none">3</div>
+                    <div className="pl-4">
+                      <span className="text-green-400">insights</span>
+                      <span className="text-white">:</span>{' '}
+                      <span className="text-yellow-300">"Streaming UX & trade-offs"</span>
+                      <span className="text-white">,</span>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4">
+                    <div className="text-gray-500 select-none">4</div>
+                    <div className="pl-4">
+                      <span className="text-green-400">published</span>
+                      <span className="text-white">:</span>{' '}
+                      <span className="text-yellow-300">"January 2026"</span>
+                      <span className="text-white">,</span>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4">
+                    <div className="text-gray-500 select-none">5</div>
+                    <div className="pl-4">
+                      <span className="text-green-400">readTime</span>
+                      <span className="text-white">:</span>{' '}
+                      <span className="text-blue-300">5</span>
+                      <span className="text-white">,</span>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4">
+                    <div className="text-gray-500 select-none">6</div>
+                    <div className="pl-4">
+                      <span className="text-green-400">impact</span>
+                      <span className="text-white">:</span>{' '}
+                      <span className="text-yellow-300">"What AI SDK abstracts away"</span>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4">
+                    <div className="text-gray-500 select-none">7</div>
+                    <div>
+                      <span className="text-yellow-400">{`};`}</span>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4 mt-6">
+                    <div className="text-gray-500 select-none">8</div>
+                    <div></div>
+                  </div>
+
+                  <div className="flex gap-4">
+                    <div className="text-gray-500 select-none">9</div>
+                    <div>
+                      <span className="text-gray-500">{t('blog.read_function', 'common')}</span>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4">
+                    <div className="text-gray-500 select-none">10</div>
+                    <div>
+                      <span className="text-cyan-400 hover:text-cyan-300 transition-colors bg-cyan-500/10 hover:bg-cyan-500/20 px-2 py-1 rounded border border-cyan-500/30 hover:border-cyan-400/50 inline-flex items-center gap-2 group/link">
+                        <span className="group-hover/link:animate-pulse">▶</span>
+                        chatbot.read()
+                        <span className="text-xs opacity-70">{t('blog.click_me', 'common')}</span>
+                      </span>
+                      <span className="text-white">;</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+              </Link>
+
               <Link href="/blog/why-building-real-projects-taught-me-more-than-any-tutorial">
               <div 
                 className="bg-gray-900/90 backdrop-blur-sm rounded-lg border border-gray-700/50 overflow-hidden group cursor-pointer hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300 hover:scale-[1.02] relative"
@@ -325,7 +434,9 @@ const BlogPage = () => {
               </div>
               </div>
               </Link>
+              </div>
 
+            <div className="grid md:grid-cols-2 gap-6 mb-8">
               <Link href="/frontend-architecture">
                 <div 
                   className="bg-gray-900/90 backdrop-blur-sm rounded-lg border border-gray-700/50 overflow-hidden group cursor-pointer hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 hover:scale-[1.02] relative h-full"

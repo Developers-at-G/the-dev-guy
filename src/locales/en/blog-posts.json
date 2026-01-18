@@ -42,5 +42,37 @@
       "section_3_paragraph_2": "AI should speed us up, not replace our thinking.",
       "section_3_paragraph_3": "We still need to understand the code we ship and take responsibility for it."
     }
+  },
+  "building_a_streaming_chatbot": {
+    "title": "Building a Streaming Chatbot with Vercel AI SDK: What I Learned",
+    "excerpt": "I wanted my website to be more than a static page. Instead of just listing projects and links, I wanted visitors to be able to ask questions and get immediate answers, something that feels closer to a real conversation.",
+    "content": {
+      "intro_1": "I wanted my website to be more than a static page. Instead of just listing projects and links, I wanted visitors to be able to ask questions and get immediate answers, something that feels closer to a real conversation.",
+      "intro_2": "At first, I considered building a chatbot from scratch. But once you get into it, things get complicated quickly: HTTP streaming, managing partial responses, message state, loading indicators, and error handling. That's a lot of infrastructure for a portfolio project.",
+      "intro_3": "So I used Vercel AI SDK.",
+      "section_1_title": "Why Streaming Actually Matters",
+      "section_1_paragraph_1": "Without streaming, chatbots feel slow and awkward. You send a message, wait a couple of seconds, and then the full response appears all at once. Even if the response is fast, the experience feels broken.",
+      "section_1_paragraph_2": "With streaming, users see the response appear as it's being generated. The first words show up almost immediately, which makes the interaction feel responsive and natural. Even if the full response takes a second or two, users feel engaged instead of waiting.",
+      "section_2_title": "What the SDK Gave Me (and What It Didn't)",
+      "section_2_paragraph_1": "The biggest win with Vercel AI SDK is how much complexity it removes:",
+      "section_2_item_1": "Streaming responses without manually handling HTTP streams",
+      "section_2_item_2": "Message and loading state handled via useChat",
+      "section_2_item_3": "Clean integration with OpenAI",
+      "section_2_item_4": "A simple, type-safe API",
+      "section_2_paragraph_2": "That said, it's not \"magic.\" You still have to think about:",
+      "section_2_item_5": "Costs (LLM calls aren't free)",
+      "section_2_item_6": "Rate limiting (I capped it at 10 chats per IP per day)",
+      "section_2_item_7": "Context size (long conversations get expensive and slow)",
+      "section_2_paragraph_3": "The SDK makes the hard parts manageable, but the architectural decisions are still yours.",
+      "section_3_title": "When I Wouldn't Use This",
+      "section_3_paragraph_1": "I wouldn't use a streaming chatbot for everything:",
+      "section_3_item_1": "If the content is static, a FAQ is simpler and cheaper",
+      "section_3_item_2": "For high-traffic sites, API costs add up quickly",
+      "section_3_item_3": "For sensitive data, sending prompts to third-party LLMs isn't acceptable",
+      "section_3_paragraph_2": "But for a portfolio with moderate traffic? It's a great fit.",
+      "section_4_title": "Final Thoughts",
+      "section_4_paragraph_1": "Using Vercel AI SDK let me focus on the experience instead of building streaming infrastructure from scratch. It turned what could've been weeks of work into something approachable, while still forcing me to think about real-world trade-offs.",
+      "section_4_paragraph_2": "For me, it wasn't about adding \"AI\" to a portfolio, it was about improving how people interact with it. And in that context, streaming made all the difference."
+    }
   }
 }

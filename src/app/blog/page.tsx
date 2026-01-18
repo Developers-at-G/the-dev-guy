@@ -523,7 +523,7 @@ const BlogPage = () => {
 
             <div className="space-y-4">
               {[
-                { hash: 'e4f5g6h', message: 'docs: Why I Switched from JavaScript to TypeScript (And You Should Too)', author: 'abdallah', date: t('blog.coming_soon', 'common') },
+                { hash: 'e4f5g6h', message: 'docs: Performance Optimization - How I Made My Portfolio Lightning Fast', author: 'abdallah', date: t('blog.coming_soon', 'common') },
               ].map((commit, index) => (
                 <div key={index} className="bg-gray-900/50 rounded border border-gray-700/30 p-4 font-mono text-sm hover:bg-gray-800/50 transition-colors">
                   <div className="flex items-center gap-4">

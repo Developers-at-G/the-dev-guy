@@ -7,6 +7,7 @@ import { getEducationData } from '@/data/education';
 import { getSkillsData } from '@/data/skills';
 import { getTranslations } from '@/lib/translations';
 import { rateLimit, getClientIdentifier } from '@/lib/rateLimit';
+import { track } from '@vercel/analytics';
 
 // Using Node.js runtime instead of Edge for better compatibility with data imports
 // export const runtime = 'edge';
@@ -40,6 +41,65 @@ export async function POST(request: NextRequest) {
     }
 
     const { messages } = await request.json();
+
+    // Track chat interaction - get the last user message
+    const lastUserMessage = messages
+      .filter((msg: { role: string }) => msg.role === 'user')
+      .pop();
+    
+    if (lastUserMessage) {
+      const messageContent = lastUserMessage.content || '';
+      const messageIndex = messages.filter((msg: { role: string }) => msg.role === 'user').length;
+      
+      // Detect topic from message content (server-side tracking)
+      const detectTopic = (text: string): string => {
+        const lowerText = text.toLowerCase();
+        const topicKeywords: Record<string, string[]> = {
+          projects: ['project', 'built', 'app', 'website', 'application', 'work', 'portfolio', 'github', 'deploy', 'live'],
+          skills: ['skill', 'technology', 'tech', 'know', 'learn', 'framework', 'library', 'language', 'stack', 'expert'],
+          experience: ['experience', 'worked', 'job', 'career', 'position', 'company', 'professional', 'work history', 'background'],
+          education: ['education', 'degree', 'university', 'school', 'learned', 'studied', 'college', 'course'],
+          contact: ['contact', 'email', 'reach', 'hire', 'available', 'work together', 'collaborate', 'connect'],
+          blog: ['blog', 'article', 'write', 'post', 'tutorial', 'learn'],
+          architecture: ['architecture', 'how you build', 'structure', 'approach', 'methodology'],
+        };
+
+        const topicScores: Record<string, number> = {};
+        for (const [topic, keywords] of Object.entries(topicKeywords)) {
+          topicScores[topic] = keywords.reduce((score, keyword) => {
+            return score + (lowerText.includes(keyword) ? 1 : 0);
+          }, 0);
+        }
+
+        const topTopic = Object.entries(topicScores).reduce((max, [topic, score]) => {
+          return score > max[1] ? [topic, score] : max;
+        }, ['other', 0] as [string, number]);
+
+        return topTopic[1] > 0 ? topTopic[0] : 'other';
+      };
+
+      const detectedTopic = detectTopic(messageContent);
+
+      // Track on server side (for analytics)
+      track('Chatbot Message Sent', {
+        messageContent: messageContent.substring(0, 200), // Limit for privacy
+        messageLength: messageContent.length,
+        messageIndex,
+        topic: detectedTopic,
+        clientId,
+        timestamp: new Date().toISOString(),
+      });
+
+      // Track topic interest separately
+      if (detectedTopic && detectedTopic !== 'other') {
+        track('Chatbot Topic Interest', {
+          topic: detectedTopic,
+          messagePreview: messageContent.substring(0, 100),
+          clientId,
+          timestamp: new Date().toISOString(),
+        });
+      }
+    }
 
     // Validate messages
     if (!Array.isArray(messages) || messages.length === 0) {

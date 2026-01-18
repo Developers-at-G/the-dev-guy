@@ -5,7 +5,7 @@ import { useChat } from 'ai/react';
 import type { Message } from 'ai';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-import { trackChatbotOpened } from '../../utils/analytics';
+import { trackChatbotOpened, trackChatbotMessageSent, trackChatbotNavigation } from '../../utils/analytics';
 import { useLanguage } from '../../app/context/LanguageContext';
 
 type MascotMood = 'idle' | 'thinking' | 'talking' | 'excited' | 'waving';
@@ -348,6 +348,8 @@ export const Chatbot: React.FC = () => {
   }, [isOpen]);
 
   const handleNavigate = useCallback((path: string) => {
+    // Track navigation from chatbot
+    trackChatbotNavigation(path, 'chatbot');
     // Close the chat first with a small delay for visual feedback
     setMascotMood('excited');
     setTimeout(() => {
@@ -357,8 +359,24 @@ export const Chatbot: React.FC = () => {
   }, [router]);
 
   const handleQuickAction = useCallback((text: string) => {
+    // Track quick action message
+    const userMessages = messages.filter(m => m.role === 'user');
+    trackChatbotMessageSent(text, text.length, userMessages.length);
     append({ role: 'user', content: text });
-  }, [append]);
+  }, [append, messages]);
+
+  // Wrap handleSubmit to track messages
+  const handleSubmitWithTracking = useCallback((e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!input.trim() || isLoading) return;
+    
+    // Track the message before submitting
+    const userMessages = messages.filter(m => m.role === 'user');
+    trackChatbotMessageSent(input, input.length, userMessages.length);
+    
+    // Call the original handleSubmit
+    handleSubmit(e);
+  }, [input, isLoading, messages, handleSubmit]);
 
   const welcomeMessage: Message = {
     id: 'welcome',
@@ -582,7 +600,7 @@ export const Chatbot: React.FC = () => {
             </div>
 
             {/* Input Area */}
-            <form onSubmit={handleSubmit} className="p-3 bg-background/95 backdrop-blur-sm">
+            <form onSubmit={handleSubmitWithTracking} className="p-3 bg-background/95 backdrop-blur-sm">
               <div className="flex gap-2">
                 <motion.input
                   ref={inputRef}

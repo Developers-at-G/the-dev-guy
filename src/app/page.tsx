@@ -11,10 +11,10 @@ const EducationSection = dynamic(() => import('../components/sections/EducationS
 const ContactSection = dynamic(() => import('../components/sections/ContactSection').then(m => ({ default: m.ContactSection })));
 
 export const metadata: Metadata = {
-  title: 'Abdallah Amadou Gueye | Frontend / Product Engineer & Full-Stack Developer',
+  title: 'Abdallah Amadou Gueye | Frontend / Product Engineer',
   description: 'Frontend / Product Engineer specializing in React, Next.js, TypeScript, and modern web development. Building scalable applications with a focus on UI/UX and performance.',
   openGraph: {
-    title: 'Abdallah Amadou Gueye | Frontend / Product Engineer & Full-Stack Developer',
+    title: 'Abdallah Amadou Gueye | Frontend / Product Engineer',
     description: 'Frontend / Product Engineer specializing in React, Next.js, TypeScript, and modern web development.',
     type: 'website',
     url: 'https://abdallah-the-dev-guy.vercel.app',

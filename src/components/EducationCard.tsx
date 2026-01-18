@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/Card';
 
-import { Education } from '../../data/education';
+import { Education } from '@/data/education';
 import { useLanguage } from '../app/context/LanguageContext';
 
 interface EducationCardProps {

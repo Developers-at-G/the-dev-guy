@@ -8,7 +8,7 @@ import Navigation from '../Navigation/Navigation';
 import { useLanguage } from '../context/LanguageContext';
 
 export default function FrontendArchitecturePage() {
-  const { t } = useLanguage();
+  const { t, translations } = useLanguage();
   return (
     <div className="min-h-screen bg-background">
       <Navigation />

@@ -1,4 +1,3 @@
-import { SkillCategory } from './skills';
 import { Translations } from '../lib/translations';
 
 export interface Skill {

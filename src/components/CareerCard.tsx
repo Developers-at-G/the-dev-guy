@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader } from './ui/Card';
 import { Badge } from './ui/Badge';
-import { CareerExperience } from '../../data/career';
+import { CareerExperience } from '@/data/career';
 import { useLanguage } from '../app/context/LanguageContext';
 import { clsx } from 'clsx';
 

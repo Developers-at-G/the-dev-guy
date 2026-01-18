@@ -62,14 +62,14 @@ export function getTranslation(
   params?: Record<string, string | number>
 ): string {
   const translations = getTranslations(language);
-  const namespaceTranslations = translations[namespace] as Record<string, any>;
+  const namespaceTranslations = translations[namespace] as Record<string, unknown>;
   
   const keys = key.split('.');
-  let value: any = namespaceTranslations;
+  let value: unknown = namespaceTranslations;
   
   for (const k of keys) {
-    if (value && typeof value === 'object' && k in value) {
-      value = value[k];
+    if (value && typeof value === 'object' && value !== null && k in value) {
+      value = (value as Record<string, unknown>)[k];
     } else {
       return key;
     }

@@ -1,10 +1,11 @@
 import { NextRequest } from 'next/server';
 import { streamText } from 'ai';
 import { openai } from '@ai-sdk/openai';
-import { profileData } from '@/data/profile';
-import { projectsData } from '@/data/projects';
-import { educationData } from '@/data/education';
-import { skillsData } from '@/data/skills';
+import { getProfileData } from '@/data/profile';
+import { getProjectsData } from '@/data/projects';
+import { getEducationData } from '@/data/education';
+import { getSkillsData } from '@/data/skills';
+import { getTranslations } from '@/lib/translations';
 import { rateLimit, getClientIdentifier } from '@/lib/rateLimit';
 
 // Using Node.js runtime instead of Edge for better compatibility with data imports
@@ -80,6 +81,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Load translations and data
+    const translations = getTranslations('en');
+    const profileData = getProfileData(translations);
+    const educationData = getEducationData(translations);
+    const projectsData = getProjectsData(translations);
+    const skillsData = getSkillsData(translations);
+
     // Create context - Abdallah speaks directly to visitors in first person
     const portfolioContext = `You ARE Abdallah Amadou Gueye. You're chatting directly with visitors on your portfolio website. Speak in FIRST PERSON as yourself - use "I", "my", "me". You're friendly, passionate about coding, and a bit witty.
 
@@ -142,7 +150,11 @@ EXAMPLE RESPONSES:
 
 
     // Filter out system messages and keep only user/assistant messages
-    const conversationMessages = messages.filter((msg: any) => 
+    interface Message {
+      role: string;
+      content: string;
+    }
+    const conversationMessages = messages.filter((msg: Message) => 
       msg.role === 'user' || msg.role === 'assistant'
     );
 

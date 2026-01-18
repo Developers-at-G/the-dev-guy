@@ -16,6 +16,8 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
+  const translations = getTranslations('en');
+  const projectsData = getProjectsData(translations);
   const project = projectsData.find(
     (p) => p.title.toLowerCase().replace(/_/g, '-').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') === slug
   );

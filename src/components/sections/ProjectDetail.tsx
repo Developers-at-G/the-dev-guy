@@ -10,6 +10,7 @@ import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
 import { Container } from '../ui/Container';
 import { trackProjectView, trackProjectLinkClick } from '../../utils/analytics';
+import { useLanguage } from '../../app/context/LanguageContext';
 
 interface ProjectDetailProps {
   project: Project;

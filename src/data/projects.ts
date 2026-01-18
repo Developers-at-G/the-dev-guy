@@ -67,7 +67,7 @@ const staticProjectsData = [
 export function getProjectsData(translations: Translations): Project[] {
   const projects = translations.projects.projects;
   
-  return staticProjectsData.map((staticData, index) => {
+  const mappedProjects = staticProjectsData.map((staticData, index): Project | null => {
     const translatedProject = projects[index];
     if (!translatedProject) return null;
     
@@ -84,5 +84,7 @@ export function getProjectsData(translations: Translations): Project[] {
       problem: translatedProject.problem,
       actions: translatedProject.actions,
     };
-  }).filter((p): p is Project => p !== null);
+  });
+  
+  return mappedProjects.filter((p): p is Project => p !== null);
 }

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader } from './ui/Card';
 import { Badge } from './ui/Badge';
-import { CareerExperience } from '../data/career';
+import { CareerExperience } from '../../data/career';
+import { useLanguage } from '../app/context/LanguageContext';
 import { clsx } from 'clsx';
 
 interface CareerCardProps {
@@ -17,18 +18,14 @@ const typeColors = {
   freelance: 'bg-green-500/10 text-green-600 border-green-500/20'
 };
 
-const typeLabels = {
-  work: 'Full-time',
-  internship: 'Internship',
-  freelance: 'Freelance'
-};
-
 export const CareerCard: React.FC<CareerCardProps> = ({
   experience,
   index,
   isExpanded,
   onToggle
 }) => {
+  const { t, translations } = useLanguage();
+  const typeLabels = translations.career.types;
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -182,7 +179,12 @@ export const CareerCard: React.FC<CareerCardProps> = ({
                     d="M9 5l7 7-7 7"
                   />
                 </svg>
-                <span>{isExpanded ? 'Hide' : 'Show'} Key Achievements ({experience.achievements.length})</span>
+                <span>
+                  {isExpanded 
+                    ? t('career.hide_key_achievements', 'common', { count: experience.achievements.length })
+                    : t('career.show_key_achievements', 'common', { count: experience.achievements.length })
+                  }
+                </span>
               </button>
 
               {isExpanded && (

@@ -1,0 +1,190 @@
+{
+  "sections": {
+    "server_vs_client": {
+      "title": "Composants Serveur vs Composants Client",
+      "item_1": {
+        "title": "Par défaut, Composants Serveur :",
+        "description": "La plupart de l'UI est rendue côté serveur par défaut. Réduit la taille du bundle, améliore le chargement initial et permet un accès direct à la base de données."
+      },
+      "item_2": {
+        "title": "Composants Client pour l'interactivité :",
+        "description": "N'utilisez 'use client' que lorsque nécessaire : gestionnaires d'événements, APIs du navigateur, hooks d'état, ou bibliothèques tierces nécessitant une exécution côté client."
+      },
+      "item_3": {
+        "title": "Stratégie de frontière :",
+        "description": "Poussez les frontières client aussi bas que possible. Gardez les layouts et les shells de page comme Composants Serveur ; isolez l'interactivité aux composants feuilles."
+      }
+    },
+    "data_fetching": {
+      "title": "Stratégie de Récupération de Données",
+      "item_1": {
+        "title": "Approche serveur d'abord :",
+        "description": "Récupérez les données dans les Composants Serveur en utilisant async/await. Pas besoin d'états de chargement—les données sont disponibles au premier rendu."
+      },
+      "item_2": {
+        "title": "Streaming avec Suspense :",
+        "description": "Utilisez les frontières React Suspense pour diffuser une UI partielle pendant que les récupérations de données plus lentes se terminent. Le contenu critique se rend en premier."
+      },
+      "item_3": {
+        "title": "Couches de cache :",
+        "description": "Exploitez stratégiquement le cache Next.js (cache de fetch, cache de route complet, cache du routeur). Utilisez revalidate et cache: 'no-store' pour le contenu dynamique."
+      },
+      "item_4": {
+        "title": "Récupération de données parallèle :",
+        "description": "Récupérez des sources de données indépendantes en parallèle dans le même composant pour minimiser les requêtes en cascade."
+      }
+    },
+    "rendering_strategies": {
+      "title": "Stratégies de Rendu",
+      "ssr": {
+        "title": "SSR (Server-Side Rendering)",
+        "description": "Par défaut pour les routes dynamiques. Utilisez pour le contenu personnalisé, les données en temps réel, ou les pages critiques pour le SEO qui changent fréquemment."
+      },
+      "ssg": {
+        "title": "SSG (Static Site Generation)",
+        "description": "Génère au moment de la construction. Idéal pour les pages marketing, la documentation, les articles de blog—tout contenu qui ne change pas par utilisateur ou requête."
+      },
+      "isr": {
+        "title": "ISR (Incremental Static Regeneration)",
+        "description": "Le meilleur des deux mondes : performance statique avec mises à jour périodiques. Parfait pour les catalogues de produits, les sites d'actualités ou tout contenu qui se met à jour selon un calendrier."
+      }
+    },
+    "architecture_layers": {
+      "title": "Couches d'Architecture",
+      "page_components": {
+        "title": "Composants de Page",
+        "description": "Composition au niveau des routes, récupération de données, orchestration des layouts"
+      },
+      "composite_components": {
+        "title": "Composants Composite",
+        "description": "Logique métier, UI spécifique aux fonctionnalités, composée à partir de primitives"
+      },
+      "ui_primitives": {
+        "title": "Primitives UI",
+        "description": "Blocs de construction réutilisables, non stylisés ou minimalement stylisés (Button, Card, Input, etc.)"
+      }
+    },
+    "composition_reuse": {
+      "title": "Composition & Réutilisation",
+      "item_1": {
+        "title": "Composants composés :",
+        "description": "Construisez des APIs flexibles en utilisant des patterns de composition. Les composants fonctionnent ensemble via le contexte ou le prop drilling, pas des relations parent-enfant rigides."
+      },
+      "item_2": {
+        "title": "Render props & slots :",
+        "description": "Utilisez children comme fonctions ou patterns de slots pour une flexibilité maximale sans prop drilling."
+      },
+      "item_3": {
+        "title": "Composants polymorphes :",
+        "description": "Composants qui peuvent se rendre comme différents éléments HTML ou composants personnalisés via une prop as."
+      },
+      "item_4": {
+        "title": "Co-localisation :",
+        "description": "Gardez les composants, hooks et utilitaires liés ensemble. Dossiers de fonctionnalités plutôt qu'organisation basée sur les types."
+      }
+    },
+    "state_management": {
+      "title": "Philosophie de Gestion d'État",
+      "location_strategy": {
+        "title": "Stratégie d'Emplacement d'État",
+        "url_state": {
+          "title": "État URL",
+          "items": ["Filtres & recherche", "Pagination", "IDs de modal/dialogue", "Vues partageables"]
+        },
+        "server_state": {
+          "title": "État Serveur",
+          "items": ["Données utilisateur", "Réponses API", "Contenu mis en cache", "Mutations serveur"]
+        },
+        "client_state": {
+          "title": "État Client",
+          "items": ["Bascules UI", "Brouillons de formulaires", "Interactions client uniquement", "État UI temporaire"]
+        }
+      },
+      "global_state": {
+        "title": "Quand Utiliser l'État Global",
+        "item_1": {
+          "title": "Évitez sauf si nécessaire :",
+          "description": "La plupart de l'état devrait être local. L'état global (Context, Zustand, etc.) est justifié pour : préférences de thème, données d'utilisateur authentifié, ou état vraiment partagé entre composants distants."
+        },
+        "item_2": {
+          "title": "Bibliothèques d'état serveur :",
+          "description": "Utilisez React Query ou SWR pour la gestion d'état serveur. Ils gèrent automatiquement la mise en cache, le rechargement et la synchronisation."
+        },
+        "item_3": {
+          "title": "État de formulaire :",
+          "description": "Préférez React Hook Form ou similaire pour les formulaires complexes. État local pour les entrées simples."
+        }
+      }
+    },
+    "performance_dx": {
+      "title": "Performance & Expérience Développeur",
+      "code_splitting": {
+        "title": "Division du Code & Imports Dynamiques",
+        "item_1": {
+          "title": "Division basée sur les routes :",
+          "description": "Automatique avec App Router. Chaque route est un chunk séparé."
+        },
+        "item_2": {
+          "title": "Division au niveau des composants :",
+          "description": "Utilisez next/dynamic avec loading et ssr: false pour les composants client uniquement lourds (graphiques, éditeurs)."
+        },
+        "item_3": {
+          "title": "Bibliothèques tierces :",
+          "description": "Chargez paresseusement les dépendances lourdes qui ne sont pas nécessaires au rendu initial."
+        }
+      },
+      "image_font": {
+        "title": "Optimisation des Images & Polices",
+        "item_1": {
+          "title": "Next.js Image :",
+          "description": "Utilisez toujours next/image. Optimisation automatique du format, chargement paresseux et dimensionnement responsive."
+        },
+        "item_2": {
+          "title": "Chargement de police :",
+          "description": "Utilisez next/font pour l'optimisation automatique, le sous-ensemble et le zéro décalage de mise en page. Préférez les polices variables quand c'est possible."
+        },
+        "item_3": {
+          "title": "Indices de ressources :",
+          "description": "Utilisez preload pour les ressources critiques, prefetch pour les navigations de page suivante probables."
+        }
+      },
+      "memoization": {
+        "title": "Stratégie de Mémorisation",
+        "item_1": {
+          "title": "Mesurez d'abord :",
+          "description": "Ne mémorisez pas prématurément. Utilisez React DevTools Profiler pour identifier les vrais goulots d'étranglement."
+        },
+        "item_2": {
+          "title": "Quand mémoriser :",
+          "description": "Calculs coûteux, composants qui se re-rendent fréquemment avec les mêmes props, ou prévenir les re-rendus d'enfants dans des boucles serrées."
+        },
+        "item_3": {
+          "title": "Évitez la sur-mémorisation :",
+          "description": "La plupart des composants n'ont pas besoin de memo. Les Composants Serveur ne peuvent pas être mémorisés de toute façon."
+        }
+      },
+      "observability": {
+        "title": "Observabilité",
+        "item_1": {
+          "title": "Vercel Analytics :",
+          "description": "Suivi Web Vitals intégré, surveillance Core Web Vitals et métriques utilisateur réelles."
+        },
+        "item_2": {
+          "title": "Journalisation structurée :",
+          "description": "Utilisez des formats de log cohérents. Incluez les IDs de requête, le contexte utilisateur et les frontières d'erreur pour le débogage en production."
+        },
+        "item_3": {
+          "title": "Frontières d'erreur :",
+          "description": "Enveloppez les segments de route dans des frontières d'erreur. Dégradation gracieuse, pas d'écrans blancs."
+        },
+        "item_4": {
+          "title": "Budgets de performance :",
+          "description": "Définissez et surveillez les limites de taille de bundle, les seuils Core Web Vitals et les SLAs de temps de réponse API."
+        }
+      }
+    },
+    "footer": {
+      "text": "Cette architecture évolue avec Next.js et React. Dernière mise à jour :"
+    }
+  }
+}

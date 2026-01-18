@@ -4,10 +4,11 @@ import { useLanguage } from '../context/LanguageContext';
 import { Section, SectionHeader } from '../../components/ui/Section';
 import { Container } from '../../components/ui/Container';
 import { CareerCard } from '../../components/CareerCard';
-import { careerData } from '../../data/career';
+import { getCareerData } from '../../data/career';
 
 function CareerSection() {
-  const { t } = useLanguage();
+  const { t, translations } = useLanguage();
+  const careerData = getCareerData(translations);
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
 
   const toggleExpanded = (id: string) => {
@@ -26,9 +27,9 @@ function CareerSection() {
     <Section id="career" variant="default">
       <Container>
         <SectionHeader
-          title={t('career.title')}
-          subtitle={t('career.subtitle')}
-          description={t('career.description')}
+          title={t('career.title', 'common')}
+          subtitle={t('career.subtitle', 'common')}
+          description={t('career.description', 'common')}
         />
 
         <div className="relative">

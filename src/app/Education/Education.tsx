@@ -4,10 +4,11 @@ import { useLanguage } from '../context/LanguageContext';
 import { Section, SectionHeader } from '../../components/ui/Section';
 import { Container } from '../../components/ui/Container';
 import { EducationCard } from '../../components/EducationCard';
-import { educationData } from '../../data/education';
+import { getEducationData } from '../../data/education';
 
 function EducationSection() {
-  const { t } = useLanguage();
+  const { t, translations } = useLanguage();
+  const educationData = getEducationData(translations);
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
 
   const toggleExpanded = (id: string) => {
@@ -26,8 +27,8 @@ function EducationSection() {
     <Section id="education" variant="muted">
       <Container>
         <SectionHeader
-          title={t('education.title')}
-          description="Academic background and continuous learning journey"
+          title={t('education.title', 'common')}
+          description={t('education.academic_background', 'common')}
         />
 
         <div className="space-y-6">

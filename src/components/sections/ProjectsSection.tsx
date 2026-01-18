@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../../app/context/LanguageContext';
-import { projectsData } from '../../data/projects';
+import { getProjectsData } from '../../data/projects';
 import { Section, SectionHeader } from '../ui/Section';
 import { Container } from '../ui/Container';
 import { Button } from '../ui/Button';
@@ -13,7 +13,8 @@ import { Badge } from '../ui/Badge';
 import { Card } from '../ui/Card';
 
 export const ProjectsSection: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, translations } = useLanguage();
+  const projectsData = getProjectsData(translations);
   const featuredProjects = projectsData.slice(0, 3);
   const [activeTab, setActiveTab] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -38,9 +39,9 @@ export const ProjectsSection: React.FC = () => {
 
       <Container className="relative z-10">
         <SectionHeader
-          title={t('projects.title')}
-          subtitle={t('projects.subtitle')}
-          description={t('projects.description')}
+          title={t('projects.title', 'common')}
+          subtitle={t('projects.subtitle', 'common')}
+          description={t('projects.description', 'common')}
         />
 
         {/* Architecture Featured Card */}
@@ -175,20 +176,21 @@ export const ProjectsSection: React.FC = () => {
 
           {/* Content Area - Like Code Editor */}
           <Card className="border-t-0 rounded-t-none border-2 border-border bg-background overflow-hidden">
-            <AnimatePresence mode="wait">
-              {featuredProjects.map((project, index) => {
-                if (index !== activeTab) return null;
-                const isVideo = project.image.endsWith('.mov') || project.image.endsWith('.mp4');
-                
-                return (
-                  <motion.div
-                    key={project.title}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.3 }}
-                    className="grid lg:grid-cols-2 gap-0 min-h-[500px]"
-                  >
+            <div className="h-[600px] lg:h-[650px] relative">
+              <AnimatePresence mode="wait">
+                {featuredProjects.map((project, index) => {
+                  if (index !== activeTab) return null;
+                  const isVideo = project.image.endsWith('.mov') || project.image.endsWith('.mp4');
+                  
+                  return (
+                    <motion.div
+                      key={project.title}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{ duration: 0.3 }}
+                      className="grid lg:grid-cols-2 gap-0 h-full absolute inset-0"
+                    >
                     {/* Left: Code/Info Panel */}
                     <div className="p-8 lg:p-12 bg-background border-r border-border flex flex-col justify-between">
                       {/* File path indicator */}
@@ -278,7 +280,7 @@ export const ProjectsSection: React.FC = () => {
                     </div>
 
                     {/* Right: Preview Panel */}
-                    <div className="relative aspect-video lg:aspect-auto lg:h-auto min-h-[300px] lg:min-h-[500px] overflow-hidden bg-muted/10">
+                    <div className="relative h-full overflow-hidden bg-muted/10">
                       {isVideo ? (
                         <video
                           src={project.image}
@@ -338,7 +340,8 @@ export const ProjectsSection: React.FC = () => {
                   </motion.div>
                 );
               })}
-            </AnimatePresence>
+              </AnimatePresence>
+            </div>
           </Card>
         </div>
 
@@ -352,7 +355,7 @@ export const ProjectsSection: React.FC = () => {
         >
           <Button size="lg" variant="outline" asChild className="group relative overflow-hidden font-mono">
             <Link href="/Projects">
-              <span className="relative z-10">$ view-all-projects</span>
+              <span className="relative z-10">{t('projects.view_all_projects', 'common')}</span>
               <motion.svg
                 className="ml-2 w-5 h-5 relative z-10"
                 fill="none"

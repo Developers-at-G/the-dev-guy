@@ -10,15 +10,18 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
-    "@emailjs/browser": "^4.4.1",
+    "@ai-sdk/openai": "^0.0.66",
     "@prisma/client": "^5.22.0",
     "@vercel/analytics": "^1.6.1",
+    "ai": "^4.0.0",
     "clsx": "^2.1.1",
     "framer-motion": "^11.15.0",
     "next": "^15.5.8",
+    "openai": "^4.70.0",
     "prisma": "^5.22.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -37,6 +40,7 @@
     "vitest": "^3.2.4"
   },
   "resolutions": {
-    "cross-spawn": "^7.0.5"
+    "cross-spawn": "^7.0.5",
+    "zod": "^3.25.76"
   }
 }

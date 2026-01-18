@@ -2,7 +2,8 @@ import React from 'react';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/Card';
 
-import { Education } from '../data/education';
+import { Education } from '../../data/education';
+import { useLanguage } from '../app/context/LanguageContext';
 
 interface EducationCardProps {
   education: Education;
@@ -15,6 +16,7 @@ export const EducationCard: React.FC<EducationCardProps> = ({
   isExpanded,
   onToggle
 }) => {
+  const { t } = useLanguage();
   return (
     <Card className="hover:shadow-lg transition-all duration-300">
       <CardHeader>
@@ -57,7 +59,7 @@ export const EducationCard: React.FC<EducationCardProps> = ({
               onClick={onToggle}
               className="text-primary hover:text-primary/80 text-sm font-medium transition-colors mb-4"
             >
-              {isExpanded ? 'Hide' : 'Show'} Key Achievements
+              {isExpanded ? t('common.hide', 'common') : t('common.show', 'common')} {t('education.key_achievements', 'common')}
             </button>
 
             {isExpanded && (

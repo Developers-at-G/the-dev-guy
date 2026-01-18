@@ -1,0 +1,46 @@
+{
+  "real_projects_tutorial": {
+    "title": "Why Building Real Projects Taught Me More Than Any Tutorial",
+    "excerpt": "There's something exciting about starting a new coding tutorial. You follow along, everything works, the UI looks clean — and you feel like you're learning. But then you try building something from scratch...",
+    "content": {
+      "intro_1": "There's something exciting about starting a new coding tutorial. You follow along, everything works, the UI looks clean — and you feel like you're learning.",
+      "intro_2": "But then you try building something from scratch.",
+      "intro_3": "Suddenly, nothing is handed to you. You're the one deciding how things should work, where to fetch data, how to handle empty states, loading states, slow networks, form validation, weird bugs. You realize quickly: tutorials are helpful, but they don't prepare you for the real mess of real apps.",
+      "section_1_title": "📦 What Tutorials Don't Teach",
+      "section_1_item_1": "How to handle vague requirements",
+      "section_1_item_2": "What to do when an API fails",
+      "section_1_item_3": "What happens when your design breaks on mobile",
+      "section_1_item_4": "How to talk through bugs and edge cases with someone else",
+      "section_1_item_5": "How to keep code clean even as features grow",
+      "section_1_paragraph_after_list": "All those things? I only started learning them when I stopped watching and started building.",
+      "section_2_title": "🧠 Real Projects = Real Thinking",
+      "section_2_paragraph": "When you're building your own app, you're not just copying code — you're making decisions. That's where the real growth happens. You search, test, refactor, hit bugs, fix them, hit new ones, and repeat.",
+      "section_2_conclusion": "You don't just learn \"how to use React\" — you learn how to think like a developer.",
+      "section_3_title": "🛠 What Work Taught Me",
+      "section_3_paragraph_1": "Working on real apps at my job pushed this even further.",
+      "section_3_paragraph_2": "Sometimes I ship something, feel good about it — then get feedback that it doesn't work quite right. Or that I missed tiny design details I hadn't even noticed. I go back, fix it, and still get more notes.",
+      "section_3_paragraph_3": "That feedback loop — build, test, break, improve — is where I've learned the most. Not just about code, but about quality, precision, and thinking clearly.",
+      "section_3_paragraph_4": "Sure, the feedback can be direct. Sometimes it stings. But I've learned to treat it like a debugging tool for my own thinking. It keeps me sharp and helps me level up way faster than finishing a course ever did.",
+      "section_4_title": "🚀 The Bottom Line",
+      "section_4_paragraph_1": "If you're serious about improving as a developer, you have to build.",
+      "section_4_paragraph_2": "Not tutorials. Not clone apps with all the answers given. Real projects — where you don't know everything upfront, and you have to figure things out as you go.",
+      "section_4_paragraph_3": "That's where the growth is. That's where the learning sticks."
+    }
+  },
+  "ai_wont_replace": {
+    "title": "AI Won't Replace Developers - It Will Change How We Build",
+    "excerpt": "There's a lot of noise lately about AI replacing developers. I don't buy it. What AI is doing is speeding up development, sometimes a lot. But speed alone doesn't build good software.",
+    "content": {
+      "section_1_title": "🤖 What AI Actually Does",
+      "section_1_paragraph_1": "AI can generate code, suggest solutions, and help with repetitive work. That's useful. I use it. But it doesn't actually understand the product, the users, or the long-term consequences of a technical decision.",
+      "section_1_paragraph_2": "In practice, AI often overcomplicates simple problems. It introduces abstractions you don't need, solves the wrong thing confidently, or misses issues that are obvious once you actually understand how the codebase works. Spotting those problems still requires a developer who knows what they're doing.",
+      "section_2_title": "🔑 The Key Point",
+      "section_2_paragraph_1": "AI needs developers who understand code, not the other way around.",
+      "section_2_paragraph_2": "Used well, AI is a productivity boost. Used blindly, it creates fragile systems that are hard to maintain. The difference isn't the tool it's the person using it.",
+      "section_3_title": "🎯 The Real Skill Going Forward",
+      "section_3_paragraph_1": "I think the real skill going forward isn't competing with AI, but learning how to control it. Knowing when to accept a suggestion, when to simplify it, and when to throw it away completely.",
+      "section_3_paragraph_2": "AI should speed us up, not replace our thinking.",
+      "section_3_paragraph_3": "We still need to understand the code we ship and take responsibility for it."
+    }
+  }
+}

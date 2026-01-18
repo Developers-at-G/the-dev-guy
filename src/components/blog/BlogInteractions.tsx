@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Button } from '../ui/Button';
 import { trackBlogPostLiked, trackBlogPostDisliked, trackBlogCommentAdded } from '../../utils/analytics';
+import { useLanguage } from '../../app/context/LanguageContext';
 
 interface BlogInteractionsProps {
   postSlug: string;
@@ -22,6 +23,7 @@ interface Comment {
 }
 
 export const BlogInteractions: React.FC<BlogInteractionsProps> = ({ postSlug }) => {
+  const { t } = useLanguage();
   const [reactions, setReactions] = useState<ReactionCounts>({ likes: 0, dislikes: 0 });
   const [userReaction, setUserReaction] = useState<'like' | 'dislike' | null>(null);
   const [comments, setComments] = useState<Comment[]>([]);
@@ -101,7 +103,7 @@ export const BlogInteractions: React.FC<BlogInteractionsProps> = ({ postSlug }) 
           trackBlogPostDisliked(postSlug);
         }
       } else if (response.status === 429) {
-        alert(`Rate limit exceeded: ${data.error}. Please try again in ${data.retryAfter || 60} seconds.`);
+        alert(`${t('blog_interactions.rate_limit', 'common')}: ${data.error}. ${t('blog_interactions.try_again', 'common')} ${data.retryAfter || 60} ${t('blog_interactions.seconds', 'common')}.`);
       } else if (data.error) {
         alert(data.error);
       }
@@ -136,7 +138,7 @@ export const BlogInteractions: React.FC<BlogInteractionsProps> = ({ postSlug }) 
         // Track analytics
         trackBlogCommentAdded(postSlug, commentContent.length);
       } else if (response.status === 429) {
-        alert(`Rate limit exceeded: ${data.error}. Please try again in ${data.retryAfter || 60} seconds.`);
+        alert(`${t('blog_interactions.rate_limit', 'common')}: ${data.error}. ${t('blog_interactions.try_again', 'common')} ${data.retryAfter || 60} ${t('blog_interactions.seconds', 'common')}.`);
       } else if (data.error) {
         alert(data.error);
       }
@@ -155,7 +157,7 @@ export const BlogInteractions: React.FC<BlogInteractionsProps> = ({ postSlug }) 
             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
           </svg>
-          <span>Loading interactions...</span>
+          <span>{t('blog_interactions.loading', 'common')}...</span>
         </div>
       </div>
     );
@@ -167,8 +169,8 @@ export const BlogInteractions: React.FC<BlogInteractionsProps> = ({ postSlug }) 
       <div className="bg-gradient-to-br from-white/5 via-background/80 to-accent/5 backdrop-blur-xl rounded-2xl border border-primary/20 shadow-xl p-6 md:p-8">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
-            <h3 className="text-lg font-semibold text-foreground mb-1">Was this helpful?</h3>
-            <p className="text-sm text-muted-foreground">Your feedback helps improve the content</p>
+            <h3 className="text-lg font-semibold text-foreground mb-1">{t('blog_interactions.was_helpful', 'common') || 'Was this helpful?'}</h3>
+            <p className="text-sm text-muted-foreground">{t('blog_interactions.feedback_helps', 'common') || 'Your feedback helps improve the content'}</p>
           </div>
           <div className="flex items-center gap-3">
             <button
@@ -216,12 +218,12 @@ export const BlogInteractions: React.FC<BlogInteractionsProps> = ({ postSlug }) 
         <div className="flex items-center justify-between mb-8">
           <div>
             <h3 className="text-2xl font-bold text-foreground mb-1">
-              Comments
+              {t('blog_interactions.comments', 'common')}
             </h3>
             <p className="text-sm text-muted-foreground">
               {comments.length === 0 
-                ? 'No comments yet' 
-                : `${comments.length} ${comments.length === 1 ? 'comment' : 'comments'}`
+                ? t('blog_interactions.no_comments', 'common')
+                : `${comments.length} ${comments.length === 1 ? t('blog_interactions.comment', 'common').toLowerCase() : t('blog_interactions.comments', 'common').toLowerCase()}`
               }
             </p>
           </div>
@@ -236,14 +238,14 @@ export const BlogInteractions: React.FC<BlogInteractionsProps> = ({ postSlug }) 
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
-                Cancel
+                {t('blog_interactions.cancel', 'common')}
               </>
             ) : (
               <>
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                 </svg>
-                Add Comment
+                {t('blog_interactions.add_comment', 'common')}
               </>
             )}
           </Button>
@@ -255,12 +257,12 @@ export const BlogInteractions: React.FC<BlogInteractionsProps> = ({ postSlug }) 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-semibold text-foreground mb-2">
-                    Name <span className="text-primary">*</span>
+                    {t('blog_interactions.name', 'common')} <span className="text-primary">*</span>
                   </label>
                 <input
                   type="text"
                   className="flex h-11 w-full rounded-lg border border-input bg-background/80 backdrop-blur-sm px-4 py-2.5 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:border-primary/50 transition-all"
-                  placeholder="Your name"
+                  placeholder={t('blog_interactions.name', 'common')}
                   value={authorName}
                   onChange={(e) => {
                     const value = e.target.value;
@@ -274,7 +276,7 @@ export const BlogInteractions: React.FC<BlogInteractionsProps> = ({ postSlug }) 
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-foreground mb-2">
-                    Email <span className="text-muted-foreground text-xs">(optional)</span>
+                    {t('blog_interactions.email', 'common')} <span className="text-muted-foreground text-xs">{t('blog_interactions.optional', 'common')}</span>
                   </label>
                 <input
                   type="email"
@@ -293,11 +295,11 @@ export const BlogInteractions: React.FC<BlogInteractionsProps> = ({ postSlug }) 
               </div>
               <div>
                 <label className="block text-sm font-semibold text-foreground mb-2">
-                  Comment <span className="text-primary">*</span>
+                  {t('blog_interactions.comment_label', 'common')} <span className="text-primary">*</span>
                 </label>
                 <textarea
                   className="flex min-h-[120px] w-full rounded-lg border border-input bg-background/80 backdrop-blur-sm px-4 py-3 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:border-primary/50 transition-all resize-none"
-                  placeholder="Share your thoughts..."
+                  placeholder={t('blog_interactions.share_thoughts', 'common')}
                   value={commentContent}
                   onChange={(e) => {
                     const value = e.target.value;
@@ -309,7 +311,7 @@ export const BlogInteractions: React.FC<BlogInteractionsProps> = ({ postSlug }) 
                   required
                 />
                 <div className="text-xs text-muted-foreground text-right mt-1">
-                  {commentContent.length} / 2000 characters
+                  {commentContent.length} / 2000 {t('blog_interactions.characters', 'common')}
                 </div>
               </div>
               <div className="flex justify-end">
@@ -324,14 +326,14 @@ export const BlogInteractions: React.FC<BlogInteractionsProps> = ({ postSlug }) 
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
-                      Posting...
+                      {t('blog_interactions.posting', 'common')}
                     </span>
                   ) : (
                     <span className="flex items-center gap-2">
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                       </svg>
-                      Post Comment
+                      {t('blog_interactions.post_comment', 'common')}
                     </span>
                   )}
                 </Button>
@@ -349,10 +351,10 @@ export const BlogInteractions: React.FC<BlogInteractionsProps> = ({ postSlug }) 
                   </svg>
                 </div>
                 <p className="text-muted-foreground text-lg font-medium mb-1">
-                  No comments yet
+                  {t('blog_interactions.no_comments', 'common')}
                 </p>
                 <p className="text-muted-foreground/70 text-sm">
-                  Be the first to share your thoughts!
+                  {t('blog_interactions.be_first', 'common')}
                 </p>
               </div>
             ) : (

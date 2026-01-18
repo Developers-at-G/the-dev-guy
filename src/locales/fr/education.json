@@ -1,0 +1,34 @@
+{
+  "educations": [
+    {
+      "id": "master",
+      "institution": "Université des Sciences Appliquées",
+      "degree": "Master of Science",
+      "field": "Informatique Appliquée - Conception UI/UX et Ingénierie de l'Utilisabilité",
+      "period": "2021 - 2023",
+      "location": "Allemagne",
+      "description": "Spécialisé dans la conception d'interfaces utilisateur, la recherche sur l'expérience utilisateur et l'ingénierie de l'utilisabilité.",
+      "achievements": [
+        "Diplômé avec distinction",
+        "Spécialisé en Conception UI/UX et Ingénierie de l'Utilisabilité",
+        "Complété une thèse sur les patterns de conception d'applications web modernes",
+        "Participation active aux ateliers et séminaires de design"
+      ]
+    },
+    {
+      "id": "bachelor",
+      "institution": "Université Hasan Kalyoncu",
+      "degree": "Bachelor of Science",
+      "field": "Informatique",
+      "period": "2018 - 2021",
+      "location": "Turquie",
+      "description": "Fondation en informatique avec un accent sur le développement logiciel et la programmation.",
+      "achievements": [
+        "Fondation solide dans les fondamentaux de l'informatique",
+        "Accent sur le développement logiciel et la programmation",
+        "Participé à diverses compétitions de programmation",
+        "Complété plusieurs projets de développement logiciel"
+      ]
+    }
+  ]
+}

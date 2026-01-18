@@ -1,94 +1,88 @@
 import { Project } from '../hooks/useProjects';
+import { Translations } from '../lib/translations';
 
-export const projectsData: Project[] = [
+const staticProjectsData = [
   {
-    title: 'Naboujastore - E-Commerce Platform',
+    id: 'naboujastore',
     image: '/Images/Nabouja.jpeg',
     technologies: ['Next.js 15', 'TypeScript', 'React 19', 'Tailwind CSS', 'Framer Motion', 'Radix UI', 'Vercel Analytics', 'WhatsApp API'],
     link: 'https://www.nabouja-store.com',
     githubUrl: 'https://github.com/abdallah96/naboujastore-website',
     role: 'Full‑stack',
     team: 'Solo',
-    period: 'In Progress',
-    impacts: ['Production-ready e-commerce', 'Vercel Analytics integration', 'Next.js 15 App Router', 'Performance-optimized'],
-    problem: 'Traditional Senegalese clothing retailers needed a modern e-commerce platform with WhatsApp integration to serve local market preferences.',
-    actions: ['Built production-ready e-commerce with Next.js 15 App Router and React 19', 'Implemented Vercel Analytics for real-time user behavior tracking and conversion funnel analysis', 'Deployed on Vercel with automatic CI/CD and optimized performance metrics', 'Created advanced shopping cart with React Context API and persistent state management', 'Integrated WhatsApp API for order processing with comprehensive event tracking', 'Developed African-inspired design system with Framer Motion animations and Radix UI components']
   },
   {
-    title: 'Developer Playground',
+    id: 'developer-playground',
     image: '/Images/developer-playground.png',
     technologies: ['Next.js 14', 'TypeScript', 'React', 'Tailwind CSS', 'Storybook', 'Vercel Analytics', 'Serverless', 'Edge Middleware'],
     link: 'https://developer-playground-one.vercel.app',
     githubUrl: 'https://github.com/abdallah96/Developer-playground',
     role: 'Full‑stack',
     team: 'Solo',
-    period: '2025',
-    impacts: ['Next.js 14 showcase', 'SSR/SSG/ISR strategies', 'Component library system', 'Performance-optimized'],
-    problem: 'Developers needed a comprehensive learning resource demonstrating Next.js 14 best practices, rendering strategies, and component architecture.',
-    actions: ['Built production-ready Next.js 14 app showcasing SSR, SSG, and ISR rendering strategies', 'Created reusable component library with 7+ customizable UI components and Storybook integration', 'Implemented API routes with middleware, authentication patterns, and protected routes', 'Optimized performance with lazy loading, code splitting, dynamic imports, and React memoization', 'Deployed on Vercel with Analytics integration and automatic CI/CD']
   },
   {
-    title: 'Restaurant Management (PWA)',
+    id: 'restaurant-management',
     image: '/Images/k-gere.png',
     technologies: ['Next.js 14', 'TypeScript', 'Prisma', 'PostgreSQL', 'NextAuth.js', 'PWA', 'TailwindCSS'],
     link: 'https://kader-qui-gere.vercel.app/auth/signin',
     githubUrl: 'https://github.com/abdallah96/kader-qui-gere',
     role: 'Full‑stack',
     team: 'Solo',
-    period: '2025',
-    impacts: ['+55% order speed', 'Offline-first PWA', 'Multi-restaurant ready'],
-    problem: 'Manual ordering and fragmented workflows slowed restaurant service.',
-    actions: ['Designed PWA architecture with offline sync', 'Implemented real-time order flows', 'Added multi-tenant data model with CFA support']
   },
   {
-    title: 'Restaurant Website',
+    id: 'restaurant-website',
     image: '/Videos/Restaurant.mov',
-    technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Supabase', 'React' , 'Twilio', 'Zustand'],
+    technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Supabase', 'React', 'Twilio', 'Zustand'],
     link: 'https://keurguirestaurant.com',
     role: 'Full‑stack',
     team: 'Solo',
-    period: '2024',
-    impacts: ['+40% menu views', 'SEO‑friendly', 'Fast LCP'],
-    problem: 'Site needed to showcase menu and weekly specials with speed.',
-    actions: ['Implemented SSG for core pages', 'Built specials schedule UX', 'Added image optimization and caching']
   },
   {
-    title: 'IlmQuest - Real-Time Multiplayer Quiz Game',
+    id: 'ilmquest',
     image: '/Images/IlmQuest.png',
     technologies: ['Next.js', 'React', 'Socket.IO', 'TypeScript', 'Tailwind CSS', 'Real-time WebSockets'],
     link: 'https://ilmquest.vercel.app',
     role: 'Full‑stack',
     team: 'Solo',
-    period: '2024',
-    impacts: ['Real-time multiplayer gameplay', 'Mobile-first design', 'French localization', 'Room-based game sessions'],
-    problem: 'Friends, families, and youth groups needed an engaging way to learn Islamic knowledge together through interactive, real-time quiz competitions.',
-    actions: ['Designed join-by-code flow and host/guest lobby system', 'Built level picker (1-25) with clear progression', 'Implemented real-time game state synchronization with Socket.IO', 'Created playful feedback animations for correct/wrong answers', 'Developed live scoreboard with synchronized updates across all clients', 'Designed warm, community-oriented UI with mosque iconography and soft rose palette', 'Fully localized interface in French for target audience']
   },
-
   {
-    title: 'DevTrackr – Developer Task & Time Tracking App',
+    id: 'devtrackr',
     image: '/Images/devtrackr-dashboard.png',
     technologies: ['React', 'Node.js', 'PostgreSQL', 'Prisma', 'JWT', 'Headless UI', 'Vercel', 'PWA'],
     link: 'https://devtrackr-one.vercel.app/',
     githubUrl: 'https://github.com/abdallah96/devtrackr',
     role: 'Full‑stack',
     team: 'Solo',
-    period: '2025',
-    impacts: ['+30% weekly completion', 'Focus mode UX', 'Mobile PWA'],
-    problem: 'Developers lacked a simple way to track tasks and time together.',
-    actions: ['Shipped unified tasks+time model', 'Built analytics and weekly reports', 'Optimized mobile-first interactions']
   },
-  
   {
-    title: 'Real Estate Website',
+    id: 'real-estate',
     image: '/Images/atlanticimmo.png',
     technologies: ['React', 'Tailwind CSS', 'Framer Motion', 'Next JS'],
     link: 'https://seradi.vercel.app',
     role: 'Frontend',
     team: 'Solo',
-    period: '2024',
-    impacts: ['Faster browsing', 'Clean property filters'],
-    problem: 'Users struggled to navigate listings with slow filtering.',
-    actions: ['Built performant filter UI', 'Added skeleton loading states', 'Optimized list virtualization']
-  }
+  },
 ];
+
+export function getProjectsData(translations: Translations): Project[] {
+  const projects = translations.projects.projects;
+  
+  return staticProjectsData.map((staticData, index) => {
+    const translatedProject = projects[index];
+    if (!translatedProject) return null;
+    
+    return {
+      title: translatedProject.title,
+      image: staticData.image,
+      technologies: staticData.technologies,
+      link: staticData.link,
+      githubUrl: staticData.githubUrl,
+      role: translatedProject.role,
+      team: translatedProject.team,
+      period: translatedProject.period,
+      impacts: translatedProject.impacts,
+      problem: translatedProject.problem,
+      actions: translatedProject.actions,
+    };
+  }).filter((p): p is Project => p !== null);
+}

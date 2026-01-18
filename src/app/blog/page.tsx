@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from '../../components/ui/Button';
+import { useLanguage } from '../context/LanguageContext';
 
 const codeSnippets = [
   `const insight = await buildRealProject();`,
@@ -12,15 +13,25 @@ const codeSnippets = [
 ];
 
 const BlogPage = () => {
+  const { t } = useLanguage();
   const [, setCurrentSnippet] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
+  const [animationTime, setAnimationTime] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSnippet((prev) => (prev + 1) % codeSnippets.length);
     }, 3000);
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    // Update animation time only on client to avoid hydration mismatch
+    const startTime = Date.now();
+    const animationInterval = setInterval(() => {
+      setAnimationTime(Date.now() - startTime);
+    }, 16); // ~60fps
+    return () => clearInterval(animationInterval);
   }, []);
 
   useEffect(() => {
@@ -40,7 +51,7 @@ const BlogPage = () => {
           style={{
             left: mousePosition.x - 200,
             top: mousePosition.y - 200,
-            transform: `translate(${Math.sin(Date.now() / 2000) * 50}px, ${Math.cos(Date.now() / 2000) * 50}px)`
+            transform: animationTime ? `translate(${Math.sin(animationTime / 2000) * 50}px, ${Math.cos(animationTime / 2000) * 50}px)` : undefined
           }}
         />
         <div 
@@ -48,7 +59,7 @@ const BlogPage = () => {
           style={{
             right: mousePosition.x / 4,
             bottom: mousePosition.y / 4,
-            transform: `translate(${Math.cos(Date.now() / 3000) * 30}px, ${Math.sin(Date.now() / 3000) * 30}px)`
+            transform: animationTime ? `translate(${Math.cos(animationTime / 3000) * 30}px, ${Math.sin(animationTime / 3000) * 30}px)` : undefined
           }}
         />
       </div>
@@ -78,20 +89,20 @@ const BlogPage = () => {
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
-              /portfolio
+              {t('blog.back_to_portfolio', 'common')}
             </Link>
           </Button>
           
           <div className="flex items-center gap-4">
             <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-            <span className="text-green-400 font-mono text-sm">blog.active</span>
+            <span className="text-green-400 font-mono text-sm">{t('blog.active', 'common')}</span>
           </div>
         </nav>
 
         <section className="px-6 py-16">
           <div className="max-w-6xl mx-auto">
             <div className="mb-8">
-              <h2 className="text-2xl font-mono text-green-400 mb-2">{"// Featured Articles"}</h2>
+              <h2 className="text-2xl font-mono text-green-400 mb-2">{t('blog.featured_articles', 'common')}</h2>
               <div className="h-px bg-gradient-to-r from-green-400 to-transparent"></div>
             </div>
 
@@ -102,7 +113,7 @@ const BlogPage = () => {
 
               >
                 <div className="absolute top-2 right-2 bg-blue-500/20 border border-blue-500/30 rounded px-2 py-1 text-xs text-blue-300 opacity-0 group-hover:opacity-100 transition-opacity">
-                  Click to read →
+                  {t('blog.click_to_read', 'common')}
                 </div>
               <div className="flex items-center gap-1 px-1 py-2 bg-gray-800/50 border-b border-gray-700/50">
                 <div className="bg-gray-700/50 px-3 py-1 rounded-t text-xs text-gray-300 font-mono border-t border-l border-r border-gray-600/50">
@@ -186,7 +197,7 @@ const BlogPage = () => {
                   <div className="flex gap-4">
                     <div className="text-gray-500 select-none">9</div>
                     <div>
-                      <span className="text-gray-500">{"// 👇 Click to execute reading function"}</span>
+                      <span className="text-gray-500">{t('blog.read_function', 'common')}</span>
                     </div>
                   </div>
 
@@ -196,7 +207,7 @@ const BlogPage = () => {
                       <span className="text-blue-400 hover:text-blue-300 transition-colors bg-blue-500/10 hover:bg-blue-500/20 px-2 py-1 rounded border border-blue-500/30 hover:border-blue-400/50 inline-flex items-center gap-2 group/link">
                         <span className="group-hover/link:animate-pulse">▶</span>
                         article.read()
-                        <span className="text-xs opacity-70">{"// Click me!"}</span>
+                        <span className="text-xs opacity-70">{t('blog.click_me', 'common')}</span>
                       </span>
                       <span className="text-white">;</span>
                     </div>
@@ -210,8 +221,8 @@ const BlogPage = () => {
               <div 
                 className="bg-gray-900/90 backdrop-blur-sm rounded-lg border border-gray-700/50 overflow-hidden group cursor-pointer hover:border-green-500/50 hover:shadow-2xl hover:shadow-green-500/20 transition-all duration-300 hover:scale-[1.02] relative h-full"
               >
-                <div className="absolute top-2 right-2 bg-green-500/20 border border-green-500/30 rounded px-2 py-1 text-xs text-green-300 opacity-0 group-hover:opacity-100 transition-opacity">
-                  Click to read →
+                  <div className="absolute top-2 right-2 bg-green-500/20 border border-green-500/30 rounded px-2 py-1 text-xs text-green-300 opacity-0 group-hover:opacity-100 transition-opacity">
+                  {t('blog.click_to_read', 'common')}
                 </div>
               <div className="flex items-center gap-1 px-1 py-2 bg-gray-800/50 border-b border-gray-700/50">
                 <div className="bg-gray-700/50 px-3 py-1 rounded-t text-xs text-gray-300 font-mono border-t border-l border-r border-gray-600/50">
@@ -320,7 +331,7 @@ const BlogPage = () => {
                   className="bg-gray-900/90 backdrop-blur-sm rounded-lg border border-gray-700/50 overflow-hidden group cursor-pointer hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 hover:scale-[1.02] relative h-full"
                 >
                   <div className="absolute top-2 right-2 bg-purple-500/20 border border-purple-500/30 rounded px-2 py-1 text-xs text-purple-300 opacity-0 group-hover:opacity-100 transition-opacity">
-                    View Architecture →
+                    {t('blog.view_architecture', 'common')}
                   </div>
                   <div className="flex items-center gap-1 px-1 py-2 bg-gray-800/50 border-b border-gray-700/50">
                     <div className="bg-gray-700/50 px-3 py-1 rounded-t text-xs text-gray-300 font-mono border-t border-l border-r border-gray-600/50">
@@ -395,13 +406,13 @@ const BlogPage = () => {
         <section className="px-6 py-16">
           <div className="max-w-6xl mx-auto">
             <div className="mb-8">
-              <h2 className="text-2xl font-mono text-purple-400 mb-2">{"// git log --upcoming"}</h2>
+              <h2 className="text-2xl font-mono text-purple-400 mb-2">{t('blog.upcoming_posts', 'common')}</h2>
               <div className="h-px bg-gradient-to-r from-purple-400 to-transparent"></div>
             </div>
 
             <div className="space-y-4">
               {[
-                { hash: 'e4f5g6h', message: 'docs: Why I Switched from JavaScript to TypeScript (And You Should Too)', author: 'abdallah', date: 'Coming Soon' },
+                { hash: 'e4f5g6h', message: 'docs: Why I Switched from JavaScript to TypeScript (And You Should Too)', author: 'abdallah', date: t('blog.coming_soon', 'common') },
               ].map((commit, index) => (
                 <div key={index} className="bg-gray-900/50 rounded border border-gray-700/30 p-4 font-mono text-sm hover:bg-gray-800/50 transition-colors">
                   <div className="flex items-center gap-4">
@@ -421,11 +432,11 @@ const BlogPage = () => {
             <div className="font-mono text-gray-400 mb-4">
               <span className="text-green-400">console.log</span>
               <span className="text-white">(</span>
-              <span className="text-yellow-300">"Thanks for visiting my blog!"</span>
+              <span className="text-yellow-300">"{t('blog.thanks_visiting', 'common')}"</span>
               <span className="text-white">);</span>
             </div>
             <div className="text-gray-500 text-sm">
-              Built with passion, powered by real experiences.
+              {t('blog.built_with_passion', 'common')}
             </div>
           </div>
         </footer>

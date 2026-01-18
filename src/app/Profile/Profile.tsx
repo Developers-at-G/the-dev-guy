@@ -3,11 +3,12 @@ import React from 'react';
 import Image from 'next/image';
 import { useLanguage } from '../context/LanguageContext';
 import { Card } from '../../components/ui/Card';
-import { profileData } from '../../data/profile';
+import { getProfileData } from '../../data/profile';
 import { motion } from 'framer-motion';
 
 function ClientProfile() {
-  const { t } = useLanguage();
+  const { t, translations } = useLanguage();
+  const profileData = getProfileData(translations);
   
   const containerVariants = {
     hidden: {},
@@ -99,13 +100,13 @@ function ClientProfile() {
             <Card variant="elevated" className="p-8">
               <div className="space-y-5">
                 <motion.h2 className="text-2xl font-bold text-foreground" variants={itemVariants}>
-                  {t('profile.about_me')}
+                  {t('profile.about_me', 'common')}
                 </motion.h2>
                 <motion.p className="text-muted-foreground leading-relaxed text-lg" variants={itemVariants}>
-                  {highlightKeywords(t('profile.about_description'))}
+                  {highlightKeywords(t('profile.about_description', 'common'))}
                 </motion.p>
                 <motion.p className="text-muted-foreground leading-relaxed" variants={itemVariants}>
-                  {highlightKeywords(t('profile.experience_description'))}
+                  {highlightKeywords(t('profile.experience_description', 'common'))}
                 </motion.p>
               </div>
             </Card>

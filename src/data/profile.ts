@@ -1,20 +1,43 @@
-export const profileData = {
-  name: 'Abdallah Amadou Gueye',
-  title: 'Frontend / Product Engineer',
-  subtitle: 'Building with Love and Passion',
-  description: 'Hi, I\'m Abdallah — a Frontend & Product Engineer passionate about crafting fast, intuitive, and developer-friendly web experiences. I specialize in React, Next.js, and building systems that help teams ship better products faster.',
-  image: '/Images/Picture.jpeg',
-  
+import { Translations } from '../lib/translations';
+
+export interface ProfileData {
+  name: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  image: string;
   about: {
-    bio: "I'm Abdallah Amadou Gueye, a passionate Frontend / Product Engineer from Senegal. With a Master's degree in Applied Computer Science, I specialize in building high-performance web applications with React and Next.js.",
-    experience: "Experienced in shipping production systems, migrating large Next.js codebases, building reusable component systems and helping teams and developers unblock and ship faster."
-  },
+    bio: string;
+    experience: string;
+  };
+  skills: string[];
+  hero: {
+    stats: {
+      years: string;
+      years_label: string;
+      projects: string;
+      projects_label: string;
+      technologies: string;
+      technologies_label: string;
+    };
+    cta: {
+      how_i_build: string;
+    };
+  };
+}
 
-  skills: [
-    'React & Next.js',
-    'TypeScript & JavaScript',
-    'UI Architecture',
-    'Developer Experience'
-  ]
-
-} as const;
+export function getProfileData(translations: Translations): ProfileData {
+  return {
+    name: translations.profile.name,
+    title: translations.profile.title,
+    subtitle: translations.profile.subtitle,
+    description: translations.profile.description,
+    image: '/Images/Picture.jpeg',
+    about: {
+      bio: translations.profile.about.bio,
+      experience: translations.profile.about.experience,
+    },
+    skills: translations.profile.skills,
+    hero: translations.profile.hero,
+  };
+}

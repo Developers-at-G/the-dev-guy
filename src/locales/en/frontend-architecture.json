@@ -1,0 +1,190 @@
+{
+  "sections": {
+    "server_vs_client": {
+      "title": "Server Components vs Client Components",
+      "item_1": {
+        "title": "Default to Server Components:",
+        "description": "Most UI is server-rendered by default. Reduces bundle size, improves initial load, and enables direct database access."
+      },
+      "item_2": {
+        "title": "Client Components for interactivity:",
+        "description": "Only use 'use client' when needed: event handlers, browser APIs, state hooks, or third-party libraries requiring client-side execution."
+      },
+      "item_3": {
+        "title": "Boundary strategy:",
+        "description": "Push client boundaries as low as possible. Keep layouts and page shells as Server Components; isolate interactivity to leaf components."
+      }
+    },
+    "data_fetching": {
+      "title": "Data Fetching Strategy",
+      "item_1": {
+        "title": "Server-first approach:",
+        "description": "Fetch data in Server Components using async/await. No loading states needed—data is available on first render."
+      },
+      "item_2": {
+        "title": "Streaming with Suspense:",
+        "description": "Use React Suspense boundaries to stream partial UI while slower data fetches complete. Critical content renders first."
+      },
+      "item_3": {
+        "title": "Caching layers:",
+        "description": "Leverage Next.js caching (fetch cache, full route cache, router cache) strategically. Use revalidate and cache: 'no-store' for dynamic content."
+      },
+      "item_4": {
+        "title": "Parallel data fetching:",
+        "description": "Fetch independent data sources in parallel within the same component to minimize waterfall requests."
+      }
+    },
+    "rendering_strategies": {
+      "title": "Rendering Strategies",
+      "ssr": {
+        "title": "SSR (Server-Side Rendering)",
+        "description": "Default for dynamic routes. Use for personalized content, real-time data, or SEO-critical pages that change frequently."
+      },
+      "ssg": {
+        "title": "SSG (Static Site Generation)",
+        "description": "Generate at build time. Ideal for marketing pages, documentation, blog posts—any content that doesn't change per user or request."
+      },
+      "isr": {
+        "title": "ISR (Incremental Static Regeneration)",
+        "description": "Best of both worlds: static performance with periodic updates. Perfect for product catalogs, news sites, or any content that updates on a schedule."
+      }
+    },
+    "architecture_layers": {
+      "title": "Architecture Layers",
+      "page_components": {
+        "title": "Page Components",
+        "description": "Route-level composition, data fetching, layout orchestration"
+      },
+      "composite_components": {
+        "title": "Composite Components",
+        "description": "Business logic, feature-specific UI, composed from primitives"
+      },
+      "ui_primitives": {
+        "title": "UI Primitives",
+        "description": "Reusable, unstyled or minimally styled building blocks (Button, Card, Input, etc.)"
+      }
+    },
+    "composition_reuse": {
+      "title": "Composition & Reuse",
+      "item_1": {
+        "title": "Compound components:",
+        "description": "Build flexible APIs using composition patterns. Components work together through context or prop drilling, not rigid parent-child relationships."
+      },
+      "item_2": {
+        "title": "Render props & slots:",
+        "description": "Use children as functions or slot patterns for maximum flexibility without prop drilling."
+      },
+      "item_3": {
+        "title": "Polymorphic components:",
+        "description": "Components that can render as different HTML elements or custom components via an as prop."
+      },
+      "item_4": {
+        "title": "Co-location:",
+        "description": "Keep related components, hooks, and utilities together. Feature folders over type-based organization."
+      }
+    },
+    "state_management": {
+      "title": "State Management Philosophy",
+      "location_strategy": {
+        "title": "State Location Strategy",
+        "url_state": {
+          "title": "URL State",
+          "items": ["Filters & search", "Pagination", "Modal/dialog IDs", "Shareable views"]
+        },
+        "server_state": {
+          "title": "Server State",
+          "items": ["User data", "API responses", "Cacheable content", "Server mutations"]
+        },
+        "client_state": {
+          "title": "Client State",
+          "items": ["UI toggles", "Form drafts", "Client-only interactions", "Temporary UI state"]
+        }
+      },
+      "global_state": {
+        "title": "When to Use Global State",
+        "item_1": {
+          "title": "Avoid unless necessary:",
+          "description": "Most state should be local. Global state (Context, Zustand, etc.) is justified for: theme preferences, authenticated user data, or truly shared state across distant components."
+        },
+        "item_2": {
+          "title": "Server state libraries:",
+          "description": "Use React Query or SWR for server state management. They handle caching, refetching, and synchronization automatically."
+        },
+        "item_3": {
+          "title": "Form state:",
+          "description": "Prefer React Hook Form or similar for complex forms. Local state for simple inputs."
+        }
+      }
+    },
+    "performance_dx": {
+      "title": "Performance & Developer Experience",
+      "code_splitting": {
+        "title": "Code Splitting & Dynamic Imports",
+        "item_1": {
+          "title": "Route-based splitting:",
+          "description": "Automatic with App Router. Each route is a separate chunk."
+        },
+        "item_2": {
+          "title": "Component-level splitting:",
+          "description": "Use next/dynamic with loading and ssr: false for heavy client-only components (charts, editors)."
+        },
+        "item_3": {
+          "title": "Third-party libraries:",
+          "description": "Lazy load heavy dependencies that aren't needed on initial render."
+        }
+      },
+      "image_font": {
+        "title": "Image & Font Optimization",
+        "item_1": {
+          "title": "Next.js Image:",
+          "description": "Always use next/image. Automatic format optimization, lazy loading, and responsive sizing."
+        },
+        "item_2": {
+          "title": "Font loading:",
+          "description": "Use next/font for automatic optimization, subsetting, and zero layout shift. Prefer variable fonts when possible."
+        },
+        "item_3": {
+          "title": "Resource hints:",
+          "description": "Use preload for critical resources, prefetch for likely next-page navigations."
+        }
+      },
+      "memoization": {
+        "title": "Memoization Strategy",
+        "item_1": {
+          "title": "Measure first:",
+          "description": "Don't memoize prematurely. Use React DevTools Profiler to identify actual bottlenecks."
+        },
+        "item_2": {
+          "title": "When to memoize:",
+          "description": "Expensive computations, components that re-render frequently with same props, or preventing child re-renders in tight loops."
+        },
+        "item_3": {
+          "title": "Avoid over-memoization:",
+          "description": "Most components don't need memo. Server Components can't be memoized anyway."
+        }
+      },
+      "observability": {
+        "title": "Observability",
+        "item_1": {
+          "title": "Vercel Analytics:",
+          "description": "Built-in Web Vitals tracking, Core Web Vitals monitoring, and real user metrics."
+        },
+        "item_2": {
+          "title": "Structured logging:",
+          "description": "Use consistent log formats. Include request IDs, user context, and error boundaries for production debugging."
+        },
+        "item_3": {
+          "title": "Error boundaries:",
+          "description": "Wrap route segments in error boundaries. Graceful degradation, not white screens."
+        },
+        "item_4": {
+          "title": "Performance budgets:",
+          "description": "Set and monitor bundle size limits, Core Web Vitals thresholds, and API response time SLAs."
+        }
+      }
+    },
+    "footer": {
+      "text": "This architecture evolves with Next.js and React. Last updated:"
+    }
+  }
+}

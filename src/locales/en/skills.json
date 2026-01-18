@@ -1,0 +1,122 @@
+{
+  "categories": [
+    {
+      "id": "frontend",
+      "title": "Frontend Development",
+      "description": "Modern UI frameworks and libraries",
+      "skills": [
+        {
+          "name": "React",
+          "experience": "4+ years",
+          "description": "UI library for building interfaces"
+        },
+        {
+          "name": "Next.js",
+          "experience": "3+ years",
+          "description": "Full-stack React framework"
+        },
+        {
+          "name": "TypeScript",
+          "experience": "4+ years",
+          "description": "Typed JavaScript"
+        },
+        {
+          "name": "JavaScript",
+          "experience": "4+ years",
+          "description": "Programming language"
+        },
+        {
+          "name": "Tailwind CSS",
+          "experience": "4+ years"
+        },
+        {
+          "name": "HTML",
+          "experience": "7+ years"
+        },
+        {
+          "name": "SCSS",
+          "experience": "6+ years"
+        }
+      ]
+    },
+    {
+      "id": "backend",
+      "title": "Backend Development",
+      "description": "Server-side technologies and APIs",
+      "skills": [
+        {
+          "name": "Node.js",
+          "experience": "3+ years",
+          "description": "JavaScript runtime"
+        },
+        {
+          "name": "Prisma",
+          "experience": "1+ years",
+          "description": "Next-generation ORM for Node.js and TypeScript"
+        },
+        {
+          "name": "PostgreSQL",
+          "experience": "2+ years"
+        },
+        {
+          "name": "Supabase",
+          "experience": "2+ years",
+          "description": "Open source Firebase alternative"
+        },
+        {
+          "name": "Contentful",
+          "experience": "4+ years"
+        }
+      ]
+    },
+    {
+      "id": "tools",
+      "title": "DevOps & Platforms",
+      "description": "Development tools and deployment platforms",
+      "skills": [
+        {
+          "name": "Git",
+          "experience": "7+ years",
+          "description": "Version control system"
+        },
+        {
+          "name": "Vercel",
+          "experience": "2+ years",
+          "description": "Cloud platform for frontend deployment"
+        },
+        {
+          "name": "Storybook",
+          "experience": "1+ years",
+          "description": "Component development and documentation tool"
+        },
+        {
+          "name": "Vitest",
+          "experience": "1+ year",
+          "description": "Blazing fast unit test framework"
+        }
+      ]
+    },
+    {
+      "id": "design",
+      "title": "Mobile & Design",
+      "description": "Mobile development and design tools",
+      "skills": [
+        {
+          "name": "React Native",
+          "experience": "1+ years",
+          "description": "Cross-platform mobile development"
+        },
+        {
+          "name": "Expo",
+          "experience": "1+ years",
+          "description": "React Native development platform"
+        },
+        {
+          "name": "Figma",
+          "experience": "4+ years",
+          "description": "Design and prototyping tool"
+        }
+      ]
+    }
+  ]
+}

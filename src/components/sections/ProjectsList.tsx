@@ -1,16 +1,18 @@
 'use client';
 
 import React from 'react';
-import { projectsData } from '../../data/projects';
+import { getProjectsData } from '../../data/projects';
+import { useLanguage } from '../../app/context/LanguageContext';
 import { ProjectCard } from '../cards/ProjectCard';
 import { Section, SectionHeader } from '../ui/Section';
 import { Container } from '../ui/Container';
 
 export const ProjectsList: React.FC = () => {
-  // Use static text to avoid SSR issues with LanguageProvider
-  const title = 'Projects';
-  const subtitle = 'Featured Work';
-  const description = 'A showcase of my recent projects and technical achievements';
+  const { t, translations } = useLanguage();
+  const projectsData = getProjectsData(translations);
+  const title = t('projects.title', 'common');
+  const subtitle = t('projects.subtitle', 'common');
+  const description = t('projects.description', 'common');
 
   return (
     <div className="min-h-screen bg-background pt-20">

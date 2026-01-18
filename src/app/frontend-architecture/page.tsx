@@ -1,15 +1,14 @@
-import { Metadata } from 'next';
+'use client';
+
+import React from 'react';
 import Link from 'next/link';
 import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/Button';
 import Navigation from '../Navigation/Navigation';
-
-export const metadata: Metadata = {
-  title: 'Frontend Architecture',
-  description: 'How I structure and build modern Next.js applications: architectural decisions, component systems, and performance strategies.',
-};
+import { useLanguage } from '../context/LanguageContext';
 
 export default function FrontendArchitecturePage() {
+  const { t } = useLanguage();
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -22,15 +21,15 @@ export default function FrontendArchitecturePage() {
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
-                Back to Portfolio
+                {t('frontend_architecture.back_to_portfolio', 'common')}
               </Link>
             </Button>
             
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Frontend Architecture
+              {t('frontend_architecture.title', 'common')}
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl">
-              How I structure and build modern Next.js applications: architectural decisions, component systems, and performance strategies.
+              {t('frontend_architecture.description', 'common')}
             </p>
             <div className="mt-6 h-px w-24 bg-primary" />
           </div>
@@ -38,43 +37,43 @@ export default function FrontendArchitecturePage() {
           {/* Next.js App Structure */}
           <section className="mb-16">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
-              Next.js App Structure
+              {t('frontend_architecture.nextjs_structure', 'common')}
             </h2>
             
             <div className="space-y-6 text-muted-foreground">
               <div>
-                <h3 className="text-xl font-semibold text-foreground mb-3">Server Components vs Client Components</h3>
+                <h3 className="text-xl font-semibold text-foreground mb-3">{t('frontend_architecture.sections.server_vs_client.title', 'frontendArchitecture')}</h3>
                 <ul className="space-y-2 ml-4 list-disc">
-                  <li><strong className="text-foreground">Default to Server Components:</strong> Most UI is server-rendered by default. Reduces bundle size, improves initial load, and enables direct database access.</li>
-                  <li><strong className="text-foreground">Client Components for interactivity:</strong> Only use <code className="bg-muted px-1.5 py-0.5 rounded text-sm">'use client'</code> when needed: event handlers, browser APIs, state hooks, or third-party libraries requiring client-side execution.</li>
-                  <li><strong className="text-foreground">Boundary strategy:</strong> Push client boundaries as low as possible. Keep layouts and page shells as Server Components; isolate interactivity to leaf components.</li>
+                  <li><strong className="text-foreground">{translations.frontendArchitecture.sections.server_vs_client.item_1.title}</strong> {translations.frontendArchitecture.sections.server_vs_client.item_1.description}</li>
+                  <li><strong className="text-foreground">{translations.frontendArchitecture.sections.server_vs_client.item_2.title}</strong> {translations.frontendArchitecture.sections.server_vs_client.item_2.description}</li>
+                  <li><strong className="text-foreground">{translations.frontendArchitecture.sections.server_vs_client.item_3.title}</strong> {translations.frontendArchitecture.sections.server_vs_client.item_3.description}</li>
                 </ul>
               </div>
 
               <div>
-                <h3 className="text-xl font-semibold text-foreground mb-3">Data Fetching Strategy</h3>
+                <h3 className="text-xl font-semibold text-foreground mb-3">{t('frontend_architecture.sections.data_fetching.title', 'frontendArchitecture')}</h3>
                 <ul className="space-y-2 ml-4 list-disc">
-                  <li><strong className="text-foreground">Server-first approach:</strong> Fetch data in Server Components using async/await. No loading states needed—data is available on first render.</li>
-                  <li><strong className="text-foreground">Streaming with Suspense:</strong> Use React Suspense boundaries to stream partial UI while slower data fetches complete. Critical content renders first.</li>
-                  <li><strong className="text-foreground">Caching layers:</strong> Leverage Next.js caching (fetch cache, full route cache, router cache) strategically. Use <code className="bg-muted px-1.5 py-0.5 rounded text-sm">revalidate</code> and <code className="bg-muted px-1.5 py-0.5 rounded text-sm">cache: 'no-store'</code> for dynamic content.</li>
-                  <li><strong className="text-foreground">Parallel data fetching:</strong> Fetch independent data sources in parallel within the same component to minimize waterfall requests.</li>
+                  <li><strong className="text-foreground">{translations.frontendArchitecture.sections.data_fetching.item_1.title}</strong> {translations.frontendArchitecture.sections.data_fetching.item_1.description}</li>
+                  <li><strong className="text-foreground">{translations.frontendArchitecture.sections.data_fetching.item_2.title}</strong> {translations.frontendArchitecture.sections.data_fetching.item_2.description}</li>
+                  <li><strong className="text-foreground">{translations.frontendArchitecture.sections.data_fetching.item_3.title}</strong> {translations.frontendArchitecture.sections.data_fetching.item_3.description}</li>
+                  <li><strong className="text-foreground">{translations.frontendArchitecture.sections.data_fetching.item_4.title}</strong> {translations.frontendArchitecture.sections.data_fetching.item_4.description}</li>
                 </ul>
               </div>
 
               <div>
-                <h3 className="text-xl font-semibold text-foreground mb-3">Rendering Strategies</h3>
+                <h3 className="text-xl font-semibold text-foreground mb-3">{t('frontend_architecture.sections.rendering_strategies.title', 'frontendArchitecture')}</h3>
                 <div className="space-y-4">
                   <div>
-                    <h4 className="font-semibold text-foreground mb-2">SSR (Server-Side Rendering)</h4>
-                    <p className="ml-4">Default for dynamic routes. Use for personalized content, real-time data, or SEO-critical pages that change frequently.</p>
+                    <h4 className="font-semibold text-foreground mb-2">{translations.frontendArchitecture.sections.rendering_strategies.ssr.title}</h4>
+                    <p className="ml-4">{translations.frontendArchitecture.sections.rendering_strategies.ssr.description}</p>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-2">SSG (Static Site Generation)</h4>
-                    <p className="ml-4">Generate at build time. Ideal for marketing pages, documentation, blog posts—any content that doesn't change per user or request.</p>
+                    <h4 className="font-semibold text-foreground mb-2">{translations.frontendArchitecture.sections.rendering_strategies.ssg.title}</h4>
+                    <p className="ml-4">{translations.frontendArchitecture.sections.rendering_strategies.ssg.description}</p>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-2">ISR (Incremental Static Regeneration)</h4>
-                    <p className="ml-4">Best of both worlds: static performance with periodic updates. Perfect for product catalogs, news sites, or any content that updates on a schedule.</p>
+                    <h4 className="font-semibold text-foreground mb-2">{translations.frontendArchitecture.sections.rendering_strategies.isr.title}</h4>
+                    <p className="ml-4">{translations.frontendArchitecture.sections.rendering_strategies.isr.description}</p>
                   </div>
                 </div>
               </div>
@@ -84,21 +83,21 @@ export default function FrontendArchitecturePage() {
           {/* Component System */}
           <section className="mb-16">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
-              Component System
+              {t('frontend_architecture.component_system', 'common')}
             </h2>
             
             <div className="space-y-6 text-muted-foreground">
               <div>
-                <h3 className="text-xl font-semibold text-foreground mb-3">Architecture Layers</h3>
+                <h3 className="text-xl font-semibold text-foreground mb-3">{t('frontend_architecture.sections.architecture_layers.title', 'frontendArchitecture')}</h3>
                 
                 {/* Visual Diagram */}
                 <div className="my-6 space-y-4 max-w-2xl">
                   <div className="border border-border rounded-lg p-5 bg-muted/20 hover:bg-muted/30 transition-colors">
                     <div className="font-semibold text-foreground mb-2 flex items-center gap-2">
                       <span className="w-2 h-2 rounded-full bg-primary"></span>
-                      Page Components
+                      {translations.frontendArchitecture.sections.architecture_layers.page_components.title}
                     </div>
-                    <div className="text-sm text-muted-foreground ml-4">Route-level composition, data fetching, layout orchestration</div>
+                    <div className="text-sm text-muted-foreground ml-4">{translations.frontendArchitecture.sections.architecture_layers.page_components.description}</div>
                   </div>
                   
                   <div className="flex justify-center">
@@ -110,9 +109,9 @@ export default function FrontendArchitecturePage() {
                   <div className="border border-border rounded-lg p-5 bg-muted/20 hover:bg-muted/30 transition-colors">
                     <div className="font-semibold text-foreground mb-2 flex items-center gap-2">
                       <span className="w-2 h-2 rounded-full bg-primary"></span>
-                      Composite Components
+                      {translations.frontendArchitecture.sections.architecture_layers.composite_components.title}
                     </div>
-                    <div className="text-sm text-muted-foreground ml-4">Business logic, feature-specific UI, composed from primitives</div>
+                    <div className="text-sm text-muted-foreground ml-4">{translations.frontendArchitecture.sections.architecture_layers.composite_components.description}</div>
                   </div>
                   
                   <div className="flex justify-center">
@@ -124,20 +123,20 @@ export default function FrontendArchitecturePage() {
                   <div className="border border-border rounded-lg p-5 bg-muted/20 hover:bg-muted/30 transition-colors">
                     <div className="font-semibold text-foreground mb-2 flex items-center gap-2">
                       <span className="w-2 h-2 rounded-full bg-primary"></span>
-                      UI Primitives
+                      {translations.frontendArchitecture.sections.architecture_layers.ui_primitives.title}
                     </div>
-                    <div className="text-sm text-muted-foreground ml-4">Reusable, unstyled or minimally styled building blocks (Button, Card, Input, etc.)</div>
+                    <div className="text-sm text-muted-foreground ml-4">{translations.frontendArchitecture.sections.architecture_layers.ui_primitives.description}</div>
                   </div>
                 </div>
               </div>
 
               <div>
-                <h3 className="text-xl font-semibold text-foreground mb-3">Composition & Reuse</h3>
+                <h3 className="text-xl font-semibold text-foreground mb-3">{t('frontend_architecture.sections.composition_reuse.title', 'frontendArchitecture')}</h3>
                 <ul className="space-y-2 ml-4 list-disc">
-                  <li><strong className="text-foreground">Compound components:</strong> Build flexible APIs using composition patterns. Components work together through context or prop drilling, not rigid parent-child relationships.</li>
-                  <li><strong className="text-foreground">Render props & slots:</strong> Use children as functions or slot patterns for maximum flexibility without prop drilling.</li>
-                  <li><strong className="text-foreground">Polymorphic components:</strong> Components that can render as different HTML elements or custom components via an <code className="bg-muted px-1.5 py-0.5 rounded text-sm">as</code> prop.</li>
-                  <li><strong className="text-foreground">Co-location:</strong> Keep related components, hooks, and utilities together. Feature folders over type-based organization.</li>
+                  <li><strong className="text-foreground">{translations.frontendArchitecture.sections.composition_reuse.item_1.title}</strong> {translations.frontendArchitecture.sections.composition_reuse.item_1.description}</li>
+                  <li><strong className="text-foreground">{translations.frontendArchitecture.sections.composition_reuse.item_2.title}</strong> {translations.frontendArchitecture.sections.composition_reuse.item_2.description}</li>
+                  <li><strong className="text-foreground">{translations.frontendArchitecture.sections.composition_reuse.item_3.title}</strong> {translations.frontendArchitecture.sections.composition_reuse.item_3.description}</li>
+                  <li><strong className="text-foreground">{translations.frontendArchitecture.sections.composition_reuse.item_4.title}</strong> {translations.frontendArchitecture.sections.composition_reuse.item_4.description}</li>
                 </ul>
               </div>
             </div>
@@ -146,61 +145,58 @@ export default function FrontendArchitecturePage() {
           {/* State Management */}
           <section className="mb-16">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
-              State Management Philosophy
+              {t('frontend_architecture.sections.state_management.title', 'frontendArchitecture')}
             </h2>
             
             <div className="space-y-6 text-muted-foreground">
               <div>
-                <h3 className="text-xl font-semibold text-foreground mb-3">State Location Strategy</h3>
+                <h3 className="text-xl font-semibold text-foreground mb-3">{t('frontend_architecture.sections.state_management.location_strategy.title', 'frontendArchitecture')}</h3>
                 
                 <div className="grid md:grid-cols-3 gap-4 my-6">
                   <div className="border border-border rounded-lg p-5 bg-muted/20 hover:bg-muted/30 transition-colors">
                     <div className="font-semibold text-foreground mb-3 flex items-center gap-2">
                       <span className="w-2 h-2 rounded-full bg-blue-500"></span>
-                      URL State
+                      {translations.frontendArchitecture.sections.state_management.location_strategy.url_state.title}
                     </div>
                     <ul className="text-sm space-y-1.5 ml-4 list-disc text-muted-foreground">
-                      <li>Filters & search</li>
-                      <li>Pagination</li>
-                      <li>Modal/dialog IDs</li>
-                      <li>Shareable views</li>
+                      {translations.frontendArchitecture.sections.state_management.location_strategy.url_state.items.map((item, idx) => (
+                        <li key={idx}>{item}</li>
+                      ))}
                     </ul>
                   </div>
                   
                   <div className="border border-border rounded-lg p-5 bg-muted/20 hover:bg-muted/30 transition-colors">
                     <div className="font-semibold text-foreground mb-3 flex items-center gap-2">
                       <span className="w-2 h-2 rounded-full bg-green-500"></span>
-                      Server State
+                      {translations.frontendArchitecture.sections.state_management.location_strategy.server_state.title}
                     </div>
                     <ul className="text-sm space-y-1.5 ml-4 list-disc text-muted-foreground">
-                      <li>User data</li>
-                      <li>API responses</li>
-                      <li>Cacheable content</li>
-                      <li>Server mutations</li>
+                      {translations.frontendArchitecture.sections.state_management.location_strategy.server_state.items.map((item, idx) => (
+                        <li key={idx}>{item}</li>
+                      ))}
                     </ul>
                   </div>
                   
                   <div className="border border-border rounded-lg p-5 bg-muted/20 hover:bg-muted/30 transition-colors">
                     <div className="font-semibold text-foreground mb-3 flex items-center gap-2">
                       <span className="w-2 h-2 rounded-full bg-purple-500"></span>
-                      Client State
+                      {translations.frontendArchitecture.sections.state_management.location_strategy.client_state.title}
                     </div>
                     <ul className="text-sm space-y-1.5 ml-4 list-disc text-muted-foreground">
-                      <li>UI toggles</li>
-                      <li>Form drafts</li>
-                      <li>Client-only interactions</li>
-                      <li>Temporary UI state</li>
+                      {translations.frontendArchitecture.sections.state_management.location_strategy.client_state.items.map((item, idx) => (
+                        <li key={idx}>{item}</li>
+                      ))}
                     </ul>
                   </div>
                 </div>
               </div>
 
               <div>
-                <h3 className="text-xl font-semibold text-foreground mb-3">When to Use Global State</h3>
+                <h3 className="text-xl font-semibold text-foreground mb-3">{t('frontend_architecture.sections.state_management.global_state.title', 'frontendArchitecture')}</h3>
                 <ul className="space-y-2 ml-4 list-disc">
-                  <li><strong className="text-foreground">Avoid unless necessary:</strong> Most state should be local. Global state (Context, Zustand, etc.) is justified for: theme preferences, authenticated user data, or truly shared state across distant components.</li>
-                  <li><strong className="text-foreground">Server state libraries:</strong> Use React Query or SWR for server state management. They handle caching, refetching, and synchronization automatically.</li>
-                  <li><strong className="text-foreground">Form state:</strong> Prefer React Hook Form or similar for complex forms. Local state for simple inputs.</li>
+                  <li><strong className="text-foreground">{translations.frontendArchitecture.sections.state_management.global_state.item_1.title}</strong> {translations.frontendArchitecture.sections.state_management.global_state.item_1.description}</li>
+                  <li><strong className="text-foreground">{translations.frontendArchitecture.sections.state_management.global_state.item_2.title}</strong> {translations.frontendArchitecture.sections.state_management.global_state.item_2.description}</li>
+                  <li><strong className="text-foreground">{translations.frontendArchitecture.sections.state_management.global_state.item_3.title}</strong> {translations.frontendArchitecture.sections.state_management.global_state.item_3.description}</li>
                 </ul>
               </div>
             </div>
@@ -209,44 +205,44 @@ export default function FrontendArchitecturePage() {
           {/* Performance & DX */}
           <section className="mb-16">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
-              Performance & Developer Experience
+              {t('frontend_architecture.sections.performance_dx.title', 'frontendArchitecture')}
             </h2>
             
             <div className="space-y-6 text-muted-foreground">
               <div>
-                <h3 className="text-xl font-semibold text-foreground mb-3">Code Splitting & Dynamic Imports</h3>
+                <h3 className="text-xl font-semibold text-foreground mb-3">{t('frontend_architecture.sections.performance_dx.code_splitting.title', 'frontendArchitecture')}</h3>
                 <ul className="space-y-2 ml-4 list-disc">
-                  <li><strong className="text-foreground">Route-based splitting:</strong> Automatic with App Router. Each route is a separate chunk.</li>
-                  <li><strong className="text-foreground">Component-level splitting:</strong> Use <code className="bg-muted px-1.5 py-0.5 rounded text-sm">next/dynamic</code> with <code className="bg-muted px-1.5 py-0.5 rounded text-sm">loading</code> and <code className="bg-muted px-1.5 py-0.5 rounded text-sm">ssr: false</code> for heavy client-only components (charts, editors).</li>
-                  <li><strong className="text-foreground">Third-party libraries:</strong> Lazy load heavy dependencies that aren't needed on initial render.</li>
+                  <li><strong className="text-foreground">{translations.frontendArchitecture.sections.performance_dx.code_splitting.item_1.title}</strong> {translations.frontendArchitecture.sections.performance_dx.code_splitting.item_1.description}</li>
+                  <li><strong className="text-foreground">{translations.frontendArchitecture.sections.performance_dx.code_splitting.item_2.title}</strong> {translations.frontendArchitecture.sections.performance_dx.code_splitting.item_2.description}</li>
+                  <li><strong className="text-foreground">{translations.frontendArchitecture.sections.performance_dx.code_splitting.item_3.title}</strong> {translations.frontendArchitecture.sections.performance_dx.code_splitting.item_3.description}</li>
                 </ul>
               </div>
 
               <div>
-                <h3 className="text-xl font-semibold text-foreground mb-3">Image & Font Optimization</h3>
+                <h3 className="text-xl font-semibold text-foreground mb-3">{t('frontend_architecture.sections.performance_dx.image_font.title', 'frontendArchitecture')}</h3>
                 <ul className="space-y-2 ml-4 list-disc">
-                  <li><strong className="text-foreground">Next.js Image:</strong> Always use <code className="bg-muted px-1.5 py-0.5 rounded text-sm">next/image</code>. Automatic format optimization, lazy loading, and responsive sizing.</li>
-                  <li><strong className="text-foreground">Font loading:</strong> Use <code className="bg-muted px-1.5 py-0.5 rounded text-sm">next/font</code> for automatic optimization, subsetting, and zero layout shift. Prefer variable fonts when possible.</li>
-                  <li><strong className="text-foreground">Resource hints:</strong> Use <code className="bg-muted px-1.5 py-0.5 rounded text-sm">preload</code> for critical resources, <code className="bg-muted px-1.5 py-0.5 rounded text-sm">prefetch</code> for likely next-page navigations.</li>
+                  <li><strong className="text-foreground">{translations.frontendArchitecture.sections.performance_dx.image_font.item_1.title}</strong> {translations.frontendArchitecture.sections.performance_dx.image_font.item_1.description}</li>
+                  <li><strong className="text-foreground">{translations.frontendArchitecture.sections.performance_dx.image_font.item_2.title}</strong> {translations.frontendArchitecture.sections.performance_dx.image_font.item_2.description}</li>
+                  <li><strong className="text-foreground">{translations.frontendArchitecture.sections.performance_dx.image_font.item_3.title}</strong> {translations.frontendArchitecture.sections.performance_dx.image_font.item_3.description}</li>
                 </ul>
               </div>
 
               <div>
-                <h3 className="text-xl font-semibold text-foreground mb-3">Memoization Strategy</h3>
+                <h3 className="text-xl font-semibold text-foreground mb-3">{t('frontend_architecture.sections.performance_dx.memoization.title', 'frontendArchitecture')}</h3>
                 <ul className="space-y-2 ml-4 list-disc">
-                  <li><strong className="text-foreground">Measure first:</strong> Don't memoize prematurely. Use React DevTools Profiler to identify actual bottlenecks.</li>
-                  <li><strong className="text-foreground">When to memoize:</strong> Expensive computations, components that re-render frequently with same props, or preventing child re-renders in tight loops.</li>
-                  <li><strong className="text-foreground">Avoid over-memoization:</strong> Most components don't need <code className="bg-muted px-1.5 py-0.5 rounded text-sm">memo</code>. Server Components can't be memoized anyway.</li>
+                  <li><strong className="text-foreground">{translations.frontendArchitecture.sections.performance_dx.memoization.item_1.title}</strong> {translations.frontendArchitecture.sections.performance_dx.memoization.item_1.description}</li>
+                  <li><strong className="text-foreground">{translations.frontendArchitecture.sections.performance_dx.memoization.item_2.title}</strong> {translations.frontendArchitecture.sections.performance_dx.memoization.item_2.description}</li>
+                  <li><strong className="text-foreground">{translations.frontendArchitecture.sections.performance_dx.memoization.item_3.title}</strong> {translations.frontendArchitecture.sections.performance_dx.memoization.item_3.description}</li>
                 </ul>
               </div>
 
               <div>
-                <h3 className="text-xl font-semibold text-foreground mb-3">Observability</h3>
+                <h3 className="text-xl font-semibold text-foreground mb-3">{t('frontend_architecture.sections.performance_dx.observability.title', 'frontendArchitecture')}</h3>
                 <ul className="space-y-2 ml-4 list-disc">
-                  <li><strong className="text-foreground">Vercel Analytics:</strong> Built-in Web Vitals tracking, Core Web Vitals monitoring, and real user metrics.</li>
-                  <li><strong className="text-foreground">Structured logging:</strong> Use consistent log formats. Include request IDs, user context, and error boundaries for production debugging.</li>
-                  <li><strong className="text-foreground">Error boundaries:</strong> Wrap route segments in error boundaries. Graceful degradation, not white screens.</li>
-                  <li><strong className="text-foreground">Performance budgets:</strong> Set and monitor bundle size limits, Core Web Vitals thresholds, and API response time SLAs.</li>
+                  <li><strong className="text-foreground">{translations.frontendArchitecture.sections.performance_dx.observability.item_1.title}</strong> {translations.frontendArchitecture.sections.performance_dx.observability.item_1.description}</li>
+                  <li><strong className="text-foreground">{translations.frontendArchitecture.sections.performance_dx.observability.item_2.title}</strong> {translations.frontendArchitecture.sections.performance_dx.observability.item_2.description}</li>
+                  <li><strong className="text-foreground">{translations.frontendArchitecture.sections.performance_dx.observability.item_3.title}</strong> {translations.frontendArchitecture.sections.performance_dx.observability.item_3.description}</li>
+                  <li><strong className="text-foreground">{translations.frontendArchitecture.sections.performance_dx.observability.item_4.title}</strong> {translations.frontendArchitecture.sections.performance_dx.observability.item_4.description}</li>
                 </ul>
               </div>
             </div>
@@ -255,7 +251,7 @@ export default function FrontendArchitecturePage() {
           {/* Footer */}
           <div className="pt-8 border-t border-border">
             <p className="text-muted-foreground text-sm">
-              This architecture evolves with Next.js and React. Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long' })}.
+              {t('frontend_architecture.sections.footer.text', 'frontendArchitecture')} {new Date().toLocaleDateString(translations.common.nav.about === 'À propos' ? 'fr-FR' : 'en-US', { year: 'numeric', month: 'long' })}.
             </p>
           </div>
         </Container>

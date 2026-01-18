@@ -1,35 +1,29 @@
+'use client';
+
 import React from 'react';
-import { Metadata } from 'next';
 import BlogLayout from '../../../components/blog/BlogLayout';
 import BlogHeader from '../../../components/blog/BlogHeader';
 import { Container } from '../../../components/ui/Container';
 import { BlogInteractions } from '../../../components/blog/BlogInteractions';
-
-export const metadata: Metadata = {
-  title: "AI Won't Replace Developers - It Will Change How We Build",
-  description: "There's a lot of noise lately about AI replacing developers. I don't buy it. What AI is doing is speeding up development, sometimes a lot. But speed alone doesn't build good software.",
-  openGraph: {
-    title: "AI Won't Replace Developers - It Will Change How We Build",
-    description: "What AI is doing is speeding up development, sometimes a lot. But speed alone doesn't build good software.",
-    type: 'article',
-    publishedTime: '2026-01-01',
-  },
-};
+import { useLanguage } from '../../../app/context/LanguageContext';
 
 export default function BlogPost() {
+  const { t, translations } = useLanguage();
+  const post = translations.blogPosts.ai_wont_replace;
+  
   return (
-    <BlogLayout backHref="/blog" backLabel="Back to Blog">
+    <BlogLayout backHref="/blog" backLabel={undefined}>
       <Container>
         <div className="max-w-4xl mx-auto">
           <BlogHeader
             title={
               <>
-                AI Won't Replace Developers
+                {post.title.split(' - ')[0]}
                 <br />
-                It Will Change How We Build
+                {post.title.split(' - ')[1]}
               </>
             }
-            excerpt="There's a lot of noise lately about AI replacing developers. I don't buy it. What AI is doing is speeding up development, sometimes a lot. But speed alone doesn't build good software."
+            excerpt={post.excerpt}
             category="Development"
             date="January 2026"
             readTime="4 min"
@@ -40,43 +34,43 @@ export default function BlogPost() {
               <div className="bg-gradient-to-br from-white/5 via-background/80 to-accent/5 backdrop-blur-xl rounded-3xl border border-primary/20 shadow-2xl p-8 md:p-12">
                 
                 <h2 className="text-2xl md:text-3xl font-bold text-foreground mt-12 mb-6">
-                  🤖 What AI Actually Does
+                  {post.content.section_1_title}
                 </h2>
 
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                  AI can generate code, suggest solutions, and help with repetitive work. That&apos;s useful. I use it. But it doesn&apos;t actually understand the product, the users, or the long-term consequences of a technical decision.
+                  {post.content.section_1_paragraph_1}
                 </p>
 
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                  In practice, AI often overcomplicates simple problems. It introduces abstractions you don&apos;t need, solves the wrong thing confidently, or misses issues that are obvious once you actually understand how the codebase works. Spotting those problems still requires a developer who knows what they&apos;re doing.
+                  {post.content.section_1_paragraph_2}
                 </p>
 
                 <h2 className="text-2xl md:text-3xl font-bold text-foreground mt-12 mb-6">
-                  🔑 The Key Point
+                  {post.content.section_2_title}
                 </h2>
 
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                  <strong className="text-foreground">AI needs developers who understand code, not the other way around.</strong>
+                  <strong className="text-foreground">{post.content.section_2_paragraph_1}</strong>
                 </p>
 
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                  Used well, AI is a productivity boost. Used blindly, it creates fragile systems that are hard to maintain. The difference isn&apos;t the tool it&apos;s the person using it.
+                  {post.content.section_2_paragraph_2}
                 </p>
 
                 <h2 className="text-2xl md:text-3xl font-bold text-foreground mt-12 mb-6">
-                  🎯 The Real Skill Going Forward
+                  {post.content.section_3_title}
                 </h2>
 
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                  I think the real skill going forward isn&apos;t competing with AI, but learning how to control it. Knowing when to accept a suggestion, when to simplify it, and when to throw it away completely.
+                  {post.content.section_3_paragraph_1}
                 </p>
 
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                  AI should speed us up, not replace our thinking.
+                  {post.content.section_3_paragraph_2}
                 </p>
 
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                  We still need to understand the code we ship and take responsibility for it.
+                  {post.content.section_3_paragraph_3}
                 </p>
 
                 <div className="mt-16 pt-8 border-t border-primary/20">
@@ -86,7 +80,7 @@ export default function BlogPost() {
                     </div>
                     <div>
                       <p className="font-semibold text-foreground">Abdallah Gueye</p>
-                      <p className="text-sm text-muted-foreground">Frontend / Product Engineer</p>
+                      <p className="text-sm text-muted-foreground">{t('profile.software_engineer', 'common')}</p>
                     </div>
                   </div>
                 </div>
@@ -100,4 +94,3 @@ export default function BlogPost() {
     </BlogLayout>
   );
 }
-

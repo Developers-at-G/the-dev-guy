@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../../app/context/LanguageContext';
-import { profileData } from '../../data/profile';
+import { getProfileData } from '../../data/profile';
 import { Button } from '../ui/Button';
 import { Container } from '../ui/Container';
 
@@ -45,7 +45,8 @@ const imageVariants = {
 };
 
 export const Hero: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, translations } = useLanguage();
+  const profileData = getProfileData(translations);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-background to-primary/5">
@@ -64,7 +65,7 @@ export const Hero: React.FC = () => {
           <motion.div variants={itemVariants} className="space-y-6 lg:space-y-8">
             <motion.div variants={itemVariants} className="space-y-2">
               <p className="text-sm md:text-base font-medium text-primary uppercase tracking-wider">
-                {t('profile.software_engineer')}
+                {t('profile.software_engineer', 'common')}
               </p>
               <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground leading-tight">
                 <span className="block">{profileData.name}</span>
@@ -91,7 +92,7 @@ export const Hero: React.FC = () => {
                 className="group"
               >
                 <Link href="#projects">
-                  {t('projects.title')}
+                  {t('projects.title', 'common')}
                   <svg
                     className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1"
                     fill="none"
@@ -114,7 +115,7 @@ export const Hero: React.FC = () => {
                 className="group"
               >
                 <Link href="/frontend-architecture">
-                  How I Build
+                  {profileData.hero.cta.how_i_build}
                   <svg
                     className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1"
                     fill="none"
@@ -136,7 +137,7 @@ export const Hero: React.FC = () => {
                 asChild
               >
                 <Link href="#contact">
-                  {t('contact.title')}
+                  {t('contact.title', 'common')}
                 </Link>
               </Button>
             </motion.div>
@@ -146,16 +147,16 @@ export const Hero: React.FC = () => {
               className="grid grid-cols-3 gap-6 pt-8 border-t border-border"
             >
               <div>
-                <div className="text-2xl md:text-3xl font-bold text-foreground">4+</div>
-                <div className="text-sm text-muted-foreground">Years Experience</div>
+                <div className="text-2xl md:text-3xl font-bold text-foreground">{profileData.hero.stats.years}</div>
+                <div className="text-sm text-muted-foreground">{profileData.hero.stats.years_label}</div>
               </div>
               <div>
-                <div className="text-2xl md:text-3xl font-bold text-foreground">7+</div>
-                <div className="text-sm text-muted-foreground">Projects</div>
+                <div className="text-2xl md:text-3xl font-bold text-foreground">{profileData.hero.stats.projects}</div>
+                <div className="text-sm text-muted-foreground">{profileData.hero.stats.projects_label}</div>
               </div>
               <div>
-                <div className="text-2xl md:text-3xl font-bold text-foreground">5+</div>
-                <div className="text-sm text-muted-foreground">Technologies</div>
+                <div className="text-2xl md:text-3xl font-bold text-foreground">{profileData.hero.stats.technologies}</div>
+                <div className="text-sm text-muted-foreground">{profileData.hero.stats.technologies_label}</div>
               </div>
             </motion.div>
           </motion.div>
@@ -191,7 +192,7 @@ export const Hero: React.FC = () => {
             transition={{ duration: 1.5, repeat: Infinity }}
             className="flex flex-col items-center gap-2 text-muted-foreground"
           >
-            <span className="text-xs uppercase tracking-wider">Scroll</span>
+            <span className="text-xs uppercase tracking-wider">{t('common.scroll', 'common')}</span>
             <svg
               className="w-5 h-5"
               fill="none"

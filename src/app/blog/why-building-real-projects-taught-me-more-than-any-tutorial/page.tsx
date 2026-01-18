@@ -1,29 +1,23 @@
+'use client';
+
 import React from 'react';
-import { Metadata } from 'next';
 import BlogLayout from '../../../components/blog/BlogLayout';
 import BlogHeader from '../../../components/blog/BlogHeader';
 import { Container } from '../../../components/ui/Container';
 import { BlogInteractions } from '../../../components/blog/BlogInteractions';
-
-export const metadata: Metadata = {
-  title: 'Why Building Real Projects Taught Me More Than Any Tutorial',
-  description: "There's something exciting about starting a new coding tutorial. You follow along, everything works, the UI looks clean — and you feel like you're learning. But then you try building something from scratch...",
-  openGraph: {
-    title: 'Why Building Real Projects Taught Me More Than Any Tutorial',
-    description: "Tutorials are helpful, but they don't prepare you for the real mess of real apps. Real projects teach you how to think like a developer.",
-    type: 'article',
-    publishedTime: '2025-01-01',
-  },
-};
+import { useLanguage } from '../../../app/context/LanguageContext';
 
 export default function BlogPost() {
+  const { t, translations } = useLanguage();
+  const post = translations.blogPosts.real_projects_tutorial;
+  
   return (
-    <BlogLayout backHref="/blog" backLabel="Back to Blog">
+    <BlogLayout backHref="/blog" backLabel={undefined}>
       <Container>
         <div className="max-w-4xl mx-auto">
           <BlogHeader
-            title="Why Building Real Projects Taught Me More Than Any Tutorial"
-            excerpt="There's something exciting about starting a new coding tutorial. You follow along, everything works, the UI looks clean — and you feel like you're learning. But then you try building something from scratch..."
+            title={post.title}
+            excerpt={post.excerpt}
             category="Development"
             date="January 2025"
             readTime="5 min"
@@ -34,94 +28,94 @@ export default function BlogPost() {
               <div className="bg-gradient-to-br from-white/5 via-background/80 to-accent/5 backdrop-blur-xl rounded-3xl border border-primary/20 shadow-2xl p-8 md:p-12">
                 
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                  There&apos;s something exciting about starting a new coding tutorial. You follow along, everything works, the UI looks clean — and you feel like you&apos;re learning.
+                  {post.content.intro_1}
                 </p>
 
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                  But then you try building something from scratch.
+                  {post.content.intro_2}
                 </p>
 
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                  Suddenly, nothing is handed to you. You&apos;re the one deciding how things should work, where to fetch data, how to handle empty states, loading states, slow networks, form validation, weird bugs. You realize quickly: tutorials are helpful, but they don&apos;t prepare you for the real mess of real apps.
+                  {post.content.intro_3}
                 </p>
 
                 <h2 className="text-2xl md:text-3xl font-bold text-foreground mt-12 mb-6">
-                  📦 What Tutorials Don&apos;t Teach
+                  {post.content.section_1_title}
                 </h2>
                 
                 <ul className="space-y-3 mb-8">
                   <li className="flex items-start gap-3">
                     <span className="text-primary mt-1">•</span>
-                    <span className="text-muted-foreground">How to handle vague requirements</span>
+                    <span className="text-muted-foreground">{post.content.section_1_item_1}</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-primary mt-1">•</span>
-                    <span className="text-muted-foreground">What to do when an API fails</span>
+                    <span className="text-muted-foreground">{post.content.section_1_item_2}</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-primary mt-1">•</span>
-                    <span className="text-muted-foreground">What happens when your design breaks on mobile</span>
+                    <span className="text-muted-foreground">{post.content.section_1_item_3}</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-primary mt-1">•</span>
-                    <span className="text-muted-foreground">How to talk through bugs and edge cases with someone else</span>
+                    <span className="text-muted-foreground">{post.content.section_1_item_4}</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-primary mt-1">•</span>
-                    <span className="text-muted-foreground">How to keep code clean even as features grow</span>
+                    <span className="text-muted-foreground">{post.content.section_1_item_5}</span>
                   </li>
                 </ul>
 
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                  All those things? I only started learning them when I stopped watching and started building.
+                  {post.content.section_1_paragraph_after_list}
                 </p>
 
                 <h2 className="text-2xl md:text-3xl font-bold text-foreground mt-12 mb-6">
-                  🧠 Real Projects = Real Thinking
+                  {post.content.section_2_title}
                 </h2>
 
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                  When you&apos;re building your own app, you&apos;re not just copying code — you&apos;re making decisions. That&apos;s where the real growth happens. You search, test, refactor, hit bugs, fix them, hit new ones, and repeat.
+                  {post.content.section_2_paragraph}
                 </p>
 
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                  You don&apos;t just learn &quot;how to use React&quot; — you learn how to think like a developer.
+                  {post.content.section_2_conclusion}
                 </p>
 
                 <h2 className="text-2xl md:text-3xl font-bold text-foreground mt-12 mb-6">
-                  🛠 What Work Taught Me
+                  {post.content.section_3_title}
                 </h2>
 
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                  Working on real apps at my job pushed this even further.
+                  {post.content.section_3_paragraph_1}
                 </p>
 
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                  Sometimes I ship something, feel good about it — then get feedback that it doesn&apos;t work quite right. Or that I missed tiny design details I hadn&apos;t even noticed. I go back, fix it, and still get more notes.
+                  {post.content.section_3_paragraph_2}
                 </p>
 
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                  That feedback loop — build, test, break, improve — is where I&apos;ve learned the most. Not just about code, but about quality, precision, and thinking clearly.
+                  {post.content.section_3_paragraph_3}
                 </p>
 
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                  Sure, the feedback can be direct. Sometimes it stings. But I&apos;ve learned to treat it like a debugging tool for my own thinking. It keeps me sharp and helps me level up way faster than finishing a course ever did.
+                  {post.content.section_3_paragraph_4}
                 </p>
 
                 <h2 className="text-2xl md:text-3xl font-bold text-foreground mt-12 mb-6">
-                  🚀 The Bottom Line
+                  {post.content.section_4_title}
                 </h2>
 
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                  If you&apos;re serious about improving as a developer, you have to build.
+                  {post.content.section_4_paragraph_1}
                 </p>
 
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                  Not tutorials. Not clone apps with all the answers given. Real projects — where you don&apos;t know everything upfront, and you have to figure things out as you go.
+                  {post.content.section_4_paragraph_2}
                 </p>
 
                 <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                  That&apos;s where the growth is. That&apos;s where the learning sticks.
+                  {post.content.section_4_paragraph_3}
                 </p>
 
                 <div className="mt-16 pt-8 border-t border-primary/20">
@@ -131,7 +125,7 @@ export default function BlogPost() {
                     </div>
                     <div>
                       <p className="font-semibold text-foreground">Abdallah Gueye</p>
-                      <p className="text-sm text-muted-foreground">Frontend / Product Engineer & Web Developer</p>
+                      <p className="text-sm text-muted-foreground">{t('profile.software_engineer', 'common')} & Web Developer</p>
                     </div>
                   </div>
                 </div>
@@ -144,4 +138,4 @@ export default function BlogPost() {
       </Container>
     </BlogLayout>
   );
-} 
+}

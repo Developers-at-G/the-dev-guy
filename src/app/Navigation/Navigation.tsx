@@ -50,7 +50,7 @@ function NavigationSection() {
                     className="px-3 py-2 rounded-lg text-sm font-medium transition-colors text-muted-foreground hover:text-foreground hover:bg-muted"
                     onClick={closeMenu}
                   >
-                    {t(`nav.${item.label.toLowerCase()}`)}
+                    {t(`nav.${item.label.toLowerCase()}`, 'common')}
                   </Link>
                 );
               }
@@ -125,7 +125,7 @@ function NavigationSection() {
                       className="px-3 py-2 rounded-lg text-left text-sm font-medium transition-colors text-muted-foreground hover:text-foreground hover:bg-muted"
                       onClick={closeMenu}
                     >
-                      {t(`nav.${item.label.toLowerCase()}`)}
+                      {t(`nav.${item.label.toLowerCase()}`, 'common')}
                     </Link>
                   );
                 }
@@ -140,7 +140,7 @@ function NavigationSection() {
                         : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                     }`}
                   >
-                    {t(`nav.${item.label.toLowerCase()}`)}
+                    {t(`nav.${item.label.toLowerCase()}`, 'common')}
                   </button>
                 );
               })}

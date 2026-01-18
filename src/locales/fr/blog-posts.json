@@ -1,0 +1,46 @@
+{
+  "real_projects_tutorial": {
+    "title": "Pourquoi Construire de Vrais Projets M'a Plus Appris que N'importe Quel Tutoriel",
+    "excerpt": "Il y a quelque chose d'excitant à commencer un nouveau tutoriel de codage. Vous suivez, tout fonctionne, l'interface utilisateur est propre — et vous avez l'impression d'apprendre. Mais ensuite vous essayez de construire quelque chose à partir de zéro...",
+    "content": {
+      "intro_1": "Il y a quelque chose d'excitant à commencer un nouveau tutoriel de codage. Vous suivez, tout fonctionne, l'interface utilisateur est propre — et vous avez l'impression d'apprendre.",
+      "intro_2": "Mais ensuite vous essayez de construire quelque chose à partir de zéro.",
+      "intro_3": "Soudainement, rien ne vous est donné. C'est vous qui décidez comment les choses doivent fonctionner, où récupérer les données, comment gérer les états vides, les états de chargement, les réseaux lents, la validation des formulaires, les bugs étranges. Vous réalisez rapidement : les tutoriels sont utiles, mais ils ne vous préparent pas au vrai désordre des vraies applications.",
+      "section_1_title": "📦 Ce que les Tutoriels N'Enseignent Pas",
+      "section_1_item_1": "Comment gérer des exigences vagues",
+      "section_1_item_2": "Que faire quand une API échoue",
+      "section_1_item_3": "Ce qui se passe quand votre design casse sur mobile",
+      "section_1_item_4": "Comment discuter des bugs et cas limites avec quelqu'un d'autre",
+      "section_1_item_5": "Comment garder le code propre même quand les fonctionnalités grandissent",
+      "section_1_paragraph_after_list": "Toutes ces choses ? Je n'ai commencé à les apprendre que lorsque j'ai arrêté de regarder et commencé à construire.",
+      "section_2_title": "🧠 Vrais Projets = Vraie Pensée",
+      "section_2_paragraph": "Quand vous construisez votre propre application, vous ne faites pas que copier du code — vous prenez des décisions. C'est là que la vraie croissance se produit. Vous cherchez, testez, refactorisez, rencontrez des bugs, les corrigez, en rencontrez de nouveaux, et recommencez.",
+      "section_2_conclusion": "Vous n'apprenez pas seulement \"comment utiliser React\" — vous apprenez à penser comme un développeur.",
+      "section_3_title": "🛠 Ce que le Travail M'a Appris",
+      "section_3_paragraph_1": "Travailler sur de vraies applications dans mon travail a poussé cela encore plus loin.",
+      "section_3_paragraph_2": "Parfois je livre quelque chose, je me sens bien — puis je reçois des retours que ça ne fonctionne pas tout à fait bien. Ou que j'ai manqué de petits détails de design que je n'avais même pas remarqués. Je reviens, je corrige, et je reçois encore plus de notes.",
+      "section_3_paragraph_3": "Cette boucle de rétroaction — construire, tester, casser, améliorer — est là où j'ai le plus appris. Pas seulement sur le code, mais sur la qualité, la précision et la pensée claire.",
+      "section_3_paragraph_4": "Bien sûr, les retours peuvent être directs. Parfois ça pique. Mais j'ai appris à les traiter comme un outil de débogage pour ma propre pensée. Ça me garde alerte et m'aide à progresser beaucoup plus vite que terminer un cours ne l'a jamais fait.",
+      "section_4_title": "🚀 En Résumé",
+      "section_4_paragraph_1": "Si vous êtes sérieux à propos de l'amélioration en tant que développeur, vous devez construire.",
+      "section_4_paragraph_2": "Pas des tutoriels. Pas des applications clone avec toutes les réponses données. De vrais projets — où vous ne savez pas tout d'avance, et vous devez comprendre les choses au fur et à mesure.",
+      "section_4_paragraph_3": "C'est là que la croissance se trouve. C'est là que l'apprentissage reste."
+    }
+  },
+  "ai_wont_replace": {
+    "title": "L'IA Ne Remplacera Pas les Développeurs - Elle Changera la Façon dont Nous Construisons",
+    "excerpt": "Il y a beaucoup de bruit récemment sur l'IA qui remplace les développeurs. Je n'y crois pas. Ce que l'IA fait, c'est accélérer le développement, parfois beaucoup. Mais la vitesse seule ne construit pas de bon logiciel.",
+    "content": {
+      "section_1_title": "🤖 Ce que l'IA Fait Vraiment",
+      "section_1_paragraph_1": "L'IA peut générer du code, suggérer des solutions et aider avec le travail répétitif. C'est utile. Je l'utilise. Mais elle ne comprend pas vraiment le produit, les utilisateurs ou les conséquences à long terme d'une décision technique.",
+      "section_1_paragraph_2": "En pratique, l'IA complique souvent les problèmes simples. Elle introduit des abstractions dont vous n'avez pas besoin, résout confianceusement la mauvaise chose, ou manque des problèmes qui sont évidents une fois que vous comprenez vraiment comment fonctionne la base de code. Repérer ces problèmes nécessite toujours un développeur qui sait ce qu'il fait.",
+      "section_2_title": "🔑 Le Point Clé",
+      "section_2_paragraph_1": "L'IA a besoin de développeurs qui comprennent le code, pas l'inverse.",
+      "section_2_paragraph_2": "Utilisée bien, l'IA est un boost de productivité. Utilisée aveuglément, elle crée des systèmes fragiles difficiles à maintenir. La différence n'est pas l'outil, c'est la personne qui l'utilise.",
+      "section_3_title": "🎯 La Vraie Compétence à Venir",
+      "section_3_paragraph_1": "Je pense que la vraie compétence à venir n'est pas de rivaliser avec l'IA, mais d'apprendre à la contrôler. Savoir quand accepter une suggestion, quand la simplifier, et quand la jeter complètement.",
+      "section_3_paragraph_2": "L'IA devrait nous accélérer, pas remplacer notre pensée.",
+      "section_3_paragraph_3": "Nous devons toujours comprendre le code que nous livrons et en assumer la responsabilité."
+    }
+  }
+}

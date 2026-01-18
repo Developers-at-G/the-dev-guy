@@ -1,0 +1,139 @@
+{
+  "projects": [
+    {
+      "title": "Naboujastore - Plateforme E-Commerce",
+      "role": "Full‑stack",
+      "team": "Solo",
+      "period": "En Cours",
+      "impacts": [
+        "E-commerce prêt pour la production",
+        "Intégration Vercel Analytics",
+        "Next.js 15 App Router",
+        "Optimisé pour les performances"
+      ],
+      "problem": "Les détaillants de vêtements sénégalais traditionnels avaient besoin d'une plateforme e-commerce moderne avec intégration WhatsApp pour servir les préférences du marché local.",
+      "actions": [
+        "Construit un e-commerce prêt pour la production avec Next.js 15 App Router et React 19",
+        "Implémenté Vercel Analytics pour le suivi en temps réel du comportement des utilisateurs et l'analyse de l'entonnoir de conversion",
+        "Déployé sur Vercel avec CI/CD automatique et métriques de performance optimisées",
+        "Créé un panier d'achat avancé avec React Context API et gestion d'état persistante",
+        "Intégré l'API WhatsApp pour le traitement des commandes avec suivi d'événements complet",
+        "Développé un système de design inspiré de l'Afrique avec animations Framer Motion et composants Radix UI"
+      ]
+    },
+    {
+      "title": "Developer Playground",
+      "role": "Full‑stack",
+      "team": "Solo",
+      "period": "2025",
+      "impacts": [
+        "Vitrine Next.js 14",
+        "Stratégies SSR/SSG/ISR",
+        "Système de bibliothèque de composants",
+        "Optimisé pour les performances"
+      ],
+      "problem": "Les développeurs avaient besoin d'une ressource d'apprentissage complète démontrant les meilleures pratiques Next.js 14, les stratégies de rendu et l'architecture des composants.",
+      "actions": [
+        "Construit une application Next.js 14 prête pour la production présentant les stratégies de rendu SSR, SSG et ISR",
+        "Créé une bibliothèque de composants réutilisables avec plus de 7 composants UI personnalisables et intégration Storybook",
+        "Implémenté des routes API avec middleware, patterns d'authentification et routes protégées",
+        "Optimisé les performances avec chargement paresseux, division du code, imports dynamiques et mémorisation React",
+        "Déployé sur Vercel avec intégration Analytics et CI/CD automatique"
+      ]
+    },
+    {
+      "title": "Gestion de Restaurant (PWA)",
+      "role": "Full‑stack",
+      "team": "Solo",
+      "period": "2025",
+      "impacts": [
+        "+55% de vitesse de commande",
+        "PWA offline-first",
+        "Prêt pour multi-restaurants"
+      ],
+      "problem": "Les commandes manuelles et les flux de travail fragmentés ralentissaient le service du restaurant.",
+      "actions": [
+        "Conçu une architecture PWA avec synchronisation hors ligne",
+        "Implémenté des flux de commande en temps réel",
+        "Ajouté un modèle de données multi-tenant avec support CFA"
+      ]
+    },
+    {
+      "title": "Site Web de Restaurant",
+      "role": "Full‑stack",
+      "team": "Solo",
+      "period": "2024",
+      "impacts": [
+        "+40% de vues de menu",
+        "Optimisé pour le SEO",
+        "LCP rapide"
+      ],
+      "problem": "Le site devait présenter le menu et les spéciaux hebdomadaires avec rapidité.",
+      "actions": [
+        "Implémenté SSG pour les pages principales",
+        "Construit l'UX du planning des spéciaux",
+        "Ajouté l'optimisation d'images et la mise en cache"
+      ]
+    },
+    {
+      "title": "IlmQuest - Jeu de Quiz Multi-joueurs en Temps Réel",
+      "role": "Full‑stack",
+      "team": "Solo",
+      "period": "2024",
+      "impacts": [
+        "Gameplay multi-joueurs en temps réel",
+        "Design mobile-first",
+        "Localisation française",
+        "Sessions de jeu basées sur des salles"
+      ],
+      "problem": "Les amis, familles et groupes de jeunes avaient besoin d'un moyen engageant d'apprendre la connaissance islamique ensemble grâce à des compétitions de quiz interactives en temps réel.",
+      "actions": [
+        "Conçu un flux de connexion par code et un système de lobby hôte/invité",
+        "Construit un sélecteur de niveau (1-25) avec progression claire",
+        "Implémenté la synchronisation d'état de jeu en temps réel avec Socket.IO",
+        "Créé des animations de retour ludiques pour les bonnes/mauvaises réponses",
+        "Développé un tableau de scores en direct avec mises à jour synchronisées sur tous les clients",
+        "Conçu une UI chaleureuse orientée communauté avec iconographie de mosquée et palette rose douce",
+        "Interface entièrement localisée en français pour le public cible"
+      ]
+    },
+    {
+      "title": "DevTrackr – Application de Suivi des Tâches et du Temps pour Développeurs",
+      "role": "Full‑stack",
+      "team": "Solo",
+      "period": "2025",
+      "impacts": [
+        "+30% d'achèvement hebdomadaire",
+        "UX mode focus",
+        "PWA mobile"
+      ],
+      "problem": "Les développeurs manquaient d'un moyen simple de suivre les tâches et le temps ensemble.",
+      "actions": [
+        "Livré un modèle unifié tâches+temps",
+        "Construit des analyses et rapports hebdomadaires",
+        "Optimisé les interactions mobile-first"
+      ]
+    },
+    {
+      "title": "Site Web Immobilier",
+      "role": "Frontend",
+      "team": "Solo",
+      "period": "2024",
+      "impacts": [
+        "Navigation plus rapide",
+        "Filtres de propriétés propres"
+      ],
+      "problem": "Les utilisateurs avaient du mal à naviguer dans les annonces avec un filtrage lent.",
+      "actions": [
+        "Construit une UI de filtre performante",
+        "Ajouté des états de chargement skeleton",
+        "Optimisé la virtualisation de liste"
+      ]
+    }
+  ],
+  "architecture": {
+    "title": "Architecture Frontend",
+    "subtitle": "Comment je structure et construis des applications Next.js modernes",
+    "description": "Explorez mon approche architecturale : stratégie des Server Components, conception du système de composants, philosophie de gestion d'état et techniques d'optimisation des performances."
+  }
+}

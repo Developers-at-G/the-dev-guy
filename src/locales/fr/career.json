@@ -1,0 +1,56 @@
+{
+  "experiences": [
+    {
+      "id": "smal-gmbh",
+      "company": "Smal GmbH",
+      "position": "Ingénieur Frontend",
+      "period": "Janvier 2023 - Présent",
+      "location": "Munich, Allemagne",
+      "type": "work",
+      "description": "Construction et maintenance de composants UI réutilisables et mises en page complexes, direction de migrations majeures de frameworks et implémentation d'expériences utilisateur hautes performances.",
+      "achievements": [
+        "Construit et maintenu des composants UI réutilisables et des mises en page complexes utilisant React, Next.js, Tailwind CSS et Contentful, utilisés dans plusieurs fonctionnalités de production",
+        "Contribué à une migration majeure de Next.js 12 vers Next.js 14, incluant des mises à niveau vers React 19, Node.js 18 LTS et Tailwind CSS 3, résultant en une amélioration des performances et une réduction de la dette technique",
+        "Conçu et implémenté un Configurateur de Produit permettant aux utilisateurs de personnaliser, visualiser et tarifier des configurations complètes avec intégration de panier en temps réel",
+        "Implémenté des animations haute performance et des interactions basées sur le défilement utilisant GSAP, équilibrant la finition visuelle avec les performances d'exécution",
+        "Remplacé la logique d'internationalisation personnalisée par le middleware natif Next.js, améliorant la maintenabilité et la cohérence entre les locales",
+        "Collaboré étroitement avec les designers et les parties prenantes pour livrer une UX polie et de qualité production"
+      ]
+    },
+    {
+      "id": "future-stories",
+      "company": "Future Stories",
+      "position": "Développeur Frontend (Étudiant Salarié)",
+      "period": "Décembre 2021 - Novembre 2022",
+      "location": "Hamburg, Allemagne",
+      "type": "work",
+      "description": "Maintenu et amélioré une plateforme e-commerce basée sur Shopify, en se concentrant sur la qualité frontend, les performances et l'utilisabilité.",
+      "achievements": [
+        "Maintenu et amélioré une plateforme e-commerce basée sur Shopify, en se concentrant sur la qualité frontend, les performances et l'utilisabilité",
+        "Développé des applications Shopify personnalisées utilisant React pour étendre la fonctionnalité e-commerce principale",
+        "Amélioré la qualité du code et l'expérience utilisateur sur les pages client clés"
+      ]
+    },
+    {
+      "id": "obertys",
+      "company": "Obertys",
+      "position": "Développeur Frontend (Stagiaire)",
+      "period": "Janvier 2020 - Juin 2020",
+      "location": "Dakar, Sénégal",
+      "type": "internship",
+      "description": "Développé des fonctionnalités frontend pour des applications bancaires web et contribué à des solutions de banque mobile.",
+      "achievements": [
+        "Développé des fonctionnalités frontend pour des applications bancaires web utilisant React",
+        "Intégré des APIs REST pour assurer une communication frontend–backend fluide",
+        "Contribué à une application bancaire mobile utilisant React Native",
+        "Participé aux sprints Agile, aux tests et à la documentation technique"
+      ]
+    }
+  ],
+  "types": {
+    "work": "Temps Plein",
+    "internship": "Stage",
+    "freelance": "Freelance",
+    "working_student": "Étudiant Salarié"
+  }
+}

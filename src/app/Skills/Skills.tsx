@@ -4,11 +4,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { Section, SectionHeader } from '../../components/ui/Section';
 import { Container } from '../../components/ui/Container';
-import { skillsData } from '../../data/skills';
+import { getSkillsData } from '../../data/skills';
+import { useLanguage } from '../context/LanguageContext';
 
 type ViewMode = 'interactive' | 'grid';
 
 function SkillsSection() {
+  const { t, translations } = useLanguage();
+  const skillsData = getSkillsData(translations);
   const [viewMode, setViewMode] = useState<ViewMode>('interactive');
   const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
 
@@ -25,9 +28,9 @@ function SkillsSection() {
 
       <Container className="relative z-10">
         <SectionHeader
-          title="Technical Skills"
-          subtitle="Interactive skill visualization"
-          description="Hover or click to explore my technical expertise across different domains"
+          title={t('skills.technical_skills', 'common')}
+          subtitle={t('skills.interactive_visualization', 'common')}
+          description={t('skills.hover_explore', 'common')}
         />
 
         {/* View Toggle */}
@@ -41,7 +44,7 @@ function SkillsSection() {
                   : 'text-muted-foreground hover:text-foreground'
               }`}
             >
-              Interactive View
+              {t('skills.interactive_view', 'common')}
             </button>
             <button
               onClick={() => setViewMode('grid')}
@@ -51,7 +54,7 @@ function SkillsSection() {
                   : 'text-muted-foreground hover:text-foreground'
               }`}
             >
-              Grid View
+              {t('skills.grid_view', 'common')}
             </button>
           </div>
         </div>
@@ -143,7 +146,7 @@ function SkillsSection() {
                           {/* Hover Tooltip */}
                           <div className="absolute -top-12 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20">
                             <div className="bg-foreground text-background px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap shadow-lg">
-                              {skill.experience || `${skill.level}% proficiency`}
+                              {skill.experience || t('common.proficiency_level', 'common', { level: skill.level })}
                               <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full">
                 <div className="border-4 border-transparent border-t-foreground" />
               </div>
@@ -197,7 +200,7 @@ function SkillsSection() {
                       <p className="text-muted-foreground mb-4">{selectedSkillData.description}</p>
                     )}
                     <div className="flex items-center gap-2">
-                      <span className="text-sm text-muted-foreground">Proficiency:</span>
+                      <span className="text-sm text-muted-foreground">{t('common.proficiency', 'common')}:</span>
                       <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
                         <motion.div
                           initial={{ width: 0 }}
@@ -285,15 +288,15 @@ function SkillsSection() {
           <div className="inline-flex flex-wrap justify-center gap-6 text-xs text-muted-foreground">
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 rounded-full bg-gradient-to-r from-green-500 to-emerald-500" />
-              <span>Expert (80%+)</span>
+              <span>{t('skills.expert', 'common')}</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500" />
-              <span>Proficient (65-79%)</span>
+              <span>{t('skills.proficient', 'common')}</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500" />
-              <span>Developing (&lt;65%)</span>
+              <span>{t('skills.developing', 'common')}</span>
             </div>
           </div>
         </div>

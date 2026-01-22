@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import Navigation from './Navigation/Navigation';
 import { Hero } from '../components/sections/Hero';
+import { Footer } from '../components/Footer';
 
 // Lazy load below-the-fold sections to reduce initial bundle size
 const ProjectsSection = dynamic(() => import('../components/sections/ProjectsSection').then(m => ({ default: m.ProjectsSection })));
@@ -12,10 +13,10 @@ const ContactSection = dynamic(() => import('../components/sections/ContactSecti
 
 export const metadata: Metadata = {
   title: 'Abdallah Amadou Gueye | Frontend / Product Engineer',
-  description: 'Frontend / Product Engineer specializing in React, Next.js, TypeScript, and modern web development. Building scalable applications with a focus on UI/UX and performance.',
+  description: 'Professional portfolio of Abdallah Amadou Gueye - Frontend / Product Engineer specializing in React, Next.js, TypeScript, and modern web development. Building scalable applications with a focus on UI/UX and performance. ATS-friendly resume and professional experience.',
   openGraph: {
     title: 'Abdallah Amadou Gueye | Frontend / Product Engineer',
-    description: 'Frontend / Product Engineer specializing in React, Next.js, TypeScript, and modern web development.',
+    description: 'Professional portfolio - Frontend / Product Engineer specializing in React, Next.js, TypeScript, and modern web development.',
     type: 'website',
     url: 'https://abdallah-the-dev-guy.vercel.app',
   },
@@ -33,6 +34,7 @@ export default function Home() {
         <EducationSection />
         <ContactSection />
       </main>
+      <Footer />
     </div>
   );
 }

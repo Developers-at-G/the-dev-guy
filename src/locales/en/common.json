@@ -122,6 +122,16 @@
     "supabase_desc": "Open source Firebase alternative",
     "mysql_desc": "Relational database"
   },
+  "portfolio": {
+    "strategy_title": "Why Two Portfolios?",
+    "strategy_description": "I maintain two portfolios to showcase different aspects of my work and target different audiences.",
+    "this_portfolio": "This Portfolio",
+    "this_portfolio_desc": "Professional, recruiter-friendly portfolio optimized for ATS systems and traditional tech companies. Focuses on clear presentation of experience, skills, and achievements.",
+    "other_portfolio": "Creative Portfolio",
+    "other_portfolio_desc": "Experimental, design-forward portfolio showcasing creative problem-solving and technical versatility. Built for creative agencies and design-forward companies.",
+    "view_creative": "View Creative Portfolio",
+    "view_creative_desc": "See my experimental portfolio with bold design and interactive elements"
+  },
   "contact": {
     "title": "Get In Touch",
     "subtitle": "Let's Work Together",

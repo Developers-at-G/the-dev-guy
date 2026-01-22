@@ -12,3 +12,8 @@ export const Chatbot = dynamic(
   () => import('./Chatbot/Chatbot').then(m => ({ default: m.Chatbot })),
   { ssr: false }
 );
+
+export const FloatingContactButton = dynamic(
+  () => import('./FloatingContactButton').then(m => ({ default: m.FloatingContactButton })),
+  { ssr: false }
+);

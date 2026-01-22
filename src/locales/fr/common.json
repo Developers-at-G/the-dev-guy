@@ -122,6 +122,16 @@
     "supabase_desc": "Alternative open source à Firebase",
     "mysql_desc": "Base de données relationnelle"
   },
+  "portfolio": {
+    "strategy_title": "Pourquoi Deux Portfolios ?",
+    "strategy_description": "Je maintiens deux portfolios pour présenter différents aspects de mon travail et cibler différents publics.",
+    "this_portfolio": "Ce Portfolio",
+    "this_portfolio_desc": "Portfolio professionnel, adapté aux recruteurs et optimisé pour les systèmes ATS et les entreprises technologiques traditionnelles. Met l'accent sur une présentation claire de l'expérience, des compétences et des réalisations.",
+    "other_portfolio": "Portfolio Créatif",
+    "other_portfolio_desc": "Portfolio expérimental et orienté design qui met en valeur la résolution créative de problèmes et la polyvalence technique. Conçu pour les agences créatives et les entreprises axées sur le design.",
+    "view_creative": "Voir le Portfolio Créatif",
+    "view_creative_desc": "Découvrez mon portfolio expérimental avec un design audacieux et des éléments interactifs"
+  },
   "contact": {
     "title": "Me Contacter",
     "subtitle": "Travaillons Ensemble",

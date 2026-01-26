@@ -7,7 +7,7 @@ import { getEducationData } from '@/data/education';
 import { getSkillsData } from '@/data/skills';
 import { getTranslations } from '@/lib/translations';
 import { rateLimit, getClientIdentifier } from '@/lib/rateLimit';
-import { track } from '@vercel/analytics';
+import { track } from '@vercel/analytics/server';
 
 // Using Node.js runtime instead of Edge for better compatibility with data imports
 // export const runtime = 'edge';

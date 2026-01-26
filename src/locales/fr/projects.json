@@ -1,6 +1,45 @@
 {
   "projects": [
     {
+      "title": "Gyst — Extension Chrome de Suivi du Temps",
+      "role": "Full‑stack",
+      "team": "Solo",
+      "period": "2025",
+      "impacts": [
+        "Architecture multi-tenant",
+        "Timer persistant entre sessions",
+        "Contrôle d'accès basé sur les rôles",
+        "Exports de rapports CSV/PDF"
+      ],
+      "problem": "Les outils de suivi du temps semblent souvent lourds, lents ou déconnectés de la façon dont les développeurs travaillent réellement. Les équipes avaient besoin d'une solution native au navigateur qui réduit les frictions tout en s'adaptant aux organisations multi-utilisateurs.",
+      "actions": [
+        "Construit une Extension Chrome (Manifest V3) avec service worker en arrière-plan pour des timers persistants entre onglets et sessions",
+        "Implémenté une architecture multi-tenant avec Supabase PostgreSQL et Row Level Security pour l'isolation sécurisée des données",
+        "Conçu un système de contrôle d'accès basé sur les rôles (propriétaire, admin, manager, membre) avec workflows d'approbation",
+        "Créé une couche de logique partagée entre le tableau de bord complet et le popup Chrome léger",
+        "Construit un flux d'onboarding avec tutoriel animé spotlight pour les nouveaux utilisateurs",
+        "Implémenté TanStack Query pour la mise en cache, synchronisation et gestion de l'état serveur",
+        "Ajouté des raccourcis clavier, notifications et patterns UI accessibles"
+      ]
+    },
+    {
+      "title": "Gestion de Restaurant (PWA)",
+      "role": "Full‑stack",
+      "team": "Solo",
+      "period": "2025",
+      "impacts": [
+        "+55% de vitesse de commande",
+        "PWA offline-first",
+        "Prêt pour multi-restaurants"
+      ],
+      "problem": "Les commandes manuelles et les flux de travail fragmentés ralentissaient le service du restaurant.",
+      "actions": [
+        "Conçu une architecture PWA avec synchronisation hors ligne",
+        "Implémenté des flux de commande en temps réel",
+        "Ajouté un modèle de données multi-tenant avec support CFA"
+      ]
+    },
+    {
       "title": "Naboujastore - Plateforme E-Commerce",
       "role": "Full‑stack",
       "team": "Solo",
@@ -19,6 +58,28 @@
         "Créé un panier d'achat avancé avec React Context API et gestion d'état persistante",
         "Intégré l'API WhatsApp pour le traitement des commandes avec suivi d'événements complet",
         "Développé un système de design inspiré de l'Afrique avec animations Framer Motion et composants Radix UI"
+      ]
+    },
+    {
+      "title": "IlmQuest - Jeu de Quiz Multi-joueurs en Temps Réel",
+      "role": "Full‑stack",
+      "team": "Solo",
+      "period": "2024",
+      "impacts": [
+        "Gameplay multi-joueurs en temps réel",
+        "Design mobile-first",
+        "Localisation française",
+        "Sessions de jeu basées sur des salles"
+      ],
+      "problem": "Les amis, familles et groupes de jeunes avaient besoin d'un moyen engageant d'apprendre la connaissance islamique ensemble grâce à des compétitions de quiz interactives en temps réel.",
+      "actions": [
+        "Conçu un flux de connexion par code et un système de lobby hôte/invité",
+        "Construit un sélecteur de niveau (1-25) avec progression claire",
+        "Implémenté la synchronisation d'état de jeu en temps réel avec Socket.IO",
+        "Créé des animations de retour ludiques pour les bonnes/mauvaises réponses",
+        "Développé un tableau de scores en direct avec mises à jour synchronisées sur tous les clients",
+        "Conçu une UI chaleureuse orientée communauté avec iconographie de mosquée et palette rose douce",
+        "Interface entièrement localisée en français pour le public cible"
       ]
     },
     {
@@ -42,23 +103,6 @@
       ]
     },
     {
-      "title": "Gestion de Restaurant (PWA)",
-      "role": "Full‑stack",
-      "team": "Solo",
-      "period": "2025",
-      "impacts": [
-        "+55% de vitesse de commande",
-        "PWA offline-first",
-        "Prêt pour multi-restaurants"
-      ],
-      "problem": "Les commandes manuelles et les flux de travail fragmentés ralentissaient le service du restaurant.",
-      "actions": [
-        "Conçu une architecture PWA avec synchronisation hors ligne",
-        "Implémenté des flux de commande en temps réel",
-        "Ajouté un modèle de données multi-tenant avec support CFA"
-      ]
-    },
-    {
       "title": "Site Web de Restaurant",
       "role": "Full‑stack",
       "team": "Solo",
@@ -73,28 +117,6 @@
         "Implémenté SSG pour les pages principales",
         "Construit l'UX du planning des spéciaux",
         "Ajouté l'optimisation d'images et la mise en cache"
-      ]
-    },
-    {
-      "title": "IlmQuest - Jeu de Quiz Multi-joueurs en Temps Réel",
-      "role": "Full‑stack",
-      "team": "Solo",
-      "period": "2024",
-      "impacts": [
-        "Gameplay multi-joueurs en temps réel",
-        "Design mobile-first",
-        "Localisation française",
-        "Sessions de jeu basées sur des salles"
-      ],
-      "problem": "Les amis, familles et groupes de jeunes avaient besoin d'un moyen engageant d'apprendre la connaissance islamique ensemble grâce à des compétitions de quiz interactives en temps réel.",
-      "actions": [
-        "Conçu un flux de connexion par code et un système de lobby hôte/invité",
-        "Construit un sélecteur de niveau (1-25) avec progression claire",
-        "Implémenté la synchronisation d'état de jeu en temps réel avec Socket.IO",
-        "Créé des animations de retour ludiques pour les bonnes/mauvaises réponses",
-        "Développé un tableau de scores en direct avec mises à jour synchronisées sur tous les clients",
-        "Conçu une UI chaleureuse orientée communauté avec iconographie de mosquée et palette rose douce",
-        "Interface entièrement localisée en français pour le public cible"
       ]
     },
     {

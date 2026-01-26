@@ -36,6 +36,16 @@
         {
           "name": "SCSS",
           "experience": "6+ years"
+        },
+        {
+          "name": "Zustand",
+          "experience": "2+ years",
+          "description": "Lightweight state management for React"
+        },
+        {
+          "name": "TanStack Query",
+          "experience": "2+ years",
+          "description": "Server state management and caching"
         }
       ]
     },
@@ -93,6 +103,11 @@
           "name": "Vitest",
           "experience": "1+ year",
           "description": "Blazing fast unit test framework"
+        },
+        {
+          "name": "Chrome Extensions",
+          "experience": "1+ year",
+          "description": "Browser extensions with Manifest V3"
         }
       ]
     },

@@ -3,6 +3,8 @@
     "about": "À propos",
     "skills": "Compétences",
     "experience": "Expérience",
+    "journey": "Parcours",
+    "career": "Carrière",
     "projects": "Projets",
     "education": "Éducation",
     "blog": "Blog",
@@ -55,7 +57,11 @@
     "view_project": "Voir le Projet",
     "case_study": "Étude de Cas",
     "tech_stack": "Stack Technique",
-    "view_all_projects": "$ voir-tous-les-projets",
+    "view_all_projects": "Voir tous les projets",
+    "view_more_slide": "Voir plus",
+    "view_more_slide_description": "Voir tous les projets",
+    "view_more_slide_paragraph": "Parcourez la liste complète avec les détails et études de cas.",
+    "projects_count": "projets",
     "back_to_projects": "Retour aux Projets",
     "the_challenge": "Le Défi",
     "results_impact": "Résultats & Impact",
@@ -64,6 +70,15 @@
     "view_source_code": "Voir le Code Source",
     "read_architecture_guide": "Lire le Guide d'Architecture",
     "how_i_structure": "Comment je structure et construis des applications Next.js modernes"
+  },
+  "journey": {
+    "title": "Mon Historique",
+    "subtitle": "Expérience & Formation",
+    "description": "Chronologie de ma formation et de mon expérience professionnelle.",
+    "discover": "Découvrir mon parcours",
+    "discover_hint": "Cliquez sur ce panneau pour ouvrir le parcours complet — puis défilez pour révéler chaque étape. Cliquez sur une carte pour les détails.",
+    "expand_label": "Cliquer pour ouvrir le parcours",
+    "scroll_hint": "Défiler pour explorer · Cliquez sur une carte pour les détails"
   },
   "career": {
     "title": "Expérience Professionnelle",

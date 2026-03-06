@@ -8,6 +8,34 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      spacing: {
+        'section': 'var(--space-16)',
+        'section-sm': 'var(--space-12)',
+        'section-lg': 'var(--space-24)',
+        'gap-section': 'var(--space-8)',
+        'gap-block': 'var(--space-6)',
+        'gap-tight': 'var(--space-2)',
+      },
+      fontSize: {
+        'ds-xs': 'var(--text-xs)',
+        'ds-sm': 'var(--text-sm)',
+        'ds-base': 'var(--text-base)',
+        'ds-lg': 'var(--text-lg)',
+        'ds-xl': 'var(--text-xl)',
+        'ds-2xl': 'var(--text-2xl)',
+        'ds-3xl': 'var(--text-3xl)',
+        'ds-4xl': 'var(--text-4xl)',
+        'ds-5xl': 'var(--text-5xl)',
+      },
+      transitionTimingFunction: {
+        'out-expo': 'var(--ease-out-expo)',
+        'out-smooth': 'var(--ease-out-smooth)',
+      },
+      transitionDuration: {
+        'fast': 'var(--duration-fast)',
+        'normal': 'var(--duration-normal)',
+        'slow': 'var(--duration-slow)',
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",

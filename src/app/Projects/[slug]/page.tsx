@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import Navigation from '../../Navigation/Navigation';
 import { getProjectsData } from '../../../data/projects';
 import { getTranslations } from '../../../lib/translations';
+import { getProjectSlug } from '../../../utils/projects';
 import { ProjectDetail } from '../../../components/sections/ProjectDetail';
 
 // Generate static params for all projects at build time
@@ -10,7 +11,7 @@ export function generateStaticParams() {
   const translations = getTranslations('en');
   const projectsData = getProjectsData(translations);
   return projectsData.map((project) => ({
-    slug: project.title.toLowerCase().replace(/_/g, '-').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''),
+    slug: getProjectSlug(project.title),
   }));
 }
 
@@ -18,9 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const translations = getTranslations('en');
   const projectsData = getProjectsData(translations);
-  const project = projectsData.find(
-    (p) => p.title.toLowerCase().replace(/_/g, '-').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') === slug
-  );
+  const project = projectsData.find((p) => getProjectSlug(p.title) === slug);
 
   if (!project) {
     return {
@@ -39,9 +38,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
   const translations = getTranslations('en');
   const projectsData = getProjectsData(translations);
   
-  const project = projectsData.find(
-    (p) => p.title.toLowerCase().replace(/_/g, '-').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') === slug
-  );
+  const project = projectsData.find((p) => getProjectSlug(p.title) === slug);
 
   if (!project) {
     notFound();

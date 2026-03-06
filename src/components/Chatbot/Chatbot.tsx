@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useRef, useEffect, useState, useCallback } from 'react';
+import Image from 'next/image';
 import { useChat } from 'ai/react';
 import type { Message } from 'ai';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -38,10 +39,12 @@ const AbdallahAvatar: React.FC<{ mood: MascotMood; size?: 'sm' | 'md' | 'lg' }> 
       className={`${sizeClass} relative rounded-full overflow-hidden`}
       animate={getAnimation()}
     >
-      <img 
-        src="/Images/Picture.jpeg" 
-        alt="Abdallah Amadou Gueye" 
-        className="w-full h-full object-cover object-center rounded-full"
+      <Image
+        src="/Images/Picture.jpeg"
+        alt="Abdallah Amadou Gueye"
+        fill
+        sizes="64px"
+        className="object-cover object-center rounded-full"
       />
       
       {/* Thinking indicator */}

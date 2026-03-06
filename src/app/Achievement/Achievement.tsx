@@ -37,7 +37,7 @@ function ClientAchievement() {
                 <div className="flex items-start gap-4">
                   <div className="relative w-16 h-16 flex-shrink-0">
                     {!bachelorImgError ? (
-                      <Image src="/Images/Bachelor.jpg" alt={t('education.bachelor_degree')} fill className="object-contain" onError={() => setBachelorImgError(true)} />
+                      <Image src="/Images/Bachelor.jpg" alt={t('education.bachelor_degree')} fill sizes="64px" className="object-contain" onError={() => setBachelorImgError(true)} />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center bg-muted text-muted-foreground text-xs rounded">BS</div>
                     )}
@@ -54,7 +54,7 @@ function ClientAchievement() {
                 <div className="flex items-start gap-4">
                   <div className="relative w-16 h-16 flex-shrink-0">
                     {!masterImgError ? (
-                      <Image src="/Images/Master.png" alt={t('education.master_degree')} fill className="object-contain" onError={() => setMasterImgError(true)} />
+                      <Image src="/Images/Master.png" alt={t('education.master_degree')} fill sizes="64px" className="object-contain" onError={() => setMasterImgError(true)} />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center bg-muted text-muted-foreground text-xs rounded">MS</div>
                     )}

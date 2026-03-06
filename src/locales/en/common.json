@@ -3,6 +3,8 @@
     "about": "About",
     "skills": "Skills",
     "experience": "Experience",
+    "journey": "Journey",
+    "career": "Career",
     "projects": "Projects",
     "education": "Education",
     "blog": "Blog",
@@ -55,7 +57,11 @@
     "view_project": "View Project",
     "case_study": "Case Study",
     "tech_stack": "Tech Stack",
-    "view_all_projects": "$ view-all-projects",
+    "view_all_projects": "View all projects",
+    "view_more_slide": "View more",
+    "view_more_slide_description": "See all projects",
+    "view_more_slide_paragraph": "Browse the full list with details and case studies.",
+    "projects_count": "projects",
     "back_to_projects": "Back to Projects",
     "the_challenge": "The Challenge",
     "results_impact": "Results & Impact",
@@ -64,6 +70,15 @@
     "view_source_code": "View Source Code",
     "read_architecture_guide": "Read Architecture Guide",
     "how_i_structure": "How I structure and build modern Next.js applications"
+  },
+  "journey": {
+    "title": "My History",
+    "subtitle": "Experience & Education",
+    "description": "A chronological timeline of my education and professional experience.",
+    "discover": "Discover my path",
+    "discover_hint": "Click this panel to open the full timeline — then scroll to reveal each step. Click any card to see details.",
+    "expand_label": "Click to open timeline",
+    "scroll_hint": "Scroll to explore · Click a card to expand details"
   },
   "career": {
     "title": "Professional Experience",

@@ -8,6 +8,7 @@ import { Project } from '../../hooks/useProjects';
 import { Card } from '../ui/Card';
 import { Badge } from '../ui/Badge';
 import { trackProjectCardClick } from '../../utils/analytics';
+import { getProjectSlug } from '../../utils/projects';
 
 interface ProjectCardProps {
   project: Project;
@@ -15,9 +16,11 @@ interface ProjectCardProps {
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index = 0 }) => {
-  const isVideo = project.image.endsWith('.mov') || project.image.endsWith('.mp4') || project.image.endsWith('.webm');
-  
-  const slug = project.title.toLowerCase().replace(/_/g, '-').replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+  const isVideo =
+    project.image.endsWith('.mov') ||
+    project.image.endsWith('.mp4') ||
+    project.image.endsWith('.webm');
+  const slug = getProjectSlug(project.title);
 
   const handleCardClick = () => {
     const source = typeof window !== 'undefined' ? window.location.pathname : 'unknown';
@@ -25,22 +28,28 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index = 0 }) 
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
+    <motion.article
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-100px' }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      viewport={{ once: true, margin: '-80px' }}
+      transition={{ duration: 0.4, delay: index * 0.08 }}
+      className="h-full"
     >
       <Card
         variant="elevated"
-        className="group overflow-hidden h-full flex flex-col transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 border-border/50"
+        className="group overflow-hidden h-full flex flex-col transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-0.5 border border-border/60 hover:border-primary/20"
       >
-        <Link href={`/Projects/${slug}`} className="block cursor-pointer flex flex-col h-full" onClick={handleCardClick}>
-          <div className="relative h-48 md:h-64 overflow-hidden bg-muted/50 rounded-t-xl flex-shrink-0">
+        <Link
+          href={`/Projects/${slug}`}
+          className="flex flex-col h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-xl"
+          onClick={handleCardClick}
+        >
+          {/* Media */}
+          <div className="relative aspect-[16/10] sm:aspect-video overflow-hidden bg-muted/40 flex-shrink-0">
             {isVideo ? (
               <video
                 src={project.image}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                 autoPlay
                 muted
                 loop
@@ -51,32 +60,31 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index = 0 }) 
             ) : (
               <Image
                 src={project.image}
-                alt={`${project.title} project screenshot`}
+                alt={`${project.title} — project screenshot`}
                 fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
             )}
-            <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             {project.link && (
-              <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="bg-background/90 backdrop-blur-sm rounded-lg p-1.5 shadow-lg border border-border/50">
-                  <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </div>
-              </div>
+              <span className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-background/90 backdrop-blur-sm rounded-lg p-2 shadow-lg border border-border/50">
+                <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </span>
             )}
           </div>
 
-          <div className="p-6 space-y-4 flex flex-col h-full">
-            <div className="space-y-3 flex-grow">
-              <div className="flex items-start justify-between gap-3">
-                <h3 className="text-xl md:text-2xl font-bold text-foreground group-hover:text-primary transition-colors leading-tight flex-1">
+          {/* Content */}
+          <div className="p-5 sm:p-6 flex flex-col flex-1 min-h-0">
+            <div className="flex-1 space-y-3">
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
+                <h3 className="text-lg sm:text-xl font-bold text-foreground group-hover:text-primary transition-colors leading-snug">
                   {project.title}
                 </h3>
                 {project.period && (
-                  <Badge variant="outline" className="shrink-0 text-xs whitespace-nowrap">
+                  <Badge variant="outline" size="sm" className="shrink-0 w-fit text-muted-foreground font-normal">
                     {project.period}
                   </Badge>
                 )}
@@ -86,53 +94,38 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, index = 0 }) 
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-2 min-h-[2rem]">
+            {/* Tech stack */}
+            <div className="flex flex-wrap gap-1.5 mt-4 pt-4 border-t border-border/50">
               {project.technologies.slice(0, 4).map((tech) => (
-                <Badge
-                  key={tech}
-                  variant="secondary"
-                  className="text-xs font-medium"
-                >
+                <Badge key={tech} variant="secondary" size="sm" className="text-xs font-medium">
                   {tech}
                 </Badge>
               ))}
               {project.technologies.length > 4 && (
-                <Badge variant="outline" className="text-xs font-medium">
+                <Badge variant="outline" size="sm" className="text-xs">
                   +{project.technologies.length - 4}
                 </Badge>
               )}
             </div>
 
-            <div className="flex items-center justify-between pt-3 border-t border-border/50">
-              <div className="flex items-center gap-3 text-xs md:text-sm text-muted-foreground">
-                {project.role && (
-                  <span className="capitalize font-medium">{project.role}</span>
-                )}
-                {project.team && (
-                  <span className="text-muted-foreground/60">• {project.team}</span>
-                )}
+            {/* Footer */}
+            <div className="flex items-center justify-between mt-4 pt-3 border-t border-border/40">
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                {project.role && <span className="font-medium text-foreground/80">{project.role}</span>}
+                {project.team && <span aria-hidden>·</span>}
+                {project.team && <span>{project.team}</span>}
               </div>
-              <div className="flex items-center gap-1.5 text-primary opacity-70 group-hover:opacity-100 transition-all">
-                <span className="text-xs md:text-sm font-medium">View</span>
-                <svg
-                  className="w-3.5 h-3.5 md:w-4 md:h-4 transition-transform group-hover:translate-x-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
+              <span className="inline-flex items-center gap-1 text-sm font-medium text-primary group-hover:gap-2 transition-all">
+                View project
+                <svg className="w-4 h-4 shrink-0 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
-              </div>
+              </span>
             </div>
           </div>
         </Link>
       </Card>
-    </motion.div>
+    </motion.article>
   );
 };
 

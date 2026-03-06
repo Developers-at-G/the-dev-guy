@@ -129,12 +129,7 @@ export const CustomCursor = () => {
     };
   }, [isVisible]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setRipples(prev => prev.filter(r => Date.now() - r.timestamp < 600));
-    }, 100);
-    return () => clearInterval(interval);
-  }, []);
+  // Ripples are already cleaned up individually via setTimeout in the click handler.
 
   if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) {
     return null;

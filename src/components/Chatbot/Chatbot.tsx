@@ -2,14 +2,20 @@
 
 import React, { useRef, useEffect, useState, useCallback } from 'react';
 import Image from 'next/image';
-import { useChat } from 'ai/react';
-import type { Message } from 'ai';
+import { useChat, type UIMessage } from '@ai-sdk/react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { trackChatbotOpened, trackChatbotMessageSent, trackChatbotNavigation } from '../../utils/analytics';
 import { useLanguage } from '../../app/context/LanguageContext';
 
 type MascotMood = 'idle' | 'thinking' | 'talking' | 'excited' | 'waving';
+
+function getMessageText(message: UIMessage): string {
+  return message.parts
+    .filter((p): p is { type: 'text'; text: string } => p.type === 'text')
+    .map(p => p.text)
+    .join('');
+}
 
 // Profile Picture Avatar
 const AbdallahAvatar: React.FC<{ mood: MascotMood; size?: 'sm' | 'md' | 'lg' }> = ({ mood, size = 'md' }) => {
@@ -152,7 +158,7 @@ const NavigationButton: React.FC<{
 
 // Message bubble with improved link parsing
 const MessageBubble: React.FC<{
-  message: Message;
+  message: UIMessage;
   isLatest: boolean;
   onNavigate: (path: string) => void;
   mood: MascotMood;
@@ -162,7 +168,7 @@ const MessageBubble: React.FC<{
   
   // Parse content for navigation links in format [/path] or [path]
   const renderContent = () => {
-    const content = message.content;
+    const content = getMessageText(message);
     
     // Match patterns like [/Projects], [/blog], etc.
     const linkRegex = /\[(\/?[^\]]+)\]/g;
@@ -282,9 +288,7 @@ const TypingIndicator: React.FC = () => (
 export const Chatbot: React.FC = () => {
   const { t } = useLanguage();
   const router = useRouter();
-  const { messages, input, handleInputChange, handleSubmit, status, error, append } = useChat({
-    api: '/api/chat',
-    streamProtocol: 'data',
+  const { messages, sendMessage, status, error } = useChat({
     onError: (error) => {
       console.error('Chat error:', error);
     },
@@ -293,6 +297,7 @@ export const Chatbot: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [mascotMood, setMascotMood] = useState<MascotMood>('idle');
+  const [input, setInput] = useState('');
   const isLoading = status === 'streaming' || status === 'submitted';
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -362,32 +367,29 @@ export const Chatbot: React.FC = () => {
   }, [router]);
 
   const handleQuickAction = useCallback((text: string) => {
-    // Track quick action message
     const userMessages = messages.filter(m => m.role === 'user');
     trackChatbotMessageSent(text, text.length, userMessages.length);
-    append({ role: 'user', content: text });
-  }, [append, messages]);
+    sendMessage({ text });
+  }, [sendMessage, messages]);
 
-  // Wrap handleSubmit to track messages
   const handleSubmitWithTracking = useCallback((e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!input.trim() || isLoading) return;
     
-    // Track the message before submitting
     const userMessages = messages.filter(m => m.role === 'user');
     trackChatbotMessageSent(input, input.length, userMessages.length);
     
-    // Call the original handleSubmit
-    handleSubmit(e);
-  }, [input, isLoading, messages, handleSubmit]);
+    sendMessage({ text: input });
+    setInput('');
+  }, [input, isLoading, messages, sendMessage]);
 
-  const welcomeMessage: Message = {
+  const welcomeMessage: UIMessage = {
     id: 'welcome',
     role: 'assistant',
-    content: t('chatbot.welcome', 'common'),
+    parts: [{ type: 'text', text: t('chatbot.welcome', 'common') }],
   };
 
-  const displayMessages: Message[] = messages.length === 0 ? [welcomeMessage] : messages;
+  const displayMessages: UIMessage[] = messages.length === 0 ? [welcomeMessage] : messages;
 
   return (
     <>
@@ -542,7 +544,7 @@ export const Chatbot: React.FC = () => {
             {/* Messages Area */}
             <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-hide">
               <AnimatePresence initial={false}>
-                {displayMessages.map((message: Message, index: number) => (
+                {displayMessages.map((message: UIMessage, index: number) => (
                   <MessageBubble
                     key={message.id}
                     message={message}
@@ -609,7 +611,7 @@ export const Chatbot: React.FC = () => {
                   ref={inputRef}
                   type="text"
                   value={input}
-                  onChange={handleInputChange}
+                  onChange={(e) => setInput(e.target.value)}
                   placeholder={t('chatbot.type_message', 'common')}
                   className="flex-1 px-4 py-2.5 bg-input border border-border rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 transition-all text-sm"
                   disabled={isLoading}

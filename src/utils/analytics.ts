@@ -2,9 +2,6 @@ import { track } from '@vercel/analytics';
 
 
 export const analyticsEvents = {
-  CV_DOWNLOADED: 'CV Downloaded',
-  RESUME_DOWNLOAD_CONVERSION: 'Resume Download Conversion',
-  
   PROJECT_VIEWED: 'Project Viewed',
   PROJECT_CARD_CLICKED: 'Project Card Clicked',
   PROJECT_LINK_CLICKED: 'Project Link Clicked',
@@ -21,21 +18,6 @@ export const analyticsEvents = {
   CHATBOT_NAVIGATION_CLICKED: 'Chatbot Navigation Clicked',
   CHATBOT_TOPIC_INTEREST: 'Chatbot Topic Interest',
 } as const;
-
-export function trackCVDownload(source: string, additionalData?: Record<string, string | number | boolean>) {
-  track(analyticsEvents.CV_DOWNLOADED, {
-    source,
-    timestamp: new Date().toISOString(),
-    page: typeof window !== 'undefined' ? window.location.pathname : 'server',
-    referrer: typeof document !== 'undefined' ? document.referrer || 'Direct' : 'server',
-    ...additionalData,
-  });
-
-  track(analyticsEvents.RESUME_DOWNLOAD_CONVERSION, {
-    source,
-    value: 1,
-  });
-}
 
 export function trackProjectView(projectName: string, source: string) {
   track(analyticsEvents.PROJECT_VIEWED, {

@@ -1,5 +1,5 @@
 import { NextRequest } from 'next/server';
-import { streamText } from 'ai';
+import { streamText, convertToModelMessages, type UIMessage } from 'ai';
 import { openai } from '@ai-sdk/openai';
 import { getProfileData } from '@/data/profile';
 import { getProjectsData } from '@/data/projects';
@@ -40,16 +40,19 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { messages } = await request.json();
+    const { messages } = await request.json() as { messages: UIMessage[] };
 
     // Track chat interaction - get the last user message
     const lastUserMessage = messages
-      .filter((msg: { role: string }) => msg.role === 'user')
+      .filter((msg) => msg.role === 'user')
       .pop();
     
     if (lastUserMessage) {
-      const messageContent = lastUserMessage.content || '';
-      const messageIndex = messages.filter((msg: { role: string }) => msg.role === 'user').length;
+      const messageContent = (lastUserMessage.parts ?? [])
+        .filter((p): p is { type: 'text'; text: string } => p.type === 'text')
+        .map(p => p.text)
+        .join('');
+      const messageIndex = messages.filter((msg) => msg.role === 'user').length;
       
       // Detect topic from message content (server-side tracking)
       const detectTopic = (text: string): string => {
@@ -119,13 +122,17 @@ export async function POST(request: NextRequest) {
 
     // Validate each message
     for (const msg of messages) {
-      if (!msg.role || !msg.content) {
+      if (!msg.role || !msg.parts) {
         return new Response(
           JSON.stringify({ error: 'Invalid message format' }),
           { status: 400, headers: { 'Content-Type': 'application/json' } }
         );
       }
-      if (typeof msg.content !== 'string' || msg.content.length > 1000) {
+      const textContent = msg.parts
+        .filter((p): p is { type: 'text'; text: string } => p.type === 'text')
+        .map(p => p.text)
+        .join('');
+      if (textContent.length > 1000) {
         return new Response(
           JSON.stringify({ error: 'Message content too long (max 1000 characters)' }),
           { status: 400, headers: { 'Content-Type': 'application/json' } }
@@ -210,33 +217,27 @@ EXAMPLE RESPONSES:
 
 
     // Filter out system messages and keep only user/assistant messages
-    interface Message {
-      role: string;
-      content: string;
-    }
-    const conversationMessages = messages.filter((msg: Message) => 
+    const conversationMessages = messages.filter((msg) => 
       msg.role === 'user' || msg.role === 'assistant'
     );
 
+    const modelMessages = await convertToModelMessages(conversationMessages);
+
     // Use Vercel AI SDK to stream responses
-    const result = await streamText({
+    const result = streamText({
       model: openai('gpt-4o-mini'),
       system: portfolioContext,
-      messages: conversationMessages,
+      messages: modelMessages,
       temperature: 0.7,
-      maxTokens: 300, // Keep responses concise for portfolio
+      maxOutputTokens: 300,
     });
 
     // Return streaming response
-    return result.toDataStreamResponse({
+    return result.toUIMessageStreamResponse({
       headers: {
         'X-RateLimit-Limit': '10',
         'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
         'X-RateLimit-Reset': rateLimitResult.resetTime.toString(),
-      },
-      getErrorMessage: (error) => {
-        console.error('Stream error:', error);
-        return error instanceof Error ? error.message : 'An error occurred while streaming the response';
       },
     });
   } catch (error) {

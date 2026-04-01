@@ -23,6 +23,28 @@
       ]
     },
     {
+      "title": "React Runtime Observatory",
+      "role": "Frontend",
+      "team": "Solo",
+      "period": "2026",
+      "impacts": [
+        "Suivi en direct des événements hooks",
+        "Timeline de rendu avec code couleur",
+        "Toggle de comparaison de mémoïsation",
+        "Export de traces JSON"
+      ],
+      "problem": "Le comportement des hooks React — quand les effets se déclenchent, ce qui provoque les re-rendus, comment le contexte se propage — est invisible à l'exécution. Les développeurs s'appuient sur des suppositions ou des console.log dispersés pour comprendre les cycles de rendu.",
+      "actions": [
+        "Construit des wrappers de hooks instrumentés (useState, useReducer, useEffect, useContext, useMemo) interceptant chaque transition d'état et exécution d'effet",
+        "Conçu un HOC withRenderTracker pour le logging non-invasif des rendus de composants sans modifier le code source",
+        "Implémenté un tableau de bord d'événements en direct avec timeline colorée montrant l'ordre d'exécution des hooks et les diffs d'état",
+        "Construit un filtrage par type d'événement et nom de composant pour le débogage ciblé de chemins de rendu spécifiques",
+        "Ajouté un toggle React.memo pour comparer le comportement de re-rendu mémoïsé vs non-mémoïsé en temps réel",
+        "Créé un export de traces JSON pour l'analyse hors ligne et le partage de snapshots d'instrumentation",
+        "Géré le store d'événements global avec Zustand, supportant les contrôles de trace live/pause/reset"
+      ]
+    },
+    {
       "title": "Gestion de Restaurant (PWA)",
       "role": "Full‑stack",
       "team": "Solo",
@@ -83,6 +105,23 @@
       ]
     },
     {
+      "title": "DevTrackr – Application de Suivi des Tâches et du Temps pour Développeurs",
+      "role": "Full‑stack",
+      "team": "Solo",
+      "period": "2025",
+      "impacts": [
+        "+30% d'achèvement hebdomadaire",
+        "UX mode focus",
+        "PWA mobile"
+      ],
+      "problem": "Les développeurs manquaient d'un moyen simple de suivre les tâches et le temps ensemble.",
+      "actions": [
+        "Livré un modèle unifié tâches+temps",
+        "Construit des analyses et rapports hebdomadaires",
+        "Optimisé les interactions mobile-first"
+      ]
+    },
+    {
       "title": "Developer Playground",
       "role": "Full‑stack",
       "team": "Solo",
@@ -117,23 +156,6 @@
         "Implémenté SSG pour les pages principales",
         "Construit l'UX du planning des spéciaux",
         "Ajouté l'optimisation d'images et la mise en cache"
-      ]
-    },
-    {
-      "title": "DevTrackr – Application de Suivi des Tâches et du Temps pour Développeurs",
-      "role": "Full‑stack",
-      "team": "Solo",
-      "period": "2025",
-      "impacts": [
-        "+30% d'achèvement hebdomadaire",
-        "UX mode focus",
-        "PWA mobile"
-      ],
-      "problem": "Les développeurs manquaient d'un moyen simple de suivre les tâches et le temps ensemble.",
-      "actions": [
-        "Livré un modèle unifié tâches+temps",
-        "Construit des analyses et rapports hebdomadaires",
-        "Optimisé les interactions mobile-first"
       ]
     },
     {

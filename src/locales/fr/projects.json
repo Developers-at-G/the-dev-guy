@@ -1,7 +1,7 @@
 {
   "projects": [
     {
-      "title": "Gyst — Extension Chrome de Suivi du Temps",
+      "title": "Gyst - Extension Chrome de Suivi du Temps",
       "role": "Full‑stack",
       "team": "Solo",
       "period": "2025",
@@ -33,7 +33,7 @@
         "Toggle de comparaison de mémoïsation",
         "Export de traces JSON"
       ],
-      "problem": "Le comportement des hooks React — quand les effets se déclenchent, ce qui provoque les re-rendus, comment le contexte se propage — est invisible à l'exécution. Les développeurs s'appuient sur des suppositions ou des console.log dispersés pour comprendre les cycles de rendu.",
+      "problem": "Le comportement des hooks React est souvent invisible à l'exécution. Il est difficile de voir précisément quand les effets se lancent, ce qui provoque les re-rendus et comment les mises à jour du contexte se propagent.",
       "actions": [
         "Construit des wrappers de hooks instrumentés (useState, useReducer, useEffect, useContext, useMemo) interceptant chaque transition d'état et exécution d'effet",
         "Conçu un HOC withRenderTracker pour le logging non-invasif des rendus de composants sans modifier le code source",
@@ -50,9 +50,9 @@
       "team": "Solo",
       "period": "2025",
       "impacts": [
-        "+55% de vitesse de commande",
-        "PWA offline-first",
-        "Prêt pour multi-restaurants"
+        "Commandes plus rapides au quotidien",
+        "Utilisable même avec une connexion instable",
+        "Prêt pour plusieurs restaurants"
       ],
       "problem": "Les commandes manuelles et les flux de travail fragmentés ralentissaient le service du restaurant.",
       "actions": [
@@ -105,23 +105,6 @@
       ]
     },
     {
-      "title": "DevTrackr – Application de Suivi des Tâches et du Temps pour Développeurs",
-      "role": "Full‑stack",
-      "team": "Solo",
-      "period": "2025",
-      "impacts": [
-        "+30% d'achèvement hebdomadaire",
-        "UX mode focus",
-        "PWA mobile"
-      ],
-      "problem": "Les développeurs manquaient d'un moyen simple de suivre les tâches et le temps ensemble.",
-      "actions": [
-        "Livré un modèle unifié tâches+temps",
-        "Construit des analyses et rapports hebdomadaires",
-        "Optimisé les interactions mobile-first"
-      ]
-    },
-    {
       "title": "Developer Playground",
       "role": "Full‑stack",
       "team": "Solo",
@@ -147,7 +130,7 @@
       "team": "Solo",
       "period": "2024",
       "impacts": [
-        "+40% de vues de menu",
+        "Davantage de vues du menu après la mise en ligne",
         "Optimisé pour le SEO",
         "LCP rapide"
       ],

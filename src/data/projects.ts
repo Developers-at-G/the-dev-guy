@@ -49,17 +49,7 @@ const staticProjectsData = [
     role: 'Full‑stack',
     team: 'Solo',
   },
-  // 6. Dev tool, full-stack with auth, analytics, PWA
-  {
-    id: 'devtrackr',
-    image: '/Images/devtrackr-dashboard.png',
-    technologies: ['React', 'Node.js', 'PostgreSQL', 'Prisma', 'JWT', 'Headless UI', 'Vercel', 'PWA'],
-    link: 'https://devtrackr-one.vercel.app/',
-    githubUrl: 'https://github.com/abdallah96/devtrackr',
-    role: 'Full‑stack',
-    team: 'Solo',
-  },
-  // 7. Documentation, teaching, Next.js patterns showcase
+  // 6. Documentation, teaching, Next.js patterns showcase
   {
     id: 'developer-playground',
     image: '/Images/developer-playground.png',
@@ -69,7 +59,7 @@ const staticProjectsData = [
     role: 'Full‑stack',
     team: 'Solo',
   },
-  // 8. Production site, real business
+  // 7. Production site, real business
   {
     id: 'restaurant-website',
     image: '/Videos/Restaurant.mov',
@@ -78,7 +68,7 @@ const staticProjectsData = [
     role: 'Full‑stack',
     team: 'Solo',
   },
-  // 9. Frontend/marketing site
+  // 8. Frontend/marketing site
   {
     id: 'real-estate',
     image: '/Images/atlanticimmo.png',

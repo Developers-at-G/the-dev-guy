@@ -1,7 +1,7 @@
 {
   "projects": [
     {
-      "title": "Gyst — Time Tracking Chrome Extension",
+      "title": "Gyst - Time Tracking Chrome Extension",
       "role": "Full‑stack",
       "team": "Solo",
       "period": "2026",
@@ -33,7 +33,7 @@
         "Memoization comparison toggle",
         "JSON trace export"
       ],
-      "problem": "React's hook behavior — when effects fire, what triggers re-renders, how context propagates — is invisible at runtime. Developers rely on guesswork or scattered console.log statements to understand rendering lifecycles.",
+      "problem": "React hook behavior is usually invisible at runtime. It's hard to know exactly when effects run, what triggers re-renders, or how context updates spread across the tree.",
       "actions": [
         "Built custom tracked hook wrappers (useState, useReducer, useEffect, useContext, useMemo) that intercept every state transition and effect execution",
         "Designed a withRenderTracker HOC for non-invasive component render logging without modifying source components",
@@ -50,9 +50,9 @@
       "team": "Solo",
       "period": "2025",
       "impacts": [
-        "+55% order speed",
-        "Offline-first PWA",
-        "Multi-restaurant ready"
+        "Faster order flow in daily use",
+        "Works even with unstable internet",
+        "Ready for multiple restaurant branches"
       ],
       "problem": "Manual ordering and fragmented workflows slowed restaurant service.",
       "actions": [
@@ -105,23 +105,6 @@
       ]
     },
     {
-      "title": "DevTrackr – Developer Task & Time Tracking App",
-      "role": "Full‑stack",
-      "team": "Solo",
-      "period": "2025",
-      "impacts": [
-        "+30% weekly completion",
-        "Focus mode UX",
-        "Mobile PWA"
-      ],
-      "problem": "Developers lacked a simple way to track tasks and time together.",
-      "actions": [
-        "Shipped unified tasks+time model",
-        "Built analytics and weekly reports",
-        "Optimized mobile-first interactions"
-      ]
-    },
-    {
       "title": "Developer Playground",
       "role": "Full‑stack",
       "team": "Solo",
@@ -147,7 +130,7 @@
       "team": "Solo",
       "period": "2024",
       "impacts": [
-        "+40% menu views",
+        "More menu views after launch",
         "SEO‑friendly",
         "Fast LCP"
       ],

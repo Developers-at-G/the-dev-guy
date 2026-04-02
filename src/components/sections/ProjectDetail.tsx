@@ -21,6 +21,7 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
   const isVideo = project.image.endsWith('.mov') || project.image.endsWith('.mp4') || project.image.endsWith('.webm');
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     trackProjectView(project.title, 'project-detail-page');
   }, [project.title]);
 

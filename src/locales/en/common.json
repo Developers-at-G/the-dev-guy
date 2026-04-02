@@ -30,7 +30,9 @@
     "freelance": "Freelance",
     "working_student": "Working Student",
     "proficiency": "Proficiency",
-    "proficiency_level": "{level}% proficiency"
+    "proficiency_level": "{level}% proficiency",
+    "view_my_work": "View My Work",
+    "get_in_touch": "Get In Touch"
   },
   "profile": {
     "software_engineer": "Frontend / Product Engineer",
@@ -168,6 +170,9 @@
     "close": "Close",
     "lets_connect": "Let's Connect",
     "open_message": "I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology and development.",
+    "email_hint": "Drop me a line anytime",
+    "linkedin_hint": "Let's connect professionally",
+    "github_hint": "Check out my open-source work",
     "email_me": "Email Me",
     "follow_me": "Follow Me",
     "linkedin_desc": "Connect professionally",

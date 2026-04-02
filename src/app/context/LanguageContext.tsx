@@ -75,12 +75,23 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   if (!mounted) {
     const defaultTranslations = getTranslations('en');
+    const defaultT = (key: string, namespace?: keyof Translations, params?: Record<string, string | number>): string => {
+      if (namespace) {
+        return getTranslation('en', namespace, key, params);
+      }
+      const parts = key.split('.');
+      if (parts.length >= 2) {
+        const [ns, ...rest] = parts;
+        return getTranslation('en', ns as keyof Translations, rest.join('.'), params);
+      }
+      return key;
+    };
     return (
       <LanguageContext.Provider value={{ 
         language: 'en', 
         toggleLanguage: () => {}, 
         setLanguage: () => {}, 
-        t: (key: string) => key,
+        t: defaultT,
         translations: defaultTranslations,
       }}>
         {children}

@@ -19,6 +19,7 @@ function ContactSection() {
         </svg>
       ),
       title: t('contact.email', 'common'),
+      hint: t('contact.email_hint', 'common'),
       value: 'gueye.amadou1996@gmail.com',
       href: 'mailto:gueye.amadou1996@gmail.com',
     },
@@ -29,6 +30,7 @@ function ContactSection() {
         </svg>
       ),
       title: t('contact.linkedin', 'common'),
+      hint: t('contact.linkedin_hint', 'common'),
       value: '/in/abdallah-amadou-gueye',
       href: 'https://www.linkedin.com/in/abdalah-amadou-gueye/',
     },
@@ -39,6 +41,7 @@ function ContactSection() {
         </svg>
       ),
       title: t('contact.github', 'common'),
+      hint: t('contact.github_hint', 'common'),
       value: '@abdallah96',
       href: 'https://github.com/abdallah96',
     },
@@ -102,7 +105,7 @@ function ContactSection() {
                             transition={{ duration: 0.2 }}
                             className="text-ds-xs text-muted-foreground truncate mt-0.5"
                           >
-                            {t('contact.open_message', 'common')}
+                            {method.hint}
                           </motion.p>
                         )}
                       </AnimatePresence>

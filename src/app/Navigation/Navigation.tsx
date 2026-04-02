@@ -46,7 +46,7 @@ function NavigationSection() {
                   <Link
                     key={item.id}
                     href={item.href}
-                    className="px-3 py-2 rounded-lg text-sm font-medium transition-colors text-muted-foreground hover:text-foreground hover:bg-muted"
+                    className="px-3 py-2 rounded-lg text-sm font-medium capitalize transition-colors text-muted-foreground hover:text-foreground hover:bg-muted"
                     onClick={closeMenu}
                   >
                     {t(`nav.${item.label.toLowerCase()}`, 'common')}
@@ -58,13 +58,13 @@ function NavigationSection() {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  className={`px-3 py-2 rounded-lg text-sm font-medium capitalize transition-colors ${
                     activeSection === item.id
                       ? 'bg-primary text-primary-foreground'
                       : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                   }`}
                 >
-                  {t(`nav.${item.label.toLowerCase()}`)}
+                  {t(`nav.${item.label.toLowerCase()}`, 'common')}
                 </button>
               );
             })}
@@ -120,7 +120,7 @@ function NavigationSection() {
                     <Link
                       key={item.id}
                       href={item.href}
-                      className="px-3 py-2 rounded-lg text-left text-sm font-medium transition-colors text-muted-foreground hover:text-foreground hover:bg-muted"
+                      className="px-3 py-2 rounded-lg text-left text-sm font-medium capitalize transition-colors text-muted-foreground hover:text-foreground hover:bg-muted"
                       onClick={closeMenu}
                     >
                       {t(`nav.${item.label.toLowerCase()}`, 'common')}
@@ -132,7 +132,7 @@ function NavigationSection() {
                   <button
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
-                    className={`px-3 py-2 rounded-lg text-left text-sm font-medium transition-colors ${
+                    className={`px-3 py-2 rounded-lg text-left text-sm font-medium capitalize transition-colors ${
                       activeSection === item.id
                         ? 'bg-primary text-primary-foreground'
                         : 'text-muted-foreground hover:text-foreground hover:bg-muted'

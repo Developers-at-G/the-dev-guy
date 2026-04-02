@@ -30,7 +30,9 @@
     "freelance": "Freelance",
     "working_student": "Étudiant Salarié",
     "proficiency": "Maîtrise",
-    "proficiency_level": "{level}% de maîtrise"
+    "proficiency_level": "{level}% de maîtrise",
+    "view_my_work": "Voir Mes Projets",
+    "get_in_touch": "Me Contacter"
   },
   "profile": {
     "software_engineer": "Ingénieur Logiciel",
@@ -168,6 +170,9 @@
     "close": "Fermer",
     "lets_connect": "Connectons-nous",
     "open_message": "Je suis toujours ouvert à discuter de nouvelles opportunités, de projets intéressants, ou simplement d'avoir une conversation sur la technologie et le développement.",
+    "email_hint": "Écrivez-moi à tout moment",
+    "linkedin_hint": "Connectons-nous professionnellement",
+    "github_hint": "Découvrez mes projets open-source",
     "email_me": "M'envoyer un email",
     "follow_me": "Me suivre",
     "linkedin_desc": "Se connecter professionnellement",

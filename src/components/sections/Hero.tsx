@@ -97,10 +97,14 @@ function Typewriter({
 }
 
 export const Hero: React.FC = () => {
-  const { translations } = useLanguage();
+  const { translations, t } = useLanguage();
   const profileData = getProfileData(translations);
   const typewriterRef = useRef(null);
   const typewriterInView = useInView(typewriterRef, { amount: 0.3, once: true });
+
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <section
@@ -169,6 +173,29 @@ export const Hero: React.FC = () => {
               start={typewriterInView}
               className="text-base sm:text-lg text-muted-foreground/95 leading-relaxed font-mono"
             />
+          </motion.div>
+
+          {/* CTA buttons */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeUp}
+            transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-8 flex flex-col sm:flex-row items-center gap-3"
+          >
+            <button
+              onClick={() => scrollTo('projects')}
+              className="px-6 py-3 rounded-xl bg-primary text-primary-foreground font-semibold text-sm shadow-lg hover:shadow-xl hover:brightness-110 transition-all duration-200"
+            >
+              {t('common.view_my_work', 'common')}
+            </button>
+            <button
+              onClick={() => scrollTo('contact')}
+              className="px-6 py-3 rounded-xl border border-border text-foreground font-semibold text-sm hover:bg-muted/50 transition-all duration-200"
+            >
+              {t('common.get_in_touch', 'common')}
+            </button>
           </motion.div>
         </div>
       </Container>

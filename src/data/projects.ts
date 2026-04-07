@@ -2,7 +2,16 @@ import { Project } from '../hooks/useProjects';
 import { Translations } from '../lib/translations';
 
 const staticProjectsData = [
-  // 1. Flagship: Complex architecture, enterprise features, Chrome Extension + Web Dashboard
+  // 1. Deepest technical signal — runtime instrumentation, React internals, observability
+  {
+    id: 'react-observability',
+    image: '/Videos/react-observability.mov',
+    technologies: ['Next.js 16', 'React 19', 'TypeScript', 'Zustand', 'Tailwind CSS'],
+    link: 'https://react-observability.vercel.app',
+    role: 'Frontend',
+    team: 'Solo',
+  },
+  // 2. Complex architecture, real users — Chrome Extension + Web Dashboard
   {
     id: 'gyst',
     image: '/Videos/gyst.mov',
@@ -11,16 +20,7 @@ const staticProjectsData = [
     role: 'Full‑stack',
     team: 'Solo',
   },
-  // 2. Runtime instrumentation, React internals, observability — deep hook knowledge
-  {
-    id: 'react-observability',
-    image: '/Images/react-observability.png',
-    technologies: ['Next.js 16', 'React 19', 'TypeScript', 'Zustand', 'Tailwind CSS'],
-    link: 'https://react-observability.vercel.app',
-    role: 'Frontend',
-    team: 'Solo',
-  },
-  // 3. Multi-tenant, PWA, offline-first, real business use case
+  // 3. Multi-tenant, full-stack, production — PWA, offline-first
   {
     id: 'restaurant-management',
     image: '/Images/k-gere.png',
@@ -30,7 +30,7 @@ const staticProjectsData = [
     role: 'Full‑stack',
     team: 'Solo',
   },
-  // 4. Real client, production e-commerce, latest stack
+  // 4. Real client, live in production — e-commerce
   {
     id: 'naboujastore',
     image: '/Images/Nabouja.jpeg',
@@ -40,7 +40,7 @@ const staticProjectsData = [
     role: 'Full‑stack',
     team: 'Solo',
   },
-  // 5. Real-time multiplayer, WebSockets, technical depth
+  // 5. Real-time WebSockets, technical depth
   {
     id: 'ilmquest',
     image: '/Images/IlmQuest.png',
@@ -49,32 +49,13 @@ const staticProjectsData = [
     role: 'Full‑stack',
     team: 'Solo',
   },
-  // 6. Documentation, teaching, Next.js patterns showcase
-  {
-    id: 'developer-playground',
-    image: '/Images/developer-playground.png',
-    technologies: ['Next.js 14', 'TypeScript', 'React', 'Tailwind CSS', 'Storybook', 'Vercel Analytics', 'Serverless', 'Edge Middleware'],
-    link: 'https://developer-playground-one.vercel.app',
-    githubUrl: 'https://github.com/abdallah96/Developer-playground',
-    role: 'Full‑stack',
-    team: 'Solo',
-  },
-  // 7. Production site, real business
+  // 6. Production marketing site, real business
   {
     id: 'restaurant-website',
     image: '/Videos/Restaurant.mov',
     technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Supabase', 'React', 'Twilio', 'Zustand'],
     link: 'https://keurguirestaurant.com',
     role: 'Full‑stack',
-    team: 'Solo',
-  },
-  // 8. Frontend/marketing site
-  {
-    id: 'real-estate',
-    image: '/Images/atlanticimmo.png',
-    technologies: ['React', 'Tailwind CSS', 'Framer Motion', 'Next JS'],
-    link: 'https://seradi.vercel.app',
-    role: 'Frontend',
     team: 'Solo',
   },
 ];

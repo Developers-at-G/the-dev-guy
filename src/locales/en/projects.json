@@ -1,28 +1,6 @@
 {
   "projects": [
     {
-      "title": "Gyst - Time Tracking Chrome Extension",
-      "role": "Full‑stack",
-      "team": "Solo",
-      "period": "2026",
-      "impacts": [
-        "Multi-tenant architecture",
-        "Persistent timer across sessions",
-        "Role-based access control",
-        "CSV/PDF report exports"
-      ],
-      "problem": "Time tracking tools often feel heavy, slow, or disconnected from how developers actually work. Teams needed a browser-native solution that reduces friction while still scaling to multi-user organizations.",
-      "actions": [
-        "Built Chrome Extension (Manifest V3) with background service worker for persistent timers across tabs and sessions",
-        "Implemented multi-tenant architecture with Supabase PostgreSQL and Row Level Security for secure data isolation",
-        "Designed role-based access control system (owner, admin, manager, member) with approval workflows",
-        "Created shared logic layer between full dashboard and lightweight Chrome popup",
-        "Built onboarding flow with animated spotlight tutorial for first-time users",
-        "Implemented TanStack Query for caching, syncing, and server state management",
-        "Added keyboard shortcuts, notifications, and accessibility-aware UI patterns"
-      ]
-    },
-    {
       "title": "React Runtime Observatory",
       "role": "Frontend",
       "team": "Solo",
@@ -42,6 +20,28 @@
         "Added React.memo toggle to compare memoized vs non-memoized re-render behavior in real time",
         "Created JSON trace export for offline analysis and sharing instrumentation snapshots",
         "Managed global event store with Zustand, supporting live/pause/reset trace controls"
+      ]
+    },
+    {
+      "title": "Gyst - Time Tracking Chrome Extension",
+      "role": "Full‑stack",
+      "team": "Solo",
+      "period": "2026",
+      "impacts": [
+        "Multi-tenant architecture",
+        "Persistent timer across sessions",
+        "Role-based access control",
+        "CSV/PDF report exports"
+      ],
+      "problem": "Time tracking tools often feel heavy, slow, or disconnected from how developers actually work. Teams needed a browser-native solution that reduces friction while still scaling to multi-user organizations.",
+      "actions": [
+        "Built Chrome Extension (Manifest V3) with background service worker for persistent timers across tabs and sessions",
+        "Implemented multi-tenant architecture with Supabase PostgreSQL and Row Level Security for secure data isolation",
+        "Designed role-based access control system (owner, admin, manager, member) with approval workflows",
+        "Created shared logic layer between full dashboard and lightweight Chrome popup",
+        "Built onboarding flow with animated spotlight tutorial for first-time users",
+        "Implemented TanStack Query for caching, syncing, and server state management",
+        "Added keyboard shortcuts, notifications, and accessibility-aware UI patterns"
       ]
     },
     {
@@ -105,26 +105,6 @@
       ]
     },
     {
-      "title": "Developer Playground",
-      "role": "Full‑stack",
-      "team": "Solo",
-      "period": "2025",
-      "impacts": [
-        "Next.js 14 showcase",
-        "SSR/SSG/ISR strategies",
-        "Component library system",
-        "Performance-optimized"
-      ],
-      "problem": "Developers needed a comprehensive learning resource demonstrating Next.js 14 best practices, rendering strategies, and component architecture.",
-      "actions": [
-        "Built production-ready Next.js 14 app showcasing SSR, SSG, and ISR rendering strategies",
-        "Created reusable component library with 7+ customizable UI components and Storybook integration",
-        "Implemented API routes with middleware, authentication patterns, and protected routes",
-        "Optimized performance with lazy loading, code splitting, dynamic imports, and React memoization",
-        "Deployed on Vercel with Analytics integration and automatic CI/CD"
-      ]
-    },
-    {
       "title": "Restaurant Website",
       "role": "Full‑stack",
       "team": "Solo",
@@ -139,22 +119,6 @@
         "Implemented SSG for core pages",
         "Built specials schedule UX",
         "Added image optimization and caching"
-      ]
-    },
-    {
-      "title": "Real Estate Website",
-      "role": "Frontend",
-      "team": "Solo",
-      "period": "2024",
-      "impacts": [
-        "Faster browsing",
-        "Clean property filters"
-      ],
-      "problem": "Users struggled to navigate listings with slow filtering.",
-      "actions": [
-        "Built performant filter UI",
-        "Added skeleton loading states",
-        "Optimized list virtualization"
       ]
     }
   ],

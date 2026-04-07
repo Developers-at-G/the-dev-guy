@@ -1,28 +1,6 @@
 {
   "projects": [
     {
-      "title": "Gyst - Extension Chrome de Suivi du Temps",
-      "role": "Full‑stack",
-      "team": "Solo",
-      "period": "2025",
-      "impacts": [
-        "Architecture multi-tenant",
-        "Timer persistant entre sessions",
-        "Contrôle d'accès basé sur les rôles",
-        "Exports de rapports CSV/PDF"
-      ],
-      "problem": "Les outils de suivi du temps semblent souvent lourds, lents ou déconnectés de la façon dont les développeurs travaillent réellement. Les équipes avaient besoin d'une solution native au navigateur qui réduit les frictions tout en s'adaptant aux organisations multi-utilisateurs.",
-      "actions": [
-        "Construit une Extension Chrome (Manifest V3) avec service worker en arrière-plan pour des timers persistants entre onglets et sessions",
-        "Implémenté une architecture multi-tenant avec Supabase PostgreSQL et Row Level Security pour l'isolation sécurisée des données",
-        "Conçu un système de contrôle d'accès basé sur les rôles (propriétaire, admin, manager, membre) avec workflows d'approbation",
-        "Créé une couche de logique partagée entre le tableau de bord complet et le popup Chrome léger",
-        "Construit un flux d'onboarding avec tutoriel animé spotlight pour les nouveaux utilisateurs",
-        "Implémenté TanStack Query pour la mise en cache, synchronisation et gestion de l'état serveur",
-        "Ajouté des raccourcis clavier, notifications et patterns UI accessibles"
-      ]
-    },
-    {
       "title": "React Runtime Observatory",
       "role": "Frontend",
       "team": "Solo",
@@ -42,6 +20,28 @@
         "Ajouté un toggle React.memo pour comparer le comportement de re-rendu mémoïsé vs non-mémoïsé en temps réel",
         "Créé un export de traces JSON pour l'analyse hors ligne et le partage de snapshots d'instrumentation",
         "Géré le store d'événements global avec Zustand, supportant les contrôles de trace live/pause/reset"
+      ]
+    },
+    {
+      "title": "Gyst - Extension Chrome de Suivi du Temps",
+      "role": "Full‑stack",
+      "team": "Solo",
+      "period": "2025",
+      "impacts": [
+        "Architecture multi-tenant",
+        "Timer persistant entre sessions",
+        "Contrôle d'accès basé sur les rôles",
+        "Exports de rapports CSV/PDF"
+      ],
+      "problem": "Les outils de suivi du temps semblent souvent lourds, lents ou déconnectés de la façon dont les développeurs travaillent réellement. Les équipes avaient besoin d'une solution native au navigateur qui réduit les frictions tout en s'adaptant aux organisations multi-utilisateurs.",
+      "actions": [
+        "Construit une Extension Chrome (Manifest V3) avec service worker en arrière-plan pour des timers persistants entre onglets et sessions",
+        "Implémenté une architecture multi-tenant avec Supabase PostgreSQL et Row Level Security pour l'isolation sécurisée des données",
+        "Conçu un système de contrôle d'accès basé sur les rôles (propriétaire, admin, manager, membre) avec workflows d'approbation",
+        "Créé une couche de logique partagée entre le tableau de bord complet et le popup Chrome léger",
+        "Construit un flux d'onboarding avec tutoriel animé spotlight pour les nouveaux utilisateurs",
+        "Implémenté TanStack Query pour la mise en cache, synchronisation et gestion de l'état serveur",
+        "Ajouté des raccourcis clavier, notifications et patterns UI accessibles"
       ]
     },
     {
@@ -105,26 +105,6 @@
       ]
     },
     {
-      "title": "Developer Playground",
-      "role": "Full‑stack",
-      "team": "Solo",
-      "period": "2025",
-      "impacts": [
-        "Vitrine Next.js 14",
-        "Stratégies SSR/SSG/ISR",
-        "Système de bibliothèque de composants",
-        "Optimisé pour les performances"
-      ],
-      "problem": "Les développeurs avaient besoin d'une ressource d'apprentissage complète démontrant les meilleures pratiques Next.js 14, les stratégies de rendu et l'architecture des composants.",
-      "actions": [
-        "Construit une application Next.js 14 prête pour la production présentant les stratégies de rendu SSR, SSG et ISR",
-        "Créé une bibliothèque de composants réutilisables avec plus de 7 composants UI personnalisables et intégration Storybook",
-        "Implémenté des routes API avec middleware, patterns d'authentification et routes protégées",
-        "Optimisé les performances avec chargement paresseux, division du code, imports dynamiques et mémorisation React",
-        "Déployé sur Vercel avec intégration Analytics et CI/CD automatique"
-      ]
-    },
-    {
       "title": "Site Web de Restaurant",
       "role": "Full‑stack",
       "team": "Solo",
@@ -139,22 +119,6 @@
         "Implémenté SSG pour les pages principales",
         "Construit l'UX du planning des spéciaux",
         "Ajouté l'optimisation d'images et la mise en cache"
-      ]
-    },
-    {
-      "title": "Site Web Immobilier",
-      "role": "Frontend",
-      "team": "Solo",
-      "period": "2024",
-      "impacts": [
-        "Navigation plus rapide",
-        "Filtres de propriétés propres"
-      ],
-      "problem": "Les utilisateurs avaient du mal à naviguer dans les annonces avec un filtrage lent.",
-      "actions": [
-        "Construit une UI de filtre performante",
-        "Ajouté des états de chargement skeleton",
-        "Optimisé la virtualisation de liste"
       ]
     }
   ],

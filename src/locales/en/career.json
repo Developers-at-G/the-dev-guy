@@ -1,10 +1,20 @@
 {
   "experiences": [
     {
+      "id": "tenhil-gmbh",
+      "company": "Tenhil GmbH",
+      "position": "Software Engineer",
+      "period": "September 2026 - Present",
+      "location": "Munich, Germany",
+      "type": "work",
+      "description": "",
+      "achievements": []
+    },
+    {
       "id": "smal-gmbh",
       "company": "Smal GmbH",
       "position": "Frontend Engineer",
-      "period": "January 2023 - Present",
+      "period": "January 2023 - August 2026",
       "location": "Munich, Germany",
       "type": "work",
       "description": "Building and maintaining reusable UI components and complex page layouts, leading major framework migrations, and implementing high-performance user experiences.",

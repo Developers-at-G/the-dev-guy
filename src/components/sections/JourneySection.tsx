@@ -561,7 +561,9 @@ function CareerJourneyCard({
             className="px-5 pb-5 pt-2 md:px-6 md:pb-6 md:pt-2 transition-opacity duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
             style={{ opacity: isExpanded ? 1 : 0, transitionDelay: isExpanded ? '180ms' : '0ms' }}
           >
-            <p className="text-muted-foreground text-sm leading-relaxed">{experience.description}</p>
+            {experience.description && (
+              <p className="text-muted-foreground text-sm leading-relaxed">{experience.description}</p>
+            )}
             {experience.technologies.length > 0 && (
               <div className="flex flex-wrap gap-2 mt-4">
                 {experience.technologies.map((tech) => (

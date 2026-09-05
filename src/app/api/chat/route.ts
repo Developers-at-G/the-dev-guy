@@ -4,6 +4,7 @@ import { openai } from '@ai-sdk/openai';
 import { getProfileData } from '@/data/profile';
 import { getProjectsData } from '@/data/projects';
 import { getEducationData } from '@/data/education';
+import { getCareerData } from '@/data/career';
 import { getSkillsData } from '@/data/skills';
 import { getTranslations } from '@/lib/translations';
 import { rateLimit, getClientIdentifier } from '@/lib/rateLimit';
@@ -152,6 +153,7 @@ export async function POST(request: NextRequest) {
     const translations = getTranslations('en');
     const profileData = getProfileData(translations);
     const educationData = getEducationData(translations);
+    const careerData = getCareerData(translations);
     const projectsData = getProjectsData(translations);
     const skillsData = getSkillsData(translations);
 
@@ -166,6 +168,15 @@ WHO I AM:
 - ${profileData.about.bio}
 - ${profileData.about.experience}
 - Core skills: ${profileData.skills.join(', ')}
+
+MY EXPERIENCE:
+${careerData.map(exp => `
+- ${exp.position} at ${exp.company} (${exp.period})
+  Location: ${exp.location}
+  ${exp.description}
+  Achievements: ${exp.achievements.join('; ')}
+  Technologies: ${exp.technologies.join(', ')}
+`).join('\n')}
 
 MY EDUCATION:
 ${educationData.map(edu => `

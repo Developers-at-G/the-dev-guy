@@ -1,10 +1,20 @@
 {
   "experiences": [
     {
+      "id": "tenhil-gmbh",
+      "company": "Tenhil GmbH",
+      "position": "Ingénieur Logiciel",
+      "period": "Septembre 2026 - Présent",
+      "location": "Munich, Allemagne",
+      "type": "work",
+      "description": "",
+      "achievements": []
+    },
+    {
       "id": "smal-gmbh",
       "company": "Smal GmbH",
       "position": "Ingénieur Frontend",
-      "period": "Janvier 2023 - Présent",
+      "period": "Janvier 2023 - Août 2026",
       "location": "Munich, Allemagne",
       "type": "work",
       "description": "Construction et maintenance de composants UI réutilisables et mises en page complexes, direction de migrations majeures de frameworks et implémentation d'expériences utilisateur hautes performances.",

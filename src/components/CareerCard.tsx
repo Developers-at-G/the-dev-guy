@@ -139,9 +139,11 @@ export const CareerCard: React.FC<CareerCardProps> = ({
         </CardHeader>
 
         <CardContent className="relative z-10 space-y-4">
-          <p className="text-muted-foreground leading-relaxed">
-            {experience.description}
-          </p>
+          {experience.description && (
+            <p className="text-muted-foreground leading-relaxed">
+              {experience.description}
+            </p>
+          )}
 
           {/* Technologies */}
           <div className="flex flex-wrap gap-2">

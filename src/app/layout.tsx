@@ -21,12 +21,12 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Abdallah Amadou Gueye | Frontend / Product Engineer',
+    default: 'Abdallah Amadou Gueye | Software Engineer',
     template: '%s | Abdallah Amadou Gueye',
   },
-  description: 'Frontend / Product Engineer specializing in React, Next.js, TypeScript, and modern web development. Building scalable applications with a focus on UI/UX and performance.',
+  description: 'Software Engineer specializing in React, Next.js, TypeScript, and modern web development. Building scalable applications with a focus on UI/UX and performance.',
   keywords: [
-    'Frontend / Product Engineer',
+    'Software Engineer',
     'React Developer',
     'Next.js',
     'TypeScript',
@@ -42,13 +42,13 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://abdallah-the-dev-guy.vercel.app',
     siteName: 'Abdallah Amadou Gueye',
-    title: 'Abdallah Amadou Gueye | Frontend / Product Engineer',
-    description: 'Frontend / Product Engineer specializing in React, Next.js, TypeScript, and modern web development.',
+    title: 'Abdallah Amadou Gueye | Software Engineer',
+    description: 'Software Engineer specializing in React, Next.js, TypeScript, and modern web development.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Abdallah Amadou Gueye | Frontend / Product Engineer',
-    description: 'Frontend / Product Engineer specializing in React, Next.js, TypeScript, and modern web development.',
+    title: 'Abdallah Amadou Gueye | Software Engineer',
+    description: 'Software Engineer specializing in React, Next.js, TypeScript, and modern web development.',
   },
   robots: {
     index: true,

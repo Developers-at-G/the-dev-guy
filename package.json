@@ -28,8 +28,8 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "@vitest/browser": "^3.2.5",
-    "@vitest/coverage-v8": "^3.2.4",
+    "@vitest/browser": "^3.2.7",
+    "@vitest/coverage-v8": "^3.2.7",
     "autoprefixer": "^10.4.22",
     "eslint": "^8",
     "eslint-config-next": "15.0.2",
@@ -38,7 +38,7 @@
     "prelude-ls": "^1.2.1",
     "tailwindcss": "^3.4.1",
     "typescript": "~5.9.2",
-    "vitest": "^3.2.4"
+    "vitest": "^3.2.7"
   },
   "resolutions": {
     "cross-spawn": "^7.0.5",

@@ -1,0 +1,20 @@
+import type { IconProps } from './types';
+
+/** Desktop / frontend category */
+export function MonitorIcon({ className = 'h-5 w-5', ...props }: IconProps) {
+  return (
+    <svg
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.75}
+      viewBox="0 0 24 24"
+      aria-hidden
+      {...props}
+    >
+      <rect x="2" y="3" width="20" height="14" rx="2" />
+      <line x1="8" y1="21" x2="16" y2="21" />
+      <line x1="12" y1="17" x2="12" y2="21" />
+    </svg>
+  );
+}

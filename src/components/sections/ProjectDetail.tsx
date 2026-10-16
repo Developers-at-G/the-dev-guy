@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Project } from '../../hooks/useProjects';
+import type { Project } from '@/types/project';
 import { Card } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
@@ -82,7 +82,7 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mb-12"
         >
-          <Card variant="elevated" className="overflow-hidden">
+          <Card variant="outlined" className="overflow-hidden">
             <div className="relative h-64 md:h-96 lg:h-[500px] bg-muted">
               {isVideo ? (
                 <video
@@ -116,7 +116,7 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <Card variant="elevated" className="p-6 md:p-8">
+              <Card variant="outlined" className="p-6 md:p-8">
                 <h2 className="text-2xl font-bold text-foreground mb-4">The Challenge</h2>
                 <p className="text-muted-foreground leading-relaxed text-lg">
                   {project.problem}
@@ -130,7 +130,7 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                <Card variant="elevated" className="p-6 md:p-8">
+                <Card variant="outlined" className="p-6 md:p-8">
                   <h2 className="text-2xl font-bold text-foreground mb-4">{t('projects.results_impact', 'common')}</h2>
                   <div className="grid md:grid-cols-2 gap-4">
                     {project.impacts.map((impact, index) => (
@@ -154,7 +154,7 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <Card variant="elevated" className="p-6">
+              <Card variant="outlined" className="p-6">
                 <h3 className="text-xl font-bold text-foreground mb-4">Tech Stack</h3>
                 <div className="flex flex-wrap gap-2">
                   {project.technologies.map((tech) => (
@@ -171,7 +171,7 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <Card variant="elevated" className="p-6">
+              <Card variant="outlined" className="p-6">
                 <h3 className="text-xl font-bold text-foreground mb-4">{t('projects.project_links', 'common')}</h3>
                 <div className="space-y-3">
                   {project.link && (

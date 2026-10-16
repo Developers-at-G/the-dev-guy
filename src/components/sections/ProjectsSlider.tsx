@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence, PanInfo } from 'framer-motion';
 import { useLanguage } from '../../app/context/LanguageContext';
-import { Project } from '../../hooks/useProjects';
+import type { Project } from '@/types/project';
 import { Badge } from '../ui/Badge';
 import { getProjectSlug } from '../../utils/projects';
 import { trackProjectCardClick } from '../../utils/analytics';

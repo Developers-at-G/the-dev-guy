@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
-import Navigation from './Navigation/Navigation';
-import { Hero } from '../components/sections/Hero';
-import { Footer } from '../components/Footer';
+import Navigation from '@/components/Navigation';
+import { Hero } from '@/components/sections/Hero';
+import { Footer } from '@/components/Footer';
 
 const SectionSkeleton = () => (
   <div className="py-20 px-4">
@@ -15,10 +15,10 @@ const SectionSkeleton = () => (
 );
 
 // Lazy load below-the-fold sections to reduce initial bundle size
-const ProjectsSection = dynamic(() => import('../components/sections/ProjectsSection').then(m => ({ default: m.ProjectsSection })), { loading: () => <SectionSkeleton /> });
-const JourneySection  = dynamic(() => import('../components/sections/JourneySection').then(m => ({ default: m.JourneySection })),  { loading: () => <SectionSkeleton /> });
-const SkillsSection   = dynamic(() => import('../components/sections/SkillsSection').then(m => ({ default: m.SkillsSection })),   { loading: () => <SectionSkeleton /> });
-const ContactSection  = dynamic(() => import('../components/sections/ContactSection').then(m => ({ default: m.ContactSection })), { loading: () => <SectionSkeleton /> });
+const ProjectsSection = dynamic(() => import('@/components/sections/ProjectsSection').then(m => ({ default: m.ProjectsSection })), { loading: () => <SectionSkeleton /> });
+const JourneySection = dynamic(() => import('@/components/sections/JourneySection').then(m => ({ default: m.JourneySection })), { loading: () => <SectionSkeleton /> });
+const SkillsSection = dynamic(() => import('@/components/sections/SkillsSection').then(m => ({ default: m.SkillsSection })), { loading: () => <SectionSkeleton /> });
+const ContactSection = dynamic(() => import('@/components/sections/ContactSection').then(m => ({ default: m.ContactSection })), { loading: () => <SectionSkeleton /> });
 
 export const metadata: Metadata = {
   title: 'Abdallah Amadou Gueye | Software Engineer',

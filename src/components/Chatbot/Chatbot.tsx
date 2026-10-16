@@ -500,7 +500,7 @@ export const Chatbot: React.FC = () => {
                 <div>
                   <h3 className="font-semibold text-foreground flex items-center gap-2">
                     Abdallah
-                    <span className={`w-2 h-2 rounded-full ${isLoading ? 'bg-amber-400' : 'bg-emerald-400'} shadow-sm`} />
+                    <span className={`h-1.5 w-1.5 rounded-full ${isLoading ? 'bg-muted-foreground' : 'bg-foreground'}`} />
                   </h3>
                   <p className="text-xs text-muted-foreground">
                     {isLoading ? `✨ ${t('chatbot.thinking', 'common')}` : `🟢 ${t('chatbot.ask_anything', 'common')}`}

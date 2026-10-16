@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/Button';
-import Navigation from '../Navigation/Navigation';
+import Navigation from '@/components/Navigation';
 import { useLanguage } from '../context/LanguageContext';
 
 export default function FrontendArchitecturePage() {

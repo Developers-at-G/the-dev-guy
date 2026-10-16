@@ -1,4 +1,4 @@
-import Navigation from '../Navigation/Navigation';
+import Navigation from '@/components/Navigation';
 import { ProjectsList } from '../../components/sections/ProjectsList';
 
 export const metadata = {

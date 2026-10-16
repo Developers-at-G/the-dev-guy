@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
-import Navigation from '../../Navigation/Navigation';
+import Navigation from '@/components/Navigation';
 import { getProjectsData } from '../../../data/projects';
 import { getTranslations } from '../../../lib/translations';
 import { getProjectSlug } from '../../../utils/projects';

@@ -1,26 +1,22 @@
 import React from 'react';
 import { clsx } from 'clsx';
 
-interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
-  variant?: 'default' | 'outlined' | 'elevated';
+export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+  variant?: 'default' | 'outlined' | 'muted';
 }
 
 export const Card = React.forwardRef<HTMLDivElement, CardProps>(
-  ({ className, variant = 'default', ...props }, ref) => {
+  ({ className, variant = 'outlined', ...props }, ref) => {
     const variants = {
       default: 'bg-card text-card-foreground',
-      outlined: 'border bg-card text-card-foreground',
-      elevated: 'bg-card text-card-foreground shadow-lg'
+      outlined: 'bg-card text-card-foreground border border-border',
+      muted: 'bg-muted text-card-foreground border border-border',
     };
 
     return (
       <div
         ref={ref}
-        className={clsx(
-          'rounded-xl',
-          variants[variant],
-          className
-        )}
+        className={clsx('rounded-lg', variants[variant], className)}
         {...props}
       />
     );
@@ -35,7 +31,7 @@ export const CardHeader = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={clsx('flex flex-col space-y-1.5 p-6', className)}
+    className={clsx('flex flex-col gap-1.5 p-5 sm:p-6', className)}
     {...props}
   />
 ));
@@ -43,12 +39,15 @@ export const CardHeader = React.forwardRef<
 CardHeader.displayName = 'CardHeader';
 
 export const CardTitle = React.forwardRef<
-  HTMLParagraphElement,
+  HTMLHeadingElement,
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
   <h3
     ref={ref}
-    className={clsx('text-2xl font-semibold leading-none tracking-tight', className)}
+    className={clsx(
+      'text-ds-lg font-semibold leading-none tracking-tight text-foreground',
+      className
+    )}
     {...props}
   />
 ));
@@ -59,8 +58,7 @@ export const CardContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <div ref={ref} className={clsx('p-6 pt-0', className)} {...props} />
+  <div ref={ref} className={clsx('p-5 pt-0 sm:p-6 sm:pt-0', className)} {...props} />
 ));
 
 CardContent.displayName = 'CardContent';
-

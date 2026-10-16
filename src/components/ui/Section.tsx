@@ -4,18 +4,22 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { clsx } from 'clsx';
 
-interface SectionProps extends React.HTMLAttributes<HTMLElement> {
+/** Matches --duration-slow / --ease-out-smooth in globals.css (Framer needs JS values). */
+const motionTransition = {
+  duration: 0.4,
+  ease: [0.22, 1, 0.36, 1] as const,
+};
+
+export interface SectionProps extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
-  variant?: 'default' | 'featured' | 'muted' | 'journey';
+  variant?: 'default' | 'muted';
 }
 
 export const Section = React.forwardRef<HTMLElement, SectionProps>(
   ({ className, variant = 'default', children, id, ...props }, ref) => {
     const variants = {
       default: 'py-section md:py-section-lg',
-      featured: 'py-section md:py-section-lg bg-gradient-to-br from-primary/5 via-accent/3 to-background',
-      muted: 'py-section md:py-section-lg bg-muted/20',
-      journey: 'py-section md:py-section-lg journey-bg'
+      muted: 'py-section md:py-section-lg bg-muted/40 border-y border-border',
     };
 
     return (
@@ -33,10 +37,11 @@ export const Section = React.forwardRef<HTMLElement, SectionProps>(
 
 Section.displayName = 'Section';
 
-interface SectionHeaderProps {
+export interface SectionHeaderProps {
   title: string;
   subtitle?: string;
   description?: string;
+  align?: 'left' | 'center';
   className?: string;
 }
 
@@ -44,26 +49,40 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
   title,
   subtitle,
   description,
-  className
+  align = 'left',
+  className,
 }) => (
   <motion.div
-    className={clsx('text-center mb-gap-section md:mb-10', className)}
-    initial={{ opacity: 0, y: 16 }}
+    className={clsx(
+      'mb-gap-section md:mb-10',
+      align === 'center' && 'text-center',
+      className
+    )}
+    initial={{ opacity: 0, y: 12 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: '-40px' }}
-    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+    transition={motionTransition}
   >
     {subtitle && (
-      <span className="text-ds-sm font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20 mb-4 inline-block">
+      <p
+        className={clsx(
+          'mb-3 text-ds-xs font-medium uppercase tracking-[0.12em] text-muted-foreground',
+          align === 'center' && 'mx-auto'
+        )}
+      >
         {subtitle}
-      </span>
+      </p>
     )}
-    <h2 className="text-ds-3xl md:text-ds-5xl font-extrabold text-foreground tracking-tight leading-tight">
+    <h2 className="text-ds-3xl md:text-ds-4xl font-semibold text-foreground tracking-tight">
       {title}
     </h2>
-    <div className="mx-auto mt-3 h-1 w-16 rounded-full bg-primary" />
     {description && (
-      <p className="mt-4 text-ds-base text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+      <p
+        className={clsx(
+          'mt-3 text-ds-base text-muted-foreground leading-relaxed max-w-2xl',
+          align === 'center' && 'mx-auto'
+        )}
+      >
         {description}
       </p>
     )}

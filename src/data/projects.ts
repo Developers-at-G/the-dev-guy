@@ -1,4 +1,4 @@
-import { Project } from '../hooks/useProjects';
+import type { Project } from '@/types/project';
 import { Translations } from '../lib/translations';
 
 const staticProjectsData = [

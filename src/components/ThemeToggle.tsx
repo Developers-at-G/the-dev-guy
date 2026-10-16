@@ -1,73 +1,46 @@
 'use client';
+
 import React, { useContext } from 'react';
 import { ThemeContext } from '../app/context/ThemeContext';
 
 const ThemeToggle: React.FC = () => {
   const context = useContext(ThemeContext);
-  
+
   if (!context) {
     return (
-      <div className="relative inline-flex h-10 w-20 items-center rounded-full bg-gradient-to-r from-primary/20 to-accent/20 p-1">
-        <div className="absolute inset-0 rounded-full bg-background/50 backdrop-blur-sm border border-primary/20" />
-        <div className="relative z-10 h-8 w-8 rounded-full bg-gradient-to-br from-primary to-accent shadow-lg" />
-      </div>
+      <div
+        className="h-9 w-9 rounded-lg border border-border bg-secondary"
+        aria-hidden
+      />
     );
   }
 
   const { theme, toggleTheme } = context;
+  const isDark = theme === 'dark';
 
   return (
     <button
+      type="button"
       onClick={toggleTheme}
-      className="relative inline-flex h-10 w-20 items-center rounded-full bg-gradient-to-r from-primary/20 to-accent/20 p-1 transition-all duration-300 hover:from-primary/30 hover:to-accent/30 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-background"
-      aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+      className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-background text-foreground transition-colors duration-fast hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+      aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
     >
-      <div className="absolute inset-0 rounded-full bg-background/50 backdrop-blur-sm border border-primary/20" />
-      
-      <div
-        className={`relative z-10 h-8 w-8 rounded-full bg-gradient-to-br from-primary to-accent shadow-lg transition-all duration-300 ease-out ${
-          theme === 'light' ? 'translate-x-10' : 'translate-x-0'
-        }`}
-      >
-        <div
-          className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${
-            theme === 'light' ? 'opacity-0 scale-0' : 'opacity-100 scale-100'
-          }`}
-        >
-          <svg
-            className="h-4 w-4 text-primary-foreground"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path
-              fillRule="evenodd"
-              d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </div>
-        
-        <div
-          className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${
-            theme === 'dark' ? 'opacity-0 scale-0' : 'opacity-100 scale-100'
-          }`}
-        >
-          <svg
-            className="h-4 w-4 text-primary-foreground"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-          >
-            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-          </svg>
-        </div>
-      </div>
-      
-      <div className="absolute inset-0 rounded-full opacity-20">
-        <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/20 via-orange-500/20 to-red-500/20 rounded-full" />
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 via-purple-500/20 to-indigo-500/20 rounded-full" />
-      </div>
+      {isDark ? (
+        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden>
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={1.75}
+            d="M12 3v1.5M12 19.5V21M4.5 12H3m18 0h-1.5M6.34 6.34l-1.06-1.06M18.72 18.72l-1.06-1.06M6.34 17.66l-1.06 1.06M18.72 5.28l-1.06 1.06M16.5 12a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0z"
+          />
+        </svg>
+      ) : (
+        <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20" aria-hidden>
+          <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+        </svg>
+      )}
     </button>
   );
 };
 
-export default ThemeToggle; 
+export default ThemeToggle;

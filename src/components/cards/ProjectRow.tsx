@@ -4,7 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Project } from '../../hooks/useProjects';
+import type { Project } from '@/types/project';
 import { Badge } from '../ui/Badge';
 import { getProjectSlug } from '../../utils/projects';
 import { trackProjectCardClick } from '../../utils/analytics';

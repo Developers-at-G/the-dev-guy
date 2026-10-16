@@ -5,9 +5,5 @@
   ],
   "rules": {
     "react/no-unescaped-entities": "off"
-  },
-  "ignorePatterns": [
-    "src/stories/**/*",
-    ".storybook/**/*"
-  ]
+  }
 }

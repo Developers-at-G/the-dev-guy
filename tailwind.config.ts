@@ -9,36 +9,40 @@ const config: Config = {
   theme: {
     extend: {
       spacing: {
-        'section': 'var(--space-16)',
-        'section-sm': 'var(--space-12)',
-        'section-lg': 'var(--space-24)',
-        'gap-section': 'var(--space-8)',
-        'gap-block': 'var(--space-6)',
-        'gap-tight': 'var(--space-2)',
+        section: "var(--space-16)",
+        "section-sm": "var(--space-12)",
+        "section-lg": "var(--space-24)",
+        "gap-section": "var(--space-8)",
+        "gap-block": "var(--space-6)",
+        "gap-tight": "var(--space-2)",
       },
       fontSize: {
-        'ds-xs': 'var(--text-xs)',
-        'ds-sm': 'var(--text-sm)',
-        'ds-base': 'var(--text-base)',
-        'ds-lg': 'var(--text-lg)',
-        'ds-xl': 'var(--text-xl)',
-        'ds-2xl': 'var(--text-2xl)',
-        'ds-3xl': 'var(--text-3xl)',
-        'ds-4xl': 'var(--text-4xl)',
-        'ds-5xl': 'var(--text-5xl)',
+        "ds-xs": ["var(--text-xs)", { lineHeight: "var(--leading-normal)" }],
+        "ds-sm": ["var(--text-sm)", { lineHeight: "var(--leading-normal)" }],
+        "ds-base": ["var(--text-base)", { lineHeight: "var(--leading-normal)" }],
+        "ds-lg": ["var(--text-lg)", { lineHeight: "var(--leading-snug)" }],
+        "ds-xl": ["var(--text-xl)", { lineHeight: "var(--leading-snug)" }],
+        "ds-2xl": ["var(--text-2xl)", { lineHeight: "var(--leading-tight)" }],
+        "ds-3xl": ["var(--text-3xl)", { lineHeight: "var(--leading-tight)" }],
+        "ds-4xl": ["var(--text-4xl)", { lineHeight: "var(--leading-tight)" }],
+        "ds-5xl": ["var(--text-5xl)", { lineHeight: "1.1" }],
       },
       transitionTimingFunction: {
-        'out-expo': 'var(--ease-out-expo)',
-        'out-smooth': 'var(--ease-out-smooth)',
+        "out-expo": "var(--ease-out-expo)",
+        "out-smooth": "var(--ease-out-smooth)",
       },
       transitionDuration: {
-        'fast': 'var(--duration-fast)',
-        'normal': 'var(--duration-normal)',
-        'slow': 'var(--duration-slow)',
+        fast: "var(--duration-fast)",
+        normal: "var(--duration-normal)",
+        slow: "var(--duration-slow)",
       },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        card: {
+          DEFAULT: "var(--card)",
+          foreground: "var(--card-foreground)",
+        },
         primary: {
           DEFAULT: "var(--primary)",
           foreground: "var(--primary-foreground)",
@@ -55,9 +59,14 @@ const config: Config = {
           DEFAULT: "var(--accent)",
           foreground: "var(--accent-foreground)",
         },
+        destructive: {
+          DEFAULT: "var(--destructive)",
+          foreground: "var(--destructive-foreground)",
+        },
         border: "var(--border)",
         input: "var(--input)",
         ring: "var(--ring)",
+        success: "var(--success)",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -65,52 +74,43 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        sans: [
+          "var(--font-geist-sans)",
+          "ui-sans-serif",
+          "system-ui",
+          "sans-serif",
+        ],
+        mono: [
+          "var(--font-geist-mono)",
+          "ui-monospace",
+          "monospace",
+        ],
       },
-      animation: {
-        "fade-in": "fadeIn 0.6s ease-out",
-        "fade-in-up": "fadeInUp 0.6s ease-out",
-        "slide-in": "slideIn 0.3s ease-out",
-        "scale-in": "scaleIn 0.2s ease-out",
+      maxWidth: {
+        content: "68rem",
+        prose: "42rem",
+      },
+      boxShadow: {
+        xs: "0 1px 2px rgba(0, 0, 0, 0.04)",
+        sm: "0 1px 3px rgba(0, 0, 0, 0.08)",
       },
       keyframes: {
-        fadeIn: {
+        "fade-in": {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
         },
-        fadeInUp: {
-          "0%": { opacity: "0", transform: "translateY(20px)" },
+        "fade-in-up": {
+          "0%": { opacity: "0", transform: "translateY(8px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
-        slideIn: {
-          "0%": { transform: "translateX(-100%)" },
-          "100%": { transform: "translateX(0)" },
-        },
-        scaleIn: {
-          "0%": { transform: "scale(0.95)", opacity: "0" },
-          "100%": { transform: "scale(1)", opacity: "1" },
-        },
+      },
+      animation: {
+        "fade-in": "fade-in var(--duration-normal) var(--ease-out-smooth)",
+        "fade-in-up": "fade-in-up var(--duration-normal) var(--ease-out-smooth)",
       },
     },
   },
-  plugins: [
-    // Add a plugin to hide scrollbar
-    function ({ addUtilities }: { addUtilities: Function }) {
-      addUtilities({
-        '.scrollbar-hide': {
-          /* IE and Edge */
-          '-ms-overflow-style': 'none',
-          /* Firefox */
-          'scrollbar-width': 'none',
-          /* Safari and Chrome */
-          '&::-webkit-scrollbar': {
-            display: 'none'
-          }
-        }
-      })
-    }
-  ],
+  plugins: [],
 };
 
 export default config;
-

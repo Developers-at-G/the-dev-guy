@@ -1,32 +1,30 @@
 import React from 'react';
 import { clsx } from 'clsx';
 
-interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
-  variant?: 'default' | 'secondary' | 'destructive' | 'outline' | 'success';
-  size?: 'sm' | 'md' | 'lg';
+export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
+  variant?: 'default' | 'secondary' | 'outline' | 'success';
+  size?: 'sm' | 'md';
 }
 
-export const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(
-  ({ className, variant = 'default', size = 'md', ...props }, ref) => {
+export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
+  ({ className, variant = 'secondary', size = 'sm', ...props }, ref) => {
     const variants = {
       default: 'bg-primary text-primary-foreground',
-      secondary: 'bg-secondary text-secondary-foreground',
-      destructive: 'bg-destructive text-destructive-foreground',
-      outline: 'border border-input bg-background text-foreground',
-      success: 'bg-green-500/10 text-green-600 border border-green-500/20'
+      secondary: 'bg-secondary text-muted-foreground border border-border',
+      outline: 'border border-border bg-transparent text-foreground',
+      success: 'bg-secondary text-foreground border border-border',
     };
 
     const sizes = {
-      sm: 'px-2 py-0.5 text-xs',
-      md: 'px-2.5 py-1 text-sm',
-      lg: 'px-3 py-1.5 text-base'
+      sm: 'px-2 py-0.5 text-ds-xs',
+      md: 'px-2.5 py-1 text-ds-sm',
     };
 
     return (
-      <div
+      <span
         ref={ref}
         className={clsx(
-          'inline-flex items-center rounded-full font-medium transition-colors',
+          'inline-flex items-center rounded-md font-medium tracking-wide',
           variants[variant],
           sizes[size],
           className
@@ -38,4 +36,3 @@ export const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(
 );
 
 Badge.displayName = 'Badge';
-

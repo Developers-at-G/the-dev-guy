@@ -1,566 +1,127 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { Button } from '../../components/ui/Button';
-import { useLanguage } from '../context/LanguageContext';
+import Navigation from '@/components/Navigation';
+import { Footer } from '@/components/Footer';
+import { Container } from '@/components/ui/Container';
+import { Section, SectionHeader } from '@/components/ui/Section';
+import { Badge } from '@/components/ui/Badge';
+import { Button } from '@/components/ui/Button';
+import { useLanguage } from '@/app/context/LanguageContext';
+import {
+  BLOG_CATEGORIES,
+  countBlogByCategory,
+  getBlogPostsByCategory,
+  type BlogCategory,
+} from '@/data/blog';
 
-const codeSnippets = [
-  `const insight = await buildRealProject();`,
-  `if (tutorial.isComplete()) { reality.hits(); }`,
-  `while (learning) { challenge.overcome(); }`,
-  `function growthMindset() { return experience > tutorials; }`,
-  `// Real projects teach what tutorials can't`
-];
+export default function BlogPage() {
+  const { t, translations } = useLanguage();
+  const [filter, setFilter] = useState<BlogCategory | 'all'>('all');
+  const posts = getBlogPostsByCategory(filter);
+  const counts = countBlogByCategory();
+  const localized = translations.blogPosts;
 
-const BlogPage = () => {
-  const { t } = useLanguage();
-  const [, setCurrentSnippet] = useState(0);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [animationTime, setAnimationTime] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSnippet((prev) => (prev + 1) % codeSnippets.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    // Update animation time only on client to avoid hydration mismatch
-    const startTime = Date.now();
-    const animationInterval = setInterval(() => {
-      setAnimationTime(Date.now() - startTime);
-    }, 16); // ~60fps
-    return () => clearInterval(animationInterval);
-  }, []);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  const labels: Record<BlogCategory | 'all', string> = {
+    all: t('blog.filter_all', 'common'),
+    engineering: t('blog.filter_engineering', 'common'),
+    career: t('blog.filter_career', 'common'),
+    learning: t('blog.filter_learning', 'common'),
+  };
 
   return (
-    <main className="min-h-screen bg-black text-white overflow-hidden relative">
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-pink-900/20" />
-        <div 
-          className="absolute w-96 h-96 bg-blue-500/20 rounded-full blur-3xl transition-all duration-1000 ease-out"
-          style={{
-            left: mousePosition.x - 200,
-            top: mousePosition.y - 200,
-            transform: animationTime ? `translate(${Math.sin(animationTime / 2000) * 50}px, ${Math.cos(animationTime / 2000) * 50}px)` : undefined
-          }}
-        />
-        <div 
-          className="absolute w-64 h-64 bg-purple-500/20 rounded-full blur-3xl transition-all duration-1500 ease-out"
-          style={{
-            right: mousePosition.x / 4,
-            bottom: mousePosition.y / 4,
-            transform: animationTime ? `translate(${Math.cos(animationTime / 3000) * 30}px, ${Math.sin(animationTime / 3000) * 30}px)` : undefined
-          }}
-        />
-      </div>
-
-
-      <div className="absolute inset-0 pointer-events-none">
-        {[...Array(8)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute text-green-400/30 font-mono text-sm"
-            style={{
-              left: `${10 + i * 10}%`,
-              top: `${20 + (i % 3) * 30}%`,
-              animation: `float ${3 + i * 0.5}s ease-in-out infinite alternate`,
-              animationDelay: `${i * 0.5}s`
-            }}
-          >
-            {`</>`}
-          </div>
-        ))}
-      </div>
-
-      <div className="relative z-10">
-        <nav className="flex items-center justify-between p-6">
-          <Button variant="outline" asChild className="border-white/20 text-white hover:bg-white/10">
-            <Link href="/" className="flex items-center gap-2">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-              {t('blog.back_to_portfolio', 'common')}
-            </Link>
-          </Button>
-          
-          <div className="flex items-center gap-4">
-            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-            <span className="text-green-400 font-mono text-sm">{t('blog.active', 'common')}</span>
-          </div>
-        </nav>
-
-        <section className="px-6 py-16">
-          <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen bg-background">
+      <Navigation />
+      <main id="main-content" className="pt-16 sm:pt-20">
+        <Section>
+          <Container>
             <div className="mb-8">
-              <h2 className="text-2xl font-mono text-green-400 mb-2">{t('blog.featured_articles', 'common')}</h2>
-              <div className="h-px bg-gradient-to-r from-green-400 to-transparent"></div>
+              <Button variant="outline" size="sm" asChild>
+                <Link href="/">{t('blog.back_to_portfolio', 'common')}</Link>
+              </Button>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6 mb-8">
-              <Link href="/blog/building-a-streaming-chatbot-with-vercel-ai-sdk">
-              <div 
-                className="bg-gray-900/90 backdrop-blur-sm rounded-lg border border-gray-700/50 overflow-hidden group cursor-pointer hover:border-cyan-500/50 hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300 hover:scale-[1.02] relative"
-              >
-                <div className="absolute top-2 right-2 bg-cyan-500/20 border border-cyan-500/30 rounded px-2 py-1 text-xs text-cyan-300 opacity-0 group-hover:opacity-100 transition-opacity">
-                  {t('blog.click_to_read', 'common')}
-                </div>
-              <div className="flex items-center gap-1 px-1 py-2 bg-gray-800/50 border-b border-gray-700/50">
-                <div className="bg-gray-700/50 px-3 py-1 rounded-t text-xs text-gray-300 font-mono border-t border-l border-r border-gray-600/50">
-                  streaming-chatbot.ts
-                </div>
-              </div>
+            <SectionHeader
+              title={t('blog.title', 'common')}
+              subtitle={t('blog.subtitle', 'common')}
+              description={t('blog.description', 'common')}
+            />
 
-              <div className="p-6 font-mono text-sm">
-                <div className="space-y-4">
-                  <div className="flex gap-4">
-                    <div className="text-gray-500 select-none">1</div>
-                    <div>
-                      <span className="text-purple-400">const</span>{' '}
-                      <span className="text-blue-400">chatbot</span>{' '}
-                      <span className="text-white">=</span>{' '}
-                      <span className="text-yellow-400">{`{`}</span>
-                    </div>
-                  </div>
-                  
-                  <div className="flex gap-4">
-                    <div className="text-gray-500 select-none">2</div>
-                    <div className="pl-4">
-                      <span className="text-green-400">title</span>
-                      <span className="text-white">:</span>{' '}
-                      <span className="text-yellow-300">"Streaming Chatbot with AI SDK"</span>
-                      <span className="text-white">,</span>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <div className="text-gray-500 select-none">3</div>
-                    <div className="pl-4">
-                      <span className="text-green-400">insights</span>
-                      <span className="text-white">:</span>{' '}
-                      <span className="text-yellow-300">"Streaming UX & trade-offs"</span>
-                      <span className="text-white">,</span>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <div className="text-gray-500 select-none">4</div>
-                    <div className="pl-4">
-                      <span className="text-green-400">published</span>
-                      <span className="text-white">:</span>{' '}
-                      <span className="text-yellow-300">"January 2026"</span>
-                      <span className="text-white">,</span>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <div className="text-gray-500 select-none">5</div>
-                    <div className="pl-4">
-                      <span className="text-green-400">readTime</span>
-                      <span className="text-white">:</span>{' '}
-                      <span className="text-blue-300">5</span>
-                      <span className="text-white">,</span>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <div className="text-gray-500 select-none">6</div>
-                    <div className="pl-4">
-                      <span className="text-green-400">impact</span>
-                      <span className="text-white">:</span>{' '}
-                      <span className="text-yellow-300">"What AI SDK abstracts away"</span>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <div className="text-gray-500 select-none">7</div>
-                    <div>
-                      <span className="text-yellow-400">{`};`}</span>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4 mt-6">
-                    <div className="text-gray-500 select-none">8</div>
-                    <div></div>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <div className="text-gray-500 select-none">9</div>
-                    <div>
-                      <span className="text-gray-500">{t('blog.read_function', 'common')}</span>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <div className="text-gray-500 select-none">10</div>
-                    <div>
-                      <span className="text-cyan-400 hover:text-cyan-300 transition-colors bg-cyan-500/10 hover:bg-cyan-500/20 px-2 py-1 rounded border border-cyan-500/30 hover:border-cyan-400/50 inline-flex items-center gap-2 group/link">
-                        <span className="group-hover/link:animate-pulse">▶</span>
-                        chatbot.read()
-                        <span className="text-xs opacity-70">{t('blog.click_me', 'common')}</span>
-                      </span>
-                      <span className="text-white">;</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              </div>
-              </Link>
-
-              <Link href="/blog/why-building-real-projects-taught-me-more-than-any-tutorial">
-              <div 
-                className="bg-gray-900/90 backdrop-blur-sm rounded-lg border border-gray-700/50 overflow-hidden group cursor-pointer hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300 hover:scale-[1.02] relative"
-
-              >
-                <div className="absolute top-2 right-2 bg-blue-500/20 border border-blue-500/30 rounded px-2 py-1 text-xs text-blue-300 opacity-0 group-hover:opacity-100 transition-opacity">
-                  {t('blog.click_to_read', 'common')}
-                </div>
-              <div className="flex items-center gap-1 px-1 py-2 bg-gray-800/50 border-b border-gray-700/50">
-                <div className="bg-gray-700/50 px-3 py-1 rounded-t text-xs text-gray-300 font-mono border-t border-l border-r border-gray-600/50">
-                  real-projects-vs-tutorials.js
-                </div>
-              </div>
-
-              <div className="p-6 font-mono text-sm">
-                <div className="space-y-4">
-                  <div className="flex gap-4">
-                    <div className="text-gray-500 select-none">1</div>
-                    <div>
-                      <span className="text-purple-400">const</span>{' '}
-                      <span className="text-blue-400">article</span>{' '}
-                      <span className="text-white">=</span>{' '}
-                      <span className="text-yellow-400">{`{`}</span>
-                    </div>
-                  </div>
-                  
-                  <div className="flex gap-4">
-                    <div className="text-gray-500 select-none">2</div>
-                    <div className="pl-4">
-                      <span className="text-green-400">title</span>
-                      <span className="text-white">:</span>{' '}
-                      <span className="text-yellow-300">"Why Building Real Projects Taught Me More"</span>
-                      <span className="text-white">,</span>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <div className="text-gray-500 select-none">3</div>
-                    <div className="pl-4">
-                      <span className="text-green-400">insights</span>
-                      <span className="text-white">:</span>{' '}
-                      <span className="text-yellow-300">"Real mess of real apps"</span>
-                      <span className="text-white">,</span>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <div className="text-gray-500 select-none">4</div>
-                    <div className="pl-4">
-                      <span className="text-green-400">published</span>
-                      <span className="text-white">:</span>{' '}
-                      <span className="text-yellow-300">"January 2025"</span>
-                      <span className="text-white">,</span>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <div className="text-gray-500 select-none">5</div>
-                    <div className="pl-4">
-                      <span className="text-green-400">readTime</span>
-                      <span className="text-white">:</span>{' '}
-                      <span className="text-blue-300">5</span>
-                      <span className="text-white">,</span>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <div className="text-gray-500 select-none">6</div>
-                    <div className="pl-4">
-                      <span className="text-green-400">impact</span>
-                      <span className="text-white">:</span>{' '}
-                      <span className="text-yellow-300">"Mind-blowing realizations"</span>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <div className="text-gray-500 select-none">7</div>
-                    <div>
-                      <span className="text-yellow-400">{`};`}</span>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4 mt-6">
-                    <div className="text-gray-500 select-none">8</div>
-                    <div></div>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <div className="text-gray-500 select-none">9</div>
-                    <div>
-                      <span className="text-gray-500">{t('blog.read_function', 'common')}</span>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <div className="text-gray-500 select-none">10</div>
-                    <div>
-                      <span className="text-blue-400 hover:text-blue-300 transition-colors bg-blue-500/10 hover:bg-blue-500/20 px-2 py-1 rounded border border-blue-500/30 hover:border-blue-400/50 inline-flex items-center gap-2 group/link">
-                        <span className="group-hover/link:animate-pulse">▶</span>
-                        article.read()
-                        <span className="text-xs opacity-70">{t('blog.click_me', 'common')}</span>
-                      </span>
-                      <span className="text-white">;</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              </div>
-              </Link>
-
-              <Link href="/blog/ai-wont-replace-developers-it-will-change-how-we-build">
-              <div 
-                className="bg-gray-900/90 backdrop-blur-sm rounded-lg border border-gray-700/50 overflow-hidden group cursor-pointer hover:border-green-500/50 hover:shadow-2xl hover:shadow-green-500/20 transition-all duration-300 hover:scale-[1.02] relative h-full"
-              >
-                  <div className="absolute top-2 right-2 bg-green-500/20 border border-green-500/30 rounded px-2 py-1 text-xs text-green-300 opacity-0 group-hover:opacity-100 transition-opacity">
-                  {t('blog.click_to_read', 'common')}
-                </div>
-              <div className="flex items-center gap-1 px-1 py-2 bg-gray-800/50 border-b border-gray-700/50">
-                <div className="bg-gray-700/50 px-3 py-1 rounded-t text-xs text-gray-300 font-mono border-t border-l border-r border-gray-600/50">
-                  ai-and-developers.ts
-                </div>
-              </div>
-
-              <div className="p-6 font-mono text-sm">
-                <div className="space-y-4">
-                  <div className="flex gap-4">
-                    <div className="text-gray-500 select-none">1</div>
-                    <div>
-                      <span className="text-purple-400">const</span>{' '}
-                      <span className="text-blue-400">article</span>{' '}
-                      <span className="text-white">=</span>{' '}
-                      <span className="text-yellow-400">{`{`}</span>
-                    </div>
-                  </div>
-                  
-                  <div className="flex gap-4">
-                    <div className="text-gray-500 select-none">2</div>
-                    <div className="pl-4">
-                      <span className="text-green-400">title</span>
-                      <span className="text-white">:</span>{' '}
-                      <span className="text-yellow-300">"AI Won't Replace Developers"</span>
-                      <span className="text-white">,</span>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <div className="text-gray-500 select-none">3</div>
-                    <div className="pl-4">
-                      <span className="text-green-400">insights</span>
-                      <span className="text-white">:</span>{' '}
-                      <span className="text-yellow-300">"Speed vs. understanding"</span>
-                      <span className="text-white">,</span>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <div className="text-gray-500 select-none">4</div>
-                    <div className="pl-4">
-                      <span className="text-green-400">published</span>
-                      <span className="text-white">:</span>{' '}
-                      <span className="text-yellow-300">"January 2025"</span>
-                      <span className="text-white">,</span>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <div className="text-gray-500 select-none">5</div>
-                    <div className="pl-4">
-                      <span className="text-green-400">readTime</span>
-                      <span className="text-white">:</span>{' '}
-                      <span className="text-blue-300">4</span>
-                      <span className="text-white">,</span>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <div className="text-gray-500 select-none">6</div>
-                    <div className="pl-4">
-                      <span className="text-green-400">impact</span>
-                      <span className="text-white">:</span>{' '}
-                      <span className="text-yellow-300">"Control AI, don't compete"</span>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <div className="text-gray-500 select-none">7</div>
-                    <div>
-                      <span className="text-yellow-400">{`};`}</span>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4 mt-6">
-                    <div className="text-gray-500 select-none">8</div>
-                    <div></div>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <div className="text-gray-500 select-none">9</div>
-                    <div>
-                      <span className="text-gray-500">{"// 👇 Click to execute reading function"}</span>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <div className="text-gray-500 select-none">10</div>
-                    <div>
-                      <span className="text-green-400 hover:text-green-300 transition-colors bg-green-500/10 hover:bg-green-500/20 px-2 py-1 rounded border border-green-500/30 hover:border-green-400/50 inline-flex items-center gap-2 group/link">
-                        <span className="group-hover/link:animate-pulse">▶</span>
-                        article.read()
-                        <span className="text-xs opacity-70">{"// Click me!"}</span>
-                      </span>
-                      <span className="text-white">;</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              </div>
-              </Link>
-              </div>
-
-            <div className="grid md:grid-cols-2 gap-6 mb-8">
-              <Link href="/frontend-architecture">
-                <div 
-                  className="bg-gray-900/90 backdrop-blur-sm rounded-lg border border-gray-700/50 overflow-hidden group cursor-pointer hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 hover:scale-[1.02] relative h-full"
-                >
-                  <div className="absolute top-2 right-2 bg-purple-500/20 border border-purple-500/30 rounded px-2 py-1 text-xs text-purple-300 opacity-0 group-hover:opacity-100 transition-opacity">
-                    {t('blog.view_architecture', 'common')}
-                  </div>
-                  <div className="flex items-center gap-1 px-1 py-2 bg-gray-800/50 border-b border-gray-700/50">
-                    <div className="bg-gray-700/50 px-3 py-1 rounded-t text-xs text-gray-300 font-mono border-t border-l border-r border-gray-600/50">
-                      frontend-architecture.tsx
-                    </div>
-                  </div>
-
-                  <div className="p-6 font-mono text-sm">
-                    <div className="space-y-4">
-                      <div className="flex gap-4">
-                        <div className="text-gray-500 select-none">1</div>
-                        <div>
-                          <span className="text-purple-400">export</span>{' '}
-                          <span className="text-blue-400">default</span>{' '}
-                          <span className="text-yellow-400">function</span>{' '}
-                          <span className="text-green-400">Architecture</span>
-                          <span className="text-white">()</span>
-                        </div>
-                      </div>
-                      
-                      <div className="flex gap-4">
-                        <div className="text-gray-500 select-none">2</div>
-                        <div>
-                          <span className="text-yellow-400">{`{`}</span>
-                        </div>
-                      </div>
-
-                      <div className="flex gap-4">
-                        <div className="text-gray-500 select-none">3</div>
-                        <div className="pl-4">
-                          <span className="text-green-400">return</span>{' '}
-                          <span className="text-blue-400">&lt;</span>
-                          <span className="text-yellow-300">NextJS</span>
-                          <span className="text-blue-400"> /&gt;</span>
-                          <span className="text-white">;</span>
-                        </div>
-                      </div>
-
-                      <div className="flex gap-4">
-                        <div className="text-gray-500 select-none">4</div>
-                        <div>
-                          <span className="text-yellow-400">{`};`}</span>
-                        </div>
-                      </div>
-
-                      <div className="flex gap-4 mt-6">
-                        <div className="text-gray-500 select-none">5</div>
-                        <div></div>
-                      </div>
-
-                      <div className="flex gap-4">
-                        <div className="text-gray-500 select-none">6</div>
-                        <div>
-                          <span className="text-gray-500">{"// Server Components, State Management,"}</span>
-                        </div>
-                      </div>
-
-                      <div className="flex gap-4">
-                        <div className="text-gray-500 select-none">7</div>
-                        <div>
-                          <span className="text-gray-500">{"// Performance & DX strategies"}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        <section className="px-6 py-16">
-          <div className="max-w-6xl mx-auto">
-            <div className="mb-8">
-              <h2 className="text-2xl font-mono text-purple-400 mb-2">{t('blog.upcoming_posts', 'common')}</h2>
-              <div className="h-px bg-gradient-to-r from-purple-400 to-transparent"></div>
+            <div
+              className="mb-8 flex flex-wrap gap-2 border-b border-border pb-4"
+              role="tablist"
+              aria-label={t('blog.filter_label', 'common')}
+            >
+              {BLOG_CATEGORIES.map((cat) => {
+                const active = filter === cat.id;
+                return (
+                  <button
+                    key={cat.id}
+                    type="button"
+                    role="tab"
+                    aria-selected={active}
+                    onClick={() => setFilter(cat.id)}
+                    className={`rounded-lg border px-3 py-1.5 text-ds-sm font-medium transition-colors ${
+                      active
+                        ? 'border-foreground bg-foreground text-background'
+                        : 'border-border bg-background text-muted-foreground hover:border-foreground/30 hover:text-foreground'
+                    }`}
+                  >
+                    {labels[cat.id]}
+                    <span className="ml-1.5 tabular-nums opacity-60">
+                      {counts[cat.id]}
+                    </span>
+                  </button>
+                );
+              })}
             </div>
 
-            <div className="space-y-4">
-              {[
-                { hash: 'e4f5g6h', message: 'docs: Performance Optimization - How I Made My Portfolio Lightning Fast', author: 'abdallah', date: t('blog.coming_soon', 'common') },
-              ].map((commit, index) => (
-                <div key={index} className="bg-gray-900/50 rounded border border-gray-700/30 p-4 font-mono text-sm hover:bg-gray-800/50 transition-colors">
-                  <div className="flex items-center gap-4">
-                    <span className="text-yellow-400">{commit.hash}</span>
-                    <span className="text-white flex-1">{commit.message}</span>
-                    <span className="text-gray-400">{commit.author}</span>
-                    <span className="text-gray-500">{commit.date}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+            <ul className="divide-y divide-border border-y border-border">
+              {posts.map((post) => {
+                const content = localized[post.translationKey];
+                return (
+                  <li key={post.slug}>
+                    <Link
+                      href={`/blog/${post.slug}`}
+                      className="group -mx-4 block rounded-lg px-4 py-8 transition-colors hover:bg-accent/40 sm:-mx-6 sm:px-6"
+                    >
+                      <div className="flex flex-wrap items-center gap-2 text-ds-xs text-muted-foreground">
+                        <Badge variant="secondary" size="sm">
+                          {labels[post.category]}
+                        </Badge>
+                        <time dateTime={post.date}>{post.date}</time>
+                        <span aria-hidden>·</span>
+                        <span>{post.readTime}</span>
+                      </div>
+                      <h2 className="mt-2 text-ds-xl font-semibold tracking-tight text-foreground group-hover:underline group-hover:underline-offset-4 sm:text-ds-2xl">
+                        {content.title}
+                      </h2>
+                      <p className="mt-2 max-w-2xl text-ds-sm leading-relaxed text-muted-foreground sm:text-ds-base">
+                        {content.excerpt}
+                      </p>
+                      <div className="mt-3 flex flex-wrap gap-1.5">
+                        {post.tags.map((tag) => (
+                          <Badge key={tag} variant="outline" size="sm">
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
 
-        <footer className="px-6 py-12 border-t border-gray-800/50">
-          <div className="max-w-6xl mx-auto text-center">
-            <div className="font-mono text-gray-400 mb-4">
-              <span className="text-green-400">console.log</span>
-              <span className="text-white">(</span>
-              <span className="text-yellow-300">"{t('blog.thanks_visiting', 'common')}"</span>
-              <span className="text-white">);</span>
-            </div>
-            <div className="text-gray-500 text-sm">
-              {t('blog.built_with_passion', 'common')}
-            </div>
-          </div>
-        </footer>
-      </div>
-
-      <style jsx>{`
-        @keyframes float {
-          0% { transform: translateY(0px) rotate(0deg); }
-          100% { transform: translateY(-20px) rotate(10deg); }
-        }
-      `}</style>
-    </main>
+            {posts.length === 0 && (
+              <p className="py-12 text-center text-muted-foreground">
+                {t('blog.empty_filter', 'common')}
+              </p>
+            )}
+          </Container>
+        </Section>
+      </main>
+      <Footer />
+    </div>
   );
-};
-
-export default BlogPage;
+}

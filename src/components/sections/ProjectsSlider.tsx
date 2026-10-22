@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useCallback } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence, PanInfo } from 'framer-motion';
 import { useLanguage } from '../../app/context/LanguageContext';
@@ -9,6 +8,7 @@ import type { Project } from '@/types/project';
 import { Badge } from '../ui/Badge';
 import { getProjectSlug } from '../../utils/projects';
 import { trackProjectCardClick } from '../../utils/analytics';
+import { ProjectMedia } from '@/components/media/ProjectMedia';
 
 const slideTransition = { type: 'spring', stiffness: 320, damping: 36 };
 
@@ -41,8 +41,6 @@ export const ProjectsSlider: React.FC<ProjectsSliderProps> = ({ projects, totalC
   const isViewMoreSlide = showViewMoreSlide && index === projects.length;
   const project = !isViewMoreSlide ? projects[index] : null;
   const slug = project ? getProjectSlug(project.title) : '';
-  const isVideo = project ? /\.(mov|mp4|webm)$/i.test(project.image) : false;
-
   const handleClick = () => {
     if (!project) return;
     const source = typeof window !== 'undefined' ? window.location.pathname : 'unknown';
@@ -102,27 +100,12 @@ export const ProjectsSlider: React.FC<ProjectsSliderProps> = ({ projects, totalC
               </>
             ) : (
               <>
-                <div className="relative w-full aspect-video lg:aspect-[4/3] min-h-[260px] rounded-2xl overflow-hidden border border-border/70 bg-muted/30 shadow-xl ring-1 ring-border/50">
-                  {isVideo ? (
-                    <video
-                      src={project!.image}
-                      className="absolute inset-0 w-full h-full object-cover"
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      aria-hidden
-                    />
-                  ) : (
-                    <Image
-                      src={project!.image}
-                      alt=""
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                    />
-                  )}
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/30 to-transparent pointer-events-none" aria-hidden />
+                <div className="relative w-full aspect-video min-h-[260px] overflow-hidden rounded-lg border border-border lg:aspect-[4/3]">
+                  <ProjectMedia
+                    src={project!.image}
+                    className="absolute inset-0 h-full w-full"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
                 </div>
 
                 <div className="flex flex-col justify-center py-4 lg:py-8">

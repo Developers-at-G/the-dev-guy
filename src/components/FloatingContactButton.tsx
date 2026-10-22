@@ -53,7 +53,7 @@ export const FloatingContactButton: React.FC = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-6 left-6 z-50">
+    <div className="fixed bottom-6 left-6 z-50 hidden sm:block">
       <AnimatePresence>
         {isExpanded && (
           <motion.div

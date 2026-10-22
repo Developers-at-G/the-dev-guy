@@ -166,7 +166,7 @@ export const BlogInteractions: React.FC<BlogInteractionsProps> = ({ postSlug }) 
   return (
     <div className="space-y-8 mt-16">
       {/* Reactions */}
-      <div className="bg-gradient-to-br from-white/5 via-background/80 to-accent/5 backdrop-blur-xl rounded-2xl border border-primary/20 shadow-xl p-6 md:p-8">
+      <div className="rounded-lg border border-border bg-card p-6 md:p-8">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
             <h3 className="text-lg font-semibold text-foreground mb-1">{t('blog_interactions.was_helpful', 'common') || 'Was this helpful?'}</h3>
@@ -177,7 +177,7 @@ export const BlogInteractions: React.FC<BlogInteractionsProps> = ({ postSlug }) 
               onClick={() => handleReaction('like')}
               className={`group flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium transition-all duration-200 ${
                 userReaction === 'like'
-                  ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/20 scale-105'
+                  ? 'bg-primary text-primary-foreground'
                   : 'bg-background/50 border border-input hover:bg-accent hover:border-primary/30 text-foreground'
               }`}
             >
@@ -195,7 +195,7 @@ export const BlogInteractions: React.FC<BlogInteractionsProps> = ({ postSlug }) 
               onClick={() => handleReaction('dislike')}
               className={`group flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium transition-all duration-200 ${
                 userReaction === 'dislike'
-                  ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/20 scale-105'
+                  ? 'bg-primary text-primary-foreground'
                   : 'bg-background/50 border border-input hover:bg-accent hover:border-primary/30 text-foreground'
               }`}
             >
@@ -214,7 +214,7 @@ export const BlogInteractions: React.FC<BlogInteractionsProps> = ({ postSlug }) 
       </div>
 
       {/* Comments Section */}
-      <div className="bg-gradient-to-br from-white/5 via-background/80 to-accent/5 backdrop-blur-xl rounded-2xl border border-primary/20 shadow-xl p-6 md:p-8">
+      <div className="rounded-lg border border-border bg-card p-6 md:p-8">
         <div className="flex items-center justify-between mb-8">
           <div>
             <h3 className="text-2xl font-bold text-foreground mb-1">
@@ -374,7 +374,7 @@ export const BlogInteractions: React.FC<BlogInteractionsProps> = ({ postSlug }) 
                   >
                     <div className="flex items-start gap-4">
                       <div className="flex-shrink-0">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-semibold text-sm shadow-lg">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-secondary text-ds-sm font-semibold text-foreground">
                           {initials}
                         </div>
                       </div>

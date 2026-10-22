@@ -26,6 +26,11 @@ export const CustomCursor = () => {
     if (window.matchMedia('(pointer: coarse)').matches) {
       return;
     }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+
+    document.documentElement.classList.add('custom-cursor-active');
 
     let currentX = 0;
     let currentY = 0;
@@ -118,6 +123,7 @@ export const CustomCursor = () => {
     document.addEventListener('mouseleave', handleMouseLeave);
 
     return () => {
+      document.documentElement.classList.remove('custom-cursor-active');
       window.removeEventListener('mousemove', updateCursor);
       window.removeEventListener('click', handleClick);
       document.removeEventListener('mouseover', handleMouseOver, true);

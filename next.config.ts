@@ -1,38 +1,22 @@
 import type { NextConfig } from "next";
+import path from "path";
 
 const nextConfig: NextConfig = {
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**',
-      },
-    ],
-    formats: ['image/avif', 'image/webp'],
-    unoptimized: false,
+    // Local assets only — avoid open remotePatterns
+    formats: ["image/avif", "image/webp"],
   },
-  // Optimize production build
   compiler: {
-    // Remove console logs in production
-    removeConsole: process.env.NODE_ENV === 'production' ? {
-      exclude: ['error', 'warn'],
-    } : false,
+    removeConsole:
+      process.env.NODE_ENV === "production"
+        ? { exclude: ["error", "warn"] }
+        : false,
   },
-  // Enable compression
   compress: true,
-  // Optimize package imports to reduce bundle size
   experimental: {
-    optimizePackageImports: ['framer-motion'],
+    optimizePackageImports: ["framer-motion"],
   },
-  webpack: (config) => {
-    config.module.rules.push({
-      test: /\.json$/,
-      type: 'json',
-    });
-    return config;
-  },
-  // Fix for workspace root warning
-  outputFileTracingRoot: require('path').join(__dirname),
+  outputFileTracingRoot: path.join(__dirname),
 };
 
 export default nextConfig;

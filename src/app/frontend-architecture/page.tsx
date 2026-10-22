@@ -179,7 +179,7 @@ export default function FrontendArchitecturePage() {
                   
                   <div className="border border-border rounded-lg p-5 bg-muted/20 hover:bg-muted/30 transition-colors">
                     <div className="font-semibold text-foreground mb-3 flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-purple-500"></span>
+                      <span className="w-2 h-2 rounded-full bg-foreground"></span>
                       {translations.frontendArchitecture.sections.state_management.location_strategy.client_state.title}
                     </div>
                     <ul className="text-sm space-y-1.5 ml-4 list-disc text-muted-foreground">

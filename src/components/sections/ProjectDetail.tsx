@@ -60,16 +60,17 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
-          <div className="flex flex-wrap items-center gap-4 mb-4">
-            {project.period && (
-              <Badge variant="outline">{project.period}</Badge>
-            )}
-            {project.role && (
-              <Badge variant="secondary">{project.role}</Badge>
-            )}
-            {project.team && (
-              <Badge variant="outline">{project.team}</Badge>
-            )}
+          <div className="mb-4 flex flex-wrap items-center gap-2">
+            <Badge variant="secondary">
+              {project.category === 'fullstack'
+                ? t('projects.filter_fullstack', 'common')
+                : project.category === 'frontend'
+                  ? t('projects.filter_frontend', 'common')
+                  : t('projects.filter_learning', 'common')}
+            </Badge>
+            {project.period && <Badge variant="outline">{project.period}</Badge>}
+            {project.role && <Badge variant="outline">{project.role}</Badge>}
+            {project.team && <Badge variant="outline">{project.team}</Badge>}
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
             {project.title}
@@ -198,6 +199,13 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
                         </svg>
                         {t('projects.view_live_site', 'common')}
                       </a>
+                    </Button>
+                  )}
+                  {project.caseStudyHref && (
+                    <Button variant="outline" className="w-full" size="lg" asChild>
+                      <Link href={project.caseStudyHref}>
+                        {t('projects.case_study', 'common')}
+                      </Link>
                     </Button>
                   )}
                   {project.githubUrl && (

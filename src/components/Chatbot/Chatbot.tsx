@@ -100,7 +100,6 @@ const NAVIGATION_MAP: Record<string, { path: string; label: string }> = {
   'blog': { path: '/blog', label: 'Blog' },
   'frontend': { path: '/frontend-architecture', label: 'Frontend Architecture' },
   'keur-gui': { path: '/case-studies/keur-gui', label: 'Keur Gui Case Study' },
-  'kader': { path: '/case-studies/kader-qui-gere', label: 'Kader qui gère' },
   'devtrackr': { path: '/case-studies/devtrackr', label: 'DevTrackr Case Study' },
 };
 

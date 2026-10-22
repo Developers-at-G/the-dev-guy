@@ -45,23 +45,6 @@
       ]
     },
     {
-      "title": "Restaurant Management (PWA)",
-      "role": "Full‑stack",
-      "team": "Solo",
-      "period": "2025",
-      "impacts": [
-        "Faster order flow in daily use",
-        "Works even with unstable internet",
-        "Ready for multiple restaurant branches"
-      ],
-      "problem": "Manual ordering and fragmented workflows slowed restaurant service.",
-      "actions": [
-        "Designed PWA architecture with offline sync",
-        "Implemented real-time order flows",
-        "Added multi-tenant data model with CFA support"
-      ]
-    },
-    {
       "title": "Naboujastore - E-Commerce Platform",
       "role": "Full‑stack",
       "team": "Solo",

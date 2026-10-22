@@ -190,12 +190,6 @@ export const Hero: React.FC = () => {
             >
               {t('common.view_my_work', 'common')}
             </button>
-            <button
-              onClick={() => scrollTo('contact')}
-              className="px-6 py-3 rounded-xl border border-border text-foreground font-semibold text-sm hover:bg-muted/50 transition-all duration-200"
-            >
-              {t('common.get_in_touch', 'common')}
-            </button>
           </motion.div>
         </div>
       </Container>

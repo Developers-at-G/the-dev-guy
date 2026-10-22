@@ -45,23 +45,6 @@
       ]
     },
     {
-      "title": "Gestion de Restaurant (PWA)",
-      "role": "Full‑stack",
-      "team": "Solo",
-      "period": "2025",
-      "impacts": [
-        "Commandes plus rapides au quotidien",
-        "Utilisable même avec une connexion instable",
-        "Prêt pour plusieurs restaurants"
-      ],
-      "problem": "Les commandes manuelles et les flux de travail fragmentés ralentissaient le service du restaurant.",
-      "actions": [
-        "Conçu une architecture PWA avec synchronisation hors ligne",
-        "Implémenté des flux de commande en temps réel",
-        "Ajouté un modèle de données multi-tenant avec support CFA"
-      ]
-    },
-    {
       "title": "Naboujastore - Plateforme E-Commerce",
       "role": "Full‑stack",
       "team": "Solo",

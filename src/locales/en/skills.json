@@ -103,11 +103,6 @@
           "name": "Vitest",
           "experience": "1+ year",
           "description": "Blazing fast unit test framework"
-        },
-        {
-          "name": "Chrome Extensions",
-          "experience": "1+ year",
-          "description": "Browser extensions with Manifest V3"
         }
       ]
     },

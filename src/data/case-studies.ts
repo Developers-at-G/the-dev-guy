@@ -52,40 +52,6 @@ More menu views after launch, SEO-friendly structure, fast LCP on marketing page
     ],
   },
   {
-    slug: 'kader-qui-gere',
-    name: 'Kader Qui Gère',
-    summary:
-      'Multi-tenant restaurant management PWA with offline-first ordering and role-aware workflows.',
-    status: 'Live',
-    timeline: '2025',
-    tech: ['Next.js 14', 'Prisma', 'PostgreSQL', 'NextAuth', 'PWA'],
-    liveUrl: 'https://kader-qui-gere.vercel.app/auth/signin',
-    githubUrl: 'https://github.com/abdallah96/kader-qui-gere',
-    sections: [
-      {
-        id: 'overview',
-        label: 'Overview',
-        body: `## Challenge
-Manual ordering and fragmented workflows slowed service, especially on unstable networks.
-
-## Solution
-PWA architecture with offline sync, real-time order flows, and a multi-tenant data model.
-
-## Impact
-Faster order flow in daily use and a foundation ready for multiple branches.`,
-      },
-      {
-        id: 'tech',
-        label: 'Stack',
-        body: `## Stack
-- Next.js App Router + TypeScript
-- Prisma + PostgreSQL
-- NextAuth for auth
-- Service worker / PWA for offline resilience`,
-      },
-    ],
-  },
-  {
     slug: 'devtrackr',
     name: 'DevTrackr',
     summary:

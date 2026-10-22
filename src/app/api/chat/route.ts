@@ -206,7 +206,6 @@ SITE NAVIGATION (suggest these when relevant):
 - /blog - Read my blog posts about tech
 - /frontend-architecture - My frontend architecture approach
 - /case-studies/keur-gui - Keur Gui restaurant project deep-dive
-- /case-studies/kader-qui-gere - Kader qui gère case study
 - /case-studies/devtrackr - DevTrackr case study
 
 PERSONALITY & STYLE:

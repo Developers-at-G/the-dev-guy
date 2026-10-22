@@ -35,13 +35,14 @@
     "get_in_touch": "Me Contacter"
   },
   "profile": {
+    "welcome": "Bienvenue — ravi de vous voir ici.",
     "software_engineer": "Ingénieur Logiciel",
     "react_enthusiast": "Passionné React",
     "nextjs_developer": "Développeur Next.js",
     "building_experiences": "Construire des Expériences Exceptionnelles",
     "description": "Je crée des produits numériques avec des technologies modernes. Spécialisé dans React, Next.js et les principes de design centré utilisateur.",
     "about_me": "À Propos de Moi",
-    "about_description": "Je suis Abdallah Amadou Gueye, un ingénieur logiciel passionné du Sénégal. Avec un Master en Informatique Appliquée, je me spécialise dans la Conception UI/UX et l'Ingénierie de l'Utilisabilité.",
+    "about_description": "Je suis Abdalah Amadou Gueye, un ingénieur logiciel passionné du Sénégal. Avec un Master en Informatique Appliquée, je me spécialise dans la Conception UI/UX et l'Ingénierie de l'Utilisabilité.",
     "experience_description": "Je travaille avec les technologies web modernes depuis plus de 3 ans, en me concentrant sur la création d'expériences utilisateur intuitives, accessibles et performantes. Mon expertise réside dans React, Next.js et TypeScript.",
     "what_i_do": "Ce Que Je Fais",
     "uiux_design": "Conception UI/UX et prototypage",
@@ -85,18 +86,18 @@
     "how_i_structure": "Comment je structure et construis des applications Next.js modernes"
   },
   "journey": {
-    "title": "Mon Historique",
+    "title": "Carrière",
     "subtitle": "Expérience & Formation",
-    "description": "Chronologie de ma formation et de mon expérience professionnelle.",
+    "description": "Chronologie de formation et d'expérience professionnelle.",
     "discover": "Découvrir mon parcours",
-    "discover_hint": "Cliquez sur ce panneau pour ouvrir le parcours complet — puis défilez pour révéler chaque étape. Cliquez sur une carte pour les détails.",
-    "expand_label": "Cliquer pour ouvrir le parcours",
-    "scroll_hint": "Défiler pour explorer · Cliquez sur une carte pour les détails"
+    "discover_hint": "Défilez pour explorer chaque étape.",
+    "expand_label": "Ouvrir le parcours",
+    "scroll_hint": "Défiler pour explorer"
   },
   "career": {
-    "title": "Expérience Professionnelle",
-    "subtitle": "Chronologie de Carrière",
-    "description": "Chronologie d'expérience professionnelle avec détails de l'entreprise et descriptions de rôles.",
+    "title": "Carrière",
+    "subtitle": "Expérience & Formation",
+    "description": "Rôles, entreprises et formation — toujours ouverts, défilez pour explorer.",
     "key_achievements": "Réalisations Clés",
     "show_key_achievements": "Afficher les Réalisations Clés ({count})",
     "hide_key_achievements": "Masquer les Réalisations Clés ({count})"
@@ -161,9 +162,9 @@
     "view_creative_desc": "Découvrez mon portfolio expérimental avec un design audacieux et des éléments interactifs"
   },
   "contact": {
-    "title": "Me Contacter",
-    "subtitle": "Travaillons Ensemble",
-    "description": "Je suis toujours intéressé par de nouvelles opportunités et des projets passionnants.",
+    "title": "Connectons-nous",
+    "subtitle": "Me joindre",
+    "description": "Ouvert aux nouvelles opportunités, projets intéressants, ou une discussion sur la construction de produits.",
     "email": "Email",
     "linkedin": "LinkedIn",
     "github": "GitHub",
@@ -304,10 +305,10 @@
     "comment_label": "Commentaire"
   },
   "chatbot": {
-    "welcome": "Salut ! 👋 Je suis Abdallah, bienvenue sur mon portfolio ! Posez-moi n'importe quelle question sur mes projets, compétences ou expérience. Je suis là pour vous aider !",
+    "welcome": "Salut ! 👋 Je suis Abdalah, bienvenue sur mon portfolio ! Posez-moi n'importe quelle question sur mes projets, compétences ou expérience. Je suis là pour vous aider !",
     "try_asking": "Essayez de demander :",
     "say_hello": "👋 Dire bonjour",
-    "say_hello_text": "Salut Abdallah ! Parle-moi de toi",
+    "say_hello_text": "Salut Abdalah ! Parle-moi de toi",
     "experience": "🎯 Ton expérience",
     "experience_text": "Quelle est ton expérience professionnelle ?",
     "education": "🎓 Éducation",
@@ -318,7 +319,7 @@
     "thinking": "Réflexion...",
     "ask_anything": "Posez-moi n'importe quelle question !",
     "chat_with_me": "Discutez avec moi !",
-    "chat_with": "Discuter avec Abdallah",
+    "chat_with": "Discuter avec Abdalah",
     "error": "Quelque chose s'est mal passé. Veuillez réessayer.",
     "close": "Fermer",
     "close_chat": "Fermer le chat",

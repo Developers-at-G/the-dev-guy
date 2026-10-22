@@ -21,10 +21,10 @@ const SkillsSection = dynamic(() => import('@/components/sections/SkillsSection'
 const ContactSection = dynamic(() => import('@/components/sections/ContactSection').then(m => ({ default: m.ContactSection })), { loading: () => <SectionSkeleton /> });
 
 export const metadata: Metadata = {
-  title: 'Abdallah Amadou Gueye | Software Engineer',
-  description: 'Professional portfolio of Abdallah Amadou Gueye - Software Engineer specializing in React, Next.js, TypeScript, and modern web development. Building scalable applications with a focus on UI/UX and performance. ATS-friendly resume and professional experience.',
+  title: 'Abdalah Amadou Gueye | Software Engineer',
+  description: 'Professional portfolio of Abdalah Amadou Gueye - Software Engineer specializing in React, Next.js, TypeScript, and modern web development. Building scalable applications with a focus on UI/UX and performance.',
   openGraph: {
-    title: 'Abdallah Amadou Gueye | Software Engineer',
+    title: 'Abdalah Amadou Gueye | Software Engineer',
     description: 'Professional portfolio - Software Engineer specializing in React, Next.js, TypeScript, and modern web development.',
     type: 'website',
     url: 'https://abdallah-the-dev-guy.vercel.app',

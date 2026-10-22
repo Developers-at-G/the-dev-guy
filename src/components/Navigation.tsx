@@ -40,13 +40,21 @@ export default function Navigation() {
 
           <div className="hidden md:flex items-center gap-1">
             {navigationItems.map((item) => {
+              const isActive = activeSection === item.id;
+              const className = `rounded-lg px-3 py-2 text-sm font-medium capitalize transition-colors ${
+                isActive
+                  ? 'bg-primary text-primary-foreground'
+                  : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+              }`;
+
               if (item.href.startsWith('/')) {
                 return (
                   <Link
                     key={item.id}
                     href={item.href}
-                    className="rounded-lg px-3 py-2 text-sm font-medium capitalize text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                    className={className}
                     onClick={closeMenu}
+                    aria-current={isActive ? 'page' : undefined}
                   >
                     {t(`nav.${item.label.toLowerCase()}`, 'common')}
                   </Link>
@@ -58,11 +66,8 @@ export default function Navigation() {
                   key={item.id}
                   type="button"
                   onClick={() => scrollToSection(item.id)}
-                  className={`rounded-lg px-3 py-2 text-sm font-medium capitalize transition-colors ${
-                    activeSection === item.id
-                      ? 'bg-primary text-primary-foreground'
-                      : 'text-muted-foreground hover:bg-muted hover:text-foreground'
-                  }`}
+                  className={className}
+                  aria-current={isActive ? 'true' : undefined}
                 >
                   {t(`nav.${item.label.toLowerCase()}`, 'common')}
                 </button>
@@ -93,13 +98,21 @@ export default function Navigation() {
           <div className="border-t border-border py-4 md:hidden">
             <div className="flex flex-col gap-2">
               {navigationItems.map((item) => {
+                const isActive = activeSection === item.id;
+                const className = `rounded-lg px-3 py-2 text-left text-sm font-medium capitalize transition-colors ${
+                  isActive
+                    ? 'bg-primary text-primary-foreground'
+                    : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+                }`;
+
                 if (item.href.startsWith('/')) {
                   return (
                     <Link
                       key={item.id}
                       href={item.href}
-                      className="rounded-lg px-3 py-2 text-left text-sm font-medium capitalize text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                      className={className}
                       onClick={closeMenu}
+                      aria-current={isActive ? 'page' : undefined}
                     >
                       {t(`nav.${item.label.toLowerCase()}`, 'common')}
                     </Link>
@@ -111,11 +124,8 @@ export default function Navigation() {
                     key={item.id}
                     type="button"
                     onClick={() => scrollToSection(item.id)}
-                    className={`rounded-lg px-3 py-2 text-left text-sm font-medium capitalize transition-colors ${
-                      activeSection === item.id
-                        ? 'bg-primary text-primary-foreground'
-                        : 'text-muted-foreground hover:bg-muted hover:text-foreground'
-                    }`}
+                    className={className}
+                    aria-current={isActive ? 'true' : undefined}
                   >
                     {t(`nav.${item.label.toLowerCase()}`, 'common')}
                   </button>

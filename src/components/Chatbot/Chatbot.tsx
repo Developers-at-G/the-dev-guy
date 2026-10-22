@@ -47,7 +47,7 @@ const AbdallahAvatar: React.FC<{ mood: MascotMood; size?: 'sm' | 'md' | 'lg' }> 
     >
       <Image
         src="/Images/Picture.jpeg"
-        alt="Abdallah Amadou Gueye"
+        alt="Abdalah Amadou Gueye"
         fill
         sizes="64px"
         className="object-cover object-center rounded-full"
@@ -498,7 +498,7 @@ export const Chatbot: React.FC = () => {
                 </motion.div>
                 <div>
                   <h3 className="font-semibold text-foreground flex items-center gap-2">
-                    Abdallah
+                    Abdalah
                     <span className={`h-1.5 w-1.5 rounded-full ${isLoading ? 'bg-muted-foreground' : 'bg-foreground'}`} />
                   </h3>
                   <p className="text-xs text-muted-foreground">

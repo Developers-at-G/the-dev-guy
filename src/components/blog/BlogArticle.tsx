@@ -66,7 +66,7 @@ export function BlogArticle({ post }: BlogArticleProps) {
               AG
             </div>
             <div>
-              <p className="font-semibold text-foreground">Abdallah Gueye</p>
+              <p className="font-semibold text-foreground">Abdalah Gueye</p>
               <p className="text-ds-sm text-muted-foreground">
                 {t('profile.software_engineer', 'common')}
               </p>

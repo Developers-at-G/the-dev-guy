@@ -1,56 +1,44 @@
 'use client';
 
-import React, { useState, useMemo, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useLanguage } from '@/app/context/LanguageContext';
-import { Section } from '@/components/ui/Section';
+import { Section, SectionHeader } from '@/components/ui/Section';
 import { Container } from '@/components/ui/Container';
 import { getCareerData } from '@/data/career';
 import { getEducationData } from '@/data/education';
 import { parseStartYear, type JourneyItem } from './journey/types';
-import { JourneyPreview } from './journey/JourneyPreview';
 import { JourneyTimeline } from './journey/JourneyTimeline';
 
 export const JourneySection: React.FC = () => {
-  const { translations } = useLanguage();
+  const { t, translations } = useLanguage();
   const careerData = getCareerData(translations);
   const educationData = getEducationData(translations);
 
-  const journeyItems = useMemo<JourneyItem[]>(() => {
-    const career = careerData
+  const journeyItems: JourneyItem[] = [
+    ...careerData
       .map((data) => ({
         type: 'career' as const,
         data,
         sortYear: parseStartYear(data.period),
       }))
-      .sort((a, b) => b.sortYear - a.sortYear);
-    const education = educationData
+      .sort((a, b) => b.sortYear - a.sortYear),
+    ...educationData
       .map((data) => ({
         type: 'education' as const,
         data,
         sortYear: parseStartYear(data.period),
       }))
-      .sort((a, b) => b.sortYear - a.sortYear);
-    return [...career, ...education];
-  }, [careerData, educationData]);
+      .sort((a, b) => b.sortYear - a.sortYear),
+  ];
 
-  const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
-  const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
-
+  const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const timelineRef = useRef<HTMLDivElement>(null);
   const dotRefs = useRef<(HTMLDivElement | null)[]>([]);
   const fillLineRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!isPanelOpen) {
-      setExpandedIds(new Set());
-      if (fillLineRef.current) fillLineRef.current.style.height = '0px';
-    }
-  }, [isPanelOpen]);
-
-  useEffect(() => {
-    if (!isPanelOpen) return;
     const cards = cardRefs.current;
     if (cards.length === 0) return;
 
@@ -82,7 +70,14 @@ export const JourneySection: React.FC = () => {
 
       if (expand) {
         const id = journeyItems[clamped]?.data.id;
-        if (id) setExpandedIds((prev) => new Set(prev).add(id));
+        if (id) {
+          setExpandedIds((prev) => {
+            if (prev.has(id)) return prev;
+            const next = new Set(prev);
+            next.add(id);
+            return next;
+          });
+        }
       }
 
       if (fillLineRef.current) {
@@ -114,45 +109,26 @@ export const JourneySection: React.FC = () => {
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onResize);
     };
-  }, [isPanelOpen, journeyItems]);
-
-  const firstCareer = journeyItems.find((i) => i.type === 'career');
-  const currentRole = firstCareer?.type === 'career' ? firstCareer.data : null;
-  const masterDegree = educationData.find((e) => e.id === 'master') ?? educationData[0];
-
-  const toggleExpanded = (id: string) =>
-    setExpandedIds((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      return next;
-    });
+  }, [journeyItems.length]);
 
   return (
-    <Section id="career" variant={isPanelOpen ? 'muted' : 'default'} className="relative overflow-hidden">
-      <Container className="relative z-10">
-        {!isPanelOpen ? (
-          <JourneyPreview
-            careerData={careerData}
-            educationData={educationData}
-            currentRole={currentRole}
-            masterDegree={masterDegree}
-            onOpen={() => setIsPanelOpen(true)}
-          />
-        ) : (
-          <JourneyTimeline
-            journeyItems={journeyItems}
-            activeIndex={activeIndex}
-            expandedIds={expandedIds}
-            typeLabels={translations.career.types}
-            timelineRef={timelineRef}
-            fillLineRef={fillLineRef}
-            cardRefs={cardRefs}
-            dotRefs={dotRefs}
-            onClose={() => setIsPanelOpen(false)}
-            onToggleExpanded={toggleExpanded}
-          />
-        )}
+    <Section id="career" variant="muted">
+      <Container>
+        <SectionHeader
+          title={t('career.title', 'common')}
+          subtitle={t('career.subtitle', 'common')}
+          description={t('career.description', 'common')}
+        />
+        <JourneyTimeline
+          journeyItems={journeyItems}
+          activeIndex={activeIndex}
+          expandedIds={expandedIds}
+          typeLabels={translations.career.types}
+          timelineRef={timelineRef}
+          fillLineRef={fillLineRef}
+          cardRefs={cardRefs}
+          dotRefs={dotRefs}
+        />
       </Container>
     </Section>
   );

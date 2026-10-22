@@ -44,7 +44,7 @@ export function ProjectLibrary() {
               : t('projects.item_plural', 'common')}
           </p>
 
-          <div role="list">
+          <div className="mt-2">
             {visible.map((project) => (
               <ProjectLibraryCard key={project.id} project={project} />
             ))}

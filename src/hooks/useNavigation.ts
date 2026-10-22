@@ -1,4 +1,7 @@
+'use client';
+
 import { useState, useEffect, useCallback } from 'react';
+import { usePathname } from 'next/navigation';
 
 export interface NavigationItem {
   id: string;
@@ -11,49 +14,68 @@ interface UseNavigationOptions {
 }
 
 export const useNavigation = ({ items }: UseNavigationOptions) => {
+  const pathname = usePathname();
   const [activeSection, setActiveSection] = useState<string>('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      setScrolled(scrollPosition > 50);
+    if (pathname?.startsWith('/blog')) {
+      setActiveSection('blog');
+      return;
+    }
+    if (pathname?.toLowerCase().startsWith('/projects')) {
+      setActiveSection('projects');
+      return;
+    }
 
-      const sections = items.map(item => document.getElementById(item.id)).filter(Boolean);
-      
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i];
-        if (section) {
-          const rect = section.getBoundingClientRect();
-          if (rect.top <= 100) {
-            setActiveSection(items[i].id);
-            break;
-          }
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 40);
+
+      let current = '';
+      for (const item of items) {
+        if (item.href.startsWith('/')) continue;
+        const el = document.getElementById(item.id);
+        if (!el) continue;
+        if (el.getBoundingClientRect().top <= 140) {
+          current = item.id;
         }
       }
+      setActiveSection(current || items[0]?.id || '');
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
-
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [items]);
+  }, [items, pathname]);
 
-  const scrollToSection = useCallback((sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const offset = 80;
-      const elementTop = element.getBoundingClientRect().top + window.pageYOffset;
-      const targetPosition = Math.max(elementTop - offset, 0);
-
-      window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-    }
-    setIsMenuOpen(false);
+  useEffect(() => {
+    const onScrollChrome = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', onScrollChrome, { passive: true });
+    onScrollChrome();
+    return () => window.removeEventListener('scroll', onScrollChrome);
   }, []);
 
+  const scrollToSection = useCallback(
+    (sectionId: string) => {
+      if (pathname !== '/') {
+        window.location.href = `/#${sectionId}`;
+        setIsMenuOpen(false);
+        return;
+      }
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const offset = 80;
+        const elementTop = element.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({ top: Math.max(elementTop - offset, 0), behavior: 'smooth' });
+      }
+      setIsMenuOpen(false);
+    },
+    [pathname]
+  );
+
   const toggleMenu = useCallback(() => {
-    setIsMenuOpen(prev => !prev);
+    setIsMenuOpen((prev) => !prev);
   }, []);
 
   const closeMenu = useCallback(() => {
@@ -66,6 +88,6 @@ export const useNavigation = ({ items }: UseNavigationOptions) => {
     scrolled,
     scrollToSection,
     toggleMenu,
-    closeMenu
+    closeMenu,
   };
 };

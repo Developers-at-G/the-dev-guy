@@ -4,41 +4,38 @@ import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useLanguage } from '@/app/context/LanguageContext';
 import { Badge } from '@/components/ui/Badge';
-import { ChevronDownIcon } from '@/components/icons';
 import type { CareerExperience } from '@/data/career';
 import { careerTypeStyles } from './types';
 
 interface CareerJourneyCardProps {
   experience: CareerExperience;
   typeLabels: Record<string, string>;
-  isExpanded: boolean;
   isActive: boolean;
-  onToggle: () => void;
+  isExpanded: boolean;
 }
 
 export function CareerJourneyCard({
   experience,
   typeLabels,
-  isExpanded,
   isActive,
-  onToggle,
+  isExpanded,
 }: CareerJourneyCardProps) {
   const { t } = useLanguage();
   const style = careerTypeStyles[experience.type] ?? careerTypeStyles.work;
-  const achievementsRef = useRef<HTMLDivElement>(null);
-  const achievementsInView = useInView(achievementsRef, { amount: 0.2, once: true });
+  const ref = useRef<HTMLElement>(null);
+  const inView = useInView(ref, { amount: 0.2, once: true });
 
   return (
-    <article
-      className={`relative overflow-hidden rounded-lg border bg-card shadow-sm transition-colors ${
-        isActive ? 'border-foreground/40' : 'border-border hover:border-foreground/25'
+    <motion.article
+      ref={ref}
+      initial={{ opacity: 0, y: 20 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      className={`overflow-hidden rounded-lg border bg-card transition-colors ${
+        isActive ? 'border-foreground/40' : 'border-border'
       }`}
     >
-      <button
-        type="button"
-        onClick={onToggle}
-        className="flex w-full flex-col gap-3 rounded-lg p-5 text-left transition-colors hover:bg-accent sm:flex-row sm:items-center sm:justify-between md:p-6"
-      >
+      <div className="flex flex-col gap-3 p-5 sm:flex-row sm:items-start sm:justify-between md:p-6">
         <div>
           <h3 className="text-ds-lg font-semibold text-foreground">{experience.position}</h3>
           <p className="mt-0.5 text-ds-sm font-medium text-foreground/80">{experience.company}</p>
@@ -46,30 +43,21 @@ export function CareerJourneyCard({
             {experience.period} · {experience.location}
           </p>
         </div>
-        <div className="flex items-center gap-3">
-          <Badge variant="outline" className={`shrink-0 text-ds-xs font-medium ${style}`}>
-            {typeLabels[experience.type] ?? experience.type}
-          </Badge>
-          <motion.span
-            animate={{ rotate: isExpanded ? 180 : 0 }}
-            transition={{ duration: 0.35 }}
-            className="shrink-0 text-muted-foreground"
-          >
-            <ChevronDownIcon />
-          </motion.span>
-        </div>
-      </button>
+        <Badge variant="outline" className={`shrink-0 text-ds-xs font-medium ${style}`}>
+          {typeLabels[experience.type] ?? experience.type}
+        </Badge>
+      </div>
 
       <div
-        className="grid overflow-hidden border-t border-border transition-[grid-template-rows] duration-500"
+        className="grid overflow-hidden border-t border-border transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
         style={{ gridTemplateRows: isExpanded ? '1fr' : '0fr' }}
       >
         <div className="min-h-0">
           <div
-            className="px-5 pb-5 pt-2 transition-opacity duration-300 md:px-6 md:pb-6"
+            className="px-5 pb-5 pt-4 transition-opacity duration-300 md:px-6 md:pb-6"
             style={{
               opacity: isExpanded ? 1 : 0,
-              transitionDelay: isExpanded ? '120ms' : '0ms',
+              transitionDelay: isExpanded ? '100ms' : '0ms',
             }}
           >
             {experience.description && (
@@ -87,38 +75,26 @@ export function CareerJourneyCard({
               </div>
             )}
             {experience.achievements.length > 0 && (
-              <div ref={achievementsRef} className="mt-4 border-t border-border pt-4">
+              <div className="mt-4 border-t border-border pt-4">
                 <p className="mb-3 text-ds-xs font-semibold uppercase tracking-wider text-foreground">
                   {t('career.key_achievements', 'common')}
                 </p>
-                <motion.ul
-                  initial="hidden"
-                  animate={achievementsInView ? 'visible' : 'hidden'}
-                  variants={{
-                    hidden: {},
-                    visible: { transition: { staggerChildren: 0.06, delayChildren: 0.05 } },
-                  }}
-                  className="space-y-2"
-                >
+                <ul className="space-y-2">
                   {experience.achievements.map((ach, i) => (
-                    <motion.li
+                    <li
                       key={i}
-                      variants={{
-                        hidden: { opacity: 0, x: -8 },
-                        visible: { opacity: 1, x: 0 },
-                      }}
                       className="flex items-start gap-2 text-ds-sm text-muted-foreground"
                     >
                       <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-foreground" />
                       {ach}
-                    </motion.li>
+                    </li>
                   ))}
-                </motion.ul>
+                </ul>
               </div>
             )}
           </div>
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 }

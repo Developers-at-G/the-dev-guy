@@ -1,95 +1,39 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useLanguage } from '../../app/context/LanguageContext';
 import { getProfileData } from '../../data/profile';
 import { Container } from '../ui/Container';
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0 },
-};
-
-const fadeScale = {
-  hidden: { opacity: 0, scale: 0.92 },
-  visible: { opacity: 1, scale: 1 },
-};
-
-// Keywords to highlight — tech in primary, value in accent
-const KEYWORDS_PRIMARY = ['React', 'Next.js', 'TypeScript'];
-const KEYWORDS_ACCENT = ['component architecture', 'performance', 'products'];
-
-function highlightKeywords(displayed: string) {
-  const keywords = [...KEYWORDS_ACCENT, ...KEYWORDS_PRIMARY].sort((a, b) => b.length - a.length);
-  const escaped = keywords.map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
-  const regex = new RegExp(`(${escaped.join('|')})`, 'gi');
-  const parts = displayed.split(regex);
-  return parts.map((part, i) => {
-    const lower = part.toLowerCase();
-    if (KEYWORDS_ACCENT.some((k) => k.toLowerCase() === lower)) {
-      return (
-        <span key={i} className="text-accent font-semibold bg-accent/10 px-1.5 py-0.5 rounded">
-          {part}
-        </span>
-      );
-    }
-    if (KEYWORDS_PRIMARY.some((k) => k.toLowerCase() === lower)) {
-      return (
-        <span key={i} className="text-primary font-semibold bg-primary/10 px-1.5 py-0.5 rounded">
-          {part}
-        </span>
-      );
-    }
-    return <span key={i}>{part}</span>;
-  });
-}
-
-function Typewriter({
-  text,
-  speed = 40,
-  className = '',
-  start = true,
-}: {
-  text: string;
-  speed?: number;
-  className?: string;
-  start?: boolean;
-}) {
+function WelcomeTypewriter({ text, speed = 36 }: { text: string; speed?: number }) {
   const [displayed, setDisplayed] = useState('');
-  const [isComplete, setIsComplete] = useState(false);
+  const [done, setDone] = useState(false);
 
   useEffect(() => {
-    if (!start) return;
     setDisplayed('');
-    setIsComplete(false);
+    setDone(false);
     let i = 0;
     const timer = setInterval(() => {
       if (i <= text.length) {
         setDisplayed(text.slice(0, i));
-        i++;
+        i += 1;
       } else {
-        setIsComplete(true);
+        setDone(true);
         clearInterval(timer);
       }
     }, speed);
     return () => clearInterval(timer);
-  }, [text, speed, start]);
-
-  if (!start) {
-    return (
-      <p className={className}>
-        <span className="inline-block w-0.5 h-[1em] align-baseline bg-primary animate-cursor-blink" aria-hidden />
-      </p>
-    );
-  }
+  }, [text, speed]);
 
   return (
-    <p className={className}>
-      <span>{highlightKeywords(displayed)}</span>
+    <p className="max-w-2xl text-2xl font-medium tracking-tight text-foreground sm:text-3xl md:text-4xl md:leading-snug">
+      {displayed}
       <span
-        className={`inline-block w-0.5 h-[1em] align-baseline bg-primary ml-0.5 ${isComplete ? 'animate-cursor-blink' : ''}`}
+        className={`ml-0.5 inline-block h-[0.9em] w-0.5 align-[-0.1em] bg-foreground ${
+          done ? 'animate-pulse' : ''
+        }`}
         aria-hidden
       />
     </p>
@@ -97,99 +41,95 @@ function Typewriter({
 }
 
 export const Hero: React.FC = () => {
-  const { translations, t } = useLanguage();
+  const { t, translations } = useLanguage();
   const profileData = getProfileData(translations);
-  const typewriterRef = useRef(null);
-  const typewriterInView = useInView(typewriterRef, { amount: 0.3, once: true });
-
-  const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-  };
+  const welcome = t('profile.welcome', 'common');
 
   return (
     <section
       id="about"
-      className="relative min-h-screen flex items-center overflow-hidden bg-background scroll-mt-20"
+      className="relative overflow-hidden bg-background scroll-mt-20"
     >
-      <Container className="relative z-10 py-10 sm:py-14 lg:py-16">
-        <div className="flex flex-col items-center text-center max-w-2xl mx-auto">
-          {/* Picture — reveal on scroll: scale + fade */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.4]"
+        aria-hidden
+        style={{
+          backgroundImage:
+            'radial-gradient(ellipse 70% 45% at 50% -10%, var(--muted), transparent)',
+        }}
+      />
+
+      {/* Welcome */}
+      <Container className="relative z-10 flex min-h-[42vh] items-end pb-10 pt-28 sm:min-h-[48vh] sm:pb-14 sm:pt-32">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <p className="mb-4 text-ds-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
+            {profileData.title}
+          </p>
+          <WelcomeTypewriter text={welcome} />
+        </motion.div>
+      </Container>
+
+      {/* Introduction */}
+      <Container className="relative z-10 pb-20 sm:pb-28">
+        <div className="grid items-center gap-10 border-t border-border pt-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-14 lg:pt-16">
           <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={fadeScale}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="w-40 h-40 sm:w-44 sm:h-44 rounded-2xl overflow-hidden border border-border bg-muted/20 shadow-lg shrink-0"
+            initial={{ opacity: 0, scale: 0.94, y: 20 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+            className="relative mx-auto aspect-[4/5] w-full max-w-[260px] overflow-hidden rounded-lg border border-border bg-muted/30 sm:max-w-[300px] lg:mx-0 lg:max-w-none"
           >
             <Image
               src={profileData.image}
               alt={profileData.name}
-              width={176}
-              height={176}
-              sizes="176px"
-              className="w-full h-full object-cover object-top"
+              fill
+              sizes="(max-width: 1024px) 300px, 420px"
+              className="object-cover object-top"
               priority
             />
-          </motion.div>
-
-          {/* Name — reveal: fade up */}
-          <motion.h1
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={fadeUp}
-            transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-8 text-4xl sm:text-5xl md:text-6xl font-bold text-foreground leading-tight tracking-tight"
-          >
-            {profileData.name}
-          </motion.h1>
-
-          {/* Subtitle — reveal: fade up */}
-          <motion.p
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={fadeUp}
-            transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-3 text-lg sm:text-xl text-muted-foreground"
-          >
-            {profileData.subtitle}
-          </motion.p>
-
-          {/* Typewriter — reveal container, then type when in view */}
-          <motion.div
-            ref={typewriterRef}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={fadeUp}
-            transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-8 min-h-[5rem] w-full max-w-xl mx-auto flex justify-center"
-          >
-            <Typewriter
-              text={profileData.description}
-              speed={32}
-              start={typewriterInView}
-              className="text-base sm:text-lg text-muted-foreground/95 leading-relaxed font-mono"
+            <motion.div
+              className="pointer-events-none absolute inset-0 bg-background"
+              initial={{ scaleY: 1 }}
+              whileInView={{ scaleY: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.7, delay: 0.1, ease: [0.76, 0, 0.24, 1] }}
+              style={{ originY: 0 }}
+              aria-hidden
             />
           </motion.div>
 
-          {/* CTA buttons */}
           <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={fadeUp}
-            transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-8 flex flex-col sm:flex-row items-center gap-3"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.55, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
           >
-            <button
-              onClick={() => scrollTo('projects')}
-              className="px-6 py-3 rounded-xl bg-primary text-primary-foreground font-semibold text-sm shadow-lg hover:shadow-xl hover:brightness-110 transition-all duration-200"
-            >
-              {t('common.view_my_work', 'common')}
-            </button>
+            <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl md:text-5xl">
+              {profileData.name}
+            </h1>
+            <p className="mt-3 text-lg text-muted-foreground sm:text-xl">
+              {profileData.subtitle}
+            </p>
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground/95 sm:text-lg">
+              {profileData.about.bio}
+            </p>
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+              {profileData.description}
+            </p>
+            <ul className="mt-8 flex flex-wrap gap-2">
+              {profileData.skills.map((skill) => (
+                <li
+                  key={skill}
+                  className="rounded-md border border-border bg-card px-3 py-1.5 font-mono text-ds-xs text-foreground/80"
+                >
+                  {skill}
+                </li>
+              ))}
+            </ul>
           </motion.div>
         </div>
       </Container>

@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   return {
     title: `${project.title} | Projects`,
-    description: project.impacts?.join(', ') || project.problem || 'A project by Abdallah Amadou Gueye',
+    description: project.impacts?.join(', ') || project.problem || 'A project by Abdalah Amadou Gueye',
   };
 }
 

@@ -13,7 +13,16 @@ export interface CareerExperience {
 }
 
 const technologiesMap: Record<string, string[]> = {
-  'tenhil-gmbh': ['React', 'Next.js', 'Node.js'],
+  'tenhil-gmbh': [
+    'React',
+    'Next.js',
+    'TypeScript',
+    'Redux Toolkit',
+    'styled-components',
+    'Orchard Core CMS',
+    'Vitest',
+    'Playwright',
+  ],
   'smal-gmbh': ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Contentful', 'GSAP', 'i18n'],
   'future-stories': ['Shopify', 'React', 'E-commerce', 'Performance Optimization', 'UX'],
   'obertys': ['React', 'React Native', 'REST APIs', 'Banking Applications', 'Agile Development'],

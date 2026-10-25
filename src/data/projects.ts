@@ -81,15 +81,6 @@ const staticProjectsData: StaticProject[] = [
     role: 'Full‑stack',
     team: 'Solo',
   },
-  {
-    id: 'g-tech',
-    category: 'frontend',
-    image: '/Images/g-tech.jpg',
-    technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'UI/UX', 'i18n'],
-    link: 'https://g-tech-phi.vercel.app/',
-    role: 'Design',
-    team: 'Solo',
-  },
 ];
 
 /** Standalone learning guide — lives in the library, not the featured slider. */

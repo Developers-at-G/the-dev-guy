@@ -85,25 +85,6 @@
         "Conçu une UI chaleureuse orientée communauté avec iconographie de mosquée et palette rose douce",
         "Interface entièrement localisée en français pour le public cible"
       ]
-    },
-    {
-      "title": "G-Tech",
-      "role": "Design",
-      "team": "Solo",
-      "period": "2025",
-      "impacts": [
-        "Site vitrine et identité d'agence",
-        "Localisation FR / EN",
-        "Vitrine produits dont Keur Gui",
-        "Parcours services et contact clair"
-      ],
-      "problem": "Un studio de produits numériques avait besoin d'une vitrine soignée pour présenter ses services, ses réalisations et un contact simple — sans surcharge.",
-      "actions": [
-        "Conçu une expérience marketing bilingue (FR/EN) avec une identité forte",
-        "Construit les sections services, à propos et un défilé de projets du studio",
-        "Façonné l'UX de contact pour les demandes web, mobile et UI/UX",
-        "Conservé le produit restaurant (Keur Gui) dans le portfolio G-Tech plutôt qu'en entrée séparée"
-      ]
     }
   ],
   "architecture": {

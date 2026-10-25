@@ -85,25 +85,6 @@
         "Designed warm, community-oriented UI with mosque iconography and soft rose palette",
         "Fully localized interface in French for target audience"
       ]
-    },
-    {
-      "title": "G-Tech",
-      "role": "Design",
-      "team": "Solo",
-      "period": "2025",
-      "impacts": [
-        "Agency brand and marketing site",
-        "FR / EN localization",
-        "Product showcase including Keur Gui",
-        "Clear services and contact flow"
-      ],
-      "problem": "A digital products studio needed a polished public face to present services, past work, and a simple path to contact — without clutter.",
-      "actions": [
-        "Designed a bilingual (FR/EN) marketing experience with a strong brand signal",
-        "Built sections for services, about, and a project marquee featuring studio work",
-        "Shaped contact UX for web, mobile, and UI/UX service inquiries",
-        "Kept the restaurant product (Keur Gui) inside the G-Tech portfolio rather than as a separate entry"
-      ]
     }
   ],
   "architecture": {

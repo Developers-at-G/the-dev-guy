@@ -23,6 +23,26 @@
       ]
     },
     {
+      "title": "Developer Playground",
+      "role": "Frontend",
+      "team": "Solo",
+      "period": "2025",
+      "impacts": [
+        "SSR, SSG, ISR, and CSR demos side by side",
+        "Reusable UI kit with Storybook",
+        "Serverless API routes and middleware",
+        "Deployed on Vercel with CI/CD"
+      ],
+      "problem": "Teams and learners need a concrete place to compare Next.js rendering strategies and reusable component patterns — not just docs, but working demos.",
+      "actions": [
+        "Built a Next.js 14 playground with live SSR, SSG, ISR, and CSR demo pages",
+        "Designed a reusable component library (Button, Card, Modal, Input, Dropdown, Badge, Toggle) with Storybook",
+        "Implemented serverless API routes and middleware for protected demo flows",
+        "Added performance patterns: lazy loading, code splitting, and React memoization",
+        "Documented usage and deployed to Vercel"
+      ]
+    },
+    {
       "title": "Gyst - Time Tracking Chrome Extension",
       "role": "Full‑stack",
       "team": "Solo",
@@ -67,20 +87,22 @@
       ]
     },
     {
-      "title": "Restaurant Website",
-      "role": "Full‑stack",
+      "title": "G-Tech",
+      "role": "Design",
       "team": "Solo",
-      "period": "2024",
+      "period": "2025",
       "impacts": [
-        "More menu views after launch",
-        "SEO‑friendly",
-        "Fast LCP"
+        "Agency brand and marketing site",
+        "FR / EN localization",
+        "Product showcase including Keur Gui",
+        "Clear services and contact flow"
       ],
-      "problem": "Site needed to showcase menu and weekly specials with speed.",
+      "problem": "A digital products studio needed a polished public face to present services, past work, and a simple path to contact — without clutter.",
       "actions": [
-        "Implemented SSG for core pages",
-        "Built specials schedule UX",
-        "Added image optimization and caching"
+        "Designed a bilingual (FR/EN) marketing experience with a strong brand signal",
+        "Built sections for services, about, and a project marquee featuring studio work",
+        "Shaped contact UX for web, mobile, and UI/UX service inquiries",
+        "Kept the restaurant product (Keur Gui) inside the G-Tech portfolio rather than as a separate entry"
       ]
     }
   ],

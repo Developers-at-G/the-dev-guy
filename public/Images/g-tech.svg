@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="750" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B1220"/>
+      <stop offset="1" stop-color="#132038"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="750" fill="url(#bg)"/>
+  <circle cx="980" cy="140" r="220" fill="#1E3A5F" opacity="0.35"/>
+  <circle cx="180" cy="620" r="180" fill="#243B55" opacity="0.4"/>
+  <text x="600" y="300" text-anchor="middle" fill="#F5F7FA" font-family="ui-sans-serif, system-ui, sans-serif" font-size="72" font-weight="700" letter-spacing="2">G-Tech</text>
+  <text x="600" y="360" text-anchor="middle" fill="#9DB0C7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="28">Produits numériques</text>
+  <rect x="300" y="420" width="600" height="1" fill="#3A516B"/>
+  <text x="600" y="480" text-anchor="middle" fill="#C8D4E3" font-family="ui-sans-serif, system-ui, sans-serif" font-size="20">Web · Mobile · UI/UX</text>
+  <text x="600" y="530" text-anchor="middle" fill="#7F93AB" font-family="ui-sans-serif, system-ui, sans-serif" font-size="18">Agency site · Keur Gui · product showcase</text>
+</svg>

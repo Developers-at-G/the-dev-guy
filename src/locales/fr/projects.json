@@ -23,6 +23,26 @@
       ]
     },
     {
+      "title": "Developer Playground",
+      "role": "Frontend",
+      "team": "Solo",
+      "period": "2025",
+      "impacts": [
+        "Démos SSR, SSG, ISR et CSR côte à côte",
+        "Kit UI réutilisable avec Storybook",
+        "Routes API serverless et middleware",
+        "Déployé sur Vercel avec CI/CD"
+      ],
+      "problem": "Les équipes et apprenants ont besoin d'un endroit concret pour comparer les stratégies de rendu Next.js et les patterns de composants — pas seulement de la doc, des démos qui tournent.",
+      "actions": [
+        "Construit un playground Next.js 14 avec pages démo SSR, SSG, ISR et CSR",
+        "Conçu une bibliothèque de composants réutilisables (Button, Card, Modal, Input, Dropdown, Badge, Toggle) avec Storybook",
+        "Implémenté des routes API serverless et un middleware pour les flux protégés",
+        "Ajouté des patterns de performance : lazy loading, code splitting et mémoïsation React",
+        "Documenté l'usage et déployé sur Vercel"
+      ]
+    },
+    {
       "title": "Gyst - Extension Chrome de Suivi du Temps",
       "role": "Full‑stack",
       "team": "Solo",
@@ -67,20 +87,22 @@
       ]
     },
     {
-      "title": "Site Web de Restaurant",
-      "role": "Full‑stack",
+      "title": "G-Tech",
+      "role": "Design",
       "team": "Solo",
-      "period": "2024",
+      "period": "2025",
       "impacts": [
-        "Davantage de vues du menu après la mise en ligne",
-        "Optimisé pour le SEO",
-        "LCP rapide"
+        "Site vitrine et identité d'agence",
+        "Localisation FR / EN",
+        "Vitrine produits dont Keur Gui",
+        "Parcours services et contact clair"
       ],
-      "problem": "Le site devait présenter le menu et les spéciaux hebdomadaires avec rapidité.",
+      "problem": "Un studio de produits numériques avait besoin d'une vitrine soignée pour présenter ses services, ses réalisations et un contact simple — sans surcharge.",
       "actions": [
-        "Implémenté SSG pour les pages principales",
-        "Construit l'UX du planning des spéciaux",
-        "Ajouté l'optimisation d'images et la mise en cache"
+        "Conçu une expérience marketing bilingue (FR/EN) avec une identité forte",
+        "Construit les sections services, à propos et un défilé de projets du studio",
+        "Façonné l'UX de contact pour les demandes web, mobile et UI/UX",
+        "Conservé le produit restaurant (Keur Gui) dans le portfolio G-Tech plutôt qu'en entrée séparée"
       ]
     }
   ],

@@ -51,63 +51,59 @@ export const JourneySection: React.FC = () => {
       return dRect.top + window.scrollY + dRect.height / 2 - tTop;
     };
 
-    const update = (expand: boolean) => {
-      const halfScreen = window.innerHeight / 2;
-      const cardTops = cards.map((el) => el?.getBoundingClientRect().top ?? Infinity);
+    const update = () => {
+      // Focus line sits near upper-middle so the title under it owns the year/dot
+      const focusY = window.innerHeight * 0.38;
+      let activeIdx = 0;
 
-      const inZone = cardTops
-        .map((top, i) => ({ top, i }))
-        .filter(({ top }) => top <= halfScreen)
-        .sort((a, b) => b.top - a.top);
+      for (let i = 0; i < cards.length; i++) {
+        const el = cards[i];
+        if (!el) continue;
+        const top = el.getBoundingClientRect().top;
+        // Title band: card top is at/above focus → this item (or earlier) is current
+        if (top <= focusY) activeIdx = i;
+      }
 
-      const activeIdx = inZone.length
-        ? inZone[0].i
-        : cardTops.some((r) => r > 0)
-          ? 0
-          : journeyItems.length - 1;
+      // If nothing has reached the focus line yet, keep first
+      const firstTop = cards[0]?.getBoundingClientRect().top ?? 0;
+      if (firstTop > focusY) activeIdx = 0;
+
       const clamped = Math.max(0, Math.min(activeIdx, journeyItems.length - 1));
       setActiveIndex(clamped);
 
-      if (expand) {
-        const id = journeyItems[clamped]?.data.id;
-        if (id) {
-          setExpandedIds((prev) => {
-            if (prev.has(id)) return prev;
-            const next = new Set(prev);
-            next.add(id);
-            return next;
-          });
-        }
+      const id = journeyItems[clamped]?.data.id;
+      if (id) {
+        setExpandedIds((prev) => {
+          if (prev.has(id)) return prev;
+          const next = new Set(prev);
+          next.add(id);
+          return next;
+        });
       }
 
       if (fillLineRef.current) {
-        if (!inZone.length) {
-          fillLineRef.current.style.height = '0px';
-          return;
-        }
         const fromH = getDocDotH(clamped);
         const nextIdx = clamped + 1;
         if (nextIdx >= journeyItems.length) {
           fillLineRef.current.style.height = `${Math.max(0, fromH)}px`;
           return;
         }
+
+        const currentTop = cards[clamped]?.getBoundingClientRect().top ?? 0;
+        const nextTop = cards[nextIdx]?.getBoundingClientRect().top ?? 0;
         const toH = getDocDotH(nextIdx);
-        const currentTop = cardTops[clamped];
-        const nextTop = cardTops[nextIdx];
         const range = Math.max(1, nextTop - currentTop);
-        const progress = 1 - Math.max(0, Math.min(1, (nextTop - halfScreen) / range));
+        const progress = 1 - Math.max(0, Math.min(1, (nextTop - focusY) / range));
         fillLineRef.current.style.height = `${Math.max(0, fromH + (toH - fromH) * progress)}px`;
       }
     };
 
-    update(false);
-    const onScroll = () => update(true);
-    const onResize = () => update(false);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onResize, { passive: true });
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
     return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onResize);
+      window.removeEventListener('scroll', update);
+      window.removeEventListener('resize', update);
     };
   }, [journeyItems.length]);
 

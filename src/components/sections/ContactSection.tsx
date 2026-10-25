@@ -11,19 +11,19 @@ export const ContactSection: React.FC = () => {
   return (
     <section
       id="contact"
-      className="relative flex min-h-[50vh] items-center scroll-mt-24 py-section md:min-h-[60vh] md:py-section-lg"
+      className="relative flex min-h-[45vh] items-center scroll-mt-24 py-section md:min-h-[55vh] md:py-section-lg"
     >
       <div
         className="pointer-events-none absolute inset-0"
         aria-hidden
         style={{
           background:
-            'radial-gradient(circle at 20% 70%, var(--muted) 0%, transparent 45%)',
+            'radial-gradient(circle at 25% 60%, var(--muted) 0%, transparent 50%)',
         }}
       />
       <Container className="relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
@@ -39,7 +39,6 @@ export const ContactSection: React.FC = () => {
             {t('contact.description', 'common')}
           </p>
           <p className="mt-6 text-ds-sm text-muted-foreground sm:hidden">
-            {t('contact.email', 'common')}:{' '}
             <a
               href="mailto:gueye.amadou1996@gmail.com"
               className="text-foreground underline-offset-4 hover:underline"

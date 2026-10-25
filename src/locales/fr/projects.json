@@ -45,27 +45,6 @@
       ]
     },
     {
-      "title": "Naboujastore - Plateforme E-Commerce",
-      "role": "Full‑stack",
-      "team": "Solo",
-      "period": "En Cours",
-      "impacts": [
-        "E-commerce prêt pour la production",
-        "Intégration Vercel Analytics",
-        "Next.js 15 App Router",
-        "Optimisé pour les performances"
-      ],
-      "problem": "Les détaillants de vêtements sénégalais traditionnels avaient besoin d'une plateforme e-commerce moderne avec intégration WhatsApp pour servir les préférences du marché local.",
-      "actions": [
-        "Construit un e-commerce prêt pour la production avec Next.js 15 App Router et React 19",
-        "Implémenté Vercel Analytics pour le suivi en temps réel du comportement des utilisateurs et l'analyse de l'entonnoir de conversion",
-        "Déployé sur Vercel avec CI/CD automatique et métriques de performance optimisées",
-        "Créé un panier d'achat avancé avec React Context API et gestion d'état persistante",
-        "Intégré l'API WhatsApp pour le traitement des commandes avec suivi d'événements complet",
-        "Développé un système de design inspiré de l'Afrique avec animations Framer Motion et composants Radix UI"
-      ]
-    },
-    {
       "title": "IlmQuest - Jeu de Quiz Multi-joueurs en Temps Réel",
       "role": "Full‑stack",
       "team": "Solo",

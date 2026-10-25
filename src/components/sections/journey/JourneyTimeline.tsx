@@ -41,7 +41,7 @@ export function JourneyTimeline({
       />
       <div
         ref={fillLineRef}
-        className="absolute left-6 top-0 w-0.5 origin-top -translate-x-px rounded-full bg-foreground md:left-1/2 md:-translate-x-1/2"
+        className="absolute left-6 top-0 w-0.5 origin-top -translate-x-px rounded-full bg-foreground transition-[height] duration-200 ease-out md:left-1/2 md:-translate-x-1/2"
         style={{ height: 0 }}
         aria-hidden
       />
@@ -49,8 +49,8 @@ export function JourneyTimeline({
       <div>
         {journeyItems.map((item, index) => {
           const isActive = index === activeIndex;
-          const isEducation = item.type === 'education';
           const isExpanded = expandedIds.has(item.data.id);
+          const isEducation = item.type === 'education';
 
           return (
             <div
@@ -66,7 +66,11 @@ export function JourneyTimeline({
                 className={`max-w-xl flex-1 pl-12 md:pl-0 ${index % 2 === 1 ? 'md:order-first' : ''}`}
               >
                 <div className="mb-2 flex items-center gap-2 md:hidden">
-                  <span className="text-ds-xs font-semibold tabular-nums text-muted-foreground">
+                  <span
+                    className={`text-ds-xs font-semibold tabular-nums transition-colors ${
+                      isActive ? 'text-foreground' : 'text-muted-foreground'
+                    }`}
+                  >
                     {item.sortYear}
                   </span>
                   <span className="text-ds-xs text-muted-foreground/40">·</span>
@@ -98,11 +102,17 @@ export function JourneyTimeline({
                 className="pointer-events-none absolute left-6 top-[2.6rem] z-10 flex -translate-x-1/2 flex-col items-center gap-1.5 md:left-1/2 md:top-[2.8rem]"
               >
                 <motion.div
-                  animate={{ scale: isActive ? 1.25 : 1 }}
-                  transition={{ duration: 0.3 }}
-                  className="flex h-3.5 w-3.5 items-center justify-center rounded-full border-2 border-background bg-foreground shadow-sm"
+                  animate={{ scale: isActive ? 1.3 : 1 }}
+                  transition={{ duration: 0.25 }}
+                  className={`flex h-3.5 w-3.5 items-center justify-center rounded-full border-2 border-background shadow-sm ${
+                    isActive ? 'bg-foreground' : 'bg-muted-foreground/50'
+                  }`}
                 />
-                <span className="hidden select-none text-[10px] font-semibold tracking-widest text-muted-foreground tabular-nums md:block">
+                <span
+                  className={`hidden select-none text-[10px] font-semibold tracking-widest tabular-nums transition-colors md:block ${
+                    isActive ? 'text-foreground' : 'text-muted-foreground'
+                  }`}
+                >
                   {item.sortYear}
                 </span>
               </div>

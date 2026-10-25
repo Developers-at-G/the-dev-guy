@@ -7,7 +7,7 @@ import { useLanguage } from '../../app/context/LanguageContext';
 import { getProfileData } from '../../data/profile';
 import { Container } from '../ui/Container';
 
-function WelcomeTypewriter({ text, speed = 36 }: { text: string; speed?: number }) {
+function WelcomeTypewriter({ text, speed = 72 }: { text: string; speed?: number }) {
   const [displayed, setDisplayed] = useState('');
   const [done, setDone] = useState(false);
 
@@ -59,21 +59,16 @@ export const Hero: React.FC = () => {
         }}
       />
 
-      {/* Welcome */}
       <Container className="relative z-10 flex min-h-[42vh] items-end pb-10 pt-28 sm:min-h-[48vh] sm:pb-14 sm:pt-32">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="mb-4 text-ds-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
-            {profileData.title}
-          </p>
           <WelcomeTypewriter text={welcome} />
         </motion.div>
       </Container>
 
-      {/* Introduction */}
       <Container className="relative z-10 pb-20 sm:pb-28">
         <div className="grid items-center gap-10 border-t border-border pt-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-14 lg:pt-16">
           <motion.div
@@ -118,7 +113,7 @@ export const Hero: React.FC = () => {
               {profileData.about.bio}
             </p>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              {profileData.description}
+              {profileData.about.experience}
             </p>
             <ul className="mt-8 flex flex-wrap gap-2">
               {profileData.skills.map((skill) => (

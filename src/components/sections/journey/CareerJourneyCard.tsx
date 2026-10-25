@@ -1,7 +1,6 @@
 'use client';
 
-import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import React from 'react';
 import { useLanguage } from '@/app/context/LanguageContext';
 import { Badge } from '@/components/ui/Badge';
 import type { CareerExperience } from '@/data/career';
@@ -22,16 +21,10 @@ export function CareerJourneyCard({
 }: CareerJourneyCardProps) {
   const { t } = useLanguage();
   const style = careerTypeStyles[experience.type] ?? careerTypeStyles.work;
-  const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { amount: 0.2, once: true });
 
   return (
-    <motion.article
-      ref={ref}
-      initial={{ opacity: 0, y: 20 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-      className={`overflow-hidden rounded-lg border bg-card transition-colors ${
+    <article
+      className={`overflow-hidden rounded-lg border bg-card transition-[border-color] duration-500 ease-out ${
         isActive ? 'border-foreground/40' : 'border-border'
       }`}
     >
@@ -49,15 +42,15 @@ export function CareerJourneyCard({
       </div>
 
       <div
-        className="grid overflow-hidden border-t border-border transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+        className="grid transition-[grid-template-rows] duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
         style={{ gridTemplateRows: isExpanded ? '1fr' : '0fr' }}
       >
-        <div className="min-h-0">
+        <div className="min-h-0 overflow-hidden">
           <div
-            className="px-5 pb-5 pt-4 transition-opacity duration-300 md:px-6 md:pb-6"
+            className="border-t border-border px-5 pb-5 pt-4 transition-opacity duration-700 ease-out md:px-6 md:pb-6"
             style={{
               opacity: isExpanded ? 1 : 0,
-              transitionDelay: isExpanded ? '100ms' : '0ms',
+              transitionDelay: isExpanded ? '180ms' : '0ms',
             }}
           >
             {experience.description && (
@@ -95,6 +88,6 @@ export function CareerJourneyCard({
           </div>
         </div>
       </div>
-    </motion.article>
+    </article>
   );
 }

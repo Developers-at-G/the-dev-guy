@@ -33,7 +33,7 @@ const staticProjectsData: StaticProject[] = [
   {
     id: 'developer-playground',
     category: 'learning',
-    image: '/Images/developer-playground.svg',
+    image: '/Images/developer-playground.png',
     technologies: [
       'Next.js 14',
       'TypeScript',
@@ -84,7 +84,7 @@ const staticProjectsData: StaticProject[] = [
   {
     id: 'g-tech',
     category: 'frontend',
-    image: '/Images/g-tech.svg',
+    image: '/Images/g-tech.jpg',
     technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'UI/UX', 'i18n'],
     link: 'https://g-tech-phi.vercel.app/',
     role: 'Design',
